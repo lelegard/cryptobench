@@ -8,6 +8,7 @@
 #include "lib.h"
 #include <gnutls/gnutls.h>
 #include <gnutls/crypto.h>
+#include <gnutls/abstract.h>
 
 class lib_gnutls: public lib
 {
@@ -36,6 +37,9 @@ public:
     virtual size_t aes_decrypt_cbc(const uint8_t* key, size_t key_size, const uint8_t* iv, size_t iv_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize) override;
 
 private:
+    gnutls_pubkey_t _rsa_public_key = nullptr;
+    gnutls_privkey_t _rsa_private_key = nullptr;
+
     // Get AES CBC cipher algo from key size.
     gnutls_cipher_algorithm_t aes_cbc_algo(size_t key_size);
 

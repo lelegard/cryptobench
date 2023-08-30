@@ -200,3 +200,21 @@ void sys::load_file(const std::string& filename, bytes_t& data)
     }
     strm.close();
 }
+
+//----------------------------------------------------------------------------
+// Get the size in bits of a multi-precision number in MSB format.
+//----------------------------------------------------------------------------
+
+size_t sys::large_number_bits(const uint8_t* num, size_t num_bytes)
+{
+    size_t bits = num == nullptr ? 0 : 8 * num_bytes;
+    uint8_t mask = 0x80;
+    while (bits > 0 && (*num & mask) == 0) {
+        bits--;
+        if ((mask >>= 1) == 0) {
+            mask = 0x80;
+            num++;
+        }
+    }
+    return bits;
+}

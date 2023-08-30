@@ -13,7 +13,6 @@
 lib_gnutls::lib_gnutls() :
     lib("gnutls")
 {
-    //@@@
 }
 
 //----------------------------------------------------------------------------
@@ -22,7 +21,14 @@ lib_gnutls::lib_gnutls() :
 
 lib_gnutls::~lib_gnutls()
 {
-    //@@@
+    if (_rsa_public_key != nullptr) {
+        gnutls_pubkey_deinit(_rsa_public_key);
+        _rsa_public_key = nullptr;
+    }
+    if (_rsa_private_key != nullptr) {
+        gnutls_privkey_deinit(_rsa_private_key);
+        _rsa_private_key = nullptr;
+    }
 }
 
 //----------------------------------------------------------------------------
@@ -31,7 +37,7 @@ lib_gnutls::~lib_gnutls()
 
 void lib_gnutls::init()
 {
-    //@@@
+    // Nothing to do.
 }
 
 //----------------------------------------------------------------------------
@@ -40,7 +46,7 @@ void lib_gnutls::init()
 
 void lib_gnutls::cleanup()
 {
-    //@@@
+    // Nothing to do.
 }
 
 //----------------------------------------------------------------------------
@@ -73,7 +79,16 @@ void lib_gnutls::gtls_fatal(int err, const std::string& message)
 
 void lib_gnutls::load_rsa_private_key(const std::string& filename)
 {
-    //@@@
+    int err = 0;
+    if (_rsa_private_key == nullptr) {
+        err = gnutls_privkey_init(&_rsa_private_key);
+        gtls_fatal(err, "error in gnutls_privkey_init");
+    }
+    bytes_t pem;
+    sys::load_file(filename, pem);
+    gnutls_datum_t pem_datum = {pem.data(), (unsigned int)(pem.size())};
+    err = gnutls_privkey_import_x509_raw(_rsa_private_key, &pem_datum, GNUTLS_X509_FMT_PEM, nullptr, 0);
+    gtls_fatal(err, "error loading RSA private key from " + filename);
 }
 
 //----------------------------------------------------------------------------
@@ -82,21 +97,43 @@ void lib_gnutls::load_rsa_private_key(const std::string& filename)
 
 void lib_gnutls::load_rsa_public_key(const std::string& filename)
 {
-    //@@@
+    int err = 0;
+    if (_rsa_public_key == nullptr) {
+        err = gnutls_pubkey_init(&_rsa_public_key);
+        gtls_fatal(err, "error in gnutls_pubkey_init");
+    }
+    bytes_t pem;
+    sys::load_file(filename, pem);
+    gnutls_datum_t pem_datum = {pem.data(), (unsigned int)(pem.size())};
+    err = gnutls_pubkey_import(_rsa_public_key, &pem_datum, GNUTLS_X509_FMT_PEM);
+    gtls_fatal(err, "error loading RSA public key from " + filename);
 }
 
 //----------------------------------------------------------------------------
 // Current RSA key sizes.
+// GnuTLS has no public API to get the size of a public or private key.
+// For these tests, we export the modulus from the key to get the key size.
+// This is extremely unefficient.
 //----------------------------------------------------------------------------
 
 size_t lib_gnutls::rsa_private_key_bits() const
 {
-    return 0; //@@@
+    gnutls_datum_t m = {nullptr, 0};
+    int err = gnutls_privkey_export_rsa_raw(_rsa_private_key, &m, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr);
+    gtls_fatal(err, "error in gnutls_privkey_export_rsa_raw");
+    size_t bits = sys::large_number_bits(m.data, m.size);
+    gnutls_free(m.data);
+    return bits;
 }
 
 size_t lib_gnutls::rsa_public_key_bits() const
 {
-    return 0; //@@@
+    gnutls_datum_t m = {nullptr, 0};
+    int err = gnutls_pubkey_export_rsa_raw(_rsa_public_key, &m, nullptr);
+    gtls_fatal(err, "error in gnutls_pubkey_export_rsa_raw");
+    size_t bits = sys::large_number_bits(m.data, m.size);
+    gnutls_free(m.data);
+    return bits;
 }
 
 
@@ -106,7 +143,8 @@ size_t lib_gnutls::rsa_public_key_bits() const
 
 void lib_gnutls::rsa_init_encrypt_oaep()
 {
-    //@@@
+    // How can we do this with GnuTLS?
+    // What kind of padding use gnutls_pubkey_encrypt_data()?
 }
 
 //----------------------------------------------------------------------------
@@ -115,7 +153,8 @@ void lib_gnutls::rsa_init_encrypt_oaep()
 
 void lib_gnutls::rsa_init_decrypt_oaep()
 {
-    //@@@
+    // How can we do this with GnuTLS?
+    // What kind of padding use gnutls_privkey_decrypt_data()?
 }
 
 //----------------------------------------------------------------------------
@@ -124,7 +163,13 @@ void lib_gnutls::rsa_init_decrypt_oaep()
 
 size_t lib_gnutls::rsa_encrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
 {
-    return 0; //@@@
+    gnutls_datum_t in = {const_cast<uint8_t*>(input), (unsigned int)(input_size)};
+    gnutls_datum_t out = {nullptr, 0};
+    int err = gnutls_pubkey_encrypt_data(_rsa_public_key, 0, &in, &out);
+    gtls_fatal(err, "error in gnutls_pubkey_encrypt_data");
+    ::memcpy(output, out.data, std::min<size_t>(output_maxsize, out.size));
+    gnutls_free(out.data);
+    return out.size;
 }
 
 //----------------------------------------------------------------------------
@@ -133,7 +178,13 @@ size_t lib_gnutls::rsa_encrypt(const uint8_t* input, size_t input_size, uint8_t*
 
 size_t lib_gnutls::rsa_decrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
 {
-    return 0; //@@@
+    gnutls_datum_t in = {const_cast<uint8_t*>(input), (unsigned int)(input_size)};
+    gnutls_datum_t out = {nullptr, 0};
+    int err = gnutls_privkey_decrypt_data(_rsa_private_key, 0, &in, &out);
+    gtls_fatal(err, "error in gnutls_privkey_decrypt_data");
+    ::memcpy(output, out.data, std::min<size_t>(output_maxsize, out.size));
+    gnutls_free(out.data);
+    return out.size;
 }
 
 //----------------------------------------------------------------------------

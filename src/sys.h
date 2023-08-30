@@ -57,4 +57,7 @@ namespace sys {
 
     // Load a binary file. Return malloc'ated data. Fail on error.
     void load_file(const std::string& filename, bytes_t& data);
+
+    // Get the size in bits of a multi-precision number in MSB format.
+    size_t large_number_bits(const uint8_t* num, size_t num_bytes);
 }
