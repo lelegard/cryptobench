@@ -33,8 +33,6 @@ public:
     virtual void load_rsa_public_key(const std::string& filename) override;
     virtual size_t rsa_private_key_bits() const override;
     virtual size_t rsa_public_key_bits() const override;
-    virtual void rsa_init_encrypt_oaep() override;
-    virtual void rsa_init_decrypt_oaep() override;
     virtual size_t rsa_encrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize) override;
     virtual size_t rsa_decrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize) override;
     virtual size_t aes_encrypt(const uint8_t* key, size_t key_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize) override;

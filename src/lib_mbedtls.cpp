@@ -13,17 +13,13 @@ bool lib_mbedtls::_entropy_valid = false;
 bool lib_mbedtls::_ctr_drbg_valid = false;
 
 //----------------------------------------------------------------------------
-// Constructor.
+// Constructor/destructor.
 //----------------------------------------------------------------------------
 
 lib_mbedtls::lib_mbedtls() :
     lib("mbedtls")
 {
 }
-
-//----------------------------------------------------------------------------
-// Destructor.
-//----------------------------------------------------------------------------
 
 lib_mbedtls::~lib_mbedtls()
 {
@@ -38,7 +34,7 @@ lib_mbedtls::~lib_mbedtls()
 }
 
 //----------------------------------------------------------------------------
-// MbedTLS initialization.
+// Library initialization/cleanup.
 //----------------------------------------------------------------------------
 
 void lib_mbedtls::init()
@@ -57,10 +53,6 @@ void lib_mbedtls::init()
     mbed_fatal(err, "error in mbedtls_ctr_drbg_seed\n");
 }
 
-//----------------------------------------------------------------------------
-// MbedTLS cleanup.
-//----------------------------------------------------------------------------
-
 void lib_mbedtls::cleanup()
 {
     if (_ctr_drbg_valid) {
@@ -71,6 +63,27 @@ void lib_mbedtls::cleanup()
         mbedtls_entropy_free(&_entropy);
         _entropy_valid = false;
     }
+}
+
+//----------------------------------------------------------------------------
+// Cryptographic library properties.
+//----------------------------------------------------------------------------
+
+std::string lib_mbedtls::version() const
+{
+    char mbed_version[256];
+    mbedtls_version_get_string_full(mbed_version);
+    return sys::format("version: %s", mbed_version);
+}
+
+bool lib_mbedtls::rsa_available() const
+{
+    return true;
+}
+
+bool lib_mbedtls::aes_available() const
+{
+    return true;
 }
 
 //----------------------------------------------------------------------------
@@ -88,17 +101,6 @@ void lib_mbedtls::mbed_fatal(int err, const std::string& message)
         std::cerr << "mbedtls: error " << err << ": " << msg << std::endl;
         std::exit(EXIT_FAILURE);
     }
-}
-
-//----------------------------------------------------------------------------
-// Cryptographic library version.
-//----------------------------------------------------------------------------
-
-std::string lib_mbedtls::version() const
-{
-    char mbed_version[256];
-    mbedtls_version_get_string_full(mbed_version);
-    return sys::format("version: %s", mbed_version);
 }
 
 //----------------------------------------------------------------------------

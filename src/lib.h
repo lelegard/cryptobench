@@ -17,37 +17,37 @@ public:
     static constexpr size_t AES_BLOCK_SIZE = 16;
 
     // Check if RSA and AES are available.
-    // True by default, subclasses may override them.
+    // False by default, subclasses must override them to support an algo.
     virtual bool rsa_available() const;
     virtual bool aes_available() const;
 
     // Cryptographic library names and version.
-    virtual std::string version() const = 0;
+    virtual std::string version() const;
     std::string name() const { return _name; }
     std::string rsa_name() const;
     std::string aes_name() const;
 
     // Each instance shall be able to load one RSA key pair from PEM files.
-    virtual void load_rsa_private_key(const std::string& filename) = 0;
-    virtual void load_rsa_public_key(const std::string& filename) = 0;
-    virtual size_t rsa_private_key_bits() const = 0;
-    virtual size_t rsa_public_key_bits() const = 0;
+    virtual void load_rsa_private_key(const std::string& filename);
+    virtual void load_rsa_public_key(const std::string& filename);
+    virtual size_t rsa_private_key_bits() const;
+    virtual size_t rsa_public_key_bits() const;
 
     // Initialize RSA context for AOEP encrypt/decrypt.
-    virtual void rsa_init_encrypt_oaep() = 0;
-    virtual void rsa_init_decrypt_oaep() = 0;
+    virtual void rsa_init_encrypt_oaep();
+    virtual void rsa_init_decrypt_oaep();
 
     // RSA encrypt/decrypt, according to current mode.
-    virtual size_t rsa_encrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize) = 0;
-    virtual size_t rsa_decrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize) = 0;
+    virtual size_t rsa_encrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize);
+    virtual size_t rsa_decrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize);
 
     // AES encryption or decryption of one block.
-    virtual size_t aes_encrypt(const uint8_t* key, size_t key_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize) = 0;
-    virtual size_t aes_decrypt(const uint8_t* key, size_t key_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize) = 0;
+    virtual size_t aes_encrypt(const uint8_t* key, size_t key_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize);
+    virtual size_t aes_decrypt(const uint8_t* key, size_t key_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize);
 
     // AES CBC encryption or decryption, without padding, must be a multiple of block size.
-    virtual size_t aes_encrypt_cbc(const uint8_t* key, size_t key_size, const uint8_t* iv, size_t iv_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize) = 0;
-    virtual size_t aes_decrypt_cbc(const uint8_t* key, size_t key_size, const uint8_t* iv, size_t iv_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize) = 0;
+    virtual size_t aes_encrypt_cbc(const uint8_t* key, size_t key_size, const uint8_t* iv, size_t iv_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize);
+    virtual size_t aes_decrypt_cbc(const uint8_t* key, size_t key_size, const uint8_t* iv, size_t iv_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize);
 
     // Last AES key size.
     size_t aes_key_bits() const { return _aes_key_bits; }
@@ -70,5 +70,5 @@ protected:
 
 private:
     const std::string _name;
-    size_t _aes_key_bits = 0;
+    size_t _aes_key_bits;
 };

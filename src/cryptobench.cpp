@@ -13,6 +13,7 @@
 #include "lib_gnutls.h"
 #include "lib_nettle.h"
 #include "lib_tomcrypt.h"
+#include "lib_arm64.h"
 
 // Score adjustment factors, to give readable results.
 #define RSA_SCORE_FACTOR 1000.0
@@ -90,6 +91,7 @@ void run_all_benchmarks(std::ostream& out, const options& opt)
     lib_nettle nettle;
     lib_tomcrypt tomcrypt(false);
     lib_tomcrypt tomcrypt_gmp(true);
+    lib_arm64 arm64;
 
     std::vector<lib*> tested_libs;
     if (opt.openssl) {
@@ -109,6 +111,9 @@ void run_all_benchmarks(std::ostream& out, const options& opt)
     }
     if (opt.tomcrypt_gmp) {
         tested_libs.push_back(&tomcrypt_gmp);
+    }
+    if (opt.arm64) {
+        tested_libs.push_back(&arm64);
     }
 
     // Library versions.

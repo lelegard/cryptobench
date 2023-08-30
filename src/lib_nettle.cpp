@@ -50,15 +50,16 @@ std::string lib_nettle::version() const
     return sys::format("%d.%d", nettle_version_major(), nettle_version_minor());
 }
 
-//----------------------------------------------------------------------------
-// Check if RSA and AES are available.
-//----------------------------------------------------------------------------
-
 bool lib_nettle::rsa_available() const
 {
     // WARNING: RSA currently disabled with nettle until we can fix the
     // loading of public and private key files.
     return false;
+}
+
+bool lib_nettle::aes_available() const
+{
+    return true;
 }
 
 //----------------------------------------------------------------------------
@@ -120,21 +121,6 @@ size_t lib_nettle::rsa_private_key_bits() const
 size_t lib_nettle::rsa_public_key_bits() const
 {
     return _rsa_public_key_valid ? _rsa_public_key.size * 8 : 0;
-}
-
-
-//----------------------------------------------------------------------------
-// Initialize RSA context for AOEP encrypt/decrypt.
-//----------------------------------------------------------------------------
-
-void lib_nettle::rsa_init_encrypt_oaep()
-{
-    // Nettle cannot do OAEP, only PKCS#1 v1.5 padding.
-}
-
-void lib_nettle::rsa_init_decrypt_oaep()
-{
-    // Nettle cannot do OAEP, only PKCS#1 v1.5 padding.
 }
 
 //----------------------------------------------------------------------------

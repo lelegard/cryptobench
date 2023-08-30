@@ -28,6 +28,8 @@ public:
 
     // Implementation of "lib" interface.
     virtual std::string version() const override;
+    virtual bool rsa_available() const override;
+    virtual bool aes_available() const override;
     virtual void load_rsa_private_key(const std::string& filename) override;
     virtual void load_rsa_public_key(const std::string& filename) override;
     virtual size_t rsa_private_key_bits() const override;

@@ -7,17 +7,13 @@
 #include "lib_gnutls.h"
 
 //----------------------------------------------------------------------------
-// Constructor.
+// Constructor/destructor.
 //----------------------------------------------------------------------------
 
 lib_gnutls::lib_gnutls() :
     lib("gnutls")
 {
 }
-
-//----------------------------------------------------------------------------
-// Destructor.
-//----------------------------------------------------------------------------
 
 lib_gnutls::~lib_gnutls()
 {
@@ -32,7 +28,7 @@ lib_gnutls::~lib_gnutls()
 }
 
 //----------------------------------------------------------------------------
-// GnuTLS initialization.
+// GnuTLS initialization/cleanup.
 //----------------------------------------------------------------------------
 
 void lib_gnutls::init()
@@ -40,22 +36,28 @@ void lib_gnutls::init()
     // Nothing to do.
 }
 
-//----------------------------------------------------------------------------
-// GnuTLS cleanup.
-//----------------------------------------------------------------------------
-
 void lib_gnutls::cleanup()
 {
     // Nothing to do.
 }
 
 //----------------------------------------------------------------------------
-// Cryptographic library version.
+// Cryptographic library properties.
 //----------------------------------------------------------------------------
 
 std::string lib_gnutls::version() const
 {
     return GNUTLS_VERSION;
+}
+
+bool lib_gnutls::rsa_available() const
+{
+    return true;
+}
+
+bool lib_gnutls::aes_available() const
+{
+    return true;
 }
 
 //----------------------------------------------------------------------------
@@ -136,26 +138,6 @@ size_t lib_gnutls::rsa_public_key_bits() const
     return bits;
 }
 
-
-//----------------------------------------------------------------------------
-// Initialize RSA context for AOEP encrypt.
-//----------------------------------------------------------------------------
-
-void lib_gnutls::rsa_init_encrypt_oaep()
-{
-    // How can we do this with GnuTLS?
-    // What kind of padding use gnutls_pubkey_encrypt_data()?
-}
-
-//----------------------------------------------------------------------------
-// Initialize RSA context for AOEP decrypt.
-//----------------------------------------------------------------------------
-
-void lib_gnutls::rsa_init_decrypt_oaep()
-{
-    // How can we do this with GnuTLS?
-    // What kind of padding use gnutls_privkey_decrypt_data()?
-}
 
 //----------------------------------------------------------------------------
 // RSA encrypt, according to current mode.

@@ -39,4 +39,5 @@ public:
     bool        nettle = false;
     bool        tomcrypt = false;
     bool        tomcrypt_gmp = false;
+    bool        arm64 = false;
 };

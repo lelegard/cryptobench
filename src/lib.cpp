@@ -16,19 +16,6 @@ lib::lib(const std::string& name) :
 }
 
 //----------------------------------------------------------------------------
-// Check if RSA and AES are available. True by default.
-//----------------------------------------------------------------------------
-
-bool lib::rsa_available() const
-{
-    return true;
-}
-bool lib::aes_available() const
-{
-    return true;
-}
-
-//----------------------------------------------------------------------------
 // Cryptographic library names.
 //----------------------------------------------------------------------------
 
@@ -40,6 +27,67 @@ std::string lib::rsa_name() const
 std::string lib::aes_name() const
 {
     return sys::format("aes-%zu", aes_key_bits());
+}
+
+//----------------------------------------------------------------------------
+// Default implementation: does nothing, to be overriden in subclasses/
+//----------------------------------------------------------------------------
+
+std::string lib::version() const
+{
+    return "";
+}
+bool lib::rsa_available() const
+{
+    return false;
+}
+bool lib::aes_available() const
+{
+    return false;
+}
+void lib::load_rsa_private_key(const std::string& filename)
+{
+}
+void lib::load_rsa_public_key(const std::string& filename)
+{
+}
+size_t lib::rsa_private_key_bits() const
+{
+    return 0; // no key loaded
+}
+size_t lib::rsa_public_key_bits() const
+{
+    return 0; // no key loaded
+}
+void lib::rsa_init_encrypt_oaep()
+{
+}
+void lib::rsa_init_decrypt_oaep()
+{
+}
+size_t lib::rsa_encrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
+{
+    return 0; // no output
+}
+size_t lib::rsa_decrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
+{
+    return 0; // no output
+}
+size_t lib::aes_encrypt(const uint8_t* key, size_t key_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
+{
+    return 0; // no output
+}
+size_t lib::aes_decrypt(const uint8_t* key, size_t key_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
+{
+    return 0; // no output
+}
+size_t lib::aes_encrypt_cbc(const uint8_t* key, size_t key_size, const uint8_t* iv, size_t iv_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
+{
+    return 0; // no output
+}
+size_t lib::aes_decrypt_cbc(const uint8_t* key, size_t key_size, const uint8_t* iv, size_t iv_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
+{
+    return 0; // no output
 }
 
 //----------------------------------------------------------------------------

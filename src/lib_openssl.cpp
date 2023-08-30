@@ -7,17 +7,13 @@
 #include "lib_openssl.h"
 
 //----------------------------------------------------------------------------
-// Constructor.
+// Constructor/destructor.
 //----------------------------------------------------------------------------
 
 lib_openssl::lib_openssl() :
     lib("openssl")
 {
 }
-
-//----------------------------------------------------------------------------
-// Destructor.
-//----------------------------------------------------------------------------
 
 lib_openssl::~lib_openssl()
 {
@@ -40,7 +36,7 @@ lib_openssl::~lib_openssl()
 }
 
 //----------------------------------------------------------------------------
-// OpenSSL initialization.
+// Library initialization/cleanup.
 //----------------------------------------------------------------------------
 
 void lib_openssl::init()
@@ -49,14 +45,29 @@ void lib_openssl::init()
     OpenSSL_add_all_algorithms();
 }
 
-//----------------------------------------------------------------------------
-// OpenSSL cleanup.
-//----------------------------------------------------------------------------
-
 void lib_openssl::cleanup()
 {
     EVP_cleanup();
     ERR_free_strings();
+}
+
+//----------------------------------------------------------------------------
+// Cryptographic library properties.
+//----------------------------------------------------------------------------
+
+std::string lib_openssl::version() const
+{
+    return sys::format("version: %s (%s)", OpenSSL_version(OPENSSL_FULL_VERSION_STRING), OpenSSL_version(OPENSSL_CPU_INFO));
+}
+
+bool lib_openssl::rsa_available() const
+{
+    return true;
+}
+
+bool lib_openssl::aes_available() const
+{
+    return true;
 }
 
 //----------------------------------------------------------------------------
@@ -70,15 +81,6 @@ void lib_openssl::ossl_fatal(const std::string& message)
     }
     ERR_print_errors_fp(stderr);
     std::exit(EXIT_FAILURE);
-}
-
-//----------------------------------------------------------------------------
-// Cryptographic library version.
-//----------------------------------------------------------------------------
-
-std::string lib_openssl::version() const
-{
-    return sys::format("version: %s (%s)", OpenSSL_version(OPENSSL_FULL_VERSION_STRING), OpenSSL_version(OPENSSL_CPU_INFO));
 }
 
 //----------------------------------------------------------------------------

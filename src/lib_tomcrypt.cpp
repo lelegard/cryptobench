@@ -28,7 +28,7 @@ const ltc_math_descriptor* const lib_tomcrypt::_gmp_desc =
 #endif
 
 //----------------------------------------------------------------------------
-// Constructor.
+// Constructor/destructor.
 //----------------------------------------------------------------------------
 
 lib_tomcrypt::lib_tomcrypt(bool use_gmp) :
@@ -36,10 +36,6 @@ lib_tomcrypt::lib_tomcrypt(bool use_gmp) :
     _math_desc(use_gmp ? _gmp_desc : _ltm_desc)
 {
 }
-
-//----------------------------------------------------------------------------
-// Destructor.
-//----------------------------------------------------------------------------
 
 lib_tomcrypt::~lib_tomcrypt()
 {
@@ -63,8 +59,13 @@ void lib_tomcrypt::set_mp() const
 }
 
 //----------------------------------------------------------------------------
-// Check if RSA and AES are available.
+// Cryptographic library properties.
 //----------------------------------------------------------------------------
+
+std::string lib_tomcrypt::version() const
+{
+    return SCRYPT;
+}
 
 bool lib_tomcrypt::rsa_available() const
 {
@@ -123,15 +124,6 @@ void lib_tomcrypt::cleanup()
         yarrow_done(&_yarrow_prng);
         _yarrow_prng_valid = false;
     }
-}
-
-//----------------------------------------------------------------------------
-// Cryptographic library version.
-//----------------------------------------------------------------------------
-
-std::string lib_tomcrypt::version() const
-{
-    return SCRYPT;
 }
 
 //----------------------------------------------------------------------------
@@ -255,25 +247,6 @@ size_t lib_tomcrypt::rsa_public_key_bits() const
 {
     set_mp();
     return 8 * rsa_get_size(const_cast<rsa_key*>(&_rsa_public_key));
-}
-
-
-//----------------------------------------------------------------------------
-// Initialize RSA context for AOEP encrypt.
-//----------------------------------------------------------------------------
-
-void lib_tomcrypt::rsa_init_encrypt_oaep()
-{
-    // Nothing to do.
-}
-
-//----------------------------------------------------------------------------
-// Initialize RSA context for AOEP decrypt.
-//----------------------------------------------------------------------------
-
-void lib_tomcrypt::rsa_init_decrypt_oaep()
-{
-    // Nothing to do.
 }
 
 //----------------------------------------------------------------------------
