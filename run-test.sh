@@ -32,11 +32,10 @@ CPU=
 if [[ $SYSTEM == macOS ]]; then
     CPU=$(sysctl machdep.cpu.brand_string | firstvalue)
 elif [[ -e /proc/cpuinfo ]]; then
-    CPU=$(grep -i '^model name' /proc/cpuinfo | firstvalue)
+    MN=$(grep -i '^model name' /proc/cpuinfo | firstvalue)
     HW=$(grep -i '^hardware' /proc/cpuinfo | firstvalue)
     MD=$(grep -i '^model' /proc/cpuinfo | firstvalue)
-    [[ -n $HW ]] && CPU="$CPU, $HW"
-    [[ -n $MD ]] && CPU="$CPU, $MD"
+    CPU=$(trim <<<"$MN $HW $MD")
 fi
     
 echo "arch: $ARCH"
