@@ -69,9 +69,6 @@ private:
     // Cleanup RSA data in the object.
     void rsa_cleanup();
 
-    // Load a PEM file and decode it as DER. Fail on error.
-    static void load_pem_file_as_der(const std::string& filename, bytes_t& data);
-
     // Print LibTomCrypt errors if not success and exit.
     static void tom_fatal(int err, const std::string& message = std::string());
 };

@@ -27,7 +27,7 @@ QMAKE_MACOSX_DEPLOYMENT_TARGET = 11
 DEFINES += LTM_DESC
 DEFINES += GMP_DESC
 
-LIBS += -ltomcrypt -ltommath -lgnutls -lmbedcrypto -lcrypto -lgmp -lm
+LIBS += -ltomcrypt -ltommath -lgnutls -lhogweed -lnettle -lmbedcrypto -lcrypto -lgmp -lm
 
 mac {
     exists(/opt/homebrew) {

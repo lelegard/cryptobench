@@ -11,6 +11,7 @@
 #include "lib_openssl.h"
 #include "lib_mbedtls.h"
 #include "lib_gnutls.h"
+#include "lib_nettle.h"
 #include "lib_tomcrypt.h"
 
 // Score adjustment factors, to give readable results.
@@ -23,8 +24,8 @@
 
 void run_rsa(std::ostream& out, const options& opt, const bench& reference, lib& crypto, const std::string& privkey, const std::string& pubkey)
 {
-    crypto.load_rsa_private_key(privkey);
     crypto.load_rsa_public_key(pubkey);
+    crypto.load_rsa_private_key(privkey);
 
     crypto.rsa_auto_test();
     out << crypto.name() << ": " << crypto.rsa_name() << ": auto-test passed" << std::endl;
@@ -86,6 +87,7 @@ void run_all_benchmarks(std::ostream& out, const options& opt)
     lib_openssl openssl;
     lib_mbedtls mbedtls;
     lib_gnutls gnutls;
+    lib_nettle nettle;
     lib_tomcrypt tomcrypt(false);
     lib_tomcrypt tomcrypt_gmp(true);
 
@@ -98,6 +100,9 @@ void run_all_benchmarks(std::ostream& out, const options& opt)
     }
     if (opt.gnutls) {
         tested_libs.push_back(&gnutls);
+    }
+    if (opt.nettle) {
+        tested_libs.push_back(&nettle);
     }
     if (opt.tomcrypt) {
         tested_libs.push_back(&tomcrypt);

@@ -181,63 +181,6 @@ int lib_tomcrypt::tom_find_prng(const std::string& str)
 }
 
 //----------------------------------------------------------------------------
-// Load a PEM file and decode it as DER. Fail on error.
-//----------------------------------------------------------------------------
-
-void lib_tomcrypt::load_pem_file_as_der(const std::string& filename, bytes_t& data)
-{
-    // Read the PEM file.
-    bytes_t pem;
-    sys::load_file(filename, pem);
-
-    // Ignore the "-----" headers in the PEM file.
-    uint8_t* b64 = pem.data();
-    size_t b64_size = pem.size();
-    if (b64_size > 5 && b64[0] == '-' && b64[1] == '-') {
-        while (b64_size > 0 && *b64 != '\n') {
-            b64++;
-            b64_size--;
-        }
-        while (b64_size > 0 && std::isspace(*b64)) {
-            b64++;
-            b64_size--;
-        }
-    }
-    while (b64_size > 0 && std::isspace(b64[b64_size - 1])) {
-        b64_size--;
-    }
-    if (b64_size > 5 && b64[b64_size - 1] == '-' && b64[b64_size - 2] == '-') {
-        while (b64_size > 0 && b64[b64_size - 1] != '\n') {
-            b64_size--;
-        }
-        while (b64_size > 0 && isspace(b64[b64_size - 1])) {
-            b64_size--;
-        }
-    }
-
-    // Remove all spaces and new lines.
-    uint8_t* b64_end = b64 + b64_size;
-    uint8_t* b64_in = b64;
-    uint8_t* b64_out = b64;
-    while (b64_in < b64_end) {
-        if (!std::isspace(*b64_in)) {
-            *b64_out++ = *b64_in;
-        }
-        b64_in++;
-    }
-    b64_size = b64_out - b64;
-
-    // Decode the Base64 encoding to get the DER formatting.
-    // The DER output is always smaller than the Base64 input.
-    data.resize(b64_size);
-    unsigned long der_size = b64_size;
-    int err = base64_decode(b64, b64_size, data.data(), &der_size);
-    tom_fatal(err, "error decoding base64 from " + filename);
-
-    data.resize(der_size);
-}
-
-//----------------------------------------------------------------------------
 // Cleanup RSA data in the object.
 //----------------------------------------------------------------------------
 
@@ -264,7 +207,7 @@ void lib_tomcrypt::load_rsa_private_key(const std::string& filename)
 
     // Read the PEM file for the key.
     bytes_t der;
-    load_pem_file_as_der(filename, der);
+    sys::load_pem_file_as_der(der, filename);
 
     if (_rsa_private_key_valid) {
         rsa_free(&_rsa_private_key);
@@ -286,7 +229,7 @@ void lib_tomcrypt::load_rsa_public_key(const std::string& filename)
 
     // Read the PEM file for the key.
     bytes_t der;
-    load_pem_file_as_der(filename, der);
+    sys::load_pem_file_as_der(der, filename);
 
     if (_rsa_public_key_valid) {
         rsa_free(&_rsa_public_key);

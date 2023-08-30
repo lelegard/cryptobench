@@ -36,6 +36,7 @@ public:
     bool        openssl = false;
     bool        mbedtls = false;
     bool        gnutls = false;
+    bool        nettle = false;
     bool        tomcrypt = false;
     bool        tomcrypt_gmp = false;
 };

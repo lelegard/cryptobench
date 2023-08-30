@@ -85,7 +85,7 @@ void lib_gnutls::load_rsa_private_key(const std::string& filename)
         gtls_fatal(err, "error in gnutls_privkey_init");
     }
     bytes_t pem;
-    sys::load_file(filename, pem);
+    sys::load_file(pem, filename);
     gnutls_datum_t pem_datum = {pem.data(), (unsigned int)(pem.size())};
     err = gnutls_privkey_import_x509_raw(_rsa_private_key, &pem_datum, GNUTLS_X509_FMT_PEM, nullptr, 0);
     gtls_fatal(err, "error loading RSA private key from " + filename);
@@ -103,7 +103,7 @@ void lib_gnutls::load_rsa_public_key(const std::string& filename)
         gtls_fatal(err, "error in gnutls_pubkey_init");
     }
     bytes_t pem;
-    sys::load_file(filename, pem);
+    sys::load_file(pem, filename);
     gnutls_datum_t pem_datum = {pem.data(), (unsigned int)(pem.size())};
     err = gnutls_pubkey_import(_rsa_public_key, &pem_datum, GNUTLS_X509_FMT_PEM);
     gtls_fatal(err, "error loading RSA public key from " + filename);

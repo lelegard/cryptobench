@@ -56,8 +56,16 @@ namespace sys {
     void copy(bytes_t& dest, const void* src, size_t size);
 
     // Load a binary file. Return malloc'ated data. Fail on error.
-    void load_file(const std::string& filename, bytes_t& data);
+    void load_file(bytes_t& data, const std::string& filename);
 
     // Get the size in bits of a multi-precision number in MSB format.
     size_t large_number_bits(const uint8_t* num, size_t num_bytes);
+
+    // Decode 64 data. Ignore spaces. Fail on error.
+    void base64_decode(bytes_t& data, const void* b64, size_t b64_size);
+    inline void base64_decode(bytes_t& data, const std::string& b64) { base64_decode(data, b64.data(), b64.size()); }
+    inline void base64_decode(bytes_t& data, const bytes_t& b64) { base64_decode(data, b64.data(), b64.size()); }
+
+    // Load a PEM file and decode it as DER. Fail on error.
+    void load_pem_file_as_der(bytes_t& data, const std::string& filename);
 }

@@ -11,7 +11,7 @@ SYSTEM   := $(shell uname -s)
 CXXFLAGS += -std=c++17 -Werror -Wall -Wextra -Wno-unused-parameter $(if $(DEBUG),-g,-O2)
 CPPFLAGS += $(addprefix -I,$(wildcard /opt/homebrew/include /usr/local/include))
 LDFLAGS  += $(addprefix -L,$(wildcard /opt/homebrew/lib /usr/local/lib)) $(if $(DEBUG),-g)
-LDLIBS   += -ltomcrypt -ltommath -lgnutls -lmbedcrypto -lcrypto -lgmp -lm
+LDLIBS   += -ltomcrypt -ltommath -lgnutls -lhogweed -lnettle -lmbedcrypto -lcrypto -lgmp -lm
 NM        = nm
 NMFLAGS   = $(if $(findstring Linux,$(SYSTEM)),-D)
 

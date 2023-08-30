@@ -135,7 +135,7 @@ std::string sys::error_string(int err)
 
 void sys::fatal(const std::string& message, int err)
 {
-    std::cerr << exec_file().stem() << ": " << message;
+    std::cerr << std::string(exec_file().stem()) << ": " << message;
     if (err != 0) {
         std::cerr << ": " << error_string(err);
     }
@@ -176,7 +176,7 @@ void sys::copy(bytes_t& dest, const void* src, size_t size)
 // Load a binary file. Return malloc'ated data. Fail on error.
 //----------------------------------------------------------------------------
 
-void sys::load_file(const std::string& filename, bytes_t& data)
+void sys::load_file(bytes_t& data, const std::string& filename)
 {
     // Open the input file.
     std::ifstream strm(filename.c_str(), std::ios::in | std::ios::binary);
@@ -217,4 +217,123 @@ size_t sys::large_number_bits(const uint8_t* num, size_t num_bytes)
         }
     }
     return bits;
+}
+
+//----------------------------------------------------------------------------
+// Base64 utilities
+//----------------------------------------------------------------------------
+
+namespace {
+
+    // Convert a Base64 character into a 0-63 integer. Fail on error.
+    uint8_t base64_to_integer(char c)
+    {
+        // Base64 alphabet: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+        if (c >= 'A' && c <= 'Z') {
+            return c - 'A';
+        }
+        else if (c >= 'a' && c <= 'z') {
+            return c - 'a' + 26;
+        }
+        else if (c >= '0' && c <= '9') {
+            return c - '0' + 52;
+        }
+        else if (c == '+') {
+            return 62;
+        }
+        else if (c == '/') {
+            return 63;
+        }
+        else {
+            sys::fatal(sys::format("invalid base64 encoding, got character %d ('%c')", int(c), c));
+            return 0; // unreacheable
+        }
+    }
+
+    // Convert a buffer of up to 4 characters to binary data.
+    void base64_update(bytes_t& data, const char* buf, size_t buf_size)
+    {
+        if (buf_size >= 2) {
+            const uint8_t c0 = base64_to_integer(buf[0]);
+            const uint8_t c1 = base64_to_integer(buf[1]);
+            data.push_back((c0 << 2) | (c1 >> 4));
+            if (buf_size >= 3 && buf[2] != '=') {
+                const uint8_t c2 = base64_to_integer(buf[2]);
+                data.push_back((c1 << 4) | (c2 >> 2));
+                if (buf_size >= 4 && buf[3] != '=') {
+                    const uint8_t c3 = base64_to_integer(buf[3]);
+                    data.push_back((c2 << 6) | c3);
+                }
+            }
+        }
+    }
+}
+
+//----------------------------------------------------------------------------
+// Decode 64 data. Fail on error.
+//----------------------------------------------------------------------------
+
+void sys::base64_decode(bytes_t& data, const void* void_b64, size_t b64_size)
+{
+    data.clear();
+    if (void_b64 == nullptr || b64_size == 0) {
+        return;
+    }
+    data.reserve((b64_size * 3) / 4);
+
+    char buf[4];
+    size_t buf_size = 0;
+    const char* b64 = reinterpret_cast<const char*>(void_b64);
+
+    while (b64_size > 0) {
+        while (buf_size < sizeof(buf) && b64_size > 0) {
+            if (!std::isspace(*b64)) {
+                buf[buf_size++] = *b64;
+            }
+            b64++;
+            b64_size--;
+        }
+        base64_update(data, buf, buf_size);
+        buf_size = 0;
+    }
+    base64_update(data, buf, buf_size);
+}
+
+//----------------------------------------------------------------------------
+// Load a PEM file and decode it as DER. Fail on error.
+//----------------------------------------------------------------------------
+
+void sys::load_pem_file_as_der(bytes_t& data, const std::string& filename)
+{
+    // Read the PEM file.
+    bytes_t pem;
+    load_file(pem, filename);
+
+    // Ignore the "-----" headers in the PEM file.
+    uint8_t* b64 = pem.data();
+    size_t b64_size = pem.size();
+    if (b64_size > 5 && b64[0] == '-' && b64[1] == '-') {
+        while (b64_size > 0 && *b64 != '\n') {
+            b64++;
+            b64_size--;
+        }
+        while (b64_size > 0 && std::isspace(*b64)) {
+            b64++;
+            b64_size--;
+        }
+    }
+    while (b64_size > 0 && std::isspace(b64[b64_size - 1])) {
+        b64_size--;
+    }
+    if (b64_size > 5 && b64[b64_size - 1] == '-' && b64[b64_size - 2] == '-') {
+        while (b64_size > 0 && b64[b64_size - 1] != '\n') {
+            b64_size--;
+        }
+        while (b64_size > 0 && isspace(b64[b64_size - 1])) {
+            b64_size--;
+        }
+    }
+
+    // Decode the Base64 encoding to get the DER formatting.
+    base64_decode(data, b64, b64_size);
 }

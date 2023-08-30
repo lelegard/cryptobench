@@ -24,7 +24,7 @@ void options::usage() const
               << "  --aes, --rsa" << std::endl
               << std::endl
               << "Crytographic libraries selection (all by default):" << std::endl
-              << "  --gnutls, --mbedtls, --openssl, --tomcrypt, --tomcrypt-gmp" << std::endl
+              << "  --gnutls, --mbedtls, --openssl, --nettle, --tomcrypt, --tomcrypt-gmp" << std::endl
               << std::endl;
     std::exit(EXIT_FAILURE);
 }
@@ -78,6 +78,10 @@ options::options(int argc, char* argv[])
                 all_libs = false;
                 mbedtls = true;
             }
+            else if (arg == "--nettle") {
+                all_libs = false;
+                nettle = true;
+            }
             else if (arg == "--openssl") {
                 all_libs = false;
                 openssl = true;
@@ -103,7 +107,7 @@ options::options(int argc, char* argv[])
         aes = rsa = true;
     }
     if (all_libs) {
-        gnutls = mbedtls = openssl = tomcrypt = tomcrypt_gmp = true;
+        gnutls = mbedtls = nettle = openssl = tomcrypt = tomcrypt_gmp = true;
     }
 }
 
