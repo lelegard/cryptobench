@@ -43,14 +43,7 @@ lib_tomcrypt::lib_tomcrypt(bool use_gmp) :
 
 lib_tomcrypt::~lib_tomcrypt()
 {
-    if (_rsa_public_key_valid) {
-        rsa_free(&_rsa_public_key);
-        _rsa_public_key_valid = false;
-    }
-    if (_rsa_private_key_valid) {
-        rsa_free(&_rsa_private_key);
-        _rsa_private_key_valid = false;
-    }
+    rsa_cleanup();
 }
 
 //----------------------------------------------------------------------------
@@ -242,6 +235,23 @@ void lib_tomcrypt::load_pem_file_as_der(const std::string& filename, bytes_t& da
     tom_fatal(err, "error decoding base64 from " + filename);
 
     data.resize(der_size);
+}
+
+//----------------------------------------------------------------------------
+// Cleanup RSA data in the object.
+//----------------------------------------------------------------------------
+
+void lib_tomcrypt::rsa_cleanup()
+{
+    set_mp();
+    if (_rsa_public_key_valid) {
+        rsa_free(&_rsa_public_key);
+        _rsa_public_key_valid = false;
+    }
+    if (_rsa_private_key_valid) {
+        rsa_free(&_rsa_private_key);
+        _rsa_private_key_valid = false;
+    }
 }
 
 //----------------------------------------------------------------------------

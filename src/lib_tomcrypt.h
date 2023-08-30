@@ -66,6 +66,9 @@ private:
     static int tom_find_hash(const std::string& name);
     static int tom_find_prng(const std::string& name);
 
+    // Cleanup RSA data in the object.
+    void rsa_cleanup();
+
     // Load a PEM file and decode it as DER. Fail on error.
     static void load_pem_file_as_der(const std::string& filename, bytes_t& data);
 
