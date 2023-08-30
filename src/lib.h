@@ -16,6 +16,11 @@ public:
     // Some common crypto constants.
     static constexpr size_t AES_BLOCK_SIZE = 16;
 
+    // Check if RSA and AES are available.
+    // True by default, subclasses may override them.
+    virtual bool rsa_available() const;
+    virtual bool aes_available() const;
+
     // Cryptographic library names and version.
     virtual std::string version() const = 0;
     std::string name() const { return _name; }

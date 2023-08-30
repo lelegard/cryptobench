@@ -132,18 +132,22 @@ void run_all_benchmarks(std::ostream& out, const options& opt)
         out << std::endl;
 
         for (auto tl : tested_libs) {
-            run_rsa(out, opt, bref, *tl, opt.private_key_2048, opt.public_key_2048);
-            run_rsa(out, opt, bref, *tl, opt.private_key_4096, opt.public_key_4096);
-            out << std::endl;
+            if (tl->rsa_available()) {
+                run_rsa(out, opt, bref, *tl, opt.private_key_2048, opt.public_key_2048);
+                run_rsa(out, opt, bref, *tl, opt.private_key_4096, opt.public_key_4096);
+                out << std::endl;
+            }
         }
     }
 
     // Run all AES tests.
     if (opt.aes) {
         for (auto tl : tested_libs) {
-            run_aes(out, opt, bref, *tl, 128);
-            run_aes(out, opt, bref, *tl, 256);
-            out << std::endl;
+            if (tl->aes_available()) {
+                run_aes(out, opt, bref, *tl, 128);
+                run_aes(out, opt, bref, *tl, 256);
+                out << std::endl;
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ if [[ $SYSTEM == macOS ]]; then
 elif [[ -n $(which lsb_release) ]]; then
     DISTRO=$(lsb_release -d | firstvalue)
 else
-    for name in os fedora redhat ubuntu debian alpine; do
+    for name in fedora redhat ubuntu debian alpine os; do
         if [[ -e /etc/$name-release ]]; then
             DISTRO=$(head -1 /etc/$name-release | trim)
             [[ -n $DISTRO ]] && break
@@ -36,8 +36,9 @@ elif [[ -e /proc/cpuinfo ]]; then
     HW=$(grep -i '^hardware' /proc/cpuinfo | firstvalue)
     MD=$(grep -i '^model' /proc/cpuinfo | firstvalue)
     CPU=$(trim <<<"$MN $HW $MD")
+    CPU=${CPU:-unknown}
 fi
-    
+
 echo "arch: $ARCH"
 echo "cpu: $CPU"
 echo "system: $SYSTEM"

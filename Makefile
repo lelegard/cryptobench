@@ -8,7 +8,7 @@ default: exec
 
 SHELL     = /usr/bin/env bash --noprofile
 CXXFLAGS += -std=c++17 -O2 -Werror -Wall -Wextra -Wno-unused-parameter
-CPPFLAGS += $(addprefix -I,$(wildcard /opt/homebrew/include /usr/local/include)) -DLTM_DESC -DGMP_DESC
+CPPFLAGS += $(addprefix -I,$(wildcard /opt/homebrew/include /usr/local/include))
 LDFLAGS  += $(addprefix -L,$(wildcard /opt/homebrew/lib /usr/local/lib))
 LDLIBS   += -ltomcrypt -ltommath -lgnutls -lmbedcrypto -lcrypto -lgmp -lm
 
@@ -18,6 +18,17 @@ EXEC      = $(BINDIR)/cryptobench
 SOURCES  := $(wildcard $(SRCDIR)/*.cpp)
 OBJECTS  := $(patsubst $(SRCDIR)/%.cpp,$(BINDIR)/%.o,$(SOURCES))
 
+# Check if LibTomCrypt is built with support for LibTomMath and GMP.
+# On most distros, it is built with both. But there are exceptions.
+# Example: On Fedora 38, LibTomCrypt does not support GMP.
+LIBTOM = $(wildcard /usr/lib*/libtomcrypt.so /opt/homebrew/lib/libtomcrypt.dylib /usr/local/lib/libtomcrypt.dylib)
+NM = nm $(if $(findstring Linux,$(shell uname -s)),-D)
+LIBTOMSYMS = $(shell $(NM) $(LIBTOM) 2>/dev/null | grep -e ltm_desc -e gmp_desc)
+
+CPPFLAGS += $(if $(findstring ltm_desc,$(LIBTOMSYMS)),-DLTM_DESC)
+CPPFLAGS += $(if $(findstring gmp_desc,$(LIBTOMSYMS)),-DGMP_DESC)
+
+# Build operations.
 exec: $(EXEC)
 	@true
 $(EXEC): $(OBJECTS)

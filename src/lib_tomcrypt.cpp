@@ -13,13 +13,27 @@ int lib_tomcrypt::_yarrow_prng_index = -1;
 bool lib_tomcrypt::_yarrow_prng_valid = false;
 prng_state lib_tomcrypt::_yarrow_prng;
 
+const ltc_math_descriptor* const lib_tomcrypt::_ltm_desc =
+#if defined(LTM_DESC)
+    &ltm_desc;
+#else
+    nullptr;
+#endif
+
+const ltc_math_descriptor* const lib_tomcrypt::_gmp_desc =
+#if defined(GMP_DESC)
+    &gmp_desc;
+#else
+    nullptr;
+#endif
+
 //----------------------------------------------------------------------------
 // Constructor.
 //----------------------------------------------------------------------------
 
 lib_tomcrypt::lib_tomcrypt(bool use_gmp) :
     lib(use_gmp ? "tomcrypt-gmp" : "tomcrypt"),
-    _use_gmp(use_gmp)
+    _math_desc(use_gmp ? _gmp_desc : _ltm_desc)
 {
 }
 
@@ -45,7 +59,30 @@ lib_tomcrypt::~lib_tomcrypt()
 
 void lib_tomcrypt::set_mp() const
 {
-    ltc_mp = _use_gmp ? gmp_desc : ltm_desc;
+    if (_math_desc == nullptr) {
+        sys::fatal(name() + ": no math backend");
+    }
+    else if (ltc_mp.invmod != _math_desc->invmod) {
+        // The descriptor is a complete structure, not a simple pointer.
+        // Copy it only when necessary.
+        ltc_mp = *_math_desc;
+    }
+}
+
+//----------------------------------------------------------------------------
+// Check if RSA and AES are available.
+//----------------------------------------------------------------------------
+
+bool lib_tomcrypt::rsa_available() const
+{
+    return _math_desc != nullptr;
+}
+
+bool lib_tomcrypt::aes_available() const
+{
+    // AES is the same, regardless of the math backend. No need to run the AES
+    // tests on all variants. Run AES tests only with the default math backend.
+    return _math_desc == _ltm_desc;
 }
 
 //----------------------------------------------------------------------------

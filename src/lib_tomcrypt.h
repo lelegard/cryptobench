@@ -26,6 +26,8 @@ public:
     static void cleanup();
 
     // Implementation of "lib" interface.
+    virtual bool rsa_available() const override;
+    virtual bool aes_available() const override;
     virtual std::string version() const override;
     virtual void load_rsa_private_key(const std::string& filename) override;
     virtual void load_rsa_public_key(const std::string& filename) override;
@@ -47,11 +49,14 @@ private:
     static bool       _yarrow_prng_valid;
     static prng_state _yarrow_prng;
 
-    const bool _use_gmp;
-    bool       _rsa_public_key_valid = false;
-    rsa_key    _rsa_public_key;
-    bool       _rsa_private_key_valid = false;
-    rsa_key    _rsa_private_key;
+    static const ltc_math_descriptor* const _ltm_desc;
+    static const ltc_math_descriptor* const _gmp_desc;
+
+    const ltc_math_descriptor* const _math_desc = nullptr;
+    bool    _rsa_public_key_valid = false;
+    rsa_key _rsa_public_key;
+    bool    _rsa_private_key_valid = false;
+    rsa_key _rsa_private_key;
 
     // Set the multi-precision calculus backend.
     void set_mp() const;

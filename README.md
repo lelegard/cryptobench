@@ -1,7 +1,8 @@
 # Cryptographic libraries comparative benchmarks
 
 Prerequisites:
-- Ubuntu: `sudo apt install libssl-dev libmbedtls-dev libgnutls28-dev libtomcrypt-dev libtommath-dev libgmp-dev`
+- Ubuntu/Debian: `sudo apt install libssl-dev libmbedtls-dev libgnutls28-dev libtomcrypt-dev libtommath-dev libgmp-dev`
+- Fedora/Redhat: `sudo dnf install openssl-devel mbedtls-devel gnutls-devel libtomcrypt-devel libtommath-devel gmp-devel`
 - macOS: `brew install openssl mbedtls gnutls libtomcrypt libtommath gmp`
 
 Note: On Ubuntu, the package `libgnutls28-dev` is probably misnamed.
