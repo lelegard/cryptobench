@@ -6,6 +6,7 @@
 
 #pragma once
 #include "lib.h"
+#include "arm64.h"
 
 class lib_arm64: public lib
 {
@@ -23,4 +24,5 @@ public:
     virtual size_t aes_decrypt_cbc(const uint8_t* key, size_t key_size, const uint8_t* iv, size_t iv_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize) override;
 
 private:
+    arm64::aes _aes;
 };

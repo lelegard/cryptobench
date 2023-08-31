@@ -18,13 +18,14 @@ SOURCES := $(wildcard $(SRCDIR)/*.cpp)
 OBJECTS := $(patsubst $(SRCDIR)/%.cpp,$(BINDIR)/%.o,$(SOURCES))
 
 # Tools and general options.
-SHELL     = /usr/bin/env bash --noprofile
-CXXFLAGS += -std=c++17 -Werror -Wall -Wextra -Wno-unused-parameter
-CPPFLAGS += $(addprefix -I,$(wildcard /opt/homebrew/include /usr/local/include))
-LDFLAGS  += $(addprefix -L,$(wildcard /opt/homebrew/lib /usr/local/lib))
-LDLIBS   += -ltomcrypt -ltommath -lgnutls -lhogweed -lnettle -lmbedcrypto -lcrypto -lgmp -lm
-NM        = nm
-NMFLAGS   = $(if $(findstring Linux,$(SYSTEM)),-D)
+SHELL      = /usr/bin/env bash --noprofile
+CXXFLAGS  += -std=c++17 -Werror -Wall -Wextra -Wno-unused-parameter
+FULLSPEED  = -O3 -fno-strict-aliasing -funroll-loops -fomit-frame-pointer
+CPPFLAGS  += $(addprefix -I,$(wildcard /opt/homebrew/include /usr/local/include))
+LDFLAGS   += $(addprefix -L,$(wildcard /opt/homebrew/lib /usr/local/lib))
+LDLIBS    += -ltomcrypt -ltommath -lgnutls -lhogweed -lnettle -lmbedcrypto -lcrypto -lgmp -lm
+NM         = nm
+NMFLAGS    = $(if $(findstring Linux,$(SYSTEM)),-D)
 
 # Define DEBUG to compile in debug mode.
 CXXFLAGS += $(if $(DEBUG),-g,-O2)
@@ -33,6 +34,7 @@ LDFLAGS  += $(if $(DEBUG),-g)
 # Define CFI to enable Control Flow Integrity features.
 ifneq ($(CFI),)
     ifeq ($(SYSTEM),mac)
+        # See https://github.com/lelegard/arm-cpusysregs/blob/main/docs/arm64e-on-macos.md
         CFIFLAGS := $(if $(shell (uname -m | grep arm64e) || ((csrutil status | grep disabled) && (nvram -p | grep '^boot-args.*-arm64e_preview_abi'))),-arch arm64e)
         CXXFLAGS += $(CFIFLAGS)
         LDFLAGS  += $(CFIFLAGS)
@@ -48,6 +50,10 @@ LIBTOM     = $(wildcard /usr/lib*/libtomcrypt.so /usr/lib*/*/libtomcrypt.so /opt
 LIBTOMSYMS = $(shell $(NM) $(NMFLAGS) $(LIBTOM) 2>/dev/null | grep -e ltm_desc -e gmp_desc)
 CPPFLAGS  += $(if $(findstring ltm_desc,$(LIBTOMSYMS)),-DLTM_DESC)
 CPPFLAGS  += $(if $(findstring gmp_desc,$(LIBTOMSYMS)),-DGMP_DESC)
+
+# On Arm64 systems, compile the accelerated modules with the right target arhitecture level.
+# No need to specify this on macOS, this is the default on Arm64.
+$(BINDIR)/arm64.o: CXXFLAGS += $(FULLSPEED) $(if $(findstring linux-arm64,$(SYSTEM)-$(ARCH)),-march=armv8-a+crypto)
 
 # Build operations.
 exec: $(EXEC)
