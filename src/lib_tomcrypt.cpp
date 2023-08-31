@@ -190,46 +190,32 @@ void lib_tomcrypt::rsa_cleanup()
 }
 
 //----------------------------------------------------------------------------
-// Load private key from a PEM file.
+// Load RSA private key from DER data.
 //----------------------------------------------------------------------------
 
-void lib_tomcrypt::load_rsa_private_key(const std::string& filename)
+void lib_tomcrypt::load_rsa_private_key_der(const uint8_t* der, size_t der_size)
 {
     set_mp();
-
-    // Read the PEM file for the key.
-    bytes_t der;
-    sys::load_pem_file_as_der(der, filename);
-
     if (_rsa_private_key_valid) {
         rsa_free(&_rsa_private_key);
     }
-
-    // Inport the RSA key from DER.
-    int err = rsa_import_pkcs8(der.data(), der.size(), nullptr, 0, &_rsa_private_key);
-    tom_fatal(err, "cannot import RSA private key from " + filename);
+    int err = rsa_import_pkcs8(der, der_size, nullptr, 0, &_rsa_private_key);
+    tom_fatal(err, "cannot import RSA private key");
     _rsa_private_key_valid = true;
 }
 
 //----------------------------------------------------------------------------
-// Load public key from a PEM file.
+// Load RSA public key from DER data.
 //----------------------------------------------------------------------------
 
-void lib_tomcrypt::load_rsa_public_key(const std::string& filename)
+void lib_tomcrypt::load_rsa_public_key_der(const uint8_t* der, size_t der_size)
 {
     set_mp();
-
-    // Read the PEM file for the key.
-    bytes_t der;
-    sys::load_pem_file_as_der(der, filename);
-
     if (_rsa_public_key_valid) {
         rsa_free(&_rsa_public_key);
     }
-
-    // Inport the RSA key from DER.
-    int err = rsa_import(der.data(), der.size(), &_rsa_public_key);
-    tom_fatal(err, "cannot import RSA public key from " + filename);
+    int err = rsa_import(der, der_size, &_rsa_public_key);
+    tom_fatal(err, "cannot import RSA public key");
     _rsa_public_key_valid = true;
 }
 

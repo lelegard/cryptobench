@@ -76,39 +76,35 @@ void lib_gnutls::gtls_fatal(int err, const std::string& message)
 }
 
 //----------------------------------------------------------------------------
-// Load private key from a PEM file.
+// Load RSA private key from DER data.
 //----------------------------------------------------------------------------
 
-void lib_gnutls::load_rsa_private_key(const std::string& filename)
+void lib_gnutls::load_rsa_private_key_der(const uint8_t* der, size_t der_size)
 {
     int err = 0;
     if (_rsa_private_key == nullptr) {
         err = gnutls_privkey_init(&_rsa_private_key);
         gtls_fatal(err, "error in gnutls_privkey_init");
     }
-    bytes_t pem;
-    sys::load_file(pem, filename);
-    gnutls_datum_t pem_datum = {pem.data(), (unsigned int)(pem.size())};
-    err = gnutls_privkey_import_x509_raw(_rsa_private_key, &pem_datum, GNUTLS_X509_FMT_PEM, nullptr, 0);
-    gtls_fatal(err, "error loading RSA private key from " + filename);
+    gnutls_datum_t der_datum = {(unsigned char*)(der), (unsigned int)(der_size)};
+    err = gnutls_privkey_import_x509_raw(_rsa_private_key, &der_datum, GNUTLS_X509_FMT_DER, nullptr, 0);
+    gtls_fatal(err, "error loading RSA private key");
 }
 
 //----------------------------------------------------------------------------
-// Load public key from a PEM file.
+// Load RSA public key from DER data.
 //----------------------------------------------------------------------------
 
-void lib_gnutls::load_rsa_public_key(const std::string& filename)
+void lib_gnutls::load_rsa_public_key_der(const uint8_t* der, size_t der_size)
 {
     int err = 0;
     if (_rsa_public_key == nullptr) {
         err = gnutls_pubkey_init(&_rsa_public_key);
         gtls_fatal(err, "error in gnutls_pubkey_init");
     }
-    bytes_t pem;
-    sys::load_file(pem, filename);
-    gnutls_datum_t pem_datum = {pem.data(), (unsigned int)(pem.size())};
-    err = gnutls_pubkey_import(_rsa_public_key, &pem_datum, GNUTLS_X509_FMT_PEM);
-    gtls_fatal(err, "error loading RSA public key from " + filename);
+    gnutls_datum_t der_datum = {(unsigned char*)(der), (unsigned int)(der_size)};
+    err = gnutls_pubkey_import(_rsa_public_key, &der_datum, GNUTLS_X509_FMT_DER);
+    gtls_fatal(err, "error loading RSA public key");
 }
 
 //----------------------------------------------------------------------------

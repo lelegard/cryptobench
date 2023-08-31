@@ -49,3 +49,43 @@ private:
     size_t         _input_size = 0;
     uint8_t        _decrypted[1024];
 };
+
+//----------------------------------------------------------------------------
+// RSA public key rekeying benchmark.
+//----------------------------------------------------------------------------
+
+class bench_rsa_rekey_public: public bench
+{
+public:
+    // Constructor.
+    bench_rsa_rekey_public(lib& crypto, int64_t min_usec, int64_t min_iterations, const uint8_t* der, size_t der_size);
+
+protected:
+    // One iteration.
+    virtual void one_iteration() override;
+
+private:
+    lib&           _crypto;
+    const uint8_t* _der = nullptr;
+    size_t         _der_size = 0;
+};
+
+//----------------------------------------------------------------------------
+// RSA private key rekeying benchmark.
+//----------------------------------------------------------------------------
+
+class bench_rsa_rekey_private: public bench
+{
+public:
+    // Constructor.
+    bench_rsa_rekey_private(lib& crypto, int64_t min_usec, int64_t min_iterations, const uint8_t* der, size_t der_size);
+
+protected:
+    // One iteration.
+    virtual void one_iteration() override;
+
+private:
+    lib&           _crypto;
+    const uint8_t* _der = nullptr;
+    size_t         _der_size = 0;
+};

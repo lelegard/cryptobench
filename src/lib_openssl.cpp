@@ -118,41 +118,33 @@ int64_t lib_openssl::generate_rsa_key(size_t bits, const std::string& filename_p
 }
 
 //----------------------------------------------------------------------------
-// Load private key from a PEM file.
+// Load RSA private key from DER data.
 //----------------------------------------------------------------------------
 
-void lib_openssl::load_rsa_private_key(const std::string& filename)
+void lib_openssl::load_rsa_private_key_der(const uint8_t* der, size_t der_size)
 {
-    FILE* fp = ::fopen(filename.c_str(), "r");
-    if (fp == nullptr) {
-        sys::fatal("error opening " + filename, errno);
-    }
     if (_rsa_private_key != nullptr) {
         EVP_PKEY_free(_rsa_private_key);
     }
-    if ((_rsa_private_key = PEM_read_PrivateKey(fp, nullptr, nullptr, nullptr)) == nullptr) {
-        ossl_fatal("error loading public key from " + filename);
+    const uint8_t* der_parse = der;
+    if ((_rsa_private_key = d2i_PrivateKey(EVP_PKEY_RSA, nullptr, &der_parse, der_size)) == nullptr) {
+        ossl_fatal("error loading private key from DER data");
     }
-    fclose(fp);
 }
 
 //----------------------------------------------------------------------------
-// Load public key from a PEM file.
+// Load RSA public key from DER data.
 //----------------------------------------------------------------------------
 
-void lib_openssl::load_rsa_public_key(const std::string& filename)
+void lib_openssl::load_rsa_public_key_der(const uint8_t* der, size_t der_size)
 {
-    FILE* fp = ::fopen(filename.c_str(), "r");
-    if (fp == nullptr) {
-        sys::fatal("error opening " + filename, errno);
-    }
     if (_rsa_public_key != nullptr) {
         EVP_PKEY_free(_rsa_public_key);
     }
-    if ((_rsa_public_key = PEM_read_PUBKEY(fp, nullptr, nullptr, nullptr)) == nullptr) {
-        ossl_fatal("error loading public key from " + filename);
+    const uint8_t* der_parse = der;
+    if ((_rsa_public_key = d2i_PUBKEY(nullptr, &der_parse, der_size)) == nullptr) {
+        ossl_fatal("error loading public key from DER data");
     }
-    fclose(fp);
 }
 
 //----------------------------------------------------------------------------

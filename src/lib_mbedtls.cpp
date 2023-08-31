@@ -104,10 +104,10 @@ void lib_mbedtls::mbed_fatal(int err, const std::string& message)
 }
 
 //----------------------------------------------------------------------------
-// Load private key from a PEM file.
+// Load RSA private key from DER data.
 //----------------------------------------------------------------------------
 
-void lib_mbedtls::load_rsa_private_key(const std::string& filename)
+void lib_mbedtls::load_rsa_private_key_der(const uint8_t* der, size_t der_size)
 {
     if (_rsa_private_key_valid) {
         mbedtls_pk_free(&_rsa_private_key);
@@ -115,23 +115,24 @@ void lib_mbedtls::load_rsa_private_key(const std::string& filename)
     mbedtls_pk_init(&_rsa_private_key);
     _rsa_private_key_valid = true;
 
-#if MBEDTLS_VERSION_MAJOR < 3
-    int err = mbedtls_pk_parse_keyfile(&_rsa_private_key, filename.c_str(), nullptr);
-#else
-    int err = mbedtls_pk_parse_keyfile(&_rsa_private_key, filename.c_str(), nullptr, mbedtls_ctr_drbg_random, &_ctr_drbg);
+    // Starting with mbedtls v3, the function to parse private keys needs a PRNG source.
+    int err = mbedtls_pk_parse_key(&_rsa_private_key, der, der_size, nullptr, 0
+#if MBEDTLS_VERSION_MAJOR >= 3
+                                   , mbedtls_ctr_drbg_random, &_ctr_drbg
 #endif
-    mbed_fatal(err, "error loading RSA private key from " + filename);
+                                   );
+    mbed_fatal(err, "error loading RSA private key DER data");
 
     if (mbedtls_pk_get_type(&_rsa_private_key) != MBEDTLS_PK_RSA || mbedtls_rsa_check_privkey(mbedtls_pk_rsa(_rsa_private_key)) != 0) {
-        sys::fatal(name() + ": " + filename + ": not a private RSA key");
+        sys::fatal(name() + ": not a private RSA key");
     }
 }
 
 //----------------------------------------------------------------------------
-// Load public key from a PEM file.
+// Load RSA public key from DER data.
 //----------------------------------------------------------------------------
 
-void lib_mbedtls::load_rsa_public_key(const std::string& filename)
+void lib_mbedtls::load_rsa_public_key_der(const uint8_t* der, size_t der_size)
 {
     if (_rsa_public_key_valid) {
         mbedtls_pk_free(&_rsa_public_key);
@@ -139,11 +140,11 @@ void lib_mbedtls::load_rsa_public_key(const std::string& filename)
     mbedtls_pk_init(&_rsa_public_key);
     _rsa_public_key_valid = true;
 
-    int err = mbedtls_pk_parse_public_keyfile(&_rsa_public_key, filename.c_str());
-    mbed_fatal(err, "error loading RSA public key from " + filename);
+    int err = mbedtls_pk_parse_public_key(&_rsa_public_key, der, der_size);
+    mbed_fatal(err, "error parsing RSA public key DER data");
 
     if (mbedtls_pk_get_type(&_rsa_public_key) != MBEDTLS_PK_RSA || mbedtls_rsa_check_pubkey(mbedtls_pk_rsa(_rsa_public_key)) != 0) {
-        sys::fatal(name() + ": " + filename + ": not a public RSA key");
+        sys::fatal(name() + ": not a public RSA key");
     }
 }
 

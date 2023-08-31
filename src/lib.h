@@ -27,11 +27,15 @@ public:
     std::string rsa_name() const;
     std::string aes_name() const;
 
-    // Each instance shall be able to load one RSA key pair from PEM files.
-    virtual void load_rsa_private_key(const std::string& filename);
-    virtual void load_rsa_public_key(const std::string& filename);
+    // Each instance shall be able to load one RSA key pair from DER data.
+    virtual void load_rsa_private_key_der(const uint8_t* der, size_t der_size);
+    virtual void load_rsa_public_key_der(const uint8_t* der, size_t der_size);
     virtual size_t rsa_private_key_bits() const;
     virtual size_t rsa_public_key_bits() const;
+
+    // Convenience methods to load an RSA key pair from PEM files.
+    void load_rsa_private_key_file(const std::string& filename);
+    void load_rsa_public_key_file(const std::string& filename);
 
     // Initialize RSA context for AOEP encrypt/decrypt.
     virtual void rsa_init_encrypt_oaep();

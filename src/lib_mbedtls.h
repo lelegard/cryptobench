@@ -31,8 +31,8 @@ public:
     virtual std::string version() const override;
     virtual bool rsa_available() const override;
     virtual bool aes_available() const override;
-    virtual void load_rsa_private_key(const std::string& filename) override;
-    virtual void load_rsa_public_key(const std::string& filename) override;
+    virtual void load_rsa_private_key_der(const uint8_t* der, size_t der_size) override;
+    virtual void load_rsa_public_key_der(const uint8_t* der, size_t der_size) override;
     virtual size_t rsa_private_key_bits() const override;
     virtual size_t rsa_public_key_bits() const override;
     virtual void rsa_init_encrypt_oaep() override;

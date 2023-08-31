@@ -25,8 +25,8 @@
 
 void run_rsa(std::ostream& out, const options& opt, const bench& reference, lib& crypto, const std::string& privkey, const std::string& pubkey)
 {
-    crypto.load_rsa_public_key(pubkey);
-    crypto.load_rsa_private_key(privkey);
+    crypto.load_rsa_private_key_file(privkey);
+    crypto.load_rsa_public_key_file(pubkey);
 
     crypto.rsa_auto_test();
     out << crypto.name() << ": " << crypto.rsa_name() << ": auto-test passed" << std::endl;
@@ -54,6 +54,18 @@ void run_rsa(std::ostream& out, const options& opt, const bench& reference, lib&
     brsa_decrypt.display(out, &reference, RSA_SCORE_FACTOR);
 
     out << crypto.name() << ": " << crypto.rsa_name() << ": decrypt/encrypt ratio: " << brsa_decrypt.score_string(brsa_encrypt) << std::endl;
+
+    // Rekeying performance.
+    bytes_t der;
+    sys::load_pem_file_as_der(der, pubkey);
+    bench_rsa_rekey_public brsa_rekey_public(crypto, opt.min_usec, opt.min_iterations, der.data(), der.size());
+    brsa_rekey_public.run();
+    brsa_rekey_public.display(out, &reference, RSA_SCORE_FACTOR);
+
+    sys::load_pem_file_as_der(der, privkey);
+    bench_rsa_rekey_private brsa_rekey_private(crypto, opt.min_usec, opt.min_iterations, der.data(), der.size());
+    brsa_rekey_private.run();
+    brsa_rekey_private.display(out, &reference, RSA_SCORE_FACTOR);
 }
 
 //----------------------------------------------------------------------------

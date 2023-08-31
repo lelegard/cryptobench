@@ -30,7 +30,7 @@ std::string lib::aes_name() const
 }
 
 //----------------------------------------------------------------------------
-// Default implementation: does nothing, to be overriden in subclasses/
+// Default implementation: does nothing, to be overriden in subclasses.
 //----------------------------------------------------------------------------
 
 std::string lib::version() const
@@ -45,10 +45,10 @@ bool lib::aes_available() const
 {
     return false;
 }
-void lib::load_rsa_private_key(const std::string& filename)
+void lib::load_rsa_private_key_der(const uint8_t* der, size_t der_size)
 {
 }
-void lib::load_rsa_public_key(const std::string& filename)
+void lib::load_rsa_public_key_der(const uint8_t* der, size_t der_size)
 {
 }
 size_t lib::rsa_private_key_bits() const
@@ -88,6 +88,24 @@ size_t lib::aes_encrypt_cbc(const uint8_t* key, size_t key_size, const uint8_t* 
 size_t lib::aes_decrypt_cbc(const uint8_t* key, size_t key_size, const uint8_t* iv, size_t iv_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
 {
     return 0; // no output
+}
+
+//----------------------------------------------------------------------------
+// Convenience methods to load an RSA key pair from PEM files.
+//----------------------------------------------------------------------------
+
+void lib::load_rsa_private_key_file(const std::string& filename)
+{
+    bytes_t der;
+    sys::load_pem_file_as_der(der, filename);
+    load_rsa_private_key_der(der.data(), der.size());
+}
+
+void lib::load_rsa_public_key_file(const std::string& filename)
+{
+    bytes_t der;
+    sys::load_pem_file_as_der(der, filename);
+    load_rsa_public_key_der(der.data(), der.size());
 }
 
 //----------------------------------------------------------------------------

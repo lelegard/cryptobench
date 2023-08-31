@@ -63,15 +63,11 @@ bool lib_nettle::aes_available() const
 }
 
 //----------------------------------------------------------------------------
-// Load private key from a PEM file.
+// Load RSA private key from DER data.
 //----------------------------------------------------------------------------
 
-void lib_nettle::load_rsa_private_key(const std::string& filename)
+void lib_nettle::load_rsa_private_key_der(const uint8_t* der, size_t der_size)
 {
-    // Read the PEM file for the key.
-    bytes_t der;
-    sys::load_pem_file_as_der(der, filename);
-
     rsa_public_key pubkey;
     nettle_rsa_public_key_init(&pubkey);
 
@@ -81,31 +77,27 @@ void lib_nettle::load_rsa_private_key(const std::string& filename)
     }
 
     // WARNING: something not working here with key files from OpenSSL.
-    if (!nettle_rsa_keypair_from_der(&pubkey, &_rsa_private_key, MAX_RSA_KEY_BITS, der.size(), der.data())) {
-        sys::fatal(name() + ": cannot decode DER as private key in " + filename);
+    if (!nettle_rsa_keypair_from_der(&pubkey, &_rsa_private_key, MAX_RSA_KEY_BITS, der_size, der)) {
+        sys::fatal(name() + ": cannot decode DER as private key");
     }
 
     nettle_rsa_public_key_clear(&pubkey);
 }
 
 //----------------------------------------------------------------------------
-// Load public key from a PEM file.
+// Load RSA public key from DER data.
 //----------------------------------------------------------------------------
 
-void lib_nettle::load_rsa_public_key(const std::string& filename)
+void lib_nettle::load_rsa_public_key_der(const uint8_t* der, size_t der_size)
 {
-    // Read the PEM file for the key.
-    bytes_t der;
-    sys::load_pem_file_as_der(der, filename);
-
     if (!_rsa_public_key_valid) {
         nettle_rsa_public_key_init(&_rsa_public_key);
         _rsa_public_key_valid = true;
     }
 
     // WARNING: something not working here with key files from OpenSSL.
-    if (!nettle_rsa_keypair_from_der(&_rsa_public_key, nullptr, MAX_RSA_KEY_BITS, der.size(), der.data())) {
-        sys::fatal(name() + ": cannot decode DER as public key in " + filename);
+    if (!nettle_rsa_keypair_from_der(&_rsa_public_key, nullptr, MAX_RSA_KEY_BITS, der_size, der)) {
+        sys::fatal(name() + ": cannot decode DER as public key");
     }
 }
 

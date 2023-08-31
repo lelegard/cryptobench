@@ -6,29 +6,48 @@
 
 default: exec
 
+# SYSTEM = linux or mac, ARCH = x64 or arm64
+SYSTEM := $(subst Linux,linux,$(subst Darwin,mac,$(shell uname -s)))
+ARCH   := $(subst amd64,x64,$(subst x86_64,x64,$(subst aarch64,arm64,$(shell uname -m))))
+
+# Project directories and files.
+SRCDIR   = src
+BINDIR   = build
+EXEC     = $(BINDIR)/cryptobench
+SOURCES := $(wildcard $(SRCDIR)/*.cpp)
+OBJECTS := $(patsubst $(SRCDIR)/%.cpp,$(BINDIR)/%.o,$(SOURCES))
+
+# Tools and general options.
 SHELL     = /usr/bin/env bash --noprofile
-SYSTEM   := $(shell uname -s)
-CXXFLAGS += -std=c++17 -Werror -Wall -Wextra -Wno-unused-parameter $(if $(DEBUG),-g,-O2)
+CXXFLAGS += -std=c++17 -Werror -Wall -Wextra -Wno-unused-parameter
 CPPFLAGS += $(addprefix -I,$(wildcard /opt/homebrew/include /usr/local/include))
-LDFLAGS  += $(addprefix -L,$(wildcard /opt/homebrew/lib /usr/local/lib)) $(if $(DEBUG),-g)
+LDFLAGS  += $(addprefix -L,$(wildcard /opt/homebrew/lib /usr/local/lib))
 LDLIBS   += -ltomcrypt -ltommath -lgnutls -lhogweed -lnettle -lmbedcrypto -lcrypto -lgmp -lm
 NM        = nm
 NMFLAGS   = $(if $(findstring Linux,$(SYSTEM)),-D)
 
-SRCDIR    = src
-BINDIR    = build
-EXEC      = $(BINDIR)/cryptobench
-SOURCES  := $(wildcard $(SRCDIR)/*.cpp)
-OBJECTS  := $(patsubst $(SRCDIR)/%.cpp,$(BINDIR)/%.o,$(SOURCES))
+# Define DEBUG to compile in debug mode.
+CXXFLAGS += $(if $(DEBUG),-g,-O2)
+LDFLAGS  += $(if $(DEBUG),-g)
+
+# Define CFI to enable Control Flow Integrity features.
+ifneq ($(CFI),)
+    ifeq ($(SYSTEM),mac)
+        CFIFLAGS := $(if $(shell (uname -m | grep arm64e) || ((csrutil status | grep disabled) && (nvram -p | grep '^boot-args.*-arm64e_preview_abi'))),-arch arm64e)
+        CXXFLAGS += $(CFIFLAGS)
+        LDFLAGS  += $(CFIFLAGS)
+    else
+        CXXFLAGS += -mbranch-protection=standard
+    endif
+endif
 
 # Check if LibTomCrypt is built with support for LibTomMath and GMP.
 # On most distros, it is built with both. But there are exceptions.
-# Example: On Fedora 38, LibTomCrypt does not support GMP.
-LIBTOM = $(wildcard /usr/lib*/libtomcrypt.so /usr/lib*/*/libtomcrypt.so /opt/homebrew/lib/libtomcrypt.dylib /usr/local/lib/libtomcrypt.dylib)
+# Example: On Fedora and Red Hat, LibTomCrypt does not support GMP.
+LIBTOM     = $(wildcard /usr/lib*/libtomcrypt.so /usr/lib*/*/libtomcrypt.so /opt/homebrew/lib/libtomcrypt.dylib /usr/local/lib/libtomcrypt.dylib)
 LIBTOMSYMS = $(shell $(NM) $(NMFLAGS) $(LIBTOM) 2>/dev/null | grep -e ltm_desc -e gmp_desc)
-
-CPPFLAGS += $(if $(findstring ltm_desc,$(LIBTOMSYMS)),-DLTM_DESC)
-CPPFLAGS += $(if $(findstring gmp_desc,$(LIBTOMSYMS)),-DGMP_DESC)
+CPPFLAGS  += $(if $(findstring ltm_desc,$(LIBTOMSYMS)),-DLTM_DESC)
+CPPFLAGS  += $(if $(findstring gmp_desc,$(LIBTOMSYMS)),-DGMP_DESC)
 
 # Build operations.
 exec: $(EXEC)
