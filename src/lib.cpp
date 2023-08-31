@@ -73,6 +73,20 @@ size_t lib::rsa_decrypt(const uint8_t* input, size_t input_size, uint8_t* output
 {
     return 0; // no output
 }
+void lib::rsa_init_sign_pss()
+{
+}
+void lib::rsa_init_verify_pss()
+{
+}
+size_t lib::rsa_sign(const uint8_t* msg, size_t msg_size, uint8_t* sig, size_t sig_maxsize)
+{
+    return 0; // no output
+}
+bool lib::rsa_verify(const uint8_t* msg, size_t msg_size, const uint8_t* sig, size_t sig_size)
+{
+    return false; // verification failed
+}
 size_t lib::aes_encrypt(const uint8_t* key, size_t key_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
 {
     return 0; // no output
@@ -159,7 +173,7 @@ void lib::rsa_auto_test()
         0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
         0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
     };
-    uint8_t output[1024];
+    uint8_t output[4096]; // large enough for signature
     size_t output_len = 0;
 
     memset(output, 0, sizeof(output));
@@ -173,6 +187,25 @@ void lib::rsa_auto_test()
     output_len = rsa_decrypt(output, output_len, output, sizeof(output));
     if (output_len != sizeof(plain) || ::memcmp(plain, output, output_len) != 0) {
         sys::fatal("RSA encrypt auto-test failed, decrypted data do not match");
+    }
+
+    uint8_t message[32];
+    ::memset(message, 0xA5, sizeof(message));
+
+    rsa_init_sign_pss();
+    output_len = rsa_sign(message, sizeof(message), output, sizeof(output));
+    if (output_len != rsa_public_key_bits() / 8) {
+        sys::fatal(sys::format("RSA sign auto-test failed, key size: %zu bits, sig size: %zu bytes (%zu bits)", rsa_public_key_bits(), output_len, output_len * 8));
+    }
+
+    rsa_init_verify_pss();
+    if (!rsa_verify(message, sizeof(message), output, output_len)) {
+        sys::fatal("RSA verify auto-test failed, signature not verified");
+    }
+
+    message[7] ^= 0xFF;
+    if (rsa_verify(message, sizeof(message), output, output_len)) {
+        sys::fatal("RSA verify auto-test failed, signature verified for corrupeted message");
     }
 }
 

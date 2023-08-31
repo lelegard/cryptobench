@@ -45,6 +45,14 @@ public:
     virtual size_t rsa_encrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize);
     virtual size_t rsa_decrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize);
 
+    // Initialize RSA context for PSS sign/verify.
+    virtual void rsa_init_sign_pss();
+    virtual void rsa_init_verify_pss();
+
+    // RSA sign/verify. The verification status is returned.
+    virtual size_t rsa_sign(const uint8_t* msg, size_t msg_size, uint8_t* sig, size_t sig_maxsize);
+    virtual bool rsa_verify(const uint8_t* msg, size_t msg_size, const uint8_t* sig, size_t sig_size);
+
     // AES encryption or decryption of one block.
     virtual size_t aes_encrypt(const uint8_t* key, size_t key_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize);
     virtual size_t aes_decrypt(const uint8_t* key, size_t key_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize);

@@ -31,6 +31,7 @@ void run_rsa(std::ostream& out, const options& opt, const bench& reference, lib&
     crypto.rsa_auto_test();
     out << crypto.name() << ": " << crypto.rsa_name() << ": auto-test passed" << std::endl;
 
+    // Encryption benchmarks.
     crypto.rsa_init_encrypt_oaep();
     crypto.rsa_init_decrypt_oaep();
 
@@ -44,26 +45,67 @@ void run_rsa(std::ostream& out, const options& opt, const bench& reference, lib&
     uint8_t encrypted[1024];
     size_t encrypted_len = crypto.rsa_encrypt(plain, sizeof(plain), encrypted, sizeof(encrypted));
 
-    // Encryption and decryption performance.
-    bench_rsa_encrypt brsa_encrypt(crypto, opt.min_usec, opt.min_iterations, plain, sizeof(plain));
+    // Encryption and decryption performance. No rekeying.
+    bench_rsa_encrypt brsa_encrypt(crypto, opt.min_usec, opt.min_iterations, plain, sizeof(plain), false);
     brsa_encrypt.run();
     brsa_encrypt.display(out, &reference, RSA_SCORE_FACTOR);
 
-    bench_rsa_decrypt brsa_decrypt(crypto, opt.min_usec, opt.min_iterations, encrypted, encrypted_len);
+    bench_rsa_decrypt brsa_decrypt(crypto, opt.min_usec, opt.min_iterations, encrypted, encrypted_len, false);
     brsa_decrypt.run();
     brsa_decrypt.display(out, &reference, RSA_SCORE_FACTOR);
 
     out << crypto.name() << ": " << crypto.rsa_name() << ": decrypt/encrypt ratio: " << brsa_decrypt.score_string(brsa_encrypt) << std::endl;
 
-    // Rekeying performance.
+    // Encryption and decryption performance. With rekeying.
+    bench_rsa_encrypt brsa_encrypt_rekey(crypto, opt.min_usec, opt.min_iterations, plain, sizeof(plain), true);
+    brsa_encrypt_rekey.run();
+    brsa_encrypt_rekey.display(out, &reference, RSA_SCORE_FACTOR);
+
+    bench_rsa_decrypt brsa_decrypt_rekey(crypto, opt.min_usec, opt.min_iterations, encrypted, encrypted_len, true);
+    brsa_decrypt_rekey.run();
+    brsa_decrypt_rekey.display(out, &reference, RSA_SCORE_FACTOR);
+
+    out << crypto.name() << ": " << crypto.rsa_name() << ": decrypt-rekey/encrypt-rekey ratio: " << brsa_decrypt_rekey.score_string(brsa_encrypt_rekey) << std::endl;
+
+    // Signature benchmarks.
+    crypto.rsa_init_sign_pss();
+    crypto.rsa_init_verify_pss();
+
+    // Perform one signature to get some valid data to verify.
+    uint8_t sig[1024];
+    size_t sig_len = crypto.rsa_sign(plain, sizeof(plain), sig, sizeof(sig));
+
+    // Signature and verification performance. No rekeying.
+    bench_rsa_sign brsa_sign(crypto, opt.min_usec, opt.min_iterations, plain, sizeof(plain), false);
+    brsa_sign.run();
+    brsa_sign.display(out, &reference, RSA_SCORE_FACTOR);
+
+    bench_rsa_verify brsa_verify(crypto, opt.min_usec, opt.min_iterations, plain, sizeof(plain), sig, sig_len, false);
+    brsa_verify.run();
+    brsa_verify.display(out, &reference, RSA_SCORE_FACTOR);
+
+    out << crypto.name() << ": " << crypto.rsa_name() << ": sign/verify ratio: " << brsa_sign.score_string(brsa_verify) << std::endl;
+
+    // Signature and verification performance. With rekeying.
+    bench_rsa_sign brsa_sign_rekey(crypto, opt.min_usec, opt.min_iterations, plain, sizeof(plain), true);
+    brsa_sign_rekey.run();
+    brsa_sign_rekey.display(out, &reference, RSA_SCORE_FACTOR);
+
+    bench_rsa_verify brsa_verify_rekey(crypto, opt.min_usec, opt.min_iterations, plain, sizeof(plain), sig, sig_len, true);
+    brsa_verify_rekey.run();
+    brsa_verify_rekey.display(out, &reference, RSA_SCORE_FACTOR);
+
+    out << crypto.name() << ": " << crypto.rsa_name() << ": sign-rekey/verify-rekey ratio: " << brsa_sign_rekey.score_string(brsa_verify_rekey) << std::endl;
+
+    // Key loading performance.
     bytes_t der;
     sys::load_pem_file_as_der(der, pubkey);
-    bench_rsa_rekey_public brsa_rekey_public(crypto, opt.min_usec, opt.min_iterations, der.data(), der.size());
+    bench_rsa_load_public brsa_rekey_public(crypto, opt.min_usec, opt.min_iterations, der.data(), der.size());
     brsa_rekey_public.run();
     brsa_rekey_public.display(out, &reference, RSA_SCORE_FACTOR);
 
     sys::load_pem_file_as_der(der, privkey);
-    bench_rsa_rekey_private brsa_rekey_private(crypto, opt.min_usec, opt.min_iterations, der.data(), der.size());
+    bench_rsa_load_private brsa_rekey_private(crypto, opt.min_usec, opt.min_iterations, der.data(), der.size());
     brsa_rekey_private.run();
     brsa_rekey_private.display(out, &reference, RSA_SCORE_FACTOR);
 }

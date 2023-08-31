@@ -33,6 +33,14 @@ lib_openssl::~lib_openssl()
         EVP_PKEY_CTX_free(_rsa_decrypt_ctx);
         _rsa_decrypt_ctx = nullptr;
     }
+    if (_rsa_sign_ctx != nullptr) {
+        EVP_PKEY_CTX_free(_rsa_sign_ctx);
+        _rsa_sign_ctx = nullptr;
+    }
+    if (_rsa_verify_ctx != nullptr) {
+        EVP_PKEY_CTX_free(_rsa_verify_ctx);
+        _rsa_verify_ctx = nullptr;
+    }
 }
 
 //----------------------------------------------------------------------------
@@ -57,7 +65,7 @@ void lib_openssl::cleanup()
 
 std::string lib_openssl::version() const
 {
-    return sys::format("version: %s (%s)", OpenSSL_version(OPENSSL_FULL_VERSION_STRING), OpenSSL_version(OPENSSL_CPU_INFO));
+    return sys::format("%s (%s)", OpenSSL_version(OPENSSL_FULL_VERSION_STRING), OpenSSL_version(OPENSSL_CPU_INFO));
 }
 
 bool lib_openssl::rsa_available() const
@@ -203,29 +211,98 @@ void lib_openssl::rsa_init_decrypt_oaep()
 }
 
 //----------------------------------------------------------------------------
-// RSA encrypt, according to current mode.
+// RSA encrypt.
 //----------------------------------------------------------------------------
 
 size_t lib_openssl::rsa_encrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
 {
     size_t output_len = output_maxsize;
     if (EVP_PKEY_encrypt(_rsa_encrypt_ctx, output, &output_len, input, input_size) <= 0) {
-        ossl_fatal("encrypt error");
+        ossl_fatal("RSA encrypt error");
     }
     return output_len;
 }
 
 //----------------------------------------------------------------------------
-// RSA decrypt, according to current mode.
+// RSA decrypt.
 //----------------------------------------------------------------------------
 
 size_t lib_openssl::rsa_decrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
 {
     size_t output_len = output_maxsize;
     if (EVP_PKEY_decrypt(_rsa_decrypt_ctx, output, &output_len, input, input_size) <= 0) {
-        ossl_fatal("decrypt error");
+        ossl_fatal("RSA decrypt error");
     }
     return output_len;
+}
+
+//----------------------------------------------------------------------------
+// Initialize RSA context for PSS sign.
+//----------------------------------------------------------------------------
+
+void lib_openssl::rsa_init_sign_pss()
+{
+    if (_rsa_sign_ctx != nullptr) {
+        EVP_PKEY_CTX_free(_rsa_sign_ctx);
+    }
+    if ((_rsa_sign_ctx = EVP_PKEY_CTX_new(_rsa_private_key, nullptr)) == nullptr) {
+        ossl_fatal("error creating EVP_PKEY_CTX for private key signature");
+    }
+    if (EVP_PKEY_sign_init(_rsa_sign_ctx) <= 0) {
+        ossl_fatal("sign init error on private key");
+    }
+    if (EVP_PKEY_CTX_set_rsa_padding(_rsa_sign_ctx, RSA_PKCS1_PSS_PADDING) <= 0) {
+        ossl_fatal("error setting padding on private key");
+    }
+    if (EVP_PKEY_CTX_set_signature_md(_rsa_sign_ctx, EVP_sha256()) <= 0) {
+        ossl_fatal("error setting hash on private key signature");
+    }
+}
+
+//----------------------------------------------------------------------------
+// Initialize RSA context for PSS verify.
+//----------------------------------------------------------------------------
+
+void lib_openssl::rsa_init_verify_pss()
+{
+    if (_rsa_verify_ctx != nullptr) {
+        EVP_PKEY_CTX_free(_rsa_verify_ctx);
+    }
+    if ((_rsa_verify_ctx = EVP_PKEY_CTX_new(_rsa_public_key, nullptr)) == nullptr) {
+        ossl_fatal("error creating EVP_PKEY_CTX for public key verification");
+    }
+    if (EVP_PKEY_verify_init(_rsa_verify_ctx) <= 0) {
+        ossl_fatal("sign init error on public key");
+    }
+    if (EVP_PKEY_CTX_set_rsa_padding(_rsa_verify_ctx, RSA_PKCS1_PSS_PADDING) <= 0) {
+        ossl_fatal("error setting padding on public key verification");
+    }
+    if (EVP_PKEY_CTX_set_signature_md(_rsa_verify_ctx, EVP_sha256()) <= 0) {
+        ossl_fatal("error setting hash on public key verification");
+    }
+}
+
+//----------------------------------------------------------------------------
+// RSA sign/verify.
+//----------------------------------------------------------------------------
+
+size_t lib_openssl::rsa_sign(const uint8_t* msg, size_t msg_size, uint8_t* sig, size_t sig_maxsize)
+{
+    size_t sig_len = sig_maxsize;
+    if (EVP_PKEY_sign(_rsa_sign_ctx, sig, &sig_len, msg, msg_size) <= 0) {
+        ossl_fatal("RSA sign error");
+    }
+    return sig_len;
+}
+
+bool lib_openssl::rsa_verify(const uint8_t* msg, size_t msg_size, const uint8_t* sig, size_t sig_size)
+{
+    // Status: 1=verified, 0=not verified, <0 = error
+    const int res = EVP_PKEY_verify(_rsa_verify_ctx, sig, sig_size, msg, msg_size);
+    if (res < 0) {
+        ossl_fatal("RSA verify error");
+    }
+    return res > 0;
 }
 
 //----------------------------------------------------------------------------

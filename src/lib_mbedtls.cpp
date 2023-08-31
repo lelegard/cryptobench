@@ -73,7 +73,7 @@ std::string lib_mbedtls::version() const
 {
     char mbed_version[256];
     mbedtls_version_get_string_full(mbed_version);
-    return sys::format("version: %s", mbed_version);
+    return mbed_version;
 }
 
 bool lib_mbedtls::rsa_available() const
