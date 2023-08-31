@@ -496,7 +496,7 @@ bool arm64::aes::set_key(const uint8_t* key, size_t key_size)
     rk[2] = get_uint32_msb(key +  8);
     rk[3] = get_uint32_msb(key + 12);
 
-    if (key_size == 16) {
+    if (kd->kbits == 128) {
         j = 44;
         for (;;) {
             temp  = rk[3];
@@ -510,7 +510,7 @@ bool arm64::aes::set_key(const uint8_t* key, size_t key_size)
             rk += 4;
         }
     }
-    else if (key_size == 24) {
+    else if (kd->kbits == 192) {
         j = 52;
         rk[4] = get_uint32_msb(key + 16);
         rk[5] = get_uint32_msb(key + 20);
@@ -528,7 +528,7 @@ bool arm64::aes::set_key(const uint8_t* key, size_t key_size)
             rk += 6;
         }
     }
-    else if (key_size == 32) {
+    else { // kd->kbits == 256
         j = 60;
         rk[4] = get_uint32_msb(key + 16);
         rk[5] = get_uint32_msb(key + 20);
@@ -550,11 +550,6 @@ bool arm64::aes::set_key(const uint8_t* key, size_t key_size)
             rk[15] = rk[ 7] ^ rk[14];
             rk += 8;
         }
-    }
-    else {
-        // Should not get there
-        assert (false);
-        return false;
     }
 
     // Setup the inverse key

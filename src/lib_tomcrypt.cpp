@@ -39,7 +39,9 @@ lib_tomcrypt::lib_tomcrypt(bool use_gmp) :
 
 lib_tomcrypt::~lib_tomcrypt()
 {
-    rsa_cleanup();
+    if (_math_desc != nullptr) {
+        rsa_cleanup();
+    }
 }
 
 //----------------------------------------------------------------------------

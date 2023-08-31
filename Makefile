@@ -25,7 +25,7 @@ CPPFLAGS  += $(addprefix -I,$(wildcard /opt/homebrew/include /usr/local/include)
 LDFLAGS   += $(addprefix -L,$(wildcard /opt/homebrew/lib /usr/local/lib))
 LDLIBS    += -ltomcrypt -ltommath -lgnutls -lhogweed -lnettle -lmbedcrypto -lcrypto -lgmp -lm
 NM         = nm
-NMFLAGS    = $(if $(findstring Linux,$(SYSTEM)),-D)
+NMFLAGS    = $(if $(findstring linux,$(SYSTEM)),-D)
 
 # Define DEBUG to compile in debug mode.
 CXXFLAGS += $(if $(DEBUG),-g,-O2)
