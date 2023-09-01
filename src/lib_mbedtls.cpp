@@ -206,16 +206,27 @@ size_t lib_mbedtls::rsa_decrypt(const uint8_t* input, size_t input_size, uint8_t
 
 size_t lib_mbedtls::rsa_sign(const uint8_t* msg, size_t msg_size, uint8_t* sig, size_t sig_maxsize)
 {
+    // Use PKCS#1 v1.5 padding.
+    // With MbedTLS v2, mbedtls_pk_sign_ext() does not exist (but mbedtls_pk_verify_ext() exists!)
+    // With MbedTLS v3, trying to use PSS returns MBEDTLS_ERR_PK_BAD_INPUT_DATA:
+    // int err = mbedtls_pk_sign_ext(MBEDTLS_PK_RSASSA_PSS, &_rsa_private_key, MBEDTLS_MD_SHA256, msg, msg_size, sig, sig_maxsize, &sig_len, mbedtls_ctr_drbg_random, &_ctr_drbg);
+
+#if MBEDTLS_VERSION_MAJOR >= 3
     size_t sig_len = 0;
     int err = mbedtls_pk_sign(&_rsa_private_key, MBEDTLS_MD_SHA256, msg, msg_size, sig, sig_maxsize, &sig_len, mbedtls_ctr_drbg_random, &_ctr_drbg);
+#else
+    size_t sig_len = sig_maxsize;
+    int err = mbedtls_pk_sign(&_rsa_private_key, MBEDTLS_MD_SHA256, msg, msg_size, sig, &sig_len, mbedtls_ctr_drbg_random, &_ctr_drbg);
+#endif
     mbed_fatal(err, "error in mbedtls_pk_sign");
-    // int err = mbedtls_pk_sign_ext(MBEDTLS_PK_RSASSA_PSS, &_rsa_private_key, MBEDTLS_MD_SHA256, msg, msg_size, sig, sig_maxsize, &sig_len, mbedtls_ctr_drbg_random, &_ctr_drbg);
-    // mbed_fatal(err, "error in mbedtls_pk_sign_ext");
     return sig_len;
 }
 
 bool lib_mbedtls::rsa_verify(const uint8_t* msg, size_t msg_size, const uint8_t* sig, size_t sig_size)
 {
+    // Equivalent with PSS, if we can make it work:
+    // int err = mbedtls_pk_verify_ext(MBEDTLS_PK_RSASSA_PSS, nullptr, &_rsa_public_key, MBEDTLS_MD_SHA256, msg, msg_size, sig, sig_size);
+
     int err = mbedtls_pk_verify(&_rsa_public_key, MBEDTLS_MD_SHA256, msg, msg_size, sig, sig_size);
     if (err == MBEDTLS_ERR_RSA_VERIFY_FAILED) {
         return false;
@@ -224,8 +235,6 @@ bool lib_mbedtls::rsa_verify(const uint8_t* msg, size_t msg_size, const uint8_t*
         mbed_fatal(err, "error in mbedtls_pk_verify");
         return true;
     }
-    // int err = mbedtls_pk_verify_ext(MBEDTLS_PK_RSASSA_PSS, nullptr, &_rsa_public_key, MBEDTLS_MD_SHA256, msg, msg_size, sig, sig_size);
-    // mbed_fatal(err, "error in mbedtls_pk_verify_ext");
 }
 
 //----------------------------------------------------------------------------

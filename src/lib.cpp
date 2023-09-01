@@ -21,12 +21,12 @@ lib::lib(const std::string& name) :
 
 std::string lib::rsa_name() const
 {
-    return sys::format("rsa-%zu", rsa_private_key_bits());
+    return sys::format("%s: rsa-%zu", _name.c_str(), rsa_private_key_bits());
 }
 
 std::string lib::aes_name() const
 {
-    return sys::format("aes-%zu", aes_key_bits());
+    return sys::format("%s: aes-%zu", _name.c_str(), aes_key_bits());
 }
 
 //----------------------------------------------------------------------------
@@ -165,6 +165,8 @@ void lib::check_aes_cbc_size(size_t key_size, size_t iv_size, size_t input_size,
 
 void lib::rsa_auto_test()
 {
+    const std::string tname(rsa_name());
+
     if (rsa_private_key_bits() == 0 || rsa_public_key_bits() == 0 || rsa_private_key_bits() != rsa_public_key_bits()) {
         sys::fatal("RSA auto test impossible without a valid key pair");
     }
@@ -180,13 +182,13 @@ void lib::rsa_auto_test()
     rsa_init_encrypt_oaep();
     output_len = rsa_encrypt(plain, sizeof(plain), output, sizeof(output));
     if (output_len != rsa_public_key_bits() / 8) {
-        sys::fatal(sys::format("RSA encrypt auto-test failed, key size: %zu bits, output size: %zu bytes (%zu bits)", rsa_public_key_bits(), output_len, output_len * 8));
+        sys::fatal(sys::format("%s: RSA encrypt auto-test failed, key size: %zu bits, output size: %zu bytes (%zu bits)", tname.c_str(), rsa_public_key_bits(), output_len, output_len * 8));
     }
 
     rsa_init_decrypt_oaep();
     output_len = rsa_decrypt(output, output_len, output, sizeof(output));
     if (output_len != sizeof(plain) || ::memcmp(plain, output, output_len) != 0) {
-        sys::fatal("RSA encrypt auto-test failed, decrypted data do not match");
+        sys::fatal(tname + ": RSA encrypt auto-test failed, decrypted data do not match");
     }
 
     uint8_t message[32];
@@ -195,17 +197,17 @@ void lib::rsa_auto_test()
     rsa_init_sign_pss();
     output_len = rsa_sign(message, sizeof(message), output, sizeof(output));
     if (output_len != rsa_public_key_bits() / 8) {
-        sys::fatal(sys::format("RSA sign auto-test failed, key size: %zu bits, sig size: %zu bytes (%zu bits)", rsa_public_key_bits(), output_len, output_len * 8));
+        sys::fatal(sys::format("%s: RSA sign auto-test failed, key size: %zu bits, sig size: %zu bytes (%zu bits)", tname.c_str(), rsa_public_key_bits(), output_len, output_len * 8));
     }
 
     rsa_init_verify_pss();
     if (!rsa_verify(message, sizeof(message), output, output_len)) {
-        sys::fatal("RSA verify auto-test failed, signature not verified");
+        sys::fatal(tname + ": RSA verify auto-test failed, signature not verified");
     }
 
     message[7] ^= 0xFF;
     if (rsa_verify(message, sizeof(message), output, output_len)) {
-        sys::fatal("RSA verify auto-test failed, signature incorrectly valid for corrupted message");
+        sys::fatal(tname + ": RSA verify auto-test failed, signature incorrectly valid for corrupted message");
     }
 }
 
@@ -215,6 +217,8 @@ void lib::rsa_auto_test()
 
 void lib::aes_auto_test()
 {
+    const std::string tname(aes_name());
+
     struct TV_AES {
         size_t  key_size;
         uint8_t key[32];
@@ -272,12 +276,12 @@ void lib::aes_auto_test()
 
         output_len = aes_encrypt(tv->key, tv->key_size, tv->plain, sizeof(tv->plain), output, sizeof(output));
         if (output_len != sizeof(tv->cipher) || ::memcmp(output, tv->cipher, output_len) != 0) {
-            sys::fatal(_name + ": " + aes_name() + ": ECB encrypt test vector failed");
+            sys::fatal(tname + ": ECB encrypt test vector failed");
         }
 
         output_len = aes_decrypt(tv->key, tv->key_size, tv->cipher, sizeof(tv->cipher), output, sizeof(output));
         if (output_len != sizeof(tv->plain) || ::memcmp(output, tv->plain, output_len) != 0) {
-            sys::fatal(_name + ": " + aes_name() + ": ECB decrypt test vector failed");
+            sys::fatal(tname + ": ECB decrypt test vector failed");
         }
     }
 
@@ -324,12 +328,12 @@ void lib::aes_auto_test()
 
         output_len = aes_encrypt_cbc(tv->key, tv->key_size, tv->iv, tv->iv_size, tv->plain, tv->plain_size, output, sizeof(output));
         if (output_len != tv->cipher_size || ::memcmp(output, tv->cipher, output_len) != 0) {
-            sys::fatal(_name + ": " + aes_name() + ": CBC encrypt test vector failed");
+            sys::fatal(tname + ": CBC encrypt test vector failed");
         }
 
         output_len = aes_decrypt_cbc(tv->key, tv->key_size, tv->iv, tv->iv_size, tv->cipher, tv->cipher_size, output, sizeof(output));
         if (output_len != tv->plain_size || ::memcmp(output, tv->plain, output_len) != 0) {
-            sys::fatal(_name + ": " + aes_name() + ": CBC decrypt test vector failed");
+            sys::fatal(tname + ": CBC decrypt test vector failed");
         }
     }
 }

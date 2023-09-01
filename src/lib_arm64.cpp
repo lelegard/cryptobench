@@ -25,7 +25,7 @@ lib_arm64::~lib_arm64()
 
 std::string lib_arm64::version() const
 {
-    return sys::format("aes-inst: %s", arm64::has_aes_instructions() ? "yes" : "no");
+    return arm64::has_aes_instructions() ? "aes-instructions-present" : "no-aes-instructions";
 }
 
 bool lib_arm64::aes_available() const

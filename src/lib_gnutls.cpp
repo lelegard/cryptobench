@@ -136,7 +136,7 @@ size_t lib_gnutls::rsa_public_key_bits() const
 
 
 //----------------------------------------------------------------------------
-// RSA encrypt, according to current mode.
+// RSA encrypt/decrypt.
 //----------------------------------------------------------------------------
 
 size_t lib_gnutls::rsa_encrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
@@ -145,14 +145,11 @@ size_t lib_gnutls::rsa_encrypt(const uint8_t* input, size_t input_size, uint8_t*
     gnutls_datum_t out = {nullptr, 0};
     int err = gnutls_pubkey_encrypt_data(_rsa_public_key, 0, &in, &out);
     gtls_fatal(err, "error in gnutls_pubkey_encrypt_data");
-    ::memcpy(output, out.data, std::min<size_t>(output_maxsize, out.size));
+    const size_t output_length = std::min<size_t>(output_maxsize, out.size);
+    ::memcpy(output, out.data, output_length);
     gnutls_free(out.data);
-    return out.size;
+    return output_length;
 }
-
-//----------------------------------------------------------------------------
-// RSA decrypt, according to current mode.
-//----------------------------------------------------------------------------
 
 size_t lib_gnutls::rsa_decrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
 {
@@ -160,9 +157,40 @@ size_t lib_gnutls::rsa_decrypt(const uint8_t* input, size_t input_size, uint8_t*
     gnutls_datum_t out = {nullptr, 0};
     int err = gnutls_privkey_decrypt_data(_rsa_private_key, 0, &in, &out);
     gtls_fatal(err, "error in gnutls_privkey_decrypt_data");
-    ::memcpy(output, out.data, std::min<size_t>(output_maxsize, out.size));
+    const size_t output_length = std::min<size_t>(output_maxsize, out.size);
+    ::memcpy(output, out.data, output_length);
     gnutls_free(out.data);
-    return out.size;
+    return output_length;
+}
+
+//----------------------------------------------------------------------------
+// RSA sign/verify.
+//----------------------------------------------------------------------------
+
+size_t lib_gnutls::rsa_sign(const uint8_t* msg, size_t msg_size, uint8_t* sig, size_t sig_maxsize)
+{
+    gnutls_datum_t in = {const_cast<uint8_t*>(msg), (unsigned int)(msg_size)};
+    gnutls_datum_t out = {nullptr, 0};
+    int err = gnutls_privkey_sign_hash(_rsa_private_key, GNUTLS_DIG_SHA256, GNUTLS_PRIVKEY_SIGN_FLAG_RSA_PSS, &in, &out);
+    gtls_fatal(err, "error in gnutls_privkey_sign_hash");
+    const size_t sig_length = std::min<size_t>(sig_maxsize, out.size);
+    ::memcpy(sig, out.data, sig_length);
+    gnutls_free(out.data);
+    return sig_length;
+}
+
+bool lib_gnutls::rsa_verify(const uint8_t* msg, size_t msg_size, const uint8_t* sig, size_t sig_size)
+{
+    gnutls_datum_t dmsg = {const_cast<uint8_t*>(msg), (unsigned int)(msg_size)};
+    gnutls_datum_t dsig = {const_cast<uint8_t*>(sig), (unsigned int)(sig_size)};
+    int err = gnutls_pubkey_verify_hash2(_rsa_public_key, GNUTLS_SIGN_RSA_PSS_SHA256, 0, &dmsg, &dsig);
+    if (err == GNUTLS_E_PK_SIG_VERIFY_FAILED) {
+        return false;
+    }
+    else {
+        gtls_fatal(err, "error in gnutls_pubkey_verify_hash2");
+        return true;
+    }
 }
 
 //----------------------------------------------------------------------------

@@ -112,9 +112,9 @@ void bench::display(std::ostream& out, const bench* reference, double factor)
     if (!_name.empty()) {
         out << _name << ": ";
     }
-    out << sys::format("iterations: %'" PRId64 ", total: %'" PRId64 " usec, %'" PRId64 " usec/iter", iterations(), total_usec(), unit_usec());
+    out << sys::format("iterations=%'" PRId64 ": usec-total=%'" PRId64 ": usec/iter=%'" PRId64, iterations(), total_usec(), unit_usec());
     if (reference != nullptr && reference->_iterations > 0) {
-        out << ", score: " << score_string(*reference, factor);
+        out << ": score=" << score_string(*reference, factor);
     }
     out << std::endl;
 }

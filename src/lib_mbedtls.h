@@ -27,6 +27,10 @@ public:
     static void init();
     static void cleanup();
 
+    // Restrictions: MbedTLS uses PKCS#1 v1.5 padding on RSA signature.
+    // With MbedTLS v2, mbedtls_pk_sign_ext() does not exist.
+    // With MbedTLS v3, trying to sign with SSA/PSS returns MBEDTLS_ERR_PK_BAD_INPUT_DATA.
+
     // Implementation of "lib" interface.
     virtual std::string version() const override;
     virtual bool rsa_available() const override;

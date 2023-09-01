@@ -2,7 +2,7 @@
 #----------------------------------------------------------------------------
 # CryptoBench - Copyright (c) 2023, Thierry Lelegard
 # BSD 2-Clause License, see LICENSE file.
-# Run cryptobench test, also report system characteristics.
+# Identify the running system, similar output format as cryptobench.
 #----------------------------------------------------------------------------
 
 trim() { sed -e 's/^[ \t\n\r]*//' -e 's/[ \t\n\r]*$//' -e 's/[ \t\n\r][ \t\n\r]*/ /'; }
@@ -39,12 +39,9 @@ elif [[ -e /proc/cpuinfo ]]; then
     CPU=${CPU:-unknown}
 fi
 
-echo "arch: $ARCH"
-echo "cpu: $CPU"
-echo "system: $SYSTEM"
-echo "distro: $DISTRO"
-echo "kernel: $KERNEL"
-echo "date: $(date +%Y-%m-%d)"
-
-cd $(dirname "$0")
-make -j4 && build/cryptobench --min-time 5
+echo "system: arch: $ARCH"
+echo "system: cpu: $CPU"
+echo "system: system: $SYSTEM"
+echo "system: distro: $DISTRO"
+echo "system: kernel: $KERNEL"
+echo "system: date: $(date +%Y-%m-%d)"

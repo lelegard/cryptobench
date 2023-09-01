@@ -11,7 +11,7 @@
 //----------------------------------------------------------------------------
 
 bench_rsa_encrypt::bench_rsa_encrypt(lib& crypto, int64_t min_usec, int64_t min_iterations, const uint8_t* input, size_t input_size, bool rekey) :
-    bench(crypto.name() + ": " + crypto.rsa_name() + ": encrypt" + std::string(rekey ? "-rekey" : ""), min_usec, min_iterations),
+    bench(crypto.rsa_name() + ": encrypt" + std::string(rekey ? "-rekey" : ""), min_usec, min_iterations),
     _crypto(crypto),
     _rekey(rekey),
     _input(input),
@@ -32,7 +32,7 @@ void bench_rsa_encrypt::one_iteration()
 //----------------------------------------------------------------------------
 
 bench_rsa_decrypt::bench_rsa_decrypt(lib& crypto, int64_t min_usec, int64_t min_iterations, const uint8_t* input, size_t input_size, bool rekey) :
-    bench(crypto.name() + ": " + crypto.rsa_name() + ": decrypt" + std::string(rekey ? "-rekey" : ""), min_usec, min_iterations),
+    bench(crypto.rsa_name() + ": decrypt" + std::string(rekey ? "-rekey" : ""), min_usec, min_iterations),
     _crypto(crypto),
     _rekey(rekey),
     _input(input),
@@ -53,7 +53,7 @@ void bench_rsa_decrypt::one_iteration()
 //----------------------------------------------------------------------------
 
 bench_rsa_sign::bench_rsa_sign(lib& crypto, int64_t min_usec, int64_t min_iterations, const uint8_t* msg, size_t msg_size, bool rekey) :
-    bench(crypto.name() + ": " + crypto.rsa_name() + ": sign" + std::string(rekey ? "-rekey" : ""), min_usec, min_iterations),
+    bench(crypto.rsa_name() + ": sign" + std::string(rekey ? "-rekey" : ""), min_usec, min_iterations),
     _crypto(crypto),
     _rekey(rekey),
     _msg(msg),
@@ -74,7 +74,7 @@ void bench_rsa_sign::one_iteration()
 //----------------------------------------------------------------------------
 
 bench_rsa_verify::bench_rsa_verify(lib& crypto, int64_t min_usec, int64_t min_iterations, const uint8_t* msg, size_t msg_size, const uint8_t* sig, size_t sig_size, bool rekey) :
-    bench(crypto.name() + ": " + crypto.rsa_name() + ": verify" + std::string(rekey ? "-rekey" : ""), min_usec, min_iterations),
+    bench(crypto.rsa_name() + ": verify" + std::string(rekey ? "-rekey" : ""), min_usec, min_iterations),
     _crypto(crypto),
     _rekey(rekey),
     _msg(msg),
@@ -99,7 +99,7 @@ void bench_rsa_verify::one_iteration()
 //----------------------------------------------------------------------------
 
 bench_rsa_load_public::bench_rsa_load_public(lib& crypto, int64_t min_usec, int64_t min_iterations, const uint8_t* der, size_t der_size) :
-    bench(crypto.name() + ": " + crypto.rsa_name() + ": load-public", min_usec, min_iterations),
+    bench(crypto.rsa_name() + ": load-public", min_usec, min_iterations),
     _crypto(crypto),
     _der(der),
     _der_size(der_size)
@@ -116,7 +116,7 @@ void bench_rsa_load_public::one_iteration()
 //----------------------------------------------------------------------------
 
 bench_rsa_load_private::bench_rsa_load_private(lib& crypto, int64_t min_usec, int64_t min_iterations, const uint8_t* der, size_t der_size) :
-    bench(crypto.name() + ": " + crypto.rsa_name() + ": load-private", min_usec, min_iterations),
+    bench(crypto.rsa_name() + ": load-private", min_usec, min_iterations),
     _crypto(crypto),
     _der(der),
     _der_size(der_size)

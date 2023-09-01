@@ -29,7 +29,7 @@ void run_rsa(std::ostream& out, const options& opt, const bench& reference, lib&
     crypto.load_rsa_public_key_file(pubkey);
 
     crypto.rsa_auto_test();
-    out << crypto.name() << ": " << crypto.rsa_name() << ": auto-test passed" << std::endl;
+    out << crypto.rsa_name() << ": auto-test-passed" << std::endl;
 
     // Encryption benchmarks.
     crypto.rsa_init_encrypt_oaep();
@@ -54,7 +54,7 @@ void run_rsa(std::ostream& out, const options& opt, const bench& reference, lib&
     brsa_decrypt.run();
     brsa_decrypt.display(out, &reference, RSA_SCORE_FACTOR);
 
-    out << crypto.name() << ": " << crypto.rsa_name() << ": decrypt/encrypt ratio: " << brsa_decrypt.score_string(brsa_encrypt) << std::endl;
+    out << crypto.rsa_name() << ": decrypt/encrypt-ratio=" << brsa_decrypt.score_string(brsa_encrypt) << std::endl;
 
     // Encryption and decryption performance. With rekeying.
     bench_rsa_encrypt brsa_encrypt_rekey(crypto, opt.min_usec, opt.min_iterations, plain, sizeof(plain), true);
@@ -65,7 +65,7 @@ void run_rsa(std::ostream& out, const options& opt, const bench& reference, lib&
     brsa_decrypt_rekey.run();
     brsa_decrypt_rekey.display(out, &reference, RSA_SCORE_FACTOR);
 
-    out << crypto.name() << ": " << crypto.rsa_name() << ": decrypt-rekey/encrypt-rekey ratio: " << brsa_decrypt_rekey.score_string(brsa_encrypt_rekey) << std::endl;
+    out << crypto.rsa_name() << ": decrypt-rekey/encrypt-rekey-ratio=" << brsa_decrypt_rekey.score_string(brsa_encrypt_rekey) << std::endl;
 
     // Signature benchmarks.
     crypto.rsa_init_sign_pss();
@@ -84,7 +84,7 @@ void run_rsa(std::ostream& out, const options& opt, const bench& reference, lib&
     brsa_verify.run();
     brsa_verify.display(out, &reference, RSA_SCORE_FACTOR);
 
-    out << crypto.name() << ": " << crypto.rsa_name() << ": sign/verify ratio: " << brsa_sign.score_string(brsa_verify) << std::endl;
+    out << crypto.rsa_name() << ": sign/verify-ratio=" << brsa_sign.score_string(brsa_verify) << std::endl;
 
     // Signature and verification performance. With rekeying.
     bench_rsa_sign brsa_sign_rekey(crypto, opt.min_usec, opt.min_iterations, plain, sizeof(plain), true);
@@ -95,7 +95,7 @@ void run_rsa(std::ostream& out, const options& opt, const bench& reference, lib&
     brsa_verify_rekey.run();
     brsa_verify_rekey.display(out, &reference, RSA_SCORE_FACTOR);
 
-    out << crypto.name() << ": " << crypto.rsa_name() << ": sign-rekey/verify-rekey ratio: " << brsa_sign_rekey.score_string(brsa_verify_rekey) << std::endl;
+    out << crypto.rsa_name() << ": sign-rekey/verify-rekey-ratio=" << brsa_sign_rekey.score_string(brsa_verify_rekey) << std::endl;
 
     // Key loading performance.
     bytes_t der;
@@ -117,7 +117,7 @@ void run_rsa(std::ostream& out, const options& opt, const bench& reference, lib&
 void run_aes(std::ostream& out, const options& opt, const bench& reference, lib& crypto, size_t key_bits)
 {
     crypto.aes_auto_test();
-    out << crypto.name() << ": aes: auto-test passed" << std::endl;
+    out << crypto.name() << ": aes: auto-test-passed" << std::endl;
 
     bench_aes_encrypt baes_encrypt(crypto, opt.min_usec, opt.min_iterations, key_bits, opt.aes_data_size);
     baes_encrypt.run();
@@ -127,7 +127,7 @@ void run_aes(std::ostream& out, const options& opt, const bench& reference, lib&
     baes_decrypt.run();
     baes_decrypt.display(out, &reference, AES_SCORE_FACTOR);
 
-    out << crypto.name() << ": " << crypto.aes_name() << ": encrypt/decrypt ratio: " << baes_encrypt.score_string(baes_decrypt) << std::endl;
+    out << crypto.aes_name() << ": encrypt/decrypt-ratio=" << baes_encrypt.score_string(baes_decrypt) << std::endl;
 }
 
 //----------------------------------------------------------------------------
@@ -173,7 +173,7 @@ void run_all_benchmarks(std::ostream& out, const options& opt)
     // Library versions.
     if (!tested_libs.empty()) {
         for (auto tl : tested_libs) {
-            out << tl->name() << ": " << tl->version() << std::endl;
+            out << tl->name() << ": version=" << tl->version() << std::endl;
         }
         out << std::endl;
     }
@@ -191,8 +191,8 @@ void run_all_benchmarks(std::ostream& out, const options& opt)
         // Generate RSA key pairs, 2048 and 4096 bits.
         const int64_t gen_2048_usec = lib_openssl::generate_rsa_key(2048, opt.private_key_2048, opt.public_key_2048);
         const int64_t gen_4096_usec = lib_openssl::generate_rsa_key(4096, opt.private_key_4096, opt.public_key_4096);
-        out << sys::format("generate-rsa-2048: %'" PRId64 " usec", gen_2048_usec) << std::endl;
-        out << sys::format("generate-rsa-4096: %'" PRId64 " usec", gen_4096_usec) << std::endl;
+        out << sys::format("openssl: rsa-2048: generate-key-usec=%'" PRId64, gen_2048_usec) << std::endl;
+        out << sys::format("openssl: rsa-4096: generate-key-usec=%'" PRId64, gen_4096_usec) << std::endl;
         out << std::endl;
 
         for (auto tl : tested_libs) {
