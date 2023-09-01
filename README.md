@@ -79,7 +79,7 @@ Test reports are stored in the subdirectory `reports` and saved in the git
 repository for reference.
 
 The script `tools/run-test.sh` produces a benchmarck report on the current system.
-All tests are run during 5 seconds, so the execution may take some time.
+All tests are run during 5 seconds, so the execution may take some time, 10 minutes or more.
 It also produces a description of the current system for reference.
 
 Typical usage:
