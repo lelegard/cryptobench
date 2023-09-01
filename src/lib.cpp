@@ -205,7 +205,7 @@ void lib::rsa_auto_test()
 
     message[7] ^= 0xFF;
     if (rsa_verify(message, sizeof(message), output, output_len)) {
-        sys::fatal("RSA verify auto-test failed, signature verified for corrupeted message");
+        sys::fatal("RSA verify auto-test failed, signature incorrectly valid for corrupted message");
     }
 }
 

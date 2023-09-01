@@ -179,45 +179,53 @@ void lib_mbedtls::set_rsa_padding(mbedtls_pk_context& key, int padding, mbedtls_
 }
 
 //----------------------------------------------------------------------------
-// Initialize RSA context for AOEP encrypt.
-//----------------------------------------------------------------------------
-
-void lib_mbedtls::rsa_init_encrypt_oaep()
-{
-    set_rsa_padding(_rsa_public_key, MBEDTLS_RSA_PKCS_V21, MBEDTLS_MD_SHA256);
-}
-
-//----------------------------------------------------------------------------
-// Initialize RSA context for AOEP decrypt.
-//----------------------------------------------------------------------------
-
-void lib_mbedtls::rsa_init_decrypt_oaep()
-{
-    set_rsa_padding(_rsa_private_key, MBEDTLS_RSA_PKCS_V21, MBEDTLS_MD_SHA256);
-}
-
-//----------------------------------------------------------------------------
-// RSA encrypt, according to current mode.
+// RSA encrypt/decrypt.
 //----------------------------------------------------------------------------
 
 size_t lib_mbedtls::rsa_encrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
 {
+    set_rsa_padding(_rsa_public_key, MBEDTLS_RSA_PKCS_V21, MBEDTLS_MD_SHA256);
     size_t output_len = 0;
     int err = mbedtls_pk_encrypt(&_rsa_public_key, input, input_size, output, &output_len, output_maxsize, mbedtls_ctr_drbg_random, &_ctr_drbg);
     mbed_fatal(err, "error in mbedtls_pk_encrypt");
     return output_len;
 }
 
-//----------------------------------------------------------------------------
-// RSA decrypt, according to current mode.
-//----------------------------------------------------------------------------
-
 size_t lib_mbedtls::rsa_decrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
 {
+    set_rsa_padding(_rsa_private_key, MBEDTLS_RSA_PKCS_V21, MBEDTLS_MD_SHA256);
     size_t output_len = 0;
     int err = mbedtls_pk_decrypt(&_rsa_private_key, input, input_size, output, &output_len, output_maxsize, mbedtls_ctr_drbg_random, &_ctr_drbg);
     mbed_fatal(err, "error in mbedtls_pk_decrypt");
     return output_len;
+}
+
+//----------------------------------------------------------------------------
+// RSA sign/verify.
+//----------------------------------------------------------------------------
+
+size_t lib_mbedtls::rsa_sign(const uint8_t* msg, size_t msg_size, uint8_t* sig, size_t sig_maxsize)
+{
+    size_t sig_len = 0;
+    int err = mbedtls_pk_sign(&_rsa_private_key, MBEDTLS_MD_SHA256, msg, msg_size, sig, sig_maxsize, &sig_len, mbedtls_ctr_drbg_random, &_ctr_drbg);
+    mbed_fatal(err, "error in mbedtls_pk_sign");
+    // int err = mbedtls_pk_sign_ext(MBEDTLS_PK_RSASSA_PSS, &_rsa_private_key, MBEDTLS_MD_SHA256, msg, msg_size, sig, sig_maxsize, &sig_len, mbedtls_ctr_drbg_random, &_ctr_drbg);
+    // mbed_fatal(err, "error in mbedtls_pk_sign_ext");
+    return sig_len;
+}
+
+bool lib_mbedtls::rsa_verify(const uint8_t* msg, size_t msg_size, const uint8_t* sig, size_t sig_size)
+{
+    int err = mbedtls_pk_verify(&_rsa_public_key, MBEDTLS_MD_SHA256, msg, msg_size, sig, sig_size);
+    if (err == MBEDTLS_ERR_RSA_VERIFY_FAILED) {
+        return false;
+    }
+    else {
+        mbed_fatal(err, "error in mbedtls_pk_verify");
+        return true;
+    }
+    // int err = mbedtls_pk_verify_ext(MBEDTLS_PK_RSASSA_PSS, nullptr, &_rsa_public_key, MBEDTLS_MD_SHA256, msg, msg_size, sig, sig_size);
+    // mbed_fatal(err, "error in mbedtls_pk_verify_ext");
 }
 
 //----------------------------------------------------------------------------

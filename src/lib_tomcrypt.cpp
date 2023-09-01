@@ -238,7 +238,7 @@ size_t lib_tomcrypt::rsa_public_key_bits() const
 }
 
 //----------------------------------------------------------------------------
-// RSA encrypt, according to current mode.
+// RSA encrypt/decrypt.
 //----------------------------------------------------------------------------
 
 size_t lib_tomcrypt::rsa_encrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
@@ -250,10 +250,6 @@ size_t lib_tomcrypt::rsa_encrypt(const uint8_t* input, size_t input_size, uint8_
     return output_len;
 }
 
-//----------------------------------------------------------------------------
-// RSA decrypt, according to current mode.
-//----------------------------------------------------------------------------
-
 size_t lib_tomcrypt::rsa_decrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
 {
     set_mp();
@@ -262,6 +258,28 @@ size_t lib_tomcrypt::rsa_decrypt(const uint8_t* input, size_t input_size, uint8_
     int err = rsa_decrypt_key(input, input_size, output, &output_len, nullptr, 0, _sha256_index, &stat, &_rsa_private_key);
     tom_fatal(err, "error in rsa_decrypt_key");
     return output_len;
+}
+
+//----------------------------------------------------------------------------
+// RSA sign/verify.
+//----------------------------------------------------------------------------
+
+size_t lib_tomcrypt::rsa_sign(const uint8_t* msg, size_t msg_size, uint8_t* sig, size_t sig_maxsize)
+{
+    set_mp();
+    unsigned long sig_len = sig_maxsize;
+    int err = rsa_sign_hash(msg, msg_size, sig, &sig_len, &_yarrow_prng, _yarrow_prng_index, _sha256_index, RSA_PSS_SALT_LENGTH, &_rsa_private_key);
+    tom_fatal(err, "error in rsa_sign_hash");
+    return sig_len;
+}
+
+bool lib_tomcrypt::rsa_verify(const uint8_t* msg, size_t msg_size, const uint8_t* sig, size_t sig_size)
+{
+    set_mp();
+    int stat = 0;
+    int err = rsa_verify_hash(sig, sig_size, msg, msg_size, _sha256_index, RSA_PSS_SALT_LENGTH, &stat, &_rsa_public_key);
+    tom_fatal(err, "error in rsa_verify_hash");
+    return stat == 1;
 }
 
 //----------------------------------------------------------------------------

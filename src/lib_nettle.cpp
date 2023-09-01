@@ -116,7 +116,7 @@ size_t lib_nettle::rsa_public_key_bits() const
 }
 
 //----------------------------------------------------------------------------
-// RSA encrypt, according to current mode.
+// RSA encrypt/encrypt.
 //----------------------------------------------------------------------------
 
 size_t lib_nettle::rsa_encrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
@@ -124,13 +124,23 @@ size_t lib_nettle::rsa_encrypt(const uint8_t* input, size_t input_size, uint8_t*
     return 0; // to be implemented after fixing the key issue above
 }
 
-//----------------------------------------------------------------------------
-// RSA decrypt, according to current mode.
-//----------------------------------------------------------------------------
-
 size_t lib_nettle::rsa_decrypt(const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
 {
     return 0; // to be implemented after fixing the key issue above
+}
+
+//----------------------------------------------------------------------------
+// RSA sign/verify.
+//----------------------------------------------------------------------------
+
+size_t lib_nettle::rsa_sign(const uint8_t* msg, size_t msg_size, uint8_t* sig, size_t sig_maxsize)
+{
+    return 0; // to be implemented after fixing the key issue above
+}
+
+bool lib_nettle::rsa_verify(const uint8_t* msg, size_t msg_size, const uint8_t* sig, size_t sig_size)
+{
+    return false; // to be implemented after fixing the key issue above
 }
 
 //----------------------------------------------------------------------------
