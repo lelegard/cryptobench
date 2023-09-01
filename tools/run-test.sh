@@ -5,6 +5,6 @@
 # Run cryptobench test, also report system characteristics.
 #----------------------------------------------------------------------------
 
-cd $(dirname "$0"/..)
+cd $(dirname "$0")/..
 tools/identify-system.sh
 make -j4 && build/cryptobench --min-time 5
