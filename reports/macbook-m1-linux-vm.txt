@@ -1,5 +1,5 @@
 system: arch: arm64
-system: cpu: unknown
+system: cpu: Apple M1
 system: system: Linux
 system: distro: Ubuntu 23.04
 system: kernel: 6.2.0-31-generic #31-Ubuntu SMP PREEMPT_DYNAMIC Mon Aug 14 18:19:29 UTC 2023 aarch64
