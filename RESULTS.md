@@ -1,6 +1,46 @@
 # Comparative benchmarks results
 
-The presented numbers are relative execution time (the lower, the better).
+**Contents:**
+
+* [Results overview](#results-overview)
+* [RSA-2048](#rsa-2048)
+  * [RSA-2048 encryption without rekeying](#rsa-2048-encryption-without-rekeying)
+  * [RSA-2048 decryption without rekeying](#rsa-2048-decryption-without-rekeying)
+  * [RSA-2048 decryption/encryption ratio, without rekeying](#rsa-2048-decryptionencryption-ratio-without-rekeying)
+  * [RSA-2048 encryption with rekeying](#rsa-2048-encryption-with-rekeying)
+  * [RSA-2048 decryption with rekeying](#rsa-2048-decryption-with-rekeying)
+  * [RSA-2048 decryption/encryption ratio, with rekeying](#rsa-2048-decryptionencryption-ratio-with-rekeying)
+  * [RSA-2048 signature without rekeying](#rsa-2048-signature-without-rekeying)
+  * [RSA-2048 verification without rekeying](#rsa-2048-verification-without-rekeying)
+  * [RSA-2048 signature/verification ratio, without rekeying](#rsa-2048-signatureverification-ratio-without-rekeying)
+  * [RSA-2048 signature with rekeying](#rsa-2048-signature-with-rekeying)
+  * [RSA-2048 verification with rekeying](#rsa-2048-verification-with-rekeying)
+  * [RSA-2048 signature/verification ratio, with rekeying](#rsa-2048-signatureverification-ratio-with-rekeying)
+* [RSA-4096](#rsa-4096)
+  * [RSA-4096 encryption without rekeying](#rsa-4096-encryption-without-rekeying)
+  * [RSA-4096 decryption without rekeying](#rsa-4096-decryption-without-rekeying)
+  * [RSA-4096 decryption/encryption ratio, without rekeying](#rsa-4096-decryptionencryption-ratio-without-rekeying)
+  * [RSA-4096 encryption with rekeying](#rsa-4096-encryption-with-rekeying)
+  * [RSA-4096 decryption with rekeying](#rsa-4096-decryption-with-rekeying)
+  * [RSA-4096 decryption/encryption ratio, with rekeying](#rsa-4096-decryptionencryption-ratio-with-rekeying)
+  * [RSA-4096 signature without rekeying](#rsa-4096-signature-without-rekeying)
+  * [RSA-4096 verification without rekeying](#rsa-4096-verification-without-rekeying)
+  * [RSA-4096 signature/verification ratio, without rekeying](#rsa-4096-signatureverification-ratio-without-rekeying)
+  * [RSA-4096 signature with rekeying](#rsa-4096-signature-with-rekeying)
+  * [RSA-4096 verification with rekeying](#rsa-4096-verification-with-rekeying)
+  * [RSA-4096 signature/verification ratio, with rekeying](#rsa-4096-signatureverification-ratio-with-rekeying)
+* [AES-128](#aes-128)
+  * [AES-128-CBC encryption](#aes-128-cbc-encryption)
+  * [AES-128-CBC decryption](#aes-128-cbc-decryption)
+  * [AES-128-CBC encryption/decryption ratio](#aes-128-cbc-encryptiondecryption-ratio)
+* [AES-256](#aes-256)
+  * [AES-256-CBC encryption](#aes-256-cbc-encryption)
+  * [AES-256-CBC decryption](#aes-256-cbc-decryption)
+  * [AES-256-CBC encryption/decryption ratio](#aes-256-cbc-encryptiondecryption-ratio)
+
+## Results overview
+
+The presented numbers are relative execution times (the lower, the better).
 
 The values have no unit and their absolute value is meaningless. They are
 relative to the performance of the CPU. A standard reference test is run on
@@ -41,7 +81,7 @@ In the result tables, Intel/AMD processors come first, them Arm processors.
 
 ## RSA-2048
 
-### Encryption without rekeying
+### RSA-2048 encryption without rekeying
 
 | CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt/ltm | Libtomcrypt/gmp |
 | ------------------ | :---: | :-----: | :-----: | :----: | :----: | :-------------: | :-------------: |
@@ -53,7 +93,7 @@ In the result tables, Intel/AMD processors come first, them Arm processors.
 | Apple M1           | macOS | 5.2     |         |        |        |                 |                 |
 | Apple M1           | Linux | 3.2     |         |        |        |                 |                 |
 
-### Decryption without rekeying
+### RSA-2048 decryption without rekeying
 
 | CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt/ltm | Libtomcrypt/gmp |
 | ------------------ | :---: | :-----: | :-----: | :----: | :----: | :-------------: | :-------------: |
@@ -65,64 +105,64 @@ In the result tables, Intel/AMD processors come first, them Arm processors.
 | Apple M1           | macOS |         |         |        |        |                 |                 |
 | Apple M1           | Linux |         |         |        |        |                 |                 |
 
-### Decryption/encryption ratio, without rekeying
+### RSA-2048 decryption/encryption ratio, without rekeying
 
-### Encryption with rekeying
+### RSA-2048 encryption with rekeying
 
-### Decryption with rekeying
+### RSA-2048 decryption with rekeying
 
-### Decryption/encryption ratio, with rekeying
+### RSA-2048 decryption/encryption ratio, with rekeying
 
-### Signature without rekeying
+### RSA-2048 signature without rekeying
 
-### Verification without rekeying
+### RSA-2048 verification without rekeying
 
-### Signature/Verification ratio, without rekeying
+### RSA-2048 signature/verification ratio, without rekeying
 
-### Signature with rekeying
+### RSA-2048 signature with rekeying
 
-### Verification with rekeying
+### RSA-2048 verification with rekeying
 
-### Signature/Verification ratio, with rekeying
+### RSA-2048 signature/verification ratio, with rekeying
 
 ## RSA-4096
 
-### Encryption without rekeying
+### RSA-4096 encryption without rekeying
 
-### Decryption without rekeying
+### RSA-4096 decryption without rekeying
 
-### Decryption/encryption ratio, without rekeying
+### RSA-4096 decryption/encryption ratio, without rekeying
 
-### Encryption with rekeying
+### RSA-4096 encryption with rekeying
 
-### Decryption with rekeying
+### RSA-4096 decryption with rekeying
 
-### Decryption/encryption ratio, with rekeying
+### RSA-4096 decryption/encryption ratio, with rekeying
 
-### Signature without rekeying
+### RSA-4096 signature without rekeying
 
-### Verification without rekeying
+### RSA-4096 verification without rekeying
 
-### Signature/Verification ratio, without rekeying
+### RSA-4096 signature/verification ratio, without rekeying
 
-### Signature with rekeying
+### RSA-4096 signature with rekeying
 
-### Verification with rekeying
+### RSA-4096 verification with rekeying
 
-### Signature/Verification ratio, with rekeying
+### RSA-4096 signature/verification ratio, with rekeying
 
 ## AES-128
 
-### Encryption
+### AES-128-CBC encryption
 
-### Decryption
+### AES-128-CBC decryption
 
-### Encryption/decryption ratio
+### AES-128-CBC encryption/decryption ratio
 
 ## AES-256
 
-### Encryption
+### AES-256 encryption
 
-### Decryption
+### AES-256 decryption
 
-### Encryption/decryption ratio
+### AES-256 encryption/decryption ratio
