@@ -1,5 +1,6 @@
 system: arch: arm64
 system: cpu: Apple M1
+system: machine: Apple MacBook M1
 system: system: macOS
 system: distro: macOS 13.5.1 22G90
 system: kernel: 22.6.0 Darwin Kernel Version 22.6.0: Wed Jul  5 22:22:52 PDT 2023; root:xnu-8796.141.3~6/RELEASE_ARM64_T8103 arm

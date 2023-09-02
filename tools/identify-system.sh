@@ -5,7 +5,9 @@
 # Identify the running system, similar output format as cryptobench.
 #----------------------------------------------------------------------------
 
-trim() { sed -e 's/^[ \t\n\r]*//' -e 's/[ \t\n\r]*$//' -e 's/[ \t\n\r][ \t\n\r]*/ /'; }
+SED=$(which gsed 2>/dev/null)
+SED=${SED:-sed}
+trim() { $SED -e 's/^[ \t\n\r]*//' -e 's/[ \t\n\r]*$//' -e 's/[ \t\n\r][ \t\n\r]*/ /'; }
 firstvalue() { head -1 | sed 's/.*://' | trim; }
 
 SYSTEM=$(uname -s)
@@ -16,7 +18,7 @@ KERNEL=$(uname -p -r -v )
 
 DISTRO=
 if [[ $SYSTEM == macOS ]]; then
-    DISTRO="$(echo $(sw_vers --productName) $(sw_vers --productVersion) $(sw_vers --productVersionExtra) $(sw_vers --buildVersion) | trim)"
+    DISTRO="$(echo $(sw_vers -productName) $(sw_vers -productVersion) $(sw_vers -buildVersion) | trim)"
 elif [[ -n $(which lsb_release) ]]; then
     DISTRO=$(lsb_release -d | firstvalue)
 else

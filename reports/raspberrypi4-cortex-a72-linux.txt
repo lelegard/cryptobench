@@ -1,5 +1,6 @@
 system: arch: arm64
-system: cpu: BCM2835 Raspberry Pi 4 Model B Rev 1.5
+system: cpu: BCM2711 Cortex A72
+system: machine: Raspberry Pi 4 Model B Rev 1.5
 system: system: Linux
 system: distro: Ubuntu 23.04
 system: kernel: 6.2.0-1011-raspi #13-Ubuntu SMP PREEMPT Mon Aug 21 16:46:45 UTC 2023 aarch64
