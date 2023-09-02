@@ -64,7 +64,7 @@ $(BINDIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(BINDIR)
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c -o $@ $<
 clean:
-	rm -rf build build-* core *.tmp *.log src/*.pro.user
+	rm -rf build build-* core *.tmp *.log src/*.pro.user __pycache__
 
 # Regenerate implicit dependencies.
 ifneq ($(if $(MAKECMDGOALS),$(filter-out clean listvars cxxmacros,$(MAKECMDGOALS)),true),)

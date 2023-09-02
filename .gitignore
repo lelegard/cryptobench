@@ -35,6 +35,7 @@ qrc_*.cpp
 Thumbs.db
 *.res
 *.rc
+__pycache__
 /.qmake.cache
 /.qmake.stash
 *.pro.user*

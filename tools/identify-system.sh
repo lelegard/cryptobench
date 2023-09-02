@@ -5,9 +5,7 @@
 # Identify the running system, similar output format as cryptobench.
 #----------------------------------------------------------------------------
 
-SED=$(which gsed 2>/dev/null)
-SED=${SED:-sed}
-trim() { $SED -e 's/^[ \t\n\r]*//' -e 's/[ \t\n\r]*$//' -e 's/[ \t\n\r][ \t\n\r]*/ /'; }
+trim() { tr '\n' ' ' | tr '\r' ' ' | tr '\t' ' ' | sed -e 's/^ *//' -e 's/ *$//' -e 's/  */ /'; }
 firstvalue() { head -1 | sed 's/.*://' | trim; }
 
 SYSTEM=$(uname -s)

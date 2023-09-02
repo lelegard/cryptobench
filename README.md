@@ -73,24 +73,6 @@ It is the gnutls development environment for the latest versions of gnutls,
 Just run `make` to build the `cryptobench` executable. All objects are
 produced in subdirectory `build`.
 
-## Test results
-
-Test reports are stored in the subdirectory `reports` and saved in the git
-repository for reference.
-
-The script `tools/run-test.sh` produces a benchmarck report on the current system.
-All tests are run during 5 seconds, so the execution may take some time, 10 minutes or more.
-It also produces a description of the current system for reference.
-
-Typical usage:
-~~~
-$ tools/run-test.sh >reports/system-cpu-os.txt
-~~~
-
-On some systems, the CPU is not correctly identified by the script.
-Be sure to verify the line containing `system: cpu:` in the report
-file and manually fix it when necessary before committing to git.
-
 ## Command line usage
 
 Without parameter, the `cryptobench` program runs all tests for
@@ -119,6 +101,24 @@ Crytographic libraries selection (all by default):
 The `arm64` pseudo-library is an implementation of AES using Arm64 specialized
 accelerated instructions, through C/C++ intrinsics. It is run only on Arm64
 processors supporting FEAT_AES.
+
+## Test results
+
+Test reports are stored in the subdirectory `reports` and saved in the git
+repository for reference.
+
+The script `tools/run-test.sh` produces a benchmark report on the current system.
+All tests are run during 5 seconds, so the execution may take some time, 10 minutes or more.
+It also produces a description of the current system for reference.
+
+Typical usage:
+~~~
+$ tools/run-test.sh >reports/system-cpu-os.txt
+~~~
+
+On some systems, the CPU is not correctly identified by the script.
+Be sure to verify the line containing `system: cpu:` in the report
+file and manually fix it when necessary before committing to git.
 
 ## Bugs and limitations
 
