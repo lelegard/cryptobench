@@ -11,7 +11,7 @@
 //----------------------------------------------------------------------------
 
 bench_aes_encrypt::bench_aes_encrypt(lib& crypto, int64_t min_usec, int64_t min_iterations, size_t key_bits, size_t data_size) :
-    bench(sys::format("%s: aes-%d: encrypt %'zu bytes", crypto.name().c_str(), key_bits, data_size), min_usec, min_iterations),
+    bench(sys::format("%s: aes-%d: encrypt=%'zu", crypto.name().c_str(), key_bits, data_size), min_usec, min_iterations),
     _crypto(crypto),
     _key(key_bits / 8, 0xA5),
     _iv(lib::AES_BLOCK_SIZE, 0x35),
@@ -34,7 +34,7 @@ void bench_aes_encrypt::one_iteration()
 //----------------------------------------------------------------------------
 
 bench_aes_decrypt::bench_aes_decrypt(lib& crypto, int64_t min_usec, int64_t min_iterations, size_t key_bits, size_t data_size) :
-    bench(sys::format("%s: aes-%d: decrypt-sched %'zu bytes", crypto.name().c_str(), key_bits, data_size), min_usec, min_iterations),
+    bench(sys::format("%s: aes-%d: decrypt=%'zu", crypto.name().c_str(), key_bits, data_size), min_usec, min_iterations),
     _crypto(crypto),
     _key(key_bits / 8, 0xA5),
     _iv(lib::AES_BLOCK_SIZE, 0x35),

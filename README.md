@@ -37,6 +37,8 @@ There is no floating point tests since this type of data is not used in cryptogr
 Currently, this test is very basic (see file `src/bench_reference.cpp`). Ideas to
 improve it are welcome.
 
+The results are presented in the file [RESULTS.md](RESULTS.md).
+
 ## Software support
 
 The `cryptobench` program can be built on:

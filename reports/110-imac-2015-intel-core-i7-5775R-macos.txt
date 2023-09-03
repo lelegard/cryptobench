@@ -1,5 +1,6 @@
 system: arch: x86_64
 system: cpu: Intel(R) Core(TM) i7-5775R CPU @ 3.30GHz
+system: cpu-index: i7-5775R
 system: machine: Apple iMac Retina late 2015
 system: system: macOS
 system: distro: macOS 12.6.8 21G725
@@ -175,47 +176,47 @@ tomcrypt-gmp: rsa-4096: load-public: iterations=375,808: usec-total=5,000,029: u
 tomcrypt-gmp: rsa-4096: load-private: iterations=608,854: usec-total=5,000,042: usec/iter=8: score=2.3
 
 openssl: aes: auto-test-passed
-openssl: aes-128: encrypt 1,000,000 bytes: iterations=4,124: usec-total=5,047,185: usec/iter=1,224: score=340
-openssl: aes-128: decrypt-sched 1,000,000 bytes: iterations=29,588: usec-total=5,242,394: usec/iter=177: score=49
+openssl: aes-128: encrypt=1,000,000: iterations=4,124: usec-total=5,047,185: usec/iter=1,224: score=340
+openssl: aes-128: decrypt=1,000,000: iterations=29,588: usec-total=5,242,394: usec/iter=177: score=49
 openssl: aes-128: encrypt/decrypt-ratio=6.9
 openssl: aes: auto-test-passed
-openssl: aes-256: encrypt 1,000,000 bytes: iterations=2,939: usec-total=5,022,793: usec/iter=1,709: score=475
-openssl: aes-256: decrypt-sched 1,000,000 bytes: iterations=20,243: usec-total=5,005,144: usec/iter=247: score=68
+openssl: aes-256: encrypt=1,000,000: iterations=2,939: usec-total=5,022,793: usec/iter=1,709: score=475
+openssl: aes-256: decrypt=1,000,000: iterations=20,243: usec-total=5,005,144: usec/iter=247: score=68
 openssl: aes-256: encrypt/decrypt-ratio=6.9
 
 mbedtls: aes: auto-test-passed
-mbedtls: aes-128: encrypt 1,000,000 bytes: iterations=2,835: usec-total=5,003,121: usec/iter=1,765: score=491
-mbedtls: aes-128: decrypt-sched 1,000,000 bytes: iterations=5,232: usec-total=5,247,642: usec/iter=1,003: score=279
+mbedtls: aes-128: encrypt=1,000,000: iterations=2,835: usec-total=5,003,121: usec/iter=1,765: score=491
+mbedtls: aes-128: decrypt=1,000,000: iterations=5,232: usec-total=5,247,642: usec/iter=1,003: score=279
 mbedtls: aes-128: encrypt/decrypt-ratio=1.8
 mbedtls: aes: auto-test-passed
-mbedtls: aes-256: encrypt 1,000,000 bytes: iterations=2,257: usec-total=5,003,555: usec/iter=2,217: score=617
-mbedtls: aes-256: decrypt-sched 1,000,000 bytes: iterations=4,071: usec-total=5,544,184: usec/iter=1,362: score=379
+mbedtls: aes-256: encrypt=1,000,000: iterations=2,257: usec-total=5,003,555: usec/iter=2,217: score=617
+mbedtls: aes-256: decrypt=1,000,000: iterations=4,071: usec-total=5,544,184: usec/iter=1,362: score=379
 mbedtls: aes-256: encrypt/decrypt-ratio=1.6
 
 gnutls: aes: auto-test-passed
-gnutls: aes-128: encrypt 1,000,000 bytes: iterations=4,061: usec-total=5,003,688: usec/iter=1,232: score=343
-gnutls: aes-128: decrypt-sched 1,000,000 bytes: iterations=27,488: usec-total=5,011,983: usec/iter=182: score=50
+gnutls: aes-128: encrypt=1,000,000: iterations=4,061: usec-total=5,003,688: usec/iter=1,232: score=343
+gnutls: aes-128: decrypt=1,000,000: iterations=27,488: usec-total=5,011,983: usec/iter=182: score=50
 gnutls: aes-128: encrypt/decrypt-ratio=6.8
 gnutls: aes: auto-test-passed
-gnutls: aes-256: encrypt 1,000,000 bytes: iterations=2,975: usec-total=5,102,398: usec/iter=1,715: score=477
-gnutls: aes-256: decrypt-sched 1,000,000 bytes: iterations=20,341: usec-total=5,004,030: usec/iter=246: score=68
+gnutls: aes-256: encrypt=1,000,000: iterations=2,975: usec-total=5,102,398: usec/iter=1,715: score=477
+gnutls: aes-256: decrypt=1,000,000: iterations=20,341: usec-total=5,004,030: usec/iter=246: score=68
 gnutls: aes-256: encrypt/decrypt-ratio=7.0
 
 nettle: aes: auto-test-passed
-nettle: aes-128: encrypt 1,000,000 bytes: iterations=4,063: usec-total=5,031,533: usec/iter=1,238: score=344
-nettle: aes-128: decrypt-sched 1,000,000 bytes: iterations=21,434: usec-total=5,072,237: usec/iter=237: score=65
+nettle: aes-128: encrypt=1,000,000: iterations=4,063: usec-total=5,031,533: usec/iter=1,238: score=344
+nettle: aes-128: decrypt=1,000,000: iterations=21,434: usec-total=5,072,237: usec/iter=237: score=65
 nettle: aes-128: encrypt/decrypt-ratio=5.2
 nettle: aes: auto-test-passed
-nettle: aes-256: encrypt 1,000,000 bytes: iterations=2,965: usec-total=5,036,460: usec/iter=1,699: score=473
-nettle: aes-256: decrypt-sched 1,000,000 bytes: iterations=15,167: usec-total=5,002,652: usec/iter=330: score=91
+nettle: aes-256: encrypt=1,000,000: iterations=2,965: usec-total=5,036,460: usec/iter=1,699: score=473
+nettle: aes-256: decrypt=1,000,000: iterations=15,167: usec-total=5,002,652: usec/iter=330: score=91
 nettle: aes-256: encrypt/decrypt-ratio=5.1
 
 tomcrypt: aes: auto-test-passed
-tomcrypt: aes-128: encrypt 1,000,000 bytes: iterations=1,084: usec-total=5,059,283: usec/iter=4,667: score=1299
-tomcrypt: aes-128: decrypt-sched 1,000,000 bytes: iterations=1,188: usec-total=5,080,470: usec/iter=4,276: score=1190
+tomcrypt: aes-128: encrypt=1,000,000: iterations=1,084: usec-total=5,059,283: usec/iter=4,667: score=1299
+tomcrypt: aes-128: decrypt=1,000,000: iterations=1,188: usec-total=5,080,470: usec/iter=4,276: score=1190
 tomcrypt: aes-128: encrypt/decrypt-ratio=1.1
 tomcrypt: aes: auto-test-passed
-tomcrypt: aes-256: encrypt 1,000,000 bytes: iterations=813: usec-total=5,068,004: usec/iter=6,234: score=1736
-tomcrypt: aes-256: decrypt-sched 1,000,000 bytes: iterations=851: usec-total=5,009,014: usec/iter=5,886: score=1639
+tomcrypt: aes-256: encrypt=1,000,000: iterations=813: usec-total=5,068,004: usec/iter=6,234: score=1736
+tomcrypt: aes-256: decrypt=1,000,000: iterations=851: usec-total=5,009,014: usec/iter=5,886: score=1639
 tomcrypt: aes-256: encrypt/decrypt-ratio=1.1
 

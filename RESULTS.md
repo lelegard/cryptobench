@@ -83,86 +83,366 @@ In the result tables, Intel/AMD processors come first, them Arm processors.
 
 ### RSA-2048 encryption without rekeying
 
-| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt/ltm | Libtomcrypt/gmp |
-| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :-------------: | :-------------: |
-| i7-5775R           | macOS | 5.9     |         |        |        |                 |                 |
-| i7-5775R           | Linux | 4.3     |         |        |        |                 |                 |
-| i7-8565U           | Linux | 5.1     |         |        |        |                 |                 |
-| Cortex A53 (R.Pi3) | Linux | 10.3    |         |        |        |                 |                 |
-| Cortex A72 (R.Pi4) | Linux | 8.6     |         |        |        |                 |                 |
-| Apple M1           | macOS | 5.2     |         |        |        |                 |                 |
-| Apple M1           | Linux | 3.2     |         |        |        |                 |                 |
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS | 5.9     |         |        |        |                   |                   |
+| i7-5775R           | Linux | 4.3     |         |        |        |                   |                   |
+| i7-8565U           | Linux | 5.1     |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux | 10.3    |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux | 8.6     |         |        |        |                   |                   |
+| Apple M1           | macOS | 5.2     |         |        |        |                   |                   |
+| Apple M1           | Linux | 3.2     |         |        |        |                   |                   |
 
 ### RSA-2048 decryption without rekeying
 
-| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt/ltm | Libtomcrypt/gmp |
-| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :-------------: | :-------------: |
-| i7-5775R           | macOS |         |         |        |        |                 |                 |
-| i7-5775R           | Linux |         |         |        |        |                 |                 |
-| i7-8565U           | Linux |         |         |        |        |                 |                 |
-| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                 |                 |
-| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                 |                 |
-| Apple M1           | macOS |         |         |        |        |                 |                 |
-| Apple M1           | Linux |         |         |        |        |                 |                 |
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS | 160        |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
 
 ### RSA-2048 decryption/encryption ratio, without rekeying
 
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS | 27        |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
+
 ### RSA-2048 encryption with rekeying
+
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS |         |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
 
 ### RSA-2048 decryption with rekeying
 
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS | 6.7        |         |        |        |                   |                   |
+| i7-5775R           | Linux | 161        |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
+
 ### RSA-2048 decryption/encryption ratio, with rekeying
+
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS | 24        |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
 
 ### RSA-2048 signature without rekeying
 
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS | 159        |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
+
 ### RSA-2048 verification without rekeying
+
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS | 5.7        |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
 
 ### RSA-2048 signature/verification ratio, without rekeying
 
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS | 28        |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
+
 ### RSA-2048 signature with rekeying
+
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS | 207        |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
 
 ### RSA-2048 verification with rekeying
 
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS | 6.7        |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
+
 ### RSA-2048 signature/verification ratio, with rekeying
+
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS | 30        |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
 
 ## RSA-4096
 
 ### RSA-4096 encryption without rekeying
 
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS |         |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
+
 ### RSA-4096 decryption without rekeying
+
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS |         |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
 
 ### RSA-4096 decryption/encryption ratio, without rekeying
 
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS |         |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
+
 ### RSA-4096 encryption with rekeying
+
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS |         |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
 
 ### RSA-4096 decryption with rekeying
 
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS |         |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
+
 ### RSA-4096 decryption/encryption ratio, with rekeying
+
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS |         |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
 
 ### RSA-4096 signature without rekeying
 
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS |         |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
+
 ### RSA-4096 verification without rekeying
+
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS |         |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
 
 ### RSA-4096 signature/verification ratio, without rekeying
 
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS |         |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
+
 ### RSA-4096 signature with rekeying
+
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS |         |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
 
 ### RSA-4096 verification with rekeying
 
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS |         |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
+
 ### RSA-4096 signature/verification ratio, with rekeying
+
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Libtomcrypt / GMP |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :---------------: |
+| i7-5775R           | macOS |         |         |        |        |                   |                   |
+| i7-5775R           | Linux |         |         |        |        |                   |                   |
+| i7-8565U           | Linux |         |         |        |        |                   |                   |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   |                   |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   |                   |
+| Apple M1           | macOS |         |         |        |        |                   |                   |
+| Apple M1           | Linux |         |         |        |        |                   |                   |
 
 ## AES-128
 
 ### AES-128-CBC encryption
 
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Arm64  |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :----: |
+| i7-5775R           | macOS |         |         |        |        |                   | N/A    |
+| i7-5775R           | Linux |         |         |        |        |                   | N/A    |
+| i7-8565U           | Linux |         |         |        |        |                   | N/A    |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   | N/A    |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   | N/A    |
+| Apple M1           | macOS |         |         |        |        |                   |        |
+| Apple M1           | Linux |         |         |        |        |                   |        |
+
 ### AES-128-CBC decryption
 
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Arm64  |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :----: |
+| i7-5775R           | macOS |         |         |        |        |                   | N/A    |
+| i7-5775R           | Linux |         |         |        |        |                   | N/A    |
+| i7-8565U           | Linux |         |         |        |        |                   | N/A    |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   | N/A    |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   | N/A    |
+| Apple M1           | macOS |         |         |        |        |                   |        |
+| Apple M1           | Linux |         |         |        |        |                   |        |
+
 ### AES-128-CBC encryption/decryption ratio
+
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Arm64  |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :----: |
+| i7-5775R           | macOS |         |         |        |        |                   | N/A    |
+| i7-5775R           | Linux |         |         |        |        |                   | N/A    |
+| i7-8565U           | Linux |         |         |        |        |                   | N/A    |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   | N/A    |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   | N/A    |
+| Apple M1           | macOS |         |         |        |        |                   |        |
+| Apple M1           | Linux |         |         |        |        |                   |        |
 
 ## AES-256
 
 ### AES-256 encryption
 
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Arm64  |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :----: |
+| i7-5775R           | macOS |         |         |        |        |                   | N/A    |
+| i7-5775R           | Linux |         |         |        |        |                   | N/A    |
+| i7-8565U           | Linux |         |         |        |        |                   | N/A    |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   | N/A    |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   | N/A    |
+| Apple M1           | macOS |         |         |        |        |                   |        |
+| Apple M1           | Linux |         |         |        |        |                   |        |
+
 ### AES-256 decryption
 
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Arm64  |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :----: |
+| i7-5775R           | macOS |         |         |        |        |                   | N/A    |
+| i7-5775R           | Linux |         |         |        |        |                   | N/A    |
+| i7-8565U           | Linux |         |         |        |        |                   | N/A    |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   | N/A    |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   | N/A    |
+| Apple M1           | macOS |         |         |        |        |                   |        |
+| Apple M1           | Linux |         |         |        |        |                   |        |
+
 ### AES-256 encryption/decryption ratio
+
+| CPU                | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt / LTM | Arm64  |
+| ------------------ | :---: | :-----: | :-----: | :----: | :----: | :---------------: | :----: |
+| i7-5775R           | macOS |         |         |        |        |                   | N/A    |
+| i7-5775R           | Linux |         |         |        |        |                   | N/A    |
+| i7-8565U           | Linux |         |         |        |        |                   | N/A    |
+| Cortex A53 (R.Pi3) | Linux |         |         |        |        |                   | N/A    |
+| Cortex A72 (R.Pi4) | Linux |         |         |        |        |                   | N/A    |
+| Apple M1           | macOS |         |         |        |        |                   |        |
+| Apple M1           | Linux |         |         |        |        |                   |        |

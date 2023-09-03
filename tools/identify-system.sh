@@ -41,6 +41,8 @@ fi
 
 echo "system: arch: $ARCH"
 echo "system: cpu: $CPU"
+echo "system: cpu-index:"  # to be manually set in report file if "cpu:" is inaccurate or too long
+echo "system: machine:"    # to be manually set in report file with machine model name
 echo "system: system: $SYSTEM"
 echo "system: distro: $DISTRO"
 echo "system: kernel: $KERNEL"
