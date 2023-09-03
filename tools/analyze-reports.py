@@ -125,6 +125,7 @@ def split_input_line(line):
 #   {
 #       'name': 'filename',
 #       'cpu': 'cpuname';
+#       'os': 'osname';
 #       'lib': {
 #           'openssl': {
 #               'rsa-2048': {'encrypt': '5.9', 'decrypt': '160', ...},
@@ -139,7 +140,7 @@ def split_input_line(line):
 filedata = []
 for filename in sys.argv[1:]:
     with open(filename, 'r') as input:
-        fd = {'name': filename, 'cpu':'', 'lib':{}}
+        fd = {'name': filename, 'cpu':'', 'os':'', 'lib':{}}
         for line in input:
             fields = split_input_line(line)
             lib = fields[0][0]
@@ -149,6 +150,8 @@ for filename in sys.argv[1:]:
                 fd['cpu'] = line.split(':', 2)[2].strip()
             elif lib == 'system' and algo == 'cpu-index' and oper != '':
                 fd['cpu'] = line.split(':', 2)[2].strip()
+            elif lib == 'system' and algo == 'system' and oper != '':
+                fd['os'] = oper
             elif lib in lib_names and algo in algo_names and oper in oper_names:
                 if fields[-1][0] == 'score':
                     value = fields[-1][1]
@@ -175,15 +178,15 @@ for algo in algo_names:
     add_header(2, algo_names[algo])
     for oper in oper_names:
         # Collect data for this algo/operation in all files.
-        line1 = ['CPU']
-        line2 = ['-']
+        line1 = ['CPU', 'OS']
+        line2 = ['-', '-']
         for lib in lib_names:
             line1.append(lib_names[lib])
             line2.append(':')
         lines = [line1, line2]
         for fd in filedata:
             file_used = False
-            line = [fd['cpu']]
+            line = [fd['cpu'], fd['os']]
             for lib in lib_names:
                 if lib in fd['lib'] and algo in fd['lib'][lib] and oper in fd['lib'][lib][algo]:
                     file_used = True
@@ -196,7 +199,7 @@ for algo in algo_names:
         if len(lines) < 3:
             continue
         # Remove empty column (unused library for this algo/operation).
-        col = 1
+        col = 2
         while col < len(lines[0]):
             unused = True
             for l in range(2, len(lines)):
