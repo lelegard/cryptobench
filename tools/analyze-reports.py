@@ -9,6 +9,7 @@
 out_header = """# Comparative benchmarks results
 
 **Contents:**
+* [Results overview](#results-overview)
 """
 
 # Output introduction text.
@@ -54,6 +55,9 @@ The tested cryptographic libraries are:
 In the result tables, Intel/AMD processors come first, them Arm processors.
 """
 
+# Output body text.
+out_body = ''
+
 # Full name of libraries from index in report files, in order of appearance in columns.
 lib_names = {
     'openssl': 'OpenSSL',
@@ -94,7 +98,7 @@ oper_names = {
 
 #----------------------------------------------------------------------------
 
-import os, sys
+import os, sys, string
 
 # Get input files from command line.
 if len(sys.argv) < 2:
@@ -158,3 +162,70 @@ for filename in sys.argv[1:]:
                     fd['lib'][lib][algo] = {}
                 fd['lib'][lib][algo][oper] = value
         filedata.append(fd)
+
+# Add a header line.
+def add_header(level, text):
+    global out_header, out_body
+    anchor = ''.join([c for c in text.lower().replace(' ', '-') if c in string.ascii_lowercase + string.digits + '-'])
+    out_body += '\n%s %s\n' % ((level * '#'), text)
+    out_header += '%s* [%s](#%s)\n' % (((2 * (level - 2)) * ' '), text, anchor)
+
+# Build output body text and table of contents.
+for algo in algo_names:
+    add_header(2, algo_names[algo])
+    for oper in oper_names:
+        # Collect data for this algo/operation in all files.
+        line1 = ['CPU']
+        line2 = ['-']
+        for lib in lib_names:
+            line1.append(lib_names[lib])
+            line2.append(':')
+        lines = [line1, line2]
+        for fd in filedata:
+            file_used = False
+            line = [fd['cpu']]
+            for lib in lib_names:
+                if lib in fd['lib'] and algo in fd['lib'][lib] and oper in fd['lib'][lib][algo]:
+                    file_used = True
+                    line.append(fd['lib'][lib][algo][oper])
+                else:
+                    line.append('')
+            if file_used:
+                lines.append(line)
+        # Give up when no data found for this algo/operation.
+        if len(lines) < 3:
+            continue
+        # Remove empty column (unused library for this algo/operation).
+        col = 1
+        while col < len(lines[0]):
+            unused = True
+            for l in range(2, len(lines)):
+                if lines[l][col] != '':
+                    unused = False
+                    break
+            if unused:
+                # Remove that column
+                for lin in range(len(lines)):
+                    del(lines[lin][col])
+            else:
+                col = col + 1
+        # Justify all columns with constant width.
+        for col in range(len(lines[0])):
+            width = 0
+            for lin in range(len(lines)):
+                width = max(width, len(lines[lin][col]))
+            for lin in range(len(lines)):
+                lines[lin][col] = lines[lin][col].ljust(width)
+        # Fix header line.
+        for col in range(len(lines[1])):
+            lines[1][col] = lines[1][col][0] + ('-' * (len(lines[1][col]) - 2)) + lines[1][col][0]
+        # Output the table for this algo/operation.
+        add_header(3, algo_names[algo] + ' ' + oper_names[oper])
+        out_body += '\n'
+        for line in lines:
+            out_body += '| ' + ' | '.join(line) + ' |\n'
+
+# Finally, output the markdown file.
+print(out_header)
+print(out_intro)
+print(out_body)

@@ -122,6 +122,11 @@ On some systems, the CPU is not correctly identified by the script.
 Be sure to verify the line containing `system: cpu:` in the report
 file and manually fix it when necessary before committing to git.
 
+To regenerate the file [RESULTS.md](RESULTS.md), use the following script:
+~~~
+$ tools/analyze-reports.py reports/*.txt >RESULTS.md
+~~~
+
 ## Bugs and limitations
 
 GnuTLS: It is unclear which type of padding is used for RSA encrypt/decrypt.
