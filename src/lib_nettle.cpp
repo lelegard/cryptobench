@@ -222,19 +222,19 @@ size_t lib_nettle::aes_encrypt_cbc(const uint8_t* key, size_t key_size, const ui
         case 128/8: {
             aes128_ctx ctx;
             nettle_aes128_set_encrypt_key(&ctx, key);
-            nettle_cbc_aes128_encrypt(&ctx, ivbuf, input_size, output, input);
+            nettle_cbc_encrypt(&ctx, (nettle_cipher_func*)(nettle_aes128_encrypt), AES_BLOCK_SIZE, ivbuf, input_size, output, input);
             return input_size;
         }
         case 192/8: {
             aes192_ctx ctx;
             nettle_aes192_set_encrypt_key(&ctx, key);
-            nettle_cbc_aes192_encrypt(&ctx, ivbuf, input_size, output, input);
+            nettle_cbc_encrypt(&ctx, (nettle_cipher_func*)(nettle_aes192_encrypt), AES_BLOCK_SIZE, ivbuf, input_size, output, input);
             return input_size;
         }
         case 256/8: {
             aes256_ctx ctx;
             nettle_aes256_set_encrypt_key(&ctx, key);
-            nettle_cbc_aes256_encrypt(&ctx, ivbuf, input_size, output, input);
+            nettle_cbc_encrypt(&ctx, (nettle_cipher_func*)(nettle_aes256_encrypt), AES_BLOCK_SIZE, ivbuf, input_size, output, input);
             return input_size;
         }
         default:
