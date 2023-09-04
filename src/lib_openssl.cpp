@@ -5,6 +5,18 @@
 //----------------------------------------------------------------------------
 
 #include "lib_openssl.h"
+#include <openssl/opensslv.h>
+#include <openssl/pem.h>
+#include <openssl/rsa.h>
+#include <openssl/err.h>
+
+#if !defined(OPENSSL_VERSION_MAJOR) // before v3
+#define OPENSSL_VERSION_MAJOR (OPENSSL_VERSION_NUMBER >> 28)
+#endif
+
+#if !defined(OPENSSL_VERSION_MINOR) // before v3
+#define OPENSSL_VERSION_MINOR ((OPENSSL_VERSION_NUMBER >> 20) & 0xFF)
+#endif
 
 //----------------------------------------------------------------------------
 // Constructor/destructor.
@@ -65,7 +77,11 @@ void lib_openssl::cleanup()
 
 std::string lib_openssl::version() const
 {
+#if defined(OPENSSL_FULL_VERSION_STRING) // v3
     return sys::format("%s (%s)", OpenSSL_version(OPENSSL_FULL_VERSION_STRING), OpenSSL_version(OPENSSL_CPU_INFO));
+#else
+    return OpenSSL_version(OPENSSL_VERSION);
+#endif
 }
 
 bool lib_openssl::rsa_available() const
@@ -97,8 +113,28 @@ void lib_openssl::ossl_fatal(const std::string& message)
 
 int64_t lib_openssl::generate_rsa_key(size_t bits, const std::string& filename_private, const std::string& filename_public)
 {
+    // Generate the key, evaluate the CPU time.
     const int64_t time1 = sys::cpu_time();
+#if OPENSSL_VERSION_MAJOR >= 3
     EVP_PKEY* key = EVP_RSA_gen(bits);
+#else
+    // Legacy version
+    EVP_PKEY_CTX* ctx = nullptr;
+    if ((ctx = EVP_PKEY_CTX_new_id(EVP_PKEY_RSA, nullptr)) == nullptr) {
+        ossl_fatal("EVP_PKEY_CTX_new_id");
+    }
+    if (EVP_PKEY_keygen_init(ctx) <= 0) {
+        ossl_fatal("EVP_PKEY_keygen_init");
+    }
+    if (EVP_PKEY_CTX_set_rsa_keygen_bits(ctx, bits) <= 0) {
+        ossl_fatal("EVP_PKEY_CTX_set_rsa_keygen_bits");
+    }
+    EVP_PKEY* key = nullptr;
+    if (EVP_PKEY_keygen(ctx, &key) <= 0) {
+        ossl_fatal("EVP_PKEY_keygen");
+    }
+    EVP_PKEY_CTX_free(ctx);
+#endif
     const int64_t time2 = sys::cpu_time();
 
     if (key == nullptr) {
@@ -121,6 +157,8 @@ int64_t lib_openssl::generate_rsa_key(size_t bits, const std::string& filename_p
         ossl_fatal("error writing public key to " + filename_public);
     }
     fclose(fp);
+
+    EVP_PKEY_free(key);
 
     return time2 - time1;
 }
@@ -161,12 +199,12 @@ void lib_openssl::load_rsa_public_key_der(const uint8_t* der, size_t der_size)
 
 size_t lib_openssl::rsa_private_key_bits() const
 {
-    return _rsa_private_key == nullptr ? 0 : EVP_PKEY_get_bits(_rsa_private_key);
+    return _rsa_private_key == nullptr ? 0 : EVP_PKEY_bits(_rsa_private_key);
 }
 
 size_t lib_openssl::rsa_public_key_bits() const
 {
-    return _rsa_public_key == nullptr ? 0 : EVP_PKEY_get_bits(_rsa_public_key);
+    return _rsa_public_key == nullptr ? 0 : EVP_PKEY_bits(_rsa_public_key);
 }
 
 

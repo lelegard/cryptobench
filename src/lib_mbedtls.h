@@ -6,15 +6,10 @@
 
 #pragma once
 #include "lib.h"
-#include <mbedtls/platform.h>
-#include <mbedtls/version.h>
-#include <mbedtls/error.h>
 #include <mbedtls/ctr_drbg.h>
 #include <mbedtls/entropy.h>
 #include <mbedtls/cipher.h>
-#include <mbedtls/md.h>
 #include <mbedtls/pk.h>
-#include <mbedtls/rsa.h>
 
 class lib_mbedtls: public lib
 {

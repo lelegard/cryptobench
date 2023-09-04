@@ -7,9 +7,6 @@
 #pragma once
 #include "lib.h"
 #include <openssl/evp.h>
-#include <openssl/pem.h>
-#include <openssl/rsa.h>
-#include <openssl/err.h>
 
 class lib_openssl: public lib
 {

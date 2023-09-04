@@ -27,6 +27,9 @@ LDLIBS    += -ltomcrypt -ltommath -lgnutls -lhogweed -lnettle -lmbedcrypto -lcry
 NM         = nm
 NMFLAGS    = $(if $(findstring linux,$(SYSTEM)),-D)
 
+# Old gcc versions.
+LDLIBS += $(if $(wildcard /usr/lib/gcc/*/*/libstdc++fs.*),-lstdc++fs)
+
 # Define DEBUG to compile in debug mode.
 CXXFLAGS += $(if $(DEBUG),-g,-O2)
 LDFLAGS  += $(if $(DEBUG),-g)

@@ -5,6 +5,11 @@
 //----------------------------------------------------------------------------
 
 #include "lib_mbedtls.h"
+#include <mbedtls/platform.h>
+#include <mbedtls/version.h>
+#include <mbedtls/error.h>
+#include <mbedtls/rsa.h>
+#include <mbedtls/md.h>
 
 // Static members:
 mbedtls_entropy_context lib_mbedtls::_entropy;

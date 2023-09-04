@@ -7,12 +7,8 @@
 #pragma once
 #include "lib.h"
 #include <nettle/rsa.h>
-#include <nettle/aes.h>
-#include <nettle/cbc.h>
-#include <nettle/version.h>
 
 // Cleanup poor defines in nettle header files.
-// The actual
 #if defined(rsa_public_key_init)
 #undef rsa_public_key_init
 #endif
@@ -172,66 +168,6 @@
 #if defined(rsa_keypair_to_openpgp)
 #undef rsa_keypair_to_openpgp
 #endif
-#if defined(aes_set_encrypt_key)
-#undef aes_set_encrypt_key
-#endif
-#if defined(aes_set_decrypt_key)
-#undef aes_set_decrypt_key
-#endif
-#if defined(aes_invert_key)
-#undef aes_invert_key
-#endif
-#if defined(aes_encrypt)
-#undef aes_encrypt
-#endif
-#if defined(aes_decrypt)
-#undef aes_decrypt
-#endif
-#if defined(aes128_set_encrypt_key)
-#undef aes128_set_encrypt_key
-#endif
-#if defined(aes128_set_decrypt_key)
-#undef aes128_set_decrypt_key
-#endif
-#if defined(aes128_invert_key)
-#undef aes128_invert_key
-#endif
-#if defined(aes128_encrypt)
-#undef aes128_encrypt
-#endif
-#if defined(aes128_decrypt)
-#undef aes128_decrypt
-#endif
-#if defined(aes192_set_encrypt_key)
-#undef aes192_set_encrypt_key
-#endif
-#if defined(aes192_set_decrypt_key)
-#undef aes192_set_decrypt_key
-#endif
-#if defined(aes192_invert_key)
-#undef aes192_invert_key
-#endif
-#if defined(aes192_encrypt)
-#undef aes192_encrypt
-#endif
-#if defined(aes192_decrypt)
-#undef aes192_decrypt
-#endif
-#if defined(aes256_set_encrypt_key)
-#undef aes256_set_encrypt_key
-#endif
-#if defined(aes256_set_decrypt_key)
-#undef aes256_set_decrypt_key
-#endif
-#if defined(aes256_invert_key)
-#undef aes256_invert_key
-#endif
-#if defined(aes256_encrypt)
-#undef aes256_encrypt
-#endif
-#if defined(aes256_decrypt)
-#undef aes256_decrypt
-#endif
 #if defined(md5_init)
 #undef md5_init
 #endif
@@ -345,33 +281,6 @@
 #endif
 #if defined(sha3_512_digest)
 #undef sha3_512_digest
-#endif
-#if defined(AES_BLOCK_SIZE)
-#undef AES_BLOCK_SIZE
-#endif
-#if defined(AES128_KEY_SIZE)
-#undef AES128_KEY_SIZE
-#endif
-#if defined(AES192_KEY_SIZE)
-#undef AES192_KEY_SIZE
-#endif
-#if defined(AES256_KEY_SIZE)
-#undef AES256_KEY_SIZE
-#endif
-#if defined(cbc_encrypt)
-#undef cbc_encrypt
-#endif
-#if defined(cbc_decrypt)
-#undef cbc_decrypt
-#endif
-#if defined(cbc_aes128_encrypt)
-#undef cbc_aes128_encrypt
-#endif
-#if defined(cbc_aes192_encrypt)
-#undef cbc_aes192_encrypt
-#endif
-#if defined(cbc_aes256_encrypt)
-#undef cbc_aes256_encrypt
 #endif
 
 class lib_nettle: public lib

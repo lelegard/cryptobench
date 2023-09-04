@@ -7,8 +7,6 @@
 #pragma once
 #include "lib.h"
 #include <gnutls/gnutls.h>
-#include <gnutls/crypto.h>
-#include <gnutls/abstract.h>
 
 class lib_gnutls: public lib
 {
