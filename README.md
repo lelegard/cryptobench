@@ -1,5 +1,14 @@
 # Cryptographic libraries comparative benchmarks
 
+**Contents:**
+
+* [Purpose](#purpose)
+* [Software support](#software-support)
+* [Building and prerequisites](#building-and-prerequisites)
+* [Command line usage](#command-line-usage)
+* [Test results](#test-results)
+* [Bugs and limitations](#bugs-and-limitations)
+
 ## Purpose
 
 This project evaluates a comparison of cryptographic libraries from two perspectives:
