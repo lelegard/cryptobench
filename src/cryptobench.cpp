@@ -140,7 +140,7 @@ void run_math(std::ostream& out, const options& opt, const bench& reference)
 {
     bignum n, e, d;
 
-    lib_openssl::load_rsa_private_key_values(opt.private_key_2048, &n.ptr, &e.ptr, &d.ptr);
+    lib_openssl::load_rsa_private_key_values(opt.private_key_2048, n.ptr, e.ptr, d.ptr);
 
     // Same as RSA encrypt.
     bench_math_mod_exp b01(opt.min_usec, opt.min_iterations, e.ptr, n.ptr);

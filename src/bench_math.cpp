@@ -44,7 +44,7 @@ bignum::~bignum()
 //----------------------------------------------------------------------------
 
 bench_math::bench_math(const std::string& name, int64_t min_usec, int64_t min_iterations) :
-    bench(name, min_usec, min_iterations)
+    bench("math: " + name, min_usec, min_iterations)
 {
     if ((_ctx = BN_CTX_new()) == nullptr) {
         lib_openssl::ossl_fatal("BN_CTX_new");
@@ -64,7 +64,7 @@ bench_math::~bench_math()
 //----------------------------------------------------------------------------
 
 bench_math_mod_exp::bench_math_mod_exp(int64_t min_usec, int64_t min_iterations, BIGNUM* p, BIGNUM* m) :
-    bench_math(sys::format("exp-%d-mod-%d", BN_num_bits(p), BN_num_bits(m)), min_usec, min_iterations),
+    bench_math(sys::format("mod-%d: exp-%d", BN_num_bits(m), BN_num_bits(p)), min_usec, min_iterations),
     _a(BN_num_bits(m) - 1, false),
     _p(p),
     _m(m)
@@ -83,7 +83,7 @@ void bench_math_mod_exp::one_iteration()
 //----------------------------------------------------------------------------
 
 bench_math_mod_exp_simple::bench_math_mod_exp_simple(int64_t min_usec, int64_t min_iterations, BIGNUM* p, BIGNUM* m) :
-    bench_math(sys::format("exp-%d-mod-%d-simple", BN_num_bits(p), BN_num_bits(m)), min_usec, min_iterations),
+    bench_math(sys::format("mod-%d: exp-simple-%d", BN_num_bits(m), BN_num_bits(p)), min_usec, min_iterations),
     _a(BN_num_bits(m) - 1, false),
     _p(p),
     _m(m)
@@ -113,7 +113,7 @@ void bench_math_mod_exp_simple::one_iteration()
 //----------------------------------------------------------------------------
 
 bench_math_mod_exp_mont::bench_math_mod_exp_mont(int64_t min_usec, int64_t min_iterations, BIGNUM* p, BIGNUM* m) :
-    bench_math(sys::format("exp-%d-mod-%d-mont", BN_num_bits(p), BN_num_bits(m)), min_usec, min_iterations),
+    bench_math(sys::format("mod-%d: exp-mont-%d", BN_num_bits(m), BN_num_bits(p)), min_usec, min_iterations),
     _a(BN_num_bits(m) - 1, false),
     _p(p),
     _m(m)

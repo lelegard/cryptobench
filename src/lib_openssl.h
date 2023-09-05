@@ -7,7 +7,6 @@
 #pragma once
 #include "lib.h"
 #include <openssl/opensslv.h>
-#include <openssl/core_names.h>
 #include <openssl/bn.h>
 #include <openssl/evp.h>
 #include <openssl/pem.h>
@@ -20,6 +19,10 @@
 
 #if !defined(OPENSSL_VERSION_MINOR) // before v3
 #define OPENSSL_VERSION_MINOR ((OPENSSL_VERSION_NUMBER >> 20) & 0xFF)
+#endif
+
+#if OPENSSL_VERSION_MAJOR >= 3
+#include <openssl/core_names.h>
 #endif
 
 class lib_openssl: public lib
@@ -41,7 +44,7 @@ public:
     static int64_t generate_rsa_key(size_t bits, const std::string& filename_private, const std::string& filename_public);
 
     // Get the parameters of an RSA private key in a PEM file.
-    static void load_rsa_private_key_values(const std::string& filename, BIGNUM** n, BIGNUM** e, BIGNUM** d);
+    static void load_rsa_private_key_values(const std::string& filename, BIGNUM*& n, BIGNUM*& e, BIGNUM*& d);
 
     // Implementation of "lib" interface.
     virtual std::string version() const override;

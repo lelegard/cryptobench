@@ -155,21 +155,46 @@ int64_t lib_openssl::generate_rsa_key(size_t bits, const std::string& filename_p
 // Get the parameters of an RSA private key in a PEM file.
 //----------------------------------------------------------------------------
 
-void lib_openssl::load_rsa_private_key_values(const std::string& filename, BIGNUM** n, BIGNUM** e, BIGNUM** d)
+void lib_openssl::load_rsa_private_key_values(const std::string& filename, BIGNUM*& n, BIGNUM*& e, BIGNUM*& d)
 {
     bytes_t der;
     sys::load_pem_file_as_der(der, filename);
 
-    EVP_PKEY* privkey = nullptr;
+    EVP_PKEY* key = nullptr;
     const uint8_t* der_parse = der.data();
-    if ((privkey = d2i_PrivateKey(EVP_PKEY_RSA, nullptr, &der_parse, der.size())) == nullptr ||
-        EVP_PKEY_get_bn_param(privkey, OSSL_PKEY_PARAM_RSA_N, n) <= 0 ||
-        EVP_PKEY_get_bn_param(privkey, OSSL_PKEY_PARAM_RSA_E, e) <= 0 ||
-        EVP_PKEY_get_bn_param(privkey, OSSL_PKEY_PARAM_RSA_D, d) <= 0)
+    if ((key = d2i_PrivateKey(EVP_PKEY_RSA, nullptr, &der_parse, der.size())) == nullptr) {
+        lib_openssl::ossl_fatal("d2i_PrivateKey");
+    }
+
+#if OPENSSL_VERSION_MAJOR >= 3
+    if (EVP_PKEY_get_bn_param(key, OSSL_PKEY_PARAM_RSA_N, &n) <= 0 ||
+        EVP_PKEY_get_bn_param(key, OSSL_PKEY_PARAM_RSA_E, &e) <= 0 ||
+        EVP_PKEY_get_bn_param(key, OSSL_PKEY_PARAM_RSA_D, &d) <= 0)
     {
         lib_openssl::ossl_fatal("error extracting private key values");
     }
-    EVP_PKEY_free(privkey);
+#else
+    // Legacy version.
+    // The returned key is a reference inside the EVP key and shall not be freed.
+    RSA* rsa = EVP_PKEY_get0_RSA(key);
+    if (rsa == nullptr) {
+        lib_openssl::ossl_fatal("EVP_PKEY_get0_RSA");
+    }
+    // The returned BIGNUM's are pointers to interval values in the key.
+    // They are not independent objects.
+    const BIGNUM* kn = nullptr;
+    const BIGNUM* ke = nullptr;
+    const BIGNUM* kd = nullptr;
+    RSA_get0_key(rsa, &kn, &ke, &kd);
+    if (kn == nullptr || ke == nullptr || kd == nullptr) {
+        sys::fatal("RSA private key not set");
+    }
+    BN_copy(n, kn);
+    BN_copy(e, ke);
+    BN_copy(d, kd);
+#endif
+
+    EVP_PKEY_free(key);
 }
 
 //----------------------------------------------------------------------------
