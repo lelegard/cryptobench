@@ -32,6 +32,7 @@ public:
     bool        all_algos = true;
     bool        aes = false;
     bool        rsa = false;
+    bool        math = false;
     bool        all_libs = true;
     bool        openssl = false;
     bool        mbedtls = false;

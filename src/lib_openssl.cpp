@@ -5,18 +5,6 @@
 //----------------------------------------------------------------------------
 
 #include "lib_openssl.h"
-#include <openssl/opensslv.h>
-#include <openssl/pem.h>
-#include <openssl/rsa.h>
-#include <openssl/err.h>
-
-#if !defined(OPENSSL_VERSION_MAJOR) // before v3
-#define OPENSSL_VERSION_MAJOR (OPENSSL_VERSION_NUMBER >> 28)
-#endif
-
-#if !defined(OPENSSL_VERSION_MINOR) // before v3
-#define OPENSSL_VERSION_MINOR ((OPENSSL_VERSION_NUMBER >> 20) & 0xFF)
-#endif
 
 //----------------------------------------------------------------------------
 // Constructor/destructor.
@@ -161,6 +149,27 @@ int64_t lib_openssl::generate_rsa_key(size_t bits, const std::string& filename_p
     EVP_PKEY_free(key);
 
     return time2 - time1;
+}
+
+//----------------------------------------------------------------------------
+// Get the parameters of an RSA private key in a PEM file.
+//----------------------------------------------------------------------------
+
+void lib_openssl::load_rsa_private_key_values(const std::string& filename, BIGNUM** n, BIGNUM** e, BIGNUM** d)
+{
+    bytes_t der;
+    sys::load_pem_file_as_der(der, filename);
+
+    EVP_PKEY* privkey = nullptr;
+    const uint8_t* der_parse = der.data();
+    if ((privkey = d2i_PrivateKey(EVP_PKEY_RSA, nullptr, &der_parse, der.size())) == nullptr ||
+        EVP_PKEY_get_bn_param(privkey, OSSL_PKEY_PARAM_RSA_N, n) <= 0 ||
+        EVP_PKEY_get_bn_param(privkey, OSSL_PKEY_PARAM_RSA_E, e) <= 0 ||
+        EVP_PKEY_get_bn_param(privkey, OSSL_PKEY_PARAM_RSA_D, d) <= 0)
+    {
+        lib_openssl::ossl_fatal("error extracting private key values");
+    }
+    EVP_PKEY_free(privkey);
 }
 
 //----------------------------------------------------------------------------

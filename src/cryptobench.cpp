@@ -8,6 +8,7 @@
 #include "bench_reference.h"
 #include "bench_rsa.h"
 #include "bench_aes.h"
+#include "bench_math.h"
 #include "lib_openssl.h"
 #include "lib_mbedtls.h"
 #include "lib_gnutls.h"
@@ -18,6 +19,7 @@
 // Score adjustment factors, to give readable results.
 #define RSA_SCORE_FACTOR 1000.0
 #define AES_SCORE_FACTOR 1000.0
+#define MATH_SCORE_FACTOR 1000.0
 
 //----------------------------------------------------------------------------
 // Run one RSA benchmark.
@@ -131,6 +133,43 @@ void run_aes(std::ostream& out, const options& opt, const bench& reference, lib&
 }
 
 //----------------------------------------------------------------------------
+// Run the math benchmarks. Available only with OpenSSL.
+//----------------------------------------------------------------------------
+
+void run_math(std::ostream& out, const options& opt, const bench& reference)
+{
+    bignum n, e, d;
+
+    lib_openssl::load_rsa_private_key_values(opt.private_key_2048, &n.ptr, &e.ptr, &d.ptr);
+
+    // Same as RSA encrypt.
+    bench_math_mod_exp b01(opt.min_usec, opt.min_iterations, e.ptr, n.ptr);
+    b01.run();
+    b01.display(out, &reference, MATH_SCORE_FACTOR);
+
+    bench_math_mod_exp_simple b02(opt.min_usec, opt.min_iterations, e.ptr, n.ptr);
+    b02.run();
+    b02.display(out, &reference, MATH_SCORE_FACTOR);
+
+    bench_math_mod_exp_mont b03(opt.min_usec, opt.min_iterations, e.ptr, n.ptr);
+    b03.run();
+    b03.display(out, &reference, MATH_SCORE_FACTOR);
+
+    // Same as RSA decrypt (without using CRT).
+    bench_math_mod_exp b10(opt.min_usec, opt.min_iterations, d.ptr, n.ptr);
+    b10.run();
+    b10.display(out, &reference, MATH_SCORE_FACTOR);
+
+    bench_math_mod_exp_simple b11(opt.min_usec, opt.min_iterations, d.ptr, n.ptr);
+    b11.run();
+    b11.display(out, &reference, MATH_SCORE_FACTOR);
+
+    bench_math_mod_exp_mont b13(opt.min_usec, opt.min_iterations, d.ptr, n.ptr);
+    b13.run();
+    b13.display(out, &reference, MATH_SCORE_FACTOR);
+}
+
+//----------------------------------------------------------------------------
 // Run all benchmarks.
 //----------------------------------------------------------------------------
 
@@ -186,15 +225,17 @@ void run_all_benchmarks(std::ostream& out, const options& opt)
         out << std::endl;
     }
 
-    // Run all RSA tests.
-    if (opt.rsa) {
-        // Generate RSA key pairs, 2048 and 4096 bits.
+    // Generate RSA key pairs, 2048 and 4096 bits.
+    if (opt.rsa || opt.math) {
         const int64_t gen_2048_usec = lib_openssl::generate_rsa_key(2048, opt.private_key_2048, opt.public_key_2048);
         const int64_t gen_4096_usec = lib_openssl::generate_rsa_key(4096, opt.private_key_4096, opt.public_key_4096);
         out << sys::format("openssl: rsa-2048: generate-key-usec=%'" PRId64, gen_2048_usec) << std::endl;
         out << sys::format("openssl: rsa-4096: generate-key-usec=%'" PRId64, gen_4096_usec) << std::endl;
         out << std::endl;
+    }
 
+    // Run all RSA tests.
+    if (opt.rsa) {
         for (auto tl : tested_libs) {
             if (tl->rsa_available()) {
                 run_rsa(out, opt, bref, *tl, opt.private_key_2048, opt.public_key_2048);
@@ -213,6 +254,12 @@ void run_all_benchmarks(std::ostream& out, const options& opt)
                 out << std::endl;
             }
         }
+    }
+
+    // Run the math tests.
+    if (opt.math) {
+        run_math(out, opt, bref);
+        out << std::endl;
     }
 }
 

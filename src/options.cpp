@@ -21,7 +21,7 @@ void options::usage() const
               << "  -r, --reference : run reference benchmark only" << std::endl
               << std::endl
               << "Algorithms selection (all by default):" << std::endl
-              << "  --aes, --rsa" << std::endl
+              << "  --aes, --rsa, --math" << std::endl
               << std::endl
               << "Crytographic libraries selection (all by default):" << std::endl
               << "  --gnutls, --mbedtls, --openssl, --nettle, --tomcrypt, --tomcrypt-gmp --arm64" << std::endl
@@ -70,6 +70,10 @@ options::options(int argc, char* argv[])
                 all_algos = false;
                 rsa = true;
             }
+            else if (arg == "--math") {
+                all_algos = false;
+                math = true;
+            }
             else if (arg == "--gnutls") {
                 all_libs = false;
                 gnutls = true;
@@ -108,7 +112,7 @@ options::options(int argc, char* argv[])
         reference = true;
     }
     if (all_algos) {
-        aes = rsa = true;
+        aes = rsa = math = true;
     }
     if (all_libs) {
         gnutls = mbedtls = nettle = openssl = tomcrypt = tomcrypt_gmp = arm64 = true;
