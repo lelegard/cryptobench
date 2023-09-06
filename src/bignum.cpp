@@ -114,7 +114,7 @@ bignum bignum::random(int bits, bool must_be_odd)
 bignum bignum::random_prime(int bits)
 {
     bignum res;
-#if OPENSSL_VERSION_MAJOR >= 3
+#if OPENSSL_VERSION_MAJOR >= 1
     if (BN_generate_prime_ex(res._ptr, bits, 0, nullptr, nullptr, nullptr) < 0) {
         openssl::fatal("BN_generate_prime_ex");
     }
