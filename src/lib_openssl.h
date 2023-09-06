@@ -6,24 +6,8 @@
 
 #pragma once
 #include "lib.h"
-#include <openssl/opensslv.h>
-#include <openssl/bn.h>
-#include <openssl/evp.h>
-#include <openssl/pem.h>
-#include <openssl/rsa.h>
-#include <openssl/err.h>
-
-#if !defined(OPENSSL_VERSION_MAJOR) // before v3
-#define OPENSSL_VERSION_MAJOR (OPENSSL_VERSION_NUMBER >> 28)
-#endif
-
-#if !defined(OPENSSL_VERSION_MINOR) // before v3
-#define OPENSSL_VERSION_MINOR ((OPENSSL_VERSION_NUMBER >> 20) & 0xFF)
-#endif
-
-#if OPENSSL_VERSION_MAJOR >= 3
-#include <openssl/core_names.h>
-#endif
+#include "openssl.h"
+#include "bignum.h"
 
 class lib_openssl: public lib
 {
@@ -32,19 +16,12 @@ public:
     lib_openssl();
     ~lib_openssl();
 
-    // Initializes and cleanup cryptographic library.
-    static void init();
-    static void cleanup();
-
-    // Print last OpenSSL error and exit.
-    static void ossl_fatal(const std::string& message = std::string());
-
     // Generate an RSA key pair and save them as PEM files.
     // Return the number of microseconds for the key generation.
     static int64_t generate_rsa_key(size_t bits, const std::string& filename_private, const std::string& filename_public);
 
     // Get the parameters of an RSA private key in a PEM file.
-    static void load_rsa_private_key_values(const std::string& filename, BIGNUM*& n, BIGNUM*& e, BIGNUM*& d);
+    static void load_rsa_private_key_values(const std::string& filename, bignum& n, bignum& e, bignum& d);
 
     // Implementation of "lib" interface.
     virtual std::string version() const override;

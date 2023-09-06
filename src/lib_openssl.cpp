@@ -44,22 +44,6 @@ lib_openssl::~lib_openssl()
 }
 
 //----------------------------------------------------------------------------
-// Library initialization/cleanup.
-//----------------------------------------------------------------------------
-
-void lib_openssl::init()
-{
-    ERR_load_crypto_strings();
-    OpenSSL_add_all_algorithms();
-}
-
-void lib_openssl::cleanup()
-{
-    EVP_cleanup();
-    ERR_free_strings();
-}
-
-//----------------------------------------------------------------------------
 // Cryptographic library properties.
 //----------------------------------------------------------------------------
 
@@ -83,19 +67,6 @@ bool lib_openssl::aes_available() const
 }
 
 //----------------------------------------------------------------------------
-// Print last OpenSSL error and exit.
-//----------------------------------------------------------------------------
-
-void lib_openssl::ossl_fatal(const std::string& message)
-{
-    if (!message.empty()) {
-        std::cerr << "openssl: " << message << std::endl;
-    }
-    ERR_print_errors_fp(stderr);
-    std::exit(EXIT_FAILURE);
-}
-
-//----------------------------------------------------------------------------
 // Generate an RSA key pair and save them as PEM files.
 //----------------------------------------------------------------------------
 
@@ -109,24 +80,24 @@ int64_t lib_openssl::generate_rsa_key(size_t bits, const std::string& filename_p
     // Legacy version
     EVP_PKEY_CTX* ctx = nullptr;
     if ((ctx = EVP_PKEY_CTX_new_id(EVP_PKEY_RSA, nullptr)) == nullptr) {
-        ossl_fatal("EVP_PKEY_CTX_new_id");
+        openssl::fatal("EVP_PKEY_CTX_new_id");
     }
     if (EVP_PKEY_keygen_init(ctx) <= 0) {
-        ossl_fatal("EVP_PKEY_keygen_init");
+        openssl::fatal("EVP_PKEY_keygen_init");
     }
     if (EVP_PKEY_CTX_set_rsa_keygen_bits(ctx, bits) <= 0) {
-        ossl_fatal("EVP_PKEY_CTX_set_rsa_keygen_bits");
+        openssl::fatal("EVP_PKEY_CTX_set_rsa_keygen_bits");
     }
     EVP_PKEY* key = nullptr;
     if (EVP_PKEY_keygen(ctx, &key) <= 0) {
-        ossl_fatal("EVP_PKEY_keygen");
+        openssl::fatal("EVP_PKEY_keygen");
     }
     EVP_PKEY_CTX_free(ctx);
 #endif
     const int64_t time2 = sys::cpu_time();
 
     if (key == nullptr) {
-        ossl_fatal("EVP_RSA_gen error");
+        openssl::fatal("EVP_RSA_gen error");
     }
 
     FILE* fp = nullptr;
@@ -134,7 +105,7 @@ int64_t lib_openssl::generate_rsa_key(size_t bits, const std::string& filename_p
         sys::fatal("error creating " + filename_private, errno);
     }
     if (PEM_write_PrivateKey(fp, key, nullptr, nullptr, 0, nullptr, nullptr) <= 0) {
-        ossl_fatal("error writing private key to " + filename_private);
+        openssl::fatal("error writing private key to " + filename_private);
     }
     fclose(fp);
 
@@ -142,7 +113,7 @@ int64_t lib_openssl::generate_rsa_key(size_t bits, const std::string& filename_p
         sys::fatal("error creating " + filename_public, errno);
     }
     if (PEM_write_PUBKEY(fp, key) <= 0) {
-        ossl_fatal("error writing public key to " + filename_public);
+        openssl::fatal("error writing public key to " + filename_public);
     }
     fclose(fp);
 
@@ -155,7 +126,7 @@ int64_t lib_openssl::generate_rsa_key(size_t bits, const std::string& filename_p
 // Get the parameters of an RSA private key in a PEM file.
 //----------------------------------------------------------------------------
 
-void lib_openssl::load_rsa_private_key_values(const std::string& filename, BIGNUM*& n, BIGNUM*& e, BIGNUM*& d)
+void lib_openssl::load_rsa_private_key_values(const std::string& filename, bignum& n, bignum& e, bignum& d)
 {
     bytes_t der;
     sys::load_pem_file_as_der(der, filename);
@@ -163,22 +134,29 @@ void lib_openssl::load_rsa_private_key_values(const std::string& filename, BIGNU
     EVP_PKEY* key = nullptr;
     const uint8_t* der_parse = der.data();
     if ((key = d2i_PrivateKey(EVP_PKEY_RSA, nullptr, &der_parse, der.size())) == nullptr) {
-        lib_openssl::ossl_fatal("d2i_PrivateKey");
+        openssl::fatal("d2i_PrivateKey");
     }
 
 #if OPENSSL_VERSION_MAJOR >= 3
-    if (EVP_PKEY_get_bn_param(key, OSSL_PKEY_PARAM_RSA_N, &n) <= 0 ||
-        EVP_PKEY_get_bn_param(key, OSSL_PKEY_PARAM_RSA_E, &e) <= 0 ||
-        EVP_PKEY_get_bn_param(key, OSSL_PKEY_PARAM_RSA_D, &d) <= 0)
+    // Input BIGNUM are null, a new BIGNUM is allocated by each EVP_PKEY_get_bn_param().
+    BIGNUM* kn = nullptr;
+    BIGNUM* ke = nullptr;
+    BIGNUM* kd = nullptr;
+    if (EVP_PKEY_get_bn_param(key, OSSL_PKEY_PARAM_RSA_N, &kn) <= 0 ||
+        EVP_PKEY_get_bn_param(key, OSSL_PKEY_PARAM_RSA_E, &ke) <= 0 ||
+        EVP_PKEY_get_bn_param(key, OSSL_PKEY_PARAM_RSA_D, &kd) <= 0)
     {
-        lib_openssl::ossl_fatal("error extracting private key values");
+        openssl::fatal("error extracting private key values");
     }
+    n.capture(kn);
+    e.capture(ke);
+    d.capture(kd);
 #else
     // Legacy version.
     // The returned key is a reference inside the EVP key and shall not be freed.
     RSA* rsa = EVP_PKEY_get0_RSA(key);
     if (rsa == nullptr) {
-        lib_openssl::ossl_fatal("EVP_PKEY_get0_RSA");
+        openssl::fatal("EVP_PKEY_get0_RSA");
     }
     // The returned BIGNUM's are pointers to interval values in the key.
     // They are not independent objects.
@@ -189,15 +167,15 @@ void lib_openssl::load_rsa_private_key_values(const std::string& filename, BIGNU
     if (kn == nullptr || ke == nullptr || kd == nullptr) {
         sys::fatal("RSA private key not set");
     }
-    BN_copy(n, kn);
-    BN_copy(e, ke);
-    BN_copy(d, kd);
+    n.copy(kn);
+    e.copy(ke);
+    d.copy(kd);
 #endif
 
     EVP_PKEY_free(key);
 }
 
-//----------------------------------------------------------------------------
+//-------------------------------------------------const---------------------------
 // Load RSA private key from DER data.
 //----------------------------------------------------------------------------
 
@@ -208,7 +186,7 @@ void lib_openssl::load_rsa_private_key_der(const uint8_t* der, size_t der_size)
     }
     const uint8_t* der_parse = der;
     if ((_rsa_private_key = d2i_PrivateKey(EVP_PKEY_RSA, nullptr, &der_parse, der_size)) == nullptr) {
-        ossl_fatal("error loading private key from DER data");
+        openssl::fatal("error loading private key from DER data");
     }
 }
 
@@ -223,7 +201,7 @@ void lib_openssl::load_rsa_public_key_der(const uint8_t* der, size_t der_size)
     }
     const uint8_t* der_parse = der;
     if ((_rsa_public_key = d2i_PUBKEY(nullptr, &der_parse, der_size)) == nullptr) {
-        ossl_fatal("error loading public key from DER data");
+        openssl::fatal("error loading public key from DER data");
     }
 }
 
@@ -252,13 +230,13 @@ void lib_openssl::rsa_init_encrypt_oaep()
         EVP_PKEY_CTX_free(_rsa_encrypt_ctx);
     }
     if ((_rsa_encrypt_ctx = EVP_PKEY_CTX_new(_rsa_public_key, nullptr)) == nullptr) {
-        ossl_fatal("error creating EVP_PKEY_CTX for public key");
+        openssl::fatal("error creating EVP_PKEY_CTX for public key");
     }
     if (EVP_PKEY_encrypt_init(_rsa_encrypt_ctx) <= 0) {
-        ossl_fatal("encrypt init error on public key");
+        openssl::fatal("encrypt init error on public key");
     }
     if (EVP_PKEY_CTX_set_rsa_padding(_rsa_encrypt_ctx, RSA_PKCS1_OAEP_PADDING) <= 0) {
-        ossl_fatal("error setting padding on public key");
+        openssl::fatal("error setting padding on public key");
     }
 }
 
@@ -272,13 +250,13 @@ void lib_openssl::rsa_init_decrypt_oaep()
         EVP_PKEY_CTX_free(_rsa_decrypt_ctx);
     }
     if ((_rsa_decrypt_ctx = EVP_PKEY_CTX_new(_rsa_private_key, nullptr)) == nullptr) {
-        ossl_fatal("error creating EVP_PKEY_CTX for private key");
+        openssl::fatal("error creating EVP_PKEY_CTX for private key");
     }
     if (EVP_PKEY_decrypt_init(_rsa_decrypt_ctx) <= 0) {
-        ossl_fatal("decrypt init error on private key");
+        openssl::fatal("decrypt init error on private key");
     }
     if (EVP_PKEY_CTX_set_rsa_padding(_rsa_decrypt_ctx, RSA_PKCS1_OAEP_PADDING) <= 0) {
-        ossl_fatal("error setting padding on private key");
+        openssl::fatal("error setting padding on private key");
     }
 }
 
@@ -290,7 +268,7 @@ size_t lib_openssl::rsa_encrypt(const uint8_t* input, size_t input_size, uint8_t
 {
     size_t output_len = output_maxsize;
     if (EVP_PKEY_encrypt(_rsa_encrypt_ctx, output, &output_len, input, input_size) <= 0) {
-        ossl_fatal("RSA encrypt error");
+        openssl::fatal("RSA encrypt error");
     }
     return output_len;
 }
@@ -303,7 +281,7 @@ size_t lib_openssl::rsa_decrypt(const uint8_t* input, size_t input_size, uint8_t
 {
     size_t output_len = output_maxsize;
     if (EVP_PKEY_decrypt(_rsa_decrypt_ctx, output, &output_len, input, input_size) <= 0) {
-        ossl_fatal("RSA decrypt error");
+        openssl::fatal("RSA decrypt error");
     }
     return output_len;
 }
@@ -318,16 +296,16 @@ void lib_openssl::rsa_init_sign_pss()
         EVP_PKEY_CTX_free(_rsa_sign_ctx);
     }
     if ((_rsa_sign_ctx = EVP_PKEY_CTX_new(_rsa_private_key, nullptr)) == nullptr) {
-        ossl_fatal("error creating EVP_PKEY_CTX for private key signature");
+        openssl::fatal("error creating EVP_PKEY_CTX for private key signature");
     }
     if (EVP_PKEY_sign_init(_rsa_sign_ctx) <= 0) {
-        ossl_fatal("sign init error on private key");
+        openssl::fatal("sign init error on private key");
     }
     if (EVP_PKEY_CTX_set_rsa_padding(_rsa_sign_ctx, RSA_PKCS1_PSS_PADDING) <= 0) {
-        ossl_fatal("error setting padding on private key");
+        openssl::fatal("error setting padding on private key");
     }
     if (EVP_PKEY_CTX_set_signature_md(_rsa_sign_ctx, EVP_sha256()) <= 0) {
-        ossl_fatal("error setting hash on private key signature");
+        openssl::fatal("error setting hash on private key signature");
     }
 }
 
@@ -341,16 +319,16 @@ void lib_openssl::rsa_init_verify_pss()
         EVP_PKEY_CTX_free(_rsa_verify_ctx);
     }
     if ((_rsa_verify_ctx = EVP_PKEY_CTX_new(_rsa_public_key, nullptr)) == nullptr) {
-        ossl_fatal("error creating EVP_PKEY_CTX for public key verification");
+        openssl::fatal("error creating EVP_PKEY_CTX for public key verification");
     }
     if (EVP_PKEY_verify_init(_rsa_verify_ctx) <= 0) {
-        ossl_fatal("sign init error on public key");
+        openssl::fatal("sign init error on public key");
     }
     if (EVP_PKEY_CTX_set_rsa_padding(_rsa_verify_ctx, RSA_PKCS1_PSS_PADDING) <= 0) {
-        ossl_fatal("error setting padding on public key verification");
+        openssl::fatal("error setting padding on public key verification");
     }
     if (EVP_PKEY_CTX_set_signature_md(_rsa_verify_ctx, EVP_sha256()) <= 0) {
-        ossl_fatal("error setting hash on public key verification");
+        openssl::fatal("error setting hash on public key verification");
     }
 }
 
@@ -362,7 +340,7 @@ size_t lib_openssl::rsa_sign(const uint8_t* msg, size_t msg_size, uint8_t* sig, 
 {
     size_t sig_len = sig_maxsize;
     if (EVP_PKEY_sign(_rsa_sign_ctx, sig, &sig_len, msg, msg_size) <= 0) {
-        ossl_fatal("RSA sign error");
+        openssl::fatal("RSA sign error");
     }
     return sig_len;
 }
@@ -372,7 +350,7 @@ bool lib_openssl::rsa_verify(const uint8_t* msg, size_t msg_size, const uint8_t*
     // Status: 1=verified, 0=not verified, <0 = error
     const int res = EVP_PKEY_verify(_rsa_verify_ctx, sig, sig_size, msg, msg_size);
     if (res < 0) {
-        ossl_fatal("RSA verify error");
+        openssl::fatal("RSA verify error");
     }
     return res > 0;
 }
@@ -407,40 +385,40 @@ size_t lib_openssl::aes(bool encrypt, bool cbc,
 
     EVP_CIPHER_CTX* ctx = EVP_CIPHER_CTX_new();
     if (ctx == nullptr) {
-        ossl_fatal("error creating cipher context");
+        openssl::fatal("error creating cipher context");
     }
 
     if (encrypt) {
         if (EVP_EncryptInit(ctx, evp, key, iv) <= 0) {
-            ossl_fatal("encrypt init error");
+            openssl::fatal("encrypt init error");
         }
     }
     else {
         if (EVP_DecryptInit(ctx, evp, key, iv) <= 0) {
-            ossl_fatal("decrypt init error");
+            openssl::fatal("decrypt init error");
         }
     }
 
     if (EVP_CIPHER_CTX_set_padding(ctx, 0) <= 0) {
-        ossl_fatal("set no padding error");
+        openssl::fatal("set no padding error");
     }
 
     int output_len = 0;
     int final_len = 0;
     if (encrypt) {
         if (EVP_EncryptUpdate(ctx, output, &output_len, input, input_size) <= 0) {
-            ossl_fatal("encrypt update error");
+            openssl::fatal("encrypt update error");
         }
         if (EVP_EncryptFinal(ctx, output + output_len, &final_len) <= 0) {
-            ossl_fatal("encrypt final error");
+            openssl::fatal("encrypt final error");
         }
     }
     else {
         if (EVP_DecryptUpdate(ctx, output, &output_len, input, input_size) <= 0) {
-            ossl_fatal("decrypt update error");
+            openssl::fatal("decrypt update error");
         }
         if (EVP_DecryptFinal(ctx, output + output_len, &final_len) <= 0) {
-            ossl_fatal("decrypt final error");
+            openssl::fatal("decrypt final error");
         }
     }
 

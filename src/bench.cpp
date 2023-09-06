@@ -61,6 +61,12 @@ int64_t bench::need_iterations() const
 // Run the benchmark.
 //----------------------------------------------------------------------------
 
+void bench::run(std::ostream& out, const bench* reference, double factor)
+{
+    run();
+    display(out, reference, factor);
+}
+
 void bench::run()
 {
     start();
@@ -92,7 +98,10 @@ double bench::score(const bench& reference, double factor) const
 std::string bench::score_string(const bench& reference, double factor) const
 {
     const double sc = score(reference, factor);
-    if (sc < 1.0) {
+    if (sc < 0.1) {
+        return sys::format("%.3lf", sc);
+    }
+    else if (sc < 1.0) {
         return sys::format("%.2lf", sc);
     }
     else if (sc < 20.0) {

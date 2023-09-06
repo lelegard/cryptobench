@@ -53,7 +53,7 @@ options::options(int argc, char* argv[])
                 min_usec = std::atoll(argv[++i]) * sys::USECPERSEC;
             }
             else if (arg == "--min-iterations" && i+1 < argc) {
-                min_iterations = std::atoll(argv[++i]);
+                min_iter = std::atoll(argv[++i]);
             }
             else if (arg == "--aes-data-size" && i+1 < argc) {
                 aes_data_size = std::atoll(argv[++i]);

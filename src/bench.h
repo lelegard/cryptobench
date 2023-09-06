@@ -29,6 +29,9 @@ public:
     // Basic display of results, including score based on a reference benchmark.
     void display(std::ostream& out = std::cout, const bench* reference = nullptr, double factor = 1.0);
 
+    // Run and display.
+    void run(std::ostream& out, const bench* reference = nullptr, double factor = 1.0);
+
 protected:
     // Constructor.
     bench() = delete;

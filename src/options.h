@@ -26,7 +26,7 @@ public:
     std::string private_key_4096;
     std::string public_key_4096;
     int64_t     min_usec = 2 * sys::USECPERSEC; // minimum run time per test, in microseconds
-    int64_t     min_iterations = 10;
+    int64_t     min_iter = 10; // minimum number of iterations per test
     size_t      aes_data_size = 1000000;
     bool        reference = false;
     bool        all_algos = true;

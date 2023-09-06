@@ -25,7 +25,7 @@
 // Run one RSA benchmark.
 //----------------------------------------------------------------------------
 
-void run_rsa(std::ostream& out, const options& opt, const bench& reference, lib& crypto, const std::string& privkey, const std::string& pubkey)
+void run_rsa(std::ostream& out, const options& opt, const bench& ref, lib& crypto, const std::string& privkey, const std::string& pubkey)
 {
     crypto.load_rsa_private_key_file(privkey);
     crypto.load_rsa_public_key_file(pubkey);
@@ -48,24 +48,20 @@ void run_rsa(std::ostream& out, const options& opt, const bench& reference, lib&
     size_t encrypted_len = crypto.rsa_encrypt(plain, sizeof(plain), encrypted, sizeof(encrypted));
 
     // Encryption and decryption performance. No rekeying.
-    bench_rsa_encrypt brsa_encrypt(crypto, opt.min_usec, opt.min_iterations, plain, sizeof(plain), false);
-    brsa_encrypt.run();
-    brsa_encrypt.display(out, &reference, RSA_SCORE_FACTOR);
+    bench_rsa_encrypt brsa_encrypt(crypto, opt.min_usec, opt.min_iter, plain, sizeof(plain), false);
+    brsa_encrypt.run(out, &ref, RSA_SCORE_FACTOR);
 
-    bench_rsa_decrypt brsa_decrypt(crypto, opt.min_usec, opt.min_iterations, encrypted, encrypted_len, false);
-    brsa_decrypt.run();
-    brsa_decrypt.display(out, &reference, RSA_SCORE_FACTOR);
+    bench_rsa_decrypt brsa_decrypt(crypto, opt.min_usec, opt.min_iter, encrypted, encrypted_len, false);
+    brsa_decrypt.run(out, &ref, RSA_SCORE_FACTOR);
 
     out << crypto.rsa_name() << ": decrypt/encrypt-ratio=" << brsa_decrypt.score_string(brsa_encrypt) << std::endl;
 
     // Encryption and decryption performance. With rekeying.
-    bench_rsa_encrypt brsa_encrypt_rekey(crypto, opt.min_usec, opt.min_iterations, plain, sizeof(plain), true);
-    brsa_encrypt_rekey.run();
-    brsa_encrypt_rekey.display(out, &reference, RSA_SCORE_FACTOR);
+    bench_rsa_encrypt brsa_encrypt_rekey(crypto, opt.min_usec, opt.min_iter, plain, sizeof(plain), true);
+    brsa_encrypt_rekey.run(out, &ref, RSA_SCORE_FACTOR);
 
-    bench_rsa_decrypt brsa_decrypt_rekey(crypto, opt.min_usec, opt.min_iterations, encrypted, encrypted_len, true);
-    brsa_decrypt_rekey.run();
-    brsa_decrypt_rekey.display(out, &reference, RSA_SCORE_FACTOR);
+    bench_rsa_decrypt brsa_decrypt_rekey(crypto, opt.min_usec, opt.min_iter, encrypted, encrypted_len, true);
+    brsa_decrypt_rekey.run(out, &ref, RSA_SCORE_FACTOR);
 
     out << crypto.rsa_name() << ": decrypt-rekey/encrypt-rekey-ratio=" << brsa_decrypt_rekey.score_string(brsa_encrypt_rekey) << std::endl;
 
@@ -78,38 +74,32 @@ void run_rsa(std::ostream& out, const options& opt, const bench& reference, lib&
     size_t sig_len = crypto.rsa_sign(plain, sizeof(plain), sig, sizeof(sig));
 
     // Signature and verification performance. No rekeying.
-    bench_rsa_sign brsa_sign(crypto, opt.min_usec, opt.min_iterations, plain, sizeof(plain), false);
-    brsa_sign.run();
-    brsa_sign.display(out, &reference, RSA_SCORE_FACTOR);
+    bench_rsa_sign brsa_sign(crypto, opt.min_usec, opt.min_iter, plain, sizeof(plain), false);
+    brsa_sign.run(out, &ref, RSA_SCORE_FACTOR);
 
-    bench_rsa_verify brsa_verify(crypto, opt.min_usec, opt.min_iterations, plain, sizeof(plain), sig, sig_len, false);
-    brsa_verify.run();
-    brsa_verify.display(out, &reference, RSA_SCORE_FACTOR);
+    bench_rsa_verify brsa_verify(crypto, opt.min_usec, opt.min_iter, plain, sizeof(plain), sig, sig_len, false);
+    brsa_verify.run(out, &ref, RSA_SCORE_FACTOR);
 
     out << crypto.rsa_name() << ": sign/verify-ratio=" << brsa_sign.score_string(brsa_verify) << std::endl;
 
     // Signature and verification performance. With rekeying.
-    bench_rsa_sign brsa_sign_rekey(crypto, opt.min_usec, opt.min_iterations, plain, sizeof(plain), true);
-    brsa_sign_rekey.run();
-    brsa_sign_rekey.display(out, &reference, RSA_SCORE_FACTOR);
+    bench_rsa_sign brsa_sign_rekey(crypto, opt.min_usec, opt.min_iter, plain, sizeof(plain), true);
+    brsa_sign_rekey.run(out, &ref, RSA_SCORE_FACTOR);
 
-    bench_rsa_verify brsa_verify_rekey(crypto, opt.min_usec, opt.min_iterations, plain, sizeof(plain), sig, sig_len, true);
-    brsa_verify_rekey.run();
-    brsa_verify_rekey.display(out, &reference, RSA_SCORE_FACTOR);
+    bench_rsa_verify brsa_verify_rekey(crypto, opt.min_usec, opt.min_iter, plain, sizeof(plain), sig, sig_len, true);
+    brsa_verify_rekey.run(out, &ref, RSA_SCORE_FACTOR);
 
     out << crypto.rsa_name() << ": sign-rekey/verify-rekey-ratio=" << brsa_sign_rekey.score_string(brsa_verify_rekey) << std::endl;
 
     // Key loading performance.
     bytes_t der;
     sys::load_pem_file_as_der(der, pubkey);
-    bench_rsa_load_public brsa_rekey_public(crypto, opt.min_usec, opt.min_iterations, der.data(), der.size());
-    brsa_rekey_public.run();
-    brsa_rekey_public.display(out, &reference, RSA_SCORE_FACTOR);
+    bench_rsa_load_public brsa_rekey_public(crypto, opt.min_usec, opt.min_iter, der.data(), der.size());
+    brsa_rekey_public.run(out, &ref, RSA_SCORE_FACTOR);
 
     sys::load_pem_file_as_der(der, privkey);
-    bench_rsa_load_private brsa_rekey_private(crypto, opt.min_usec, opt.min_iterations, der.data(), der.size());
-    brsa_rekey_private.run();
-    brsa_rekey_private.display(out, &reference, RSA_SCORE_FACTOR);
+    bench_rsa_load_private brsa_rekey_private(crypto, opt.min_usec, opt.min_iter, der.data(), der.size());
+    brsa_rekey_private.run(out, &ref, RSA_SCORE_FACTOR);
 }
 
 //----------------------------------------------------------------------------
@@ -121,13 +111,11 @@ void run_aes(std::ostream& out, const options& opt, const bench& reference, lib&
     crypto.aes_auto_test();
     out << crypto.name() << ": aes: auto-test-passed" << std::endl;
 
-    bench_aes_encrypt baes_encrypt(crypto, opt.min_usec, opt.min_iterations, key_bits, opt.aes_data_size);
-    baes_encrypt.run();
-    baes_encrypt.display(out, &reference, AES_SCORE_FACTOR);
+    bench_aes_encrypt baes_encrypt(crypto, opt.min_usec, opt.min_iter, key_bits, opt.aes_data_size);
+    baes_encrypt.run(out, &reference, AES_SCORE_FACTOR);
 
-    bench_aes_decrypt baes_decrypt(crypto, opt.min_usec, opt.min_iterations, key_bits, opt.aes_data_size);
-    baes_decrypt.run();
-    baes_decrypt.display(out, &reference, AES_SCORE_FACTOR);
+    bench_aes_decrypt baes_decrypt(crypto, opt.min_usec, opt.min_iter, key_bits, opt.aes_data_size);
+    baes_decrypt.run(out, &reference, AES_SCORE_FACTOR);
 
     out << crypto.aes_name() << ": encrypt/decrypt-ratio=" << baes_encrypt.score_string(baes_decrypt) << std::endl;
 }
@@ -136,37 +124,49 @@ void run_aes(std::ostream& out, const options& opt, const bench& reference, lib&
 // Run the math benchmarks. Available only with OpenSSL.
 //----------------------------------------------------------------------------
 
-void run_math(std::ostream& out, const options& opt, const bench& reference)
+void run_math(std::ostream& out, const options& opt, const bench& ref)
 {
     bignum n, e, d;
+    lib_openssl::load_rsa_private_key_values(opt.private_key_2048, n, e, d);
 
-    lib_openssl::load_rsa_private_key_values(opt.private_key_2048, n.ptr, e.ptr, d.ptr);
+#define RANDOM() (bignum::random(n.bits() - 1))
+#define MATH(...) bench_math(__VA_ARGS__).run(out, &ref, MATH_SCORE_FACTOR)
 
-    // Same as RSA encrypt.
-    bench_math_mod_exp b01(opt.min_usec, opt.min_iterations, e.ptr, n.ptr);
-    b01.run();
-    b01.display(out, &reference, MATH_SCORE_FACTOR);
+    // Basic operations.
+    MATH("add", opt.min_usec, opt.min_iter, BN_mod_add, RANDOM(), RANDOM(), n);
+    MATH("mul", opt.min_usec, opt.min_iter, BN_mod_mul, RANDOM(), RANDOM(), n);
+    MATH("mul-montgomery", opt.min_usec, opt.min_iter, BN_mod_mul_montgomery, RANDOM(), RANDOM(), n);
+    MATH("mul-reciprocal", opt.min_usec, opt.min_iter, BN_mod_mul_reciprocal, RANDOM(), RANDOM(), n);
+    MATH("div-reciprocal", opt.min_usec, opt.min_iter, BN_div_recp, RANDOM(), n);
+    MATH("sqr", opt.min_usec, opt.min_iter, BN_mod_sqr, RANDOM(), n);
+    MATH("inv", opt.min_usec, opt.min_iter, BN_mod_inverse, RANDOM(), n);
 
-    bench_math_mod_exp_simple b02(opt.min_usec, opt.min_iterations, e.ptr, n.ptr);
-    b02.run();
-    b02.display(out, &reference, MATH_SCORE_FACTOR);
+    // For square root, we need 1) a square, 2) a prime modulus (n=p*q is not eligible).
+    const bignum mod1(bignum::random_prime(n.bits()));
+    const bignum root1(bignum::random(mod1.bits() - 1).square_mod(mod1));
+    MATH("sqrt", opt.min_usec, opt.min_iter, BN_mod_sqrt, root1, mod1);
 
-    bench_math_mod_exp_mont b03(opt.min_usec, opt.min_iterations, e.ptr, n.ptr);
-    b03.run();
-    b03.display(out, &reference, MATH_SCORE_FACTOR);
+    // Modular exponentiation, small exponent, same as RSA encrypt.
+    MATH("exp-public", opt.min_usec, opt.min_iter, BN_mod_exp, RANDOM(), e, n);
+    MATH("exp-public-montgomery", opt.min_usec, opt.min_iter, BN_mod_exp_mont, RANDOM(), e, n);
+    MATH("exp-public-montgomery-word", opt.min_usec, opt.min_iter, BN_mod_exp_mont_word, 123456, e, n);
+    MATH("exp-public-reciprocal", opt.min_usec, opt.min_iter, BN_mod_exp_recp, RANDOM(), e, n);
+    MATH("exp-public-simple", opt.min_usec, opt.min_iter, BN_mod_exp_simple, RANDOM(), e, n);
 
-    // Same as RSA decrypt (without using CRT).
-    bench_math_mod_exp b10(opt.min_usec, opt.min_iterations, d.ptr, n.ptr);
-    b10.run();
-    b10.display(out, &reference, MATH_SCORE_FACTOR);
+    // Modular exponentiation, large exponent, same as RSA decrypt (when not using CRT).
+    MATH("exp-private", opt.min_usec, opt.min_iter, BN_mod_exp, RANDOM(), d, n);
+    MATH("exp-private-montgomery", opt.min_usec, opt.min_iter, BN_mod_exp_mont, RANDOM(), d, n);
+    MATH("exp-private-montgomery-word", opt.min_usec, opt.min_iter, BN_mod_exp_mont_word, 123456, d, n);
+    MATH("exp-private-reciprocal", opt.min_usec, opt.min_iter, BN_mod_exp_recp, RANDOM(), d, n);
+    MATH("exp-private-simple", opt.min_usec, opt.min_iter, BN_mod_exp_simple, RANDOM(), d, n);
 
-    bench_math_mod_exp_simple b11(opt.min_usec, opt.min_iterations, d.ptr, n.ptr);
-    b11.run();
-    b11.display(out, &reference, MATH_SCORE_FACTOR);
+    // Looking into the OpenSSL source code, file crypto/bn/bn_exp.c, BN_mod_exp() uses one of:
+    // - For odd modulus: BN_mod_exp_mont_word() or BN_mod_exp_mont().
+    // - For even modulus (impossible with RSA), depending on compilation options,
+    //   BN_mod_exp_recp() or BN_mod_exp_simple().
 
-    bench_math_mod_exp_mont b13(opt.min_usec, opt.min_iterations, d.ptr, n.ptr);
-    b13.run();
-    b13.display(out, &reference, MATH_SCORE_FACTOR);
+#undef MATH
+#undef RANDOM
 }
 
 //----------------------------------------------------------------------------
@@ -218,10 +218,9 @@ void run_all_benchmarks(std::ostream& out, const options& opt)
     }
 
     // Reference benchmark for the system.
-    bench_reference bref(opt.min_usec, opt.min_iterations);
+    bench_reference bref(opt.min_usec, opt.min_iter);
     if (opt.reference) {
-        bref.run();
-        bref.display(out);
+        bref.run(out);
         out << std::endl;
     }
 
@@ -270,7 +269,7 @@ void run_all_benchmarks(std::ostream& out, const options& opt)
 int main(int argc, char* argv[])
 {
     sys::init();
-    lib_openssl::init();
+    openssl::init();
     lib_mbedtls::init();
     lib_gnutls::init();
     lib_tomcrypt::init();
@@ -280,6 +279,6 @@ int main(int argc, char* argv[])
     lib_tomcrypt::cleanup();
     lib_gnutls::cleanup();
     lib_mbedtls::cleanup();
-    lib_openssl::cleanup();
+    openssl::cleanup();
     return EXIT_SUCCESS;
 }

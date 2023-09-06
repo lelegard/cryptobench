@@ -7,147 +7,195 @@
 #include "bench_math.h"
 
 //----------------------------------------------------------------------------
-// Encapsulation of an OpenSSL BIGNUM with automation creation/deletion.
+// Build the name of the object instance.
 //----------------------------------------------------------------------------
 
-bignum::bignum() : ptr(BN_new())
+std::string bench_math::name_of(const std::string& name, const bignum& mod)
 {
-    if (ptr == nullptr) {
-        lib_openssl::ossl_fatal("BN_new");
-    }
-}
-
-bignum::bignum(BIGNUM* value) : ptr(BN_dup(value))
-{
-    if (ptr == nullptr) {
-        lib_openssl::ossl_fatal("BN_dup");
-    }
-}
-
-bignum::bignum(int bits, bool must_be_odd) : bignum()
-{
-    if (BN_rand(ptr, bits, 0, must_be_odd) < 0) {
-        lib_openssl::ossl_fatal("BN_rand");
-    }
-}
-
-bignum::~bignum()
-{
-    if (ptr != nullptr) {
-        BN_free(ptr);
-        ptr = nullptr;
-    }
+    return sys::format("math: mod-%d: %s", BN_num_bits(mod.ptr()), name.c_str());
 }
 
 //----------------------------------------------------------------------------
-// Base class for math benchmarks
+// Constructors
 //----------------------------------------------------------------------------
 
-bench_math::bench_math(const std::string& name, int64_t min_usec, int64_t min_iterations) :
-    bench("math: " + name, min_usec, min_iterations)
+bench_math::bench_math(const std::string& name, int64_t min_usec, int64_t min_iterations, function_op1_mod func, const bignum& op1, const bignum& mod) :
+    bench(name_of(name, mod), min_usec, min_iterations),
+    _op1(op1),
+    _mod(mod),
+    _f_op1_mod(func),
+    _one_iteration(&bench_math::one_iteration_op1_mod)
 {
-    if ((_ctx = BN_CTX_new()) == nullptr) {
-        lib_openssl::ossl_fatal("BN_CTX_new");
+}
+
+bench_math::bench_math(const std::string& name, int64_t min_usec, int64_t min_iterations, function_op1_mod_ret func, const bignum& op1, const bignum& mod) :
+    bench(name_of(name, mod), min_usec, min_iterations),
+    _op1(op1),
+    _mod(mod),
+    _f_op1_mod_ret(func),
+    _one_iteration(&bench_math::one_iteration_op1_mod_ret)
+{
+}
+
+bench_math::bench_math(const std::string& name, int64_t min_usec, int64_t min_iterations, function_op2_mod func, const bignum& op1, const bignum& op2, const bignum& mod) :
+    bench(name_of(name, mod), min_usec, min_iterations),
+    _op1(op1),
+    _op2(op2),
+    _mod(mod),
+    _f_op2_mod(func),
+    _one_iteration(&bench_math::one_iteration_op2_mod)
+{
+}
+
+bench_math::bench_math(const std::string& name, int64_t min_usec, int64_t min_iterations, function_op1_mont func, const bignum& op1, const bignum& mod) :
+    bench(name_of(name, mod), min_usec, min_iterations),
+    _op1(op1),
+    _mod(mod),
+    _f_op1_mont(func),
+    _one_iteration(&bench_math::one_iteration_op1_mont)
+{
+    init_montgomery();
+}
+
+bench_math::bench_math(const std::string& name, int64_t min_usec, int64_t min_iterations, function_op2_mont func, const bignum& op1, const bignum& op2, const bignum& mod) :
+    bench(name_of(name, mod), min_usec, min_iterations),
+    _op1(op1),
+    _op2(op2),
+    _mod(mod),
+    _f_op2_mont(func),
+    _one_iteration(&bench_math::one_iteration_op2_mont)
+{
+    init_montgomery();
+}
+
+bench_math::bench_math(const std::string& name, int64_t min_usec, int64_t min_iterations, function_op1_mod_mont func, const bignum& op1, const bignum& mod) :
+    bench(name_of(name, mod), min_usec, min_iterations),
+    _op1(op1),
+    _mod(mod),
+    _f_op1_mod_mont(func),
+    _one_iteration(&bench_math::one_iteration_op1_mod_mont)
+{
+    init_montgomery();
+}
+
+bench_math::bench_math(const std::string& name, int64_t min_usec, int64_t min_iterations, function_op2_mod_mont func, const bignum& op1, const bignum& op2, const bignum& mod) :
+    bench(name_of(name, mod), min_usec, min_iterations),
+    _op1(op1),
+    _op2(op2),
+    _mod(mod),
+    _f_op2_mod_mont(func),
+    _one_iteration(&bench_math::one_iteration_op2_mod_mont)
+{
+    init_montgomery();
+}
+
+bench_math::bench_math(const std::string& name, int64_t min_usec, int64_t min_iterations, function_op1_mod_mont_word func, BN_ULONG word, const bignum& op1, const bignum& mod) :
+    bench(name_of(name, mod), min_usec, min_iterations),
+    _word(word),
+    _op1(op1),
+    _mod(mod),
+    _f_op1_mod_mont_word(func),
+    _one_iteration(&bench_math::one_iteration_op1_mod_mont_word)
+{
+    init_montgomery();
+}
+
+bench_math::bench_math(const std::string& name, int64_t min_usec, int64_t min_iterations, function_op2_recp func, const bignum& op1, const bignum& op2, const bignum& mod) :
+    bench(name_of(name, mod), min_usec, min_iterations),
+    _op1(op1),
+    _op2(op2),
+    _mod(mod),
+    _f_op2_recp(func),
+    _one_iteration(&bench_math::one_iteration_op2_recp)
+{
+    init_reciprocal();
+}
+
+bench_math::bench_math(const std::string& name, int64_t min_usec, int64_t min_iterations, function_rem_op1_recp func, const bignum& op1, const bignum& mod) :
+    bench(name_of(name, mod), min_usec, min_iterations),
+    _op1(op1),
+    _mod(mod),
+    _f_rem_op1_recp(func),
+    _one_iteration(&bench_math::one_iteration_rem_op1_recp)
+{
+    init_reciprocal();
+}
+
+//----------------------------------------------------------------------------
+// Montgomery and reciprocal functions set the modulus in the constructor.
+//----------------------------------------------------------------------------
+
+void bench_math::init_montgomery()
+{
+    if (BN_MONT_CTX_set(openssl::bn_mont_ctx, _mod.ptr(), openssl::bn_ctx) < 0) {
+        openssl::fatal("BN_MONT_CTX_set");
     }
 }
 
-bench_math::~bench_math()
+void bench_math::init_reciprocal()
 {
-    if (_ctx != nullptr) {
-        BN_CTX_free(_ctx);
-        _ctx = nullptr;
+    if (BN_RECP_CTX_set(openssl::bn_recp_ctx, _mod.ptr(), openssl::bn_ctx) < 0) {
+        openssl::fatal("BN_RECP_CTX_set");
     }
 }
 
 //----------------------------------------------------------------------------
-// Modular exponentation benchmarks: a ^ p (mod m)
+// Iteration methods.
 //----------------------------------------------------------------------------
 
-bench_math_mod_exp::bench_math_mod_exp(int64_t min_usec, int64_t min_iterations, BIGNUM* p, BIGNUM* m) :
-    bench_math(sys::format("mod-%d: exp-%d", BN_num_bits(m), BN_num_bits(p)), min_usec, min_iterations),
-    _a(BN_num_bits(m) - 1, false),
-    _p(p),
-    _m(m)
+void bench_math::one_iteration()
 {
-}
-
-void bench_math_mod_exp::one_iteration()
-{
-    if (BN_mod_exp(_r.ptr, _a.ptr, _p.ptr, _m.ptr, _ctx) <= 0) {
-        lib_openssl::ossl_fatal("BN_mod_exp");
+    if (!(this->*_one_iteration)()) {
+        openssl::fatal(name() + ": arithmetic error");
     }
 }
 
-//----------------------------------------------------------------------------
-// Modular exponentation benchmarks using BN_mod_exp_simple.
-//----------------------------------------------------------------------------
-
-bench_math_mod_exp_simple::bench_math_mod_exp_simple(int64_t min_usec, int64_t min_iterations, BIGNUM* p, BIGNUM* m) :
-    bench_math(sys::format("mod-%d: exp-simple-%d", BN_num_bits(m), BN_num_bits(p)), min_usec, min_iterations),
-    _a(BN_num_bits(m) - 1, false),
-    _p(p),
-    _m(m)
+bool bench_math::one_iteration_op1_mod()
 {
-    // Check that BN_mod_exp_simple and BN_mod_exp are identical.
-    bignum r1, r2;
-    if (BN_mod_exp(r1.ptr, _a.ptr, _p.ptr, _m.ptr, _ctx) <= 0) {
-        lib_openssl::ossl_fatal("BN_mod_exp");
-    }
-    if (BN_mod_exp_simple(r2.ptr, _a.ptr, _p.ptr, _m.ptr, _ctx) <= 0) {
-        lib_openssl::ossl_fatal("BN_mod_exp_simple");
-    }
-    if (BN_cmp(r1.ptr, r2.ptr)) {
-        sys::fatal("BN_mod_exp and BN_mod_exp_simple are not identical");
-    }
+    return _f_op1_mod(_res.ptr(), _op1.ptr(), _mod.ptr(), openssl::bn_ctx) > 0;
 }
 
-void bench_math_mod_exp_simple::one_iteration()
+bool bench_math::one_iteration_op2_mod()
 {
-    if (BN_mod_exp_simple(_r.ptr, _a.ptr, _p.ptr, _m.ptr, _ctx) <= 0) {
-        lib_openssl::ossl_fatal("BN_mod_exp_simple");
-    }
+    return _f_op2_mod(_res.ptr(), _op1.ptr(), _op2.ptr(), _mod.ptr(), openssl::bn_ctx) > 0;
 }
 
-//----------------------------------------------------------------------------
-// Modular exponentation benchmarks using BN_mod_exp_mont.
-//----------------------------------------------------------------------------
-
-bench_math_mod_exp_mont::bench_math_mod_exp_mont(int64_t min_usec, int64_t min_iterations, BIGNUM* p, BIGNUM* m) :
-    bench_math(sys::format("mod-%d: exp-mont-%d", BN_num_bits(m), BN_num_bits(p)), min_usec, min_iterations),
-    _a(BN_num_bits(m) - 1, false),
-    _p(p),
-    _m(m)
+bool bench_math::one_iteration_op1_mod_ret()
 {
-    if ((_mont = BN_MONT_CTX_new()) == nullptr) {
-        lib_openssl::ossl_fatal("BN_MONT_CTX_new");
-    }
-    if (BN_MONT_CTX_set(_mont, _m.ptr, _ctx) < 0) {
-        lib_openssl::ossl_fatal("BN_MONT_CTX_set");
-    }
-    // Check that BN_mod_exp_mont and BN_mod_exp are identical.
-    bignum r1, r2;
-    if (BN_mod_exp(r1.ptr, _a.ptr, _p.ptr, _m.ptr, _ctx) <= 0) {
-        lib_openssl::ossl_fatal("BN_mod_exp");
-    }
-    if (BN_mod_exp_mont(r2.ptr, _a.ptr, _p.ptr, _m.ptr, _ctx, _mont) <= 0) {
-        lib_openssl::ossl_fatal("BN_mod_exp_mont");
-    }
-    if (BN_cmp(r1.ptr, r2.ptr)) {
-        sys::fatal("BN_mod_exp and BN_mod_exp_mont are not identical");
-    }
+    return _f_op1_mod_ret(_res.ptr(), _op1.ptr(), _mod.ptr(), openssl::bn_ctx) != nullptr;
 }
 
-bench_math_mod_exp_mont::~bench_math_mod_exp_mont()
+bool bench_math::one_iteration_op1_mont()
 {
-    if (_mont != nullptr) {
-        BN_MONT_CTX_free(_mont);
-        _mont = nullptr;
-    }
+    return _f_op1_mont(_res.ptr(), _op1.ptr(), openssl::bn_mont_ctx, openssl::bn_ctx) > 0;
 }
 
-void bench_math_mod_exp_mont::one_iteration()
+bool bench_math::one_iteration_op2_mont()
 {
-    if (BN_mod_exp_mont(_r.ptr, _a.ptr, _p.ptr, _m.ptr, _ctx, _mont) <= 0) {
-        lib_openssl::ossl_fatal("BN_mod_exp_mont");
-    }
+    return _f_op2_mont(_res.ptr(), _op1.ptr(), _op2.ptr(), openssl::bn_mont_ctx, openssl::bn_ctx) > 0;
+}
+
+bool bench_math::one_iteration_op1_mod_mont()
+{
+    return _f_op1_mod_mont(_res.ptr(), _op1.ptr(), _mod.ptr(), openssl::bn_ctx, openssl::bn_mont_ctx) > 0;
+}
+
+bool bench_math::one_iteration_op2_mod_mont()
+{
+    return _f_op2_mod_mont(_res.ptr(), _op1.ptr(), _op2.ptr(), _mod.ptr(), openssl::bn_ctx, openssl::bn_mont_ctx) > 0;
+}
+
+bool bench_math::one_iteration_op1_mod_mont_word()
+{
+    return _f_op1_mod_mont_word(_res.ptr(), _word, _op1.ptr(), _mod.ptr(), openssl::bn_ctx, openssl::bn_mont_ctx) > 0;
+}
+
+bool bench_math::one_iteration_op2_recp()
+{
+    return _f_op2_recp(_res.ptr(), _op1.ptr(), _op2.ptr(), openssl::bn_recp_ctx, openssl::bn_ctx) > 0;
+}
+
+bool bench_math::one_iteration_rem_op1_recp()
+{
+    return _f_rem_op1_recp(_res.ptr(), _rem.ptr(), _op1.ptr(), openssl::bn_recp_ctx, openssl::bn_ctx) > 0;
 }
