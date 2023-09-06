@@ -83,6 +83,28 @@ void bench::dummy_iteration_2()
 }
 
 //----------------------------------------------------------------------------
+// Format a double value.
+//----------------------------------------------------------------------------
+
+namespace {
+    std::string d2string(double x)
+    {
+        if (x < 0.1) {
+            return sys::format("%.3lf", x);
+        }
+        else if (x < 1.0) {
+            return sys::format("%.2lf", x);
+        }
+        else if (x < 20.0) {
+            return sys::format("%.1lf", x);
+        }
+        else {
+            return sys::format("%ld", long(x));
+        }
+    }
+}
+
+//----------------------------------------------------------------------------
 // Compute the comparative score from a reference benchmarck.
 //----------------------------------------------------------------------------
 
@@ -94,19 +116,7 @@ double bench::score(const bench& reference, double factor) const
 
 std::string bench::score_string(const bench& reference, double factor) const
 {
-    const double sc = score(reference, factor);
-    if (sc < 0.1) {
-        return sys::format("%.3lf", sc);
-    }
-    else if (sc < 1.0) {
-        return sys::format("%.2lf", sc);
-    }
-    else if (sc < 20.0) {
-        return sys::format("%.1lf", sc);
-    }
-    else {
-        return sys::format("%ld", long(sc));
-    }
+    return d2string(score(reference, factor));
 }
 
 //----------------------------------------------------------------------------
@@ -118,7 +128,14 @@ void bench::display(std::ostream& out, const bench* reference, double factor)
     if (!_name.empty()) {
         out << _name << ": ";
     }
-    out << sys::format("iterations=%'" PRId64 ": usec-total=%'" PRId64 ": usec/iter=%'" PRId64, iterations(), total_usec(), unit_usec());
+    out << sys::format("iterations=%'" PRId64 ": usec-total=%'" PRId64 ": usec/iter=", iterations(), total_usec());
+    const int64_t unit = unit_usec();
+    if (unit > 10 || _iterations <= 0) {
+        out << sys::format("%'" PRId64, unit);
+    }
+    else {
+        out << d2string(double(_usec_total) /double(_iterations));
+    }
     if (reference != nullptr && reference->_iterations > 0) {
         out << ": score=" << score_string(*reference, factor);
     }
