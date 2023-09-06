@@ -37,25 +37,17 @@ protected:
     bench() = delete;
     bench(const std::string& name, int64_t min_usec, int64_t min_iterations);
 
-    // Start the benchmark.
-    void start();
-
-    // Add iterations in a running benchmark.
-    void add_iterations(int64_t more_iterations);
-
-    // Compute the approximated number of additional iterations required
-    // to reach the minimum CPU time in microseconds. Negative means unknown.
-    // May not be accurate. Need to be rechecked after these iterations.
-    int64_t need_iterations() const;
-
     // One iteration.
     virtual void one_iteration() = 0;
+
+    // Dummy iterations, for evaluation of overhead time.
+    virtual void dummy_iteration_1();
+    virtual void dummy_iteration_2();
 
 private:
     const std::string _name;            // display name
     const int64_t _min_usec = 0;        // minimum CPU time in microseconds
     const int64_t _min_iterations = 0;  // minimum number of iterations
     int64_t       _iterations = 0;      // number of iterations
-    int64_t       _usec_start = 0;      // start CPU time in microseconds
     int64_t       _usec_total = 0;      // total execution CPU time in microseconds
 };

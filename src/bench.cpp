@@ -18,46 +18,6 @@ bench::bench(const std::string& name, int64_t min_usec, int64_t min_iterations) 
 }
 
 //----------------------------------------------------------------------------
-// Start the benchmark.
-//----------------------------------------------------------------------------
-
-void bench::start()
-{
-    _iterations = 0;
-    _usec_total = 0;
-    _usec_start = sys::cpu_time();
-}
-
-//----------------------------------------------------------------------------
-// Add iterations in a running benchmark.
-//----------------------------------------------------------------------------
-
-void bench::add_iterations(int64_t more_iterations)
-{
-    _iterations += more_iterations;
-    _usec_total = sys::cpu_time() - _usec_start;
-}
-
-//----------------------------------------------------------------------------
-// Compute the approximated number of additional iterations required
-// to reach a given CPU time in microseconds. Negative means unknown.
-//----------------------------------------------------------------------------
-
-int64_t bench::need_iterations() const
-{
-    if (_usec_total >= _min_usec) {
-        return std::max<int64_t>(0, _min_iterations - _iterations);
-    }
-    else if (_usec_total <= 0) {
-        return -1; // not enough data to decide
-    }
-    else {
-        // Always add 2 iterations as safe margin.
-        return 2 + sys::div64(_iterations * (_min_usec - _usec_total), _usec_total);
-    }
-}
-
-//----------------------------------------------------------------------------
 // Run the benchmark.
 //----------------------------------------------------------------------------
 
@@ -69,20 +29,57 @@ void bench::run(std::ostream& out, const bench* reference, double factor)
 
 void bench::run()
 {
-    start();
+    _iterations = 0;
+    _usec_total = 0;
+    const int64_t bench_start = sys::cpu_time();
 
-    int64_t more = min_iterations();
-    for (int64_t i = 0; i < more; ++i) {
-        one_iteration();
-    }
-    add_iterations(more);
-
-    while ((more = need_iterations()) > 0) {
+    // Run several iterations at a time. Start with the minimum number of iterations.
+    int64_t more = _min_iterations;
+    for (;;) {
+        // Run the current chunk of iterations.
         for (int64_t i = 0; i < more; ++i) {
             one_iteration();
         }
-        add_iterations(more);
+
+        // Include these iterations in the counters.
+        _iterations += more;
+        _usec_total = sys::cpu_time() - bench_start;
+
+        // Did we reach the minimum CPU time in microseconds?
+        if (_usec_total >= _min_usec || _usec_total <= 0) {
+            // Note: when _usec_total is zero, we could not measure some microseconds
+            // in the first chunk of iteration, we cannot decide and give up.
+            break;
+        }
+
+        // Compute the approximated number of additional iterations required to reach the
+        // minimum CPU time in microseconds. Always add 2 iterations as safe margin.
+        more = 2 + sys::div64(_iterations * (_min_usec - _usec_total), _usec_total);
     }
+
+    // Now run the same number of empty iterations to evaluate the overhead to remove.
+    // Use two levels of virtual calls since most benchmarks do so.
+    const int64_t dummy_start = sys::cpu_time();
+    for (int64_t i = 0; i < _iterations; ++i) {
+        dummy_iteration_2();
+    }
+    const int64_t dummy_usec = sys::cpu_time() - dummy_start;
+    _usec_total -= std::min(_usec_total, dummy_usec);
+}
+
+//----------------------------------------------------------------------------
+// Dummy iterations, for calibration.
+//----------------------------------------------------------------------------
+
+// One level of virtual call.
+void bench::dummy_iteration_1()
+{
+}
+
+// Two levels of virtual calls.
+void bench::dummy_iteration_2()
+{
+    dummy_iteration_1();
 }
 
 //----------------------------------------------------------------------------

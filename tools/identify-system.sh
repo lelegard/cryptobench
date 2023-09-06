@@ -39,10 +39,18 @@ elif [[ -e /proc/cpuinfo ]]; then
     CPU=${CPU:-unknown}
 fi
 
+# The item "cpu-index:", if not empty, is a short string to use instead of "cpu:" in
+# summary tables. Useful if the "cpu:" string is too long. Can be manually set in the
+# report file afterward or can be preset in environment variable CRYPTOBENCH_CPU_INDEX.
+
+# The item "machine:" is informative only. It gives the machine model name. It can be
+# manually set in the report file afterward or can be preset in environment variable
+# CRYPTOBENCH_MACHINE
+
 echo "system: arch: $ARCH"
 echo "system: cpu: $CPU"
-echo "system: cpu-index:"  # to be manually set in report file if "cpu:" is inaccurate or too long
-echo "system: machine:"    # to be manually set in report file with machine model name
+echo "system: cpu-index: $CRYPTOBENCH_CPU_INDEX"
+echo "system: machine: $CRYPTOBENCH_MACHINE"
 echo "system: system: $SYSTEM"
 echo "system: distro: $DISTRO"
 echo "system: kernel: $KERNEL"
