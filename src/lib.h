@@ -82,5 +82,5 @@ protected:
 
 private:
     const std::string _name;
-    size_t _aes_key_bits;
+    size_t _aes_key_bits = 0;
 };

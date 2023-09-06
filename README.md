@@ -68,6 +68,11 @@ Tested cryptographic libraries:
 Tested algorithms:
 - RSA (2048 and 4096 bits, encryption and signature)
 - AES (128 and 256 bits, CBC mode on large data)
+- 2048-bit modular arithmetic using OpenSSL
+
+The modular arithmetic tests give performance indicators on the various elementary
+operations which are used by RSA. These tests may help to understand the differences
+in RSA performances between systems.
 
 ## Building and prerequisites
 
@@ -119,8 +124,8 @@ Test reports are stored in the subdirectory `reports` and saved in the git
 repository for reference.
 
 The script `tools/run-test.sh` produces a benchmark report on the current system.
-All tests are run during 5 seconds, so the execution may take some time, 10 minutes or more.
-It also produces a description of the current system for reference.
+All tests are run during 5 seconds, so the execution may take some time, 12 minutes
+or more. It also produces a description of the current system for reference.
 
 Typical usage:
 ~~~

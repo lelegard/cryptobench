@@ -223,11 +223,11 @@ tomcrypt: aes-256: encrypt/decrypt-ratio=0.99
 arm64: aes: auto-test-passed
 arm64: aes-128: encrypt=1,000,000: iterations=5,871: usec-total=5,054,726: usec/iter=861: score=103
 arm64: aes-128: decrypt=1,000,000: iterations=19,370: usec-total=5,000,497: usec/iter=258: score=31
-arm64: aes-0: encrypt/decrypt-ratio=3.3
+arm64: aes-128: encrypt/decrypt-ratio=3.3
 arm64: aes: auto-test-passed
 arm64: aes-256: encrypt=1,000,000: iterations=4,618: usec-total=5,024,958: usec/iter=1,088: score=130
 arm64: aes-256: decrypt=1,000,000: iterations=14,630: usec-total=5,000,453: usec/iter=342: score=41
-arm64: aes-0: encrypt/decrypt-ratio=3.2
+arm64: aes-256: encrypt/decrypt-ratio=3.2
 
 math: mod-2048: add: iterations=16,654,681: usec-total=5,000,573: usec/iter=0: score=0.036
 math: mod-2048: mul: iterations=842,011: usec-total=5,000,071: usec/iter=6: score=0.71

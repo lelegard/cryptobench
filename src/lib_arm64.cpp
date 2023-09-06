@@ -56,9 +56,7 @@ size_t lib_arm64::aes_decrypt(const uint8_t* key, size_t key_size, const uint8_t
 
 size_t lib_arm64::aes_encrypt_cbc(const uint8_t* key, size_t key_size, const uint8_t* iv, size_t iv_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
 {
-    if (iv_size != AES_BLOCK_SIZE || !_aes.set_key(key, key_size)) {
-        return 0;
-    }
+    check_aes_cbc_size(key_size, iv_size, input_size, output_maxsize);
     uint8_t iv2[AES_BLOCK_SIZE];
     ::memcpy(iv2, iv, AES_BLOCK_SIZE);
     return _aes.encrypt_cbc(iv2, iv_size, input, input_size, output, output_maxsize);
@@ -66,9 +64,7 @@ size_t lib_arm64::aes_encrypt_cbc(const uint8_t* key, size_t key_size, const uin
 
 size_t lib_arm64::aes_decrypt_cbc(const uint8_t* key, size_t key_size, const uint8_t* iv, size_t iv_size, const uint8_t* input, size_t input_size, uint8_t* output, size_t output_maxsize)
 {
-    if (iv_size != AES_BLOCK_SIZE || !_aes.set_key(key, key_size)) {
-        return 0;
-    }
+    check_aes_cbc_size(key_size, iv_size, input_size, output_maxsize);
     uint8_t iv2[AES_BLOCK_SIZE];
     ::memcpy(iv2, iv, AES_BLOCK_SIZE);
     return _aes.decrypt_cbc(iv2, iv_size, input, input_size, output, output_maxsize);
