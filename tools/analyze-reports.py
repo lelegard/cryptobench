@@ -143,12 +143,14 @@ math_names = {
         'inv': 'Inverse',
         'sqrt': 'Square<br/>Root'
     },
-    'exponentiations': {
+    'exponentiations on public (short) exponents': {
         'exp-public': 'Exponent<br/>(public)',
         'exp-public-montgomery': 'Exponent<br/>(public)<br/>(Montgomery)',
         'exp-public-montgomery-word': 'Exponent<br/>(public)<br/>(Montgomery)<br/>(word)',
         'exp-public-reciprocal': 'Exponent<br/>(public)<br/>(reciprocal)',
         'exp-public-simple': 'Exponent<br/>(public)<br/>(simple)',
+    },
+    'exponentiations on private (large) exponents': {
         'exp-private': 'Exponent<br/>(private)',
         'exp-private-montgomery': 'Exponent<br/>(private)<br/>(Montgomery)',
         'exp-private-montgomery-word': 'Exponent<br/>(private)<br/>(Montgomery)<br/>(word)',

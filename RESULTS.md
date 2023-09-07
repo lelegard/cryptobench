@@ -43,7 +43,8 @@
   * [AES-256-CBC encryption/decryption ratio](#aes-256-cbc-encryptiondecryption-ratio)
 * [2048-bit modular arithmetic](#2048-bit-modular-arithmetic)
   * [2048-bit modular arithmetic basic operations](#2048-bit-modular-arithmetic-basic-operations)
-  * [2048-bit modular arithmetic exponentiations](#2048-bit-modular-arithmetic-exponentiations)
+  * [2048-bit modular arithmetic exponentiations on public (short) exponents](#2048-bit-modular-arithmetic-exponentiations-on-public-short-exponents)
+  * [2048-bit modular arithmetic exponentiations on private (large) exponents](#2048-bit-modular-arithmetic-exponentiations-on-private-large-exponents)
 
 ## Results overview
 
@@ -1079,35 +1080,67 @@ Relative performance score (the lower, the better):
 | Ampere Altra (Neoverse N1)   | Linux | 0.037 | 0.81 | 0.48 | 0.73 | 0.74   | 0.003 | 29      | 901    |
 | AWS Graviton 3 (Neoverse V1) | Linux | 0.036 | 0.71 | 0.17 | 0.52 | 0.70   | 0.003 | 32      | 312    |
 
-### 2048-bit modular arithmetic exponentiations
+### 2048-bit modular arithmetic exponentiations on public (short) exponents
 
 Execution time in microseconds (the lower, the better):
 
-| CPU                          | OS    | Exponent<br/>(public) | Exponent<br/>(public)<br/>(Montgomery) | Exponent<br/>(public)<br/>(Montgomery)<br/>(word) | Exponent<br/>(public)<br/>(reciprocal) | Exponent<br/>(public)<br/>(simple) | Exponent<br/>(private) | Exponent<br/>(private)<br/>(Montgomery) | Exponent<br/>(private)<br/>(Montgomery)<br/>(word) | Exponent<br/>(private)<br/>(reciprocal) | Exponent<br/>(private)<br/>(simple) |
-| ---------------------------- | ----- | :------: | :------: | :------: | :------: | :------: | :------: | :------: | :------: | :------: | :------: |
-| i7-5775R                     | macOS | 21       | 14.3     | 12.7     | 53       | 71       | 1652     | 1640     | 1660     | 6630     | 9672     |
-| i7-5775R                     | Linux | 22       | 14.9     | 13.3     | 57       | 72       | 1851     | 1705     | 1832     | 7138     | 9391     |
-| i7-8565U                     | Linux | 28       | 22       | 19.5     | 49       | 62       | 2610     | 2684     | 2388     | 6300     | 8666     |
-| Xeon-6254                    | Linux | 20       | 14.2     | 12.5     | 46       | 64       | 1595     | 1597     | 1639     | 5935     | 9039     |
-| Cortex A53 (R.Pi3)           | Linux | 857      | 708      | 636      | 1523     | 2117     | 84912    | 84760    | 78166    | 196706   | 295110   |
-| Cortex A72 (R.Pi4)           | Linux | 152      | 128      | 104      | 246      | 261      | 15397    | 15371    | 13614    | 32410    | 36296    |
-| Apple M1                     | macOS | 19.2     | 12.8     | 10.9     | 60       | 83       | 1471     | 1464     | 1429     | 7894     | 11609    |
-| Apple M1                     | Linux | 22       | 15.4     | 12.9     | 65       | 92       | 1742     | 1737     | 1701     | 8719     | 13003    |
-| Ampere Altra (Neoverse N1)   | Linux | 87       | 76       | 61       | 125      | 131      | 9189     | 9180     | 8052     | 16628    | 18248    |
-| AWS Graviton 3 (Neoverse V1) | Linux | 30       | 22       | 19.0     | 78       | 101      | 2617     | 2609     | 2441     | 10329    | 14145    |
+| CPU                          | OS    | Exponent<br/>(public) | Exponent<br/>(public)<br/>(Montgomery) | Exponent<br/>(public)<br/>(Montgomery)<br/>(word) | Exponent<br/>(public)<br/>(reciprocal) | Exponent<br/>(public)<br/>(simple) |
+| ---------------------------- | ----- | :------: | :------: | :------: | :------: | :------: |
+| i7-5775R                     | macOS | 21       | 14.3     | 12.7     | 53       | 71       |
+| i7-5775R                     | Linux | 22       | 14.9     | 13.3     | 57       | 72       |
+| i7-8565U                     | Linux | 28       | 22       | 19.5     | 49       | 62       |
+| Xeon-6254                    | Linux | 20       | 14.2     | 12.5     | 46       | 64       |
+| Cortex A53 (R.Pi3)           | Linux | 857      | 708      | 636      | 1523     | 2117     |
+| Cortex A72 (R.Pi4)           | Linux | 152      | 128      | 104      | 246      | 261      |
+| Apple M1                     | macOS | 19.2     | 12.8     | 10.9     | 60       | 83       |
+| Apple M1                     | Linux | 22       | 15.4     | 12.9     | 65       | 92       |
+| Ampere Altra (Neoverse N1)   | Linux | 87       | 76       | 61       | 125      | 131      |
+| AWS Graviton 3 (Neoverse V1) | Linux | 30       | 22       | 19.0     | 78       | 101      |
 
 Relative performance score (the lower, the better):
 
-| CPU                          | OS    | Exponent<br/>(public) | Exponent<br/>(public)<br/>(Montgomery) | Exponent<br/>(public)<br/>(Montgomery)<br/>(word) | Exponent<br/>(public)<br/>(reciprocal) | Exponent<br/>(public)<br/>(simple) | Exponent<br/>(private) | Exponent<br/>(private)<br/>(Montgomery) | Exponent<br/>(private)<br/>(Montgomery)<br/>(word) | Exponent<br/>(private)<br/>(reciprocal) | Exponent<br/>(private)<br/>(simple) |
-| ---------------------------- | ----- | :------: | :------: | :------: | :------: | :------: | :------: | :------: | :------: | :------: | :------: |
-| i7-5775R                     | macOS | 6.2      | 4.1      | 3.6      | 15.2     | 20       | 469      | 466      | 471      | 1884     | 2748     |
-| i7-5775R                     | Linux | 4.3      | 2.8      | 2.5      | 11.0     | 13.7     | 352      | 324      | 348      | 1359     | 1788     |
-| i7-8565U                     | Linux | 5.7      | 4.4      | 3.9      | 9.9      | 12.3     | 516      | 530      | 472      | 1245     | 1713     |
-| Xeon-6254                    | Linux | 3.0      | 2.1      | 1.8      | 6.7      | 9.5      | 233      | 233      | 239      | 866      | 1320     |
-| Cortex A53 (R.Pi3)           | Linux | 11.4     | 9.4      | 8.5      | 20       | 28       | 1130     | 1128     | 1040     | 2618     | 3928     |
-| Cortex A72 (R.Pi4)           | Linux | 8.5      | 7.2      | 5.8      | 13.7     | 14.6     | 858      | 857      | 759      | 1807     | 2024     |
-| Apple M1                     | macOS | 6.6      | 4.4      | 3.8      | 21       | 28       | 508      | 506      | 494      | 2728     | 4013     |
-| Apple M1                     | Linux | 4.2      | 2.9      | 2.4      | 12.4     | 17.5     | 328      | 327      | 320      | 1642     | 2449     |
-| Ampere Altra (Neoverse N1)   | Linux | 8.5      | 7.5      | 6.1      | 12.3     | 12.9     | 897      | 896      | 786      | 1623     | 1781     |
-| AWS Graviton 3 (Neoverse V1) | Linux | 3.6      | 2.7      | 2.3      | 9.4      | 12.1     | 311      | 310      | 290      | 1231     | 1685     |
+| CPU                          | OS    | Exponent<br/>(public) | Exponent<br/>(public)<br/>(Montgomery) | Exponent<br/>(public)<br/>(Montgomery)<br/>(word) | Exponent<br/>(public)<br/>(reciprocal) | Exponent<br/>(public)<br/>(simple) |
+| ---------------------------- | ----- | :------: | :------: | :------: | :------: | :------: |
+| i7-5775R                     | macOS | 6.2      | 4.1      | 3.6      | 15.2     | 20       |
+| i7-5775R                     | Linux | 4.3      | 2.8      | 2.5      | 11.0     | 13.7     |
+| i7-8565U                     | Linux | 5.7      | 4.4      | 3.9      | 9.9      | 12.3     |
+| Xeon-6254                    | Linux | 3.0      | 2.1      | 1.8      | 6.7      | 9.5      |
+| Cortex A53 (R.Pi3)           | Linux | 11.4     | 9.4      | 8.5      | 20       | 28       |
+| Cortex A72 (R.Pi4)           | Linux | 8.5      | 7.2      | 5.8      | 13.7     | 14.6     |
+| Apple M1                     | macOS | 6.6      | 4.4      | 3.8      | 21       | 28       |
+| Apple M1                     | Linux | 4.2      | 2.9      | 2.4      | 12.4     | 17.5     |
+| Ampere Altra (Neoverse N1)   | Linux | 8.5      | 7.5      | 6.1      | 12.3     | 12.9     |
+| AWS Graviton 3 (Neoverse V1) | Linux | 3.6      | 2.7      | 2.3      | 9.4      | 12.1     |
+
+### 2048-bit modular arithmetic exponentiations on private (large) exponents
+
+Execution time in microseconds (the lower, the better):
+
+| CPU                          | OS    | Exponent<br/>(private) | Exponent<br/>(private)<br/>(Montgomery) | Exponent<br/>(private)<br/>(Montgomery)<br/>(word) | Exponent<br/>(private)<br/>(reciprocal) | Exponent<br/>(private)<br/>(simple) |
+| ---------------------------- | ----- | :------: | :------: | :------: | :------: | :------: |
+| i7-5775R                     | macOS | 1652     | 1640     | 1660     | 6630     | 9672     |
+| i7-5775R                     | Linux | 1851     | 1705     | 1832     | 7138     | 9391     |
+| i7-8565U                     | Linux | 2610     | 2684     | 2388     | 6300     | 8666     |
+| Xeon-6254                    | Linux | 1595     | 1597     | 1639     | 5935     | 9039     |
+| Cortex A53 (R.Pi3)           | Linux | 84912    | 84760    | 78166    | 196706   | 295110   |
+| Cortex A72 (R.Pi4)           | Linux | 15397    | 15371    | 13614    | 32410    | 36296    |
+| Apple M1                     | macOS | 1471     | 1464     | 1429     | 7894     | 11609    |
+| Apple M1                     | Linux | 1742     | 1737     | 1701     | 8719     | 13003    |
+| Ampere Altra (Neoverse N1)   | Linux | 9189     | 9180     | 8052     | 16628    | 18248    |
+| AWS Graviton 3 (Neoverse V1) | Linux | 2617     | 2609     | 2441     | 10329    | 14145    |
+
+Relative performance score (the lower, the better):
+
+| CPU                          | OS    | Exponent<br/>(private) | Exponent<br/>(private)<br/>(Montgomery) | Exponent<br/>(private)<br/>(Montgomery)<br/>(word) | Exponent<br/>(private)<br/>(reciprocal) | Exponent<br/>(private)<br/>(simple) |
+| ---------------------------- | ----- | :------: | :------: | :------: | :------: | :------: |
+| i7-5775R                     | macOS | 469      | 466      | 471      | 1884     | 2748     |
+| i7-5775R                     | Linux | 352      | 324      | 348      | 1359     | 1788     |
+| i7-8565U                     | Linux | 516      | 530      | 472      | 1245     | 1713     |
+| Xeon-6254                    | Linux | 233      | 233      | 239      | 866      | 1320     |
+| Cortex A53 (R.Pi3)           | Linux | 1130     | 1128     | 1040     | 2618     | 3928     |
+| Cortex A72 (R.Pi4)           | Linux | 858      | 857      | 759      | 1807     | 2024     |
+| Apple M1                     | macOS | 508      | 506      | 494      | 2728     | 4013     |
+| Apple M1                     | Linux | 328      | 327      | 320      | 1642     | 2449     |
+| Ampere Altra (Neoverse N1)   | Linux | 897      | 896      | 786      | 1623     | 1781     |
+| AWS Graviton 3 (Neoverse V1) | Linux | 311      | 310      | 290      | 1231     | 1685     |
 
