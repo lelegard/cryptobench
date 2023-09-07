@@ -2,7 +2,7 @@ system: arch: x86_64
 system: cpu: Intel(R) Xeon(R) Gold 6254 CPU @ 3.10GHz  85
 system: cpu-index: Xeon-6254
 system: machine: 
-system: system: Linux
+system: os: Linux
 system: distro: Oracle Linux Server release 8.7
 system: kernel: 4.18.0-425.19.2.el8_7.x86_64 #1 SMP Wed Apr 5 10:42:50 PDT 2023 x86_64
 system: date: 2023-09-07

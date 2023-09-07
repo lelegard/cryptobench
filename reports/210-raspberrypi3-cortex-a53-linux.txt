@@ -2,7 +2,7 @@ system: arch: armv7l
 system: cpu: ARMv7 Processor rev 4 (v7l) BCM2835 ARMv7 Processor rev 4 (v7l)
 system: cpu-index: Cortex A53 (R.Pi3)
 system: machine: Raspberry Pi 3 Model B Rev 1.2
-system: system: Linux
+system: os: Linux
 system: distro: Raspbian GNU/Linux 12 (bookworm)
 system: kernel: 6.1.43-v7+ #1669 SMP Thu Aug  3 16:23:38 BST 2023 unknown
 system: date: 2023-09-06

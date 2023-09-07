@@ -1,11 +1,11 @@
 system: arch: arm64
-system: cpu: BCM2711 Cortex A72
+system: cpu: BCM2835 Raspberry Pi 4 Model B Rev 1.5
 system: cpu-index: Cortex A72 (R.Pi4)
 system: machine: Raspberry Pi 4 Model B Rev 1.5
-system: system: Linux
+system: os: Linux
 system: distro: Ubuntu 23.04
 system: kernel: 6.2.0-1011-raspi #13-Ubuntu SMP PREEMPT Mon Aug 21 16:46:45 UTC 2023 aarch64
-system: date: 2023-09-06
+system: date: 2023-09-07
 
 openssl: version=3.0.8 (CPUINFO: OPENSSL_armcap=0x81)
 mbedtls: version=mbed TLS 2.28.2
@@ -15,227 +15,227 @@ tomcrypt: version=1.18.2
 tomcrypt-gmp: version=1.18.2
 arm64: version=no-aes-instructions
 
-reference: iterations=281: usec-total=5,039,168: usec/iter=17,933
+reference: iterations=280: usec-total=5,019,919: usec/iter=17,928
 
-openssl: rsa-2048: generate-key-usec=727,422
-openssl: rsa-4096: generate-key-usec=5,441,832
+openssl: rsa-2048: generate-key-usec=2,293,560
+openssl: rsa-4096: generate-key-usec=14,959,971
 
 openssl: rsa-2048: auto-test-passed
-openssl: rsa-2048: encrypt: iterations=32,382: usec-total=5,000,337: usec/iter=154: score=8.6
-openssl: rsa-2048: decrypt: iterations=1,010: usec-total=5,047,671: usec/iter=4,998: score=278
+openssl: rsa-2048: encrypt: iterations=32,351: usec-total=5,000,204: usec/iter=155: score=8.6
+openssl: rsa-2048: decrypt: iterations=1,010: usec-total=5,047,597: usec/iter=4,998: score=278
 openssl: rsa-2048: decrypt/encrypt-ratio=32
-openssl: rsa-2048: encrypt-rekey: iterations=29,428: usec-total=5,000,458: usec/iter=170: score=9.5
-openssl: rsa-2048: decrypt-rekey: iterations=1,006: usec-total=5,047,688: usec/iter=5,018: score=279
+openssl: rsa-2048: encrypt-rekey: iterations=29,380: usec-total=5,000,151: usec/iter=170: score=9.5
+openssl: rsa-2048: decrypt-rekey: iterations=1,006: usec-total=5,047,324: usec/iter=5,017: score=279
 openssl: rsa-2048: decrypt-rekey/encrypt-rekey-ratio=29
-openssl: rsa-2048: sign: iterations=1,010: usec-total=5,054,978: usec/iter=5,005: score=279
-openssl: rsa-2048: verify: iterations=35,565: usec-total=5,000,234: usec/iter=141: score=7.8
+openssl: rsa-2048: sign: iterations=1,010: usec-total=5,055,722: usec/iter=5,006: score=279
+openssl: rsa-2048: verify: iterations=35,561: usec-total=5,000,170: usec/iter=141: score=7.8
 openssl: rsa-2048: sign/verify-ratio=35
-openssl: rsa-2048: sign-rekey: iterations=1,002: usec-total=5,037,309: usec/iter=5,027: score=280
-openssl: rsa-2048: verify-rekey: iterations=31,240: usec-total=5,000,277: usec/iter=160: score=8.9
+openssl: rsa-2048: sign-rekey: iterations=1,001: usec-total=5,039,500: usec/iter=5,034: score=280
+openssl: rsa-2048: verify-rekey: iterations=31,278: usec-total=5,000,138: usec/iter=160: score=8.9
 openssl: rsa-2048: sign-rekey/verify-rekey-ratio=31
-openssl: rsa-2048: load-public: iterations=11,495: usec-total=5,000,699: usec/iter=435: score=24
-openssl: rsa-2048: load-private: iterations=11,237: usec-total=5,000,860: usec/iter=445: score=24
+openssl: rsa-2048: load-public: iterations=11,488: usec-total=5,000,382: usec/iter=435: score=24
+openssl: rsa-2048: load-private: iterations=11,233: usec-total=5,000,780: usec/iter=445: score=24
 openssl: rsa-4096: auto-test-passed
-openssl: rsa-4096: encrypt: iterations=10,410: usec-total=5,001,150: usec/iter=480: score=26
-openssl: rsa-4096: decrypt: iterations=147: usec-total=5,096,805: usec/iter=34,672: score=1933
+openssl: rsa-4096: encrypt: iterations=10,408: usec-total=5,000,993: usec/iter=480: score=26
+openssl: rsa-4096: decrypt: iterations=146: usec-total=5,082,837: usec/iter=34,814: score=1941
 openssl: rsa-4096: decrypt/encrypt-ratio=72
-openssl: rsa-4096: encrypt-rekey: iterations=10,074: usec-total=5,001,653: usec/iter=496: score=27
-openssl: rsa-4096: decrypt-rekey: iterations=146: usec-total=5,072,275: usec/iter=34,742: score=1937
-openssl: rsa-4096: decrypt-rekey/encrypt-rekey-ratio=69
-openssl: rsa-4096: sign: iterations=147: usec-total=5,097,992: usec/iter=34,680: score=1933
-openssl: rsa-4096: verify: iterations=10,762: usec-total=5,000,795: usec/iter=465: score=25
+openssl: rsa-4096: encrypt-rekey: iterations=10,058: usec-total=5,000,876: usec/iter=497: score=27
+openssl: rsa-4096: decrypt-rekey: iterations=146: usec-total=5,090,721: usec/iter=34,868: score=1944
+openssl: rsa-4096: decrypt-rekey/encrypt-rekey-ratio=70
+openssl: rsa-4096: sign: iterations=146: usec-total=5,084,014: usec/iter=34,822: score=1942
+openssl: rsa-4096: verify: iterations=10,757: usec-total=5,000,926: usec/iter=465: score=25
 openssl: rsa-4096: sign/verify-ratio=74
-openssl: rsa-4096: sign-rekey: iterations=145: usec-total=5,037,389: usec/iter=34,741: score=1937
-openssl: rsa-4096: verify-rekey: iterations=10,309: usec-total=5,001,050: usec/iter=485: score=27
-openssl: rsa-4096: sign-rekey/verify-rekey-ratio=71
-openssl: rsa-4096: load-public: iterations=11,485: usec-total=5,000,933: usec/iter=435: score=24
-openssl: rsa-4096: load-private: iterations=11,071: usec-total=5,001,040: usec/iter=452: score=25
+openssl: rsa-4096: sign-rekey: iterations=144: usec-total=5,023,320: usec/iter=34,884: score=1945
+openssl: rsa-4096: verify-rekey: iterations=10,324: usec-total=5,000,725: usec/iter=484: score=27
+openssl: rsa-4096: sign-rekey/verify-rekey-ratio=72
+openssl: rsa-4096: load-public: iterations=11,500: usec-total=5,000,849: usec/iter=435: score=24
+openssl: rsa-4096: load-private: iterations=11,078: usec-total=5,000,774: usec/iter=451: score=25
 
 mbedtls: rsa-2048: auto-test-passed
-mbedtls: rsa-2048: encrypt: iterations=24,305: usec-total=5,000,192: usec/iter=206: score=11.5
-mbedtls: rsa-2048: decrypt: iterations=304: usec-total=5,028,589: usec/iter=16,541: score=922
-mbedtls: rsa-2048: decrypt/encrypt-ratio=80
-mbedtls: rsa-2048: encrypt-rekey: iterations=24,309: usec-total=5,000,136: usec/iter=206: score=11.5
-mbedtls: rsa-2048: decrypt-rekey: iterations=304: usec-total=5,037,005: usec/iter=16,569: score=923
-mbedtls: rsa-2048: decrypt-rekey/encrypt-rekey-ratio=80
-mbedtls: rsa-2048: sign: iterations=305: usec-total=5,032,357: usec/iter=16,500: score=920
-mbedtls: rsa-2048: verify: iterations=24,726: usec-total=5,000,170: usec/iter=202: score=11.3
+mbedtls: rsa-2048: encrypt: iterations=24,347: usec-total=5,000,423: usec/iter=205: score=11.5
+mbedtls: rsa-2048: decrypt: iterations=307: usec-total=5,029,648: usec/iter=16,383: score=913
+mbedtls: rsa-2048: decrypt/encrypt-ratio=79
+mbedtls: rsa-2048: encrypt-rekey: iterations=24,347: usec-total=5,000,488: usec/iter=205: score=11.5
+mbedtls: rsa-2048: decrypt-rekey: iterations=307: usec-total=5,029,358: usec/iter=16,382: score=913
+mbedtls: rsa-2048: decrypt-rekey/encrypt-rekey-ratio=79
+mbedtls: rsa-2048: sign: iterations=306: usec-total=5,030,508: usec/iter=16,440: score=916
+mbedtls: rsa-2048: verify: iterations=24,680: usec-total=5,000,420: usec/iter=203: score=11.3
 mbedtls: rsa-2048: sign/verify-ratio=81
-mbedtls: rsa-2048: sign-rekey: iterations=304: usec-total=5,013,372: usec/iter=16,491: score=919
-mbedtls: rsa-2048: verify-rekey: iterations=24,738: usec-total=5,000,221: usec/iter=202: score=11.3
-mbedtls: rsa-2048: sign-rekey/verify-rekey-ratio=81
-mbedtls: rsa-2048: load-public: iterations=2,615,276: usec-total=5,000,000: usec/iter=2: score=0.11
-mbedtls: rsa-2048: load-private: iterations=51,009: usec-total=5,000,038: usec/iter=98: score=5.5
+mbedtls: rsa-2048: sign-rekey: iterations=306: usec-total=5,028,749: usec/iter=16,434: score=916
+mbedtls: rsa-2048: verify-rekey: iterations=24,602: usec-total=5,000,334: usec/iter=203: score=11.3
+mbedtls: rsa-2048: sign-rekey/verify-rekey-ratio=80
+mbedtls: rsa-2048: load-public: iterations=2,513,586: usec-total=4,994,971: usec/iter=2.0: score=0.11
+mbedtls: rsa-2048: load-private: iterations=51,086: usec-total=5,000,074: usec/iter=98: score=5.5
 mbedtls: rsa-4096: auto-test-passed
-mbedtls: rsa-4096: encrypt: iterations=6,759: usec-total=5,001,860: usec/iter=740: score=41
-mbedtls: rsa-4096: decrypt: iterations=70: usec-total=5,117,424: usec/iter=73,106: score=4076
+mbedtls: rsa-4096: encrypt: iterations=6,775: usec-total=5,001,614: usec/iter=738: score=41
+mbedtls: rsa-4096: decrypt: iterations=71: usec-total=5,172,309: usec/iter=72,849: score=4063
 mbedtls: rsa-4096: decrypt/encrypt-ratio=98
-mbedtls: rsa-4096: encrypt-rekey: iterations=6,747: usec-total=5,000,924: usec/iter=741: score=41
-mbedtls: rsa-4096: decrypt-rekey: iterations=70: usec-total=5,121,951: usec/iter=73,171: score=4080
+mbedtls: rsa-4096: encrypt-rekey: iterations=6,775: usec-total=5,001,122: usec/iter=738: score=41
+mbedtls: rsa-4096: decrypt-rekey: iterations=71: usec-total=5,171,203: usec/iter=72,834: score=4062
 mbedtls: rsa-4096: decrypt-rekey/encrypt-rekey-ratio=98
-mbedtls: rsa-4096: sign: iterations=70: usec-total=5,115,891: usec/iter=73,084: score=4075
-mbedtls: rsa-4096: verify: iterations=6,801: usec-total=5,001,376: usec/iter=735: score=41
+mbedtls: rsa-4096: sign: iterations=71: usec-total=5,172,382: usec/iter=72,850: score=4063
+mbedtls: rsa-4096: verify: iterations=6,817: usec-total=5,001,231: usec/iter=734: score=40
 mbedtls: rsa-4096: sign/verify-ratio=99
-mbedtls: rsa-4096: sign-rekey: iterations=70: usec-total=5,116,583: usec/iter=73,094: score=4075
-mbedtls: rsa-4096: verify-rekey: iterations=6,800: usec-total=5,001,188: usec/iter=735: score=41
+mbedtls: rsa-4096: sign-rekey: iterations=71: usec-total=5,170,554: usec/iter=72,825: score=4062
+mbedtls: rsa-4096: verify-rekey: iterations=6,818: usec-total=5,001,731: usec/iter=734: score=40
 mbedtls: rsa-4096: sign-rekey/verify-rekey-ratio=99
-mbedtls: rsa-4096: load-public: iterations=2,338,336: usec-total=5,008,879: usec/iter=2: score=0.12
-mbedtls: rsa-4096: load-private: iterations=20,885: usec-total=5,000,597: usec/iter=239: score=13.4
+mbedtls: rsa-4096: load-public: iterations=2,456,530: usec-total=4,995,074: usec/iter=2.0: score=0.11
+mbedtls: rsa-4096: load-private: iterations=18,842: usec-total=5,000,488: usec/iter=265: score=14.8
 
 gnutls: rsa-2048: auto-test-passed
-gnutls: rsa-2048: encrypt: iterations=39,261: usec-total=5,000,185: usec/iter=127: score=7.1
-gnutls: rsa-2048: decrypt: iterations=755: usec-total=5,008,930: usec/iter=6,634: score=369
-gnutls: rsa-2048: decrypt/encrypt-ratio=52
-gnutls: rsa-2048: encrypt-rekey: iterations=39,255: usec-total=5,000,211: usec/iter=127: score=7.1
-gnutls: rsa-2048: decrypt-rekey: iterations=755: usec-total=5,009,222: usec/iter=6,635: score=369
-gnutls: rsa-2048: decrypt-rekey/encrypt-rekey-ratio=52
-gnutls: rsa-2048: sign: iterations=756: usec-total=5,010,312: usec/iter=6,627: score=369
-gnutls: rsa-2048: verify: iterations=38,096: usec-total=5,000,222: usec/iter=131: score=7.3
+gnutls: rsa-2048: encrypt: iterations=39,148: usec-total=5,000,185: usec/iter=128: score=7.1
+gnutls: rsa-2048: decrypt: iterations=756: usec-total=5,013,785: usec/iter=6,632: score=369
+gnutls: rsa-2048: decrypt/encrypt-ratio=51
+gnutls: rsa-2048: encrypt-rekey: iterations=39,155: usec-total=5,000,252: usec/iter=128: score=7.1
+gnutls: rsa-2048: decrypt-rekey: iterations=755: usec-total=5,007,598: usec/iter=6,633: score=369
+gnutls: rsa-2048: decrypt-rekey/encrypt-rekey-ratio=51
+gnutls: rsa-2048: sign: iterations=757: usec-total=5,016,350: usec/iter=6,627: score=369
+gnutls: rsa-2048: verify: iterations=37,964: usec-total=5,000,269: usec/iter=132: score=7.3
 gnutls: rsa-2048: sign/verify-ratio=50
-gnutls: rsa-2048: sign-rekey: iterations=756: usec-total=5,010,495: usec/iter=6,628: score=369
-gnutls: rsa-2048: verify-rekey: iterations=38,100: usec-total=5,000,237: usec/iter=131: score=7.3
+gnutls: rsa-2048: sign-rekey: iterations=755: usec-total=5,003,044: usec/iter=6,627: score=369
+gnutls: rsa-2048: verify-rekey: iterations=37,971: usec-total=5,000,203: usec/iter=132: score=7.3
 gnutls: rsa-2048: sign-rekey/verify-rekey-ratio=50
-gnutls: rsa-2048: load-public: iterations=517,802: usec-total=5,000,037: usec/iter=10: score=0.54
-gnutls: rsa-2048: load-private: iterations=57,475: usec-total=5,000,107: usec/iter=87: score=4.9
+gnutls: rsa-2048: load-public: iterations=502,802: usec-total=4,999,072: usec/iter=9.9: score=0.55
+gnutls: rsa-2048: load-private: iterations=57,265: usec-total=5,000,059: usec/iter=87: score=4.9
 gnutls: rsa-4096: auto-test-passed
-gnutls: rsa-4096: encrypt: iterations=12,857: usec-total=5,001,026: usec/iter=389: score=21
-gnutls: rsa-4096: decrypt: iterations=103: usec-total=5,104,203: usec/iter=49,555: score=2763
-gnutls: rsa-4096: decrypt/encrypt-ratio=127
-gnutls: rsa-4096: encrypt-rekey: iterations=12,858: usec-total=5,000,869: usec/iter=389: score=21
-gnutls: rsa-4096: decrypt-rekey: iterations=103: usec-total=5,104,192: usec/iter=49,555: score=2763
-gnutls: rsa-4096: decrypt-rekey/encrypt-rekey-ratio=127
-gnutls: rsa-4096: sign: iterations=103: usec-total=5,102,710: usec/iter=49,541: score=2762
-gnutls: rsa-4096: verify: iterations=12,604: usec-total=5,000,699: usec/iter=397: score=22
+gnutls: rsa-4096: encrypt: iterations=12,703: usec-total=5,000,538: usec/iter=394: score=21
+gnutls: rsa-4096: decrypt: iterations=103: usec-total=5,100,643: usec/iter=49,521: score=2762
+gnutls: rsa-4096: decrypt/encrypt-ratio=125
+gnutls: rsa-4096: encrypt-rekey: iterations=12,749: usec-total=5,000,789: usec/iter=392: score=21
+gnutls: rsa-4096: decrypt-rekey: iterations=103: usec-total=5,100,633: usec/iter=49,521: score=2762
+gnutls: rsa-4096: decrypt-rekey/encrypt-rekey-ratio=126
+gnutls: rsa-4096: sign: iterations=103: usec-total=5,098,047: usec/iter=49,496: score=2760
+gnutls: rsa-4096: verify: iterations=12,530: usec-total=5,000,536: usec/iter=399: score=22
 gnutls: rsa-4096: sign/verify-ratio=124
-gnutls: rsa-4096: sign-rekey: iterations=103: usec-total=5,103,394: usec/iter=49,548: score=2762
-gnutls: rsa-4096: verify-rekey: iterations=12,589: usec-total=5,000,811: usec/iter=397: score=22
+gnutls: rsa-4096: sign-rekey: iterations=103: usec-total=5,098,066: usec/iter=49,496: score=2760
+gnutls: rsa-4096: verify-rekey: iterations=12,532: usec-total=5,001,054: usec/iter=399: score=22
 gnutls: rsa-4096: sign-rekey/verify-rekey-ratio=124
-gnutls: rsa-4096: load-public: iterations=420,492: usec-total=5,002,851: usec/iter=12: score=0.66
-gnutls: rsa-4096: load-private: iterations=30,537: usec-total=5,000,298: usec/iter=164: score=9.1
+gnutls: rsa-4096: load-public: iterations=411,481: usec-total=5,001,832: usec/iter=12: score=0.68
+gnutls: rsa-4096: load-private: iterations=30,422: usec-total=5,000,238: usec/iter=164: score=9.2
 
 tomcrypt: rsa-2048: auto-test-passed
-tomcrypt: rsa-2048: encrypt: iterations=16,895: usec-total=5,000,619: usec/iter=296: score=16.5
-tomcrypt: rsa-2048: decrypt: iterations=653: usec-total=5,006,861: usec/iter=7,667: score=427
+tomcrypt: rsa-2048: encrypt: iterations=16,912: usec-total=5,000,580: usec/iter=296: score=16.5
+tomcrypt: rsa-2048: decrypt: iterations=651: usec-total=5,004,197: usec/iter=7,687: score=428
 tomcrypt: rsa-2048: decrypt/encrypt-ratio=25
-tomcrypt: rsa-2048: encrypt-rekey: iterations=16,944: usec-total=5,000,714: usec/iter=295: score=16.5
-tomcrypt: rsa-2048: decrypt-rekey: iterations=653: usec-total=5,006,493: usec/iter=7,667: score=427
-tomcrypt: rsa-2048: decrypt-rekey/encrypt-rekey-ratio=25
-tomcrypt: rsa-2048: sign: iterations=654: usec-total=5,013,194: usec/iter=7,665: score=427
-tomcrypt: rsa-2048: verify: iterations=17,099: usec-total=5,000,600: usec/iter=292: score=16.3
+tomcrypt: rsa-2048: encrypt-rekey: iterations=16,934: usec-total=5,000,571: usec/iter=295: score=16.5
+tomcrypt: rsa-2048: decrypt-rekey: iterations=652: usec-total=5,011,818: usec/iter=7,687: score=428
+tomcrypt: rsa-2048: decrypt-rekey/encrypt-rekey-ratio=26
+tomcrypt: rsa-2048: sign: iterations=651: usec-total=5,031,480: usec/iter=7,729: score=431
+tomcrypt: rsa-2048: verify: iterations=16,994: usec-total=5,000,583: usec/iter=294: score=16.4
 tomcrypt: rsa-2048: sign/verify-ratio=26
-tomcrypt: rsa-2048: sign-rekey: iterations=653: usec-total=5,005,161: usec/iter=7,665: score=427
-tomcrypt: rsa-2048: verify-rekey: iterations=17,074: usec-total=5,000,539: usec/iter=293: score=16.3
+tomcrypt: rsa-2048: sign-rekey: iterations=647: usec-total=5,007,524: usec/iter=7,740: score=431
+tomcrypt: rsa-2048: verify-rekey: iterations=16,983: usec-total=5,000,681: usec/iter=294: score=16.4
 tomcrypt: rsa-2048: sign-rekey/verify-rekey-ratio=26
-tomcrypt: rsa-2048: load-public: iterations=172,253: usec-total=5,000,066: usec/iter=29: score=1.6
-tomcrypt: rsa-2048: load-private: iterations=74,344: usec-total=5,000,151: usec/iter=67: score=3.8
+tomcrypt: rsa-2048: load-public: iterations=172,546: usec-total=4,999,707: usec/iter=29: score=1.6
+tomcrypt: rsa-2048: load-private: iterations=74,474: usec-total=4,999,991: usec/iter=67: score=3.7
 tomcrypt: rsa-4096: auto-test-passed
-tomcrypt: rsa-4096: encrypt: iterations=4,932: usec-total=5,002,152: usec/iter=1,014: score=56
-tomcrypt: rsa-4096: decrypt: iterations=112: usec-total=5,088,665: usec/iter=45,435: score=2533
+tomcrypt: rsa-4096: encrypt: iterations=4,928: usec-total=5,002,382: usec/iter=1,015: score=56
+tomcrypt: rsa-4096: decrypt: iterations=113: usec-total=5,106,082: usec/iter=45,187: score=2520
 tomcrypt: rsa-4096: decrypt/encrypt-ratio=44
-tomcrypt: rsa-4096: encrypt-rekey: iterations=4,938: usec-total=5,001,984: usec/iter=1,013: score=56
-tomcrypt: rsa-4096: decrypt-rekey: iterations=112: usec-total=5,085,755: usec/iter=45,409: score=2532
+tomcrypt: rsa-4096: encrypt-rekey: iterations=4,927: usec-total=5,002,645: usec/iter=1,015: score=56
+tomcrypt: rsa-4096: decrypt-rekey: iterations=113: usec-total=5,105,093: usec/iter=45,178: score=2519
 tomcrypt: rsa-4096: decrypt-rekey/encrypt-rekey-ratio=44
-tomcrypt: rsa-4096: sign: iterations=112: usec-total=5,082,010: usec/iter=45,375: score=2530
-tomcrypt: rsa-4096: verify: iterations=4,969: usec-total=5,001,982: usec/iter=1,007: score=56
-tomcrypt: rsa-4096: sign/verify-ratio=45
-tomcrypt: rsa-4096: sign-rekey: iterations=112: usec-total=5,084,097: usec/iter=45,394: score=2531
-tomcrypt: rsa-4096: verify-rekey: iterations=4,966: usec-total=5,001,310: usec/iter=1,007: score=56
-tomcrypt: rsa-4096: sign-rekey/verify-rekey-ratio=45
-tomcrypt: rsa-4096: load-public: iterations=67,216: usec-total=5,002,135: usec/iter=74: score=4.1
-tomcrypt: rsa-4096: load-private: iterations=26,040: usec-total=5,000,740: usec/iter=192: score=10.7
+tomcrypt: rsa-4096: sign: iterations=113: usec-total=5,104,158: usec/iter=45,170: score=2519
+tomcrypt: rsa-4096: verify: iterations=4,954: usec-total=5,002,212: usec/iter=1,010: score=56
+tomcrypt: rsa-4096: sign/verify-ratio=44
+tomcrypt: rsa-4096: sign-rekey: iterations=113: usec-total=5,104,797: usec/iter=45,175: score=2519
+tomcrypt: rsa-4096: verify-rekey: iterations=4,951: usec-total=5,001,990: usec/iter=1,010: score=56
+tomcrypt: rsa-4096: sign-rekey/verify-rekey-ratio=44
+tomcrypt: rsa-4096: load-public: iterations=67,250: usec-total=5,000,053: usec/iter=74: score=4.1
+tomcrypt: rsa-4096: load-private: iterations=26,058: usec-total=5,000,162: usec/iter=192: score=10.7
 
 tomcrypt-gmp: rsa-2048: auto-test-passed
-tomcrypt-gmp: rsa-2048: encrypt: iterations=35,987: usec-total=5,000,225: usec/iter=139: score=7.7
-tomcrypt-gmp: rsa-2048: decrypt: iterations=1,153: usec-total=5,007,289: usec/iter=4,343: score=242
+tomcrypt-gmp: rsa-2048: encrypt: iterations=35,999: usec-total=5,000,152: usec/iter=139: score=7.7
+tomcrypt-gmp: rsa-2048: decrypt: iterations=1,152: usec-total=5,008,591: usec/iter=4,348: score=242
 tomcrypt-gmp: rsa-2048: decrypt/encrypt-ratio=31
-tomcrypt-gmp: rsa-2048: encrypt-rekey: iterations=36,003: usec-total=5,000,268: usec/iter=139: score=7.7
-tomcrypt-gmp: rsa-2048: decrypt-rekey: iterations=1,153: usec-total=5,009,109: usec/iter=4,344: score=242
+tomcrypt-gmp: rsa-2048: encrypt-rekey: iterations=36,000: usec-total=5,000,207: usec/iter=139: score=7.7
+tomcrypt-gmp: rsa-2048: decrypt-rekey: iterations=1,150: usec-total=5,000,653: usec/iter=4,348: score=242
 tomcrypt-gmp: rsa-2048: decrypt-rekey/encrypt-rekey-ratio=31
-tomcrypt-gmp: rsa-2048: sign: iterations=1,154: usec-total=5,009,403: usec/iter=4,341: score=242
-tomcrypt-gmp: rsa-2048: verify: iterations=36,857: usec-total=5,000,071: usec/iter=136: score=7.6
-tomcrypt-gmp: rsa-2048: sign/verify-ratio=31
-tomcrypt-gmp: rsa-2048: sign-rekey: iterations=1,154: usec-total=5,006,944: usec/iter=4,339: score=241
-tomcrypt-gmp: rsa-2048: verify-rekey: iterations=36,873: usec-total=5,000,552: usec/iter=136: score=7.6
-tomcrypt-gmp: rsa-2048: sign-rekey/verify-rekey-ratio=31
-tomcrypt-gmp: rsa-2048: load-public: iterations=375,470: usec-total=5,000,236: usec/iter=13: score=0.74
-tomcrypt-gmp: rsa-2048: load-private: iterations=441,610: usec-total=5,000,034: usec/iter=11: score=0.63
+tomcrypt-gmp: rsa-2048: sign: iterations=1,152: usec-total=5,005,229: usec/iter=4,345: score=242
+tomcrypt-gmp: rsa-2048: verify: iterations=36,885: usec-total=5,000,226: usec/iter=136: score=7.6
+tomcrypt-gmp: rsa-2048: sign/verify-ratio=32
+tomcrypt-gmp: rsa-2048: sign-rekey: iterations=1,151: usec-total=5,000,861: usec/iter=4,345: score=242
+tomcrypt-gmp: rsa-2048: verify-rekey: iterations=36,902: usec-total=5,000,256: usec/iter=136: score=7.6
+tomcrypt-gmp: rsa-2048: sign-rekey/verify-rekey-ratio=32
+tomcrypt-gmp: rsa-2048: load-public: iterations=372,395: usec-total=4,999,516: usec/iter=13: score=0.75
+tomcrypt-gmp: rsa-2048: load-private: iterations=442,182: usec-total=4,999,136: usec/iter=11: score=0.63
 tomcrypt-gmp: rsa-4096: auto-test-passed
-tomcrypt-gmp: rsa-4096: encrypt: iterations=12,176: usec-total=5,000,944: usec/iter=411: score=22
-tomcrypt-gmp: rsa-4096: decrypt: iterations=171: usec-total=5,052,957: usec/iter=29,549: score=1647
+tomcrypt-gmp: rsa-4096: encrypt: iterations=12,118: usec-total=5,000,777: usec/iter=413: score=23
+tomcrypt-gmp: rsa-4096: decrypt: iterations=171: usec-total=5,047,512: usec/iter=29,518: score=1646
 tomcrypt-gmp: rsa-4096: decrypt/encrypt-ratio=71
-tomcrypt-gmp: rsa-4096: encrypt-rekey: iterations=12,175: usec-total=5,001,283: usec/iter=411: score=22
-tomcrypt-gmp: rsa-4096: decrypt-rekey: iterations=171: usec-total=5,053,866: usec/iter=29,555: score=1648
+tomcrypt-gmp: rsa-4096: encrypt-rekey: iterations=12,120: usec-total=5,000,971: usec/iter=413: score=23
+tomcrypt-gmp: rsa-4096: decrypt-rekey: iterations=171: usec-total=5,047,393: usec/iter=29,517: score=1646
 tomcrypt-gmp: rsa-4096: decrypt-rekey/encrypt-rekey-ratio=71
-tomcrypt-gmp: rsa-4096: sign: iterations=172: usec-total=5,080,790: usec/iter=29,539: score=1647
-tomcrypt-gmp: rsa-4096: verify: iterations=12,326: usec-total=5,000,512: usec/iter=406: score=22
+tomcrypt-gmp: rsa-4096: sign: iterations=171: usec-total=5,044,508: usec/iter=29,500: score=1645
+tomcrypt-gmp: rsa-4096: verify: iterations=12,285: usec-total=5,000,793: usec/iter=407: score=22
 tomcrypt-gmp: rsa-4096: sign/verify-ratio=72
-tomcrypt-gmp: rsa-4096: sign-rekey: iterations=171: usec-total=5,053,491: usec/iter=29,553: score=1647
-tomcrypt-gmp: rsa-4096: verify-rekey: iterations=12,333: usec-total=5,001,105: usec/iter=406: score=22
+tomcrypt-gmp: rsa-4096: sign-rekey: iterations=171: usec-total=5,045,699: usec/iter=29,507: score=1645
+tomcrypt-gmp: rsa-4096: verify-rekey: iterations=12,289: usec-total=5,000,632: usec/iter=407: score=22
 tomcrypt-gmp: rsa-4096: sign-rekey/verify-rekey-ratio=72
-tomcrypt-gmp: rsa-4096: load-public: iterations=208,211: usec-total=5,000,551: usec/iter=24: score=1.3
-tomcrypt-gmp: rsa-4096: load-private: iterations=279,358: usec-total=5,000,051: usec/iter=18: score=1.00
+tomcrypt-gmp: rsa-4096: load-public: iterations=207,318: usec-total=4,999,788: usec/iter=24: score=1.3
+tomcrypt-gmp: rsa-4096: load-private: iterations=278,430: usec-total=4,999,478: usec/iter=18: score=1.0
 
 openssl: aes: auto-test-passed
-openssl: aes-128: encrypt=1,000,000: iterations=254: usec-total=5,041,466: usec/iter=19,848: score=1106
-openssl: aes-128: decrypt=1,000,000: iterations=354: usec-total=5,024,056: usec/iter=14,192: score=791
+openssl: aes-128: encrypt=1,000,000: iterations=255: usec-total=5,039,306: usec/iter=19,762: score=1102
+openssl: aes-128: decrypt=1,000,000: iterations=355: usec-total=5,024,016: usec/iter=14,152: score=789
 openssl: aes-128: encrypt/decrypt-ratio=1.4
 openssl: aes: auto-test-passed
-openssl: aes-256: encrypt=1,000,000: iterations=182: usec-total=5,057,933: usec/iter=27,791: score=1549
-openssl: aes-256: decrypt=1,000,000: iterations=252: usec-total=5,034,102: usec/iter=19,977: score=1113
+openssl: aes-256: encrypt=1,000,000: iterations=182: usec-total=5,042,450: usec/iter=27,706: score=1545
+openssl: aes-256: decrypt=1,000,000: iterations=252: usec-total=5,033,838: usec/iter=19,976: score=1114
 openssl: aes-256: encrypt/decrypt-ratio=1.4
 
 mbedtls: aes: auto-test-passed
-mbedtls: aes-128: encrypt=1,000,000: iterations=460: usec-total=5,009,646: usec/iter=10,891: score=607
-mbedtls: aes-128: decrypt=1,000,000: iterations=432: usec-total=5,022,122: usec/iter=11,625: score=648
-mbedtls: aes-128: encrypt/decrypt-ratio=0.94
+mbedtls: aes-128: encrypt=1,000,000: iterations=460: usec-total=5,018,391: usec/iter=10,910: score=608
+mbedtls: aes-128: decrypt=1,000,000: iterations=455: usec-total=5,019,742: usec/iter=11,032: score=615
+mbedtls: aes-128: encrypt/decrypt-ratio=0.99
 mbedtls: aes: auto-test-passed
-mbedtls: aes-256: encrypt=1,000,000: iterations=367: usec-total=5,029,385: usec/iter=13,704: score=764
-mbedtls: aes-256: decrypt=1,000,000: iterations=342: usec-total=5,022,497: usec/iter=14,686: score=818
-mbedtls: aes-256: encrypt/decrypt-ratio=0.93
+mbedtls: aes-256: encrypt=1,000,000: iterations=366: usec-total=5,015,618: usec/iter=13,704: score=764
+mbedtls: aes-256: decrypt=1,000,000: iterations=361: usec-total=5,035,324: usec/iter=13,948: score=778
+mbedtls: aes-256: encrypt/decrypt-ratio=0.98
 
 gnutls: aes: auto-test-passed
-gnutls: aes-128: encrypt=1,000,000: iterations=392: usec-total=5,023,460: usec/iter=12,815: score=714
-gnutls: aes-128: decrypt=1,000,000: iterations=427: usec-total=5,020,980: usec/iter=11,759: score=655
+gnutls: aes-128: encrypt=1,000,000: iterations=397: usec-total=5,024,607: usec/iter=12,656: score=705
+gnutls: aes-128: decrypt=1,000,000: iterations=430: usec-total=5,025,271: usec/iter=11,687: score=651
 gnutls: aes-128: encrypt/decrypt-ratio=1.1
 gnutls: aes: auto-test-passed
-gnutls: aes-256: encrypt=1,000,000: iterations=299: usec-total=5,038,921: usec/iter=16,853: score=939
-gnutls: aes-256: decrypt=1,000,000: iterations=315: usec-total=5,033,098: usec/iter=15,978: score=890
+gnutls: aes-256: encrypt=1,000,000: iterations=298: usec-total=5,033,965: usec/iter=16,893: score=942
+gnutls: aes-256: decrypt=1,000,000: iterations=317: usec-total=5,033,268: usec/iter=15,878: score=885
 gnutls: aes-256: encrypt/decrypt-ratio=1.1
 
 nettle: aes: auto-test-passed
-nettle: aes-128: encrypt=1,000,000: iterations=397: usec-total=5,026,982: usec/iter=12,662: score=706
-nettle: aes-128: decrypt=1,000,000: iterations=427: usec-total=5,030,112: usec/iter=11,780: score=656
+nettle: aes-128: encrypt=1,000,000: iterations=397: usec-total=5,017,370: usec/iter=12,638: score=704
+nettle: aes-128: decrypt=1,000,000: iterations=430: usec-total=5,023,672: usec/iter=11,683: score=651
 nettle: aes-128: encrypt/decrypt-ratio=1.1
 nettle: aes: auto-test-passed
-nettle: aes-256: encrypt=1,000,000: iterations=299: usec-total=5,035,292: usec/iter=16,840: score=939
-nettle: aes-256: decrypt=1,000,000: iterations=315: usec-total=5,038,970: usec/iter=15,997: score=892
+nettle: aes-256: encrypt=1,000,000: iterations=299: usec-total=5,030,727: usec/iter=16,825: score=938
+nettle: aes-256: decrypt=1,000,000: iterations=317: usec-total=5,035,134: usec/iter=15,884: score=885
 nettle: aes-256: encrypt/decrypt-ratio=1.1
 
 tomcrypt: aes: auto-test-passed
-tomcrypt: aes-128: encrypt=1,000,000: iterations=412: usec-total=5,024,849: usec/iter=12,196: score=680
-tomcrypt: aes-128: decrypt=1,000,000: iterations=389: usec-total=5,018,315: usec/iter=12,901: score=719
-tomcrypt: aes-128: encrypt/decrypt-ratio=0.95
+tomcrypt: aes-128: encrypt=1,000,000: iterations=415: usec-total=5,019,451: usec/iter=12,095: score=674
+tomcrypt: aes-128: decrypt=1,000,000: iterations=390: usec-total=5,022,545: usec/iter=12,878: score=718
+tomcrypt: aes-128: encrypt/decrypt-ratio=0.94
 tomcrypt: aes: auto-test-passed
-tomcrypt: aes-256: encrypt=1,000,000: iterations=317: usec-total=5,032,369: usec/iter=15,875: score=885
-tomcrypt: aes-256: decrypt=1,000,000: iterations=302: usec-total=5,032,847: usec/iter=16,665: score=929
+tomcrypt: aes-256: encrypt=1,000,000: iterations=319: usec-total=5,026,722: usec/iter=15,758: score=878
+tomcrypt: aes-256: decrypt=1,000,000: iterations=302: usec-total=5,027,487: usec/iter=16,647: score=928
 tomcrypt: aes-256: encrypt/decrypt-ratio=0.95
 
-math: mod-2048: add: iterations=5,903,386: usec-total=5,000,013: usec/iter=1: score=0.047
-math: mod-2048: mul: iterations=315,095: usec-total=5,000,038: usec/iter=16: score=0.88
-math: mod-2048: mul-montgomery: iterations=617,835: usec-total=5,000,020: usec/iter=8: score=0.45
-math: mod-2048: mul-reciprocal: iterations=341,308: usec-total=5,000,040: usec/iter=15: score=0.82
-math: mod-2048: div-reciprocal: iterations=48,509,433: usec-total=5,000,006: usec/iter=0: score=0.006
-math: mod-2048: sqr: iterations=337,577: usec-total=5,000,042: usec/iter=15: score=0.83
-math: mod-2048: inv: iterations=7,335: usec-total=5,001,034: usec/iter=682: score=38
-math: mod-2048: sqrt: iterations=176: usec-total=5,059,503: usec/iter=28,747: score=1603
-math: mod-2048: exp-public: iterations=32,836: usec-total=5,000,269: usec/iter=152: score=8.5
-math: mod-2048: exp-public-montgomery: iterations=38,820: usec-total=5,000,289: usec/iter=129: score=7.2
-math: mod-2048: exp-public-montgomery-word: iterations=47,960: usec-total=5,000,252: usec/iter=104: score=5.8
-math: mod-2048: exp-public-reciprocal: iterations=20,378: usec-total=5,000,468: usec/iter=245: score=13.7
-math: mod-2048: exp-public-simple: iterations=19,687: usec-total=5,000,521: usec/iter=254: score=14.2
-math: mod-2048: exp-private: iterations=327: usec-total=5,031,136: usec/iter=15,386: score=857
-math: mod-2048: exp-private-montgomery: iterations=327: usec-total=5,022,599: usec/iter=15,360: score=856
-math: mod-2048: exp-private-montgomery-word: iterations=369: usec-total=5,028,365: usec/iter=13,627: score=759
-math: mod-2048: exp-private-reciprocal: iterations=157: usec-total=5,080,745: usec/iter=32,361: score=1804
-math: mod-2048: exp-private-simple: iterations=144: usec-total=5,086,253: usec/iter=35,321: score=1969
+math: mod-2048: add: iterations=5,910,569: usec-total=4,988,165: usec/iter=0.84: score=0.047
+math: mod-2048: mul: iterations=306,427: usec-total=4,999,935: usec/iter=16: score=0.91
+math: mod-2048: mul-montgomery: iterations=617,851: usec-total=4,998,787: usec/iter=8.1: score=0.45
+math: mod-2048: mul-reciprocal: iterations=342,118: usec-total=4,999,785: usec/iter=15: score=0.82
+math: mod-2048: div-reciprocal: iterations=48,482,703: usec-total=4,902,755: usec/iter=0.10: score=0.006
+math: mod-2048: sqr: iterations=333,491: usec-total=4,999,360: usec/iter=15: score=0.84
+math: mod-2048: inv: iterations=7,360: usec-total=5,001,558: usec/iter=680: score=37
+math: mod-2048: sqrt: iterations=326: usec-total=5,031,416: usec/iter=15,434: score=860
+math: mod-2048: exp-public: iterations=32,799: usec-total=5,000,133: usec/iter=152: score=8.5
+math: mod-2048: exp-public-montgomery: iterations=38,823: usec-total=5,000,205: usec/iter=129: score=7.2
+math: mod-2048: exp-public-montgomery-word: iterations=47,956: usec-total=5,000,084: usec/iter=104: score=5.8
+math: mod-2048: exp-public-reciprocal: iterations=20,297: usec-total=5,000,548: usec/iter=246: score=13.7
+math: mod-2048: exp-public-simple: iterations=19,086: usec-total=5,000,520: usec/iter=262: score=14.6
+math: mod-2048: exp-private: iterations=327: usec-total=5,035,112: usec/iter=15,398: score=858
+math: mod-2048: exp-private-montgomery: iterations=327: usec-total=5,026,388: usec/iter=15,371: score=857
+math: mod-2048: exp-private-montgomery-word: iterations=369: usec-total=5,023,654: usec/iter=13,614: score=759
+math: mod-2048: exp-private-reciprocal: iterations=156: usec-total=5,056,013: usec/iter=32,410: score=1807
+math: mod-2048: exp-private-simple: iterations=140: usec-total=5,081,472: usec/iter=36,296: score=2024
 

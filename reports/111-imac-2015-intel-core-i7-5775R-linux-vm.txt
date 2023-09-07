@@ -2,7 +2,7 @@ system: arch: x86_64
 system: cpu: Intel(R) Core(TM) i7-5775R CPU @ 3.30GHz  71
 system: cpu-index: i7-5775R
 system: machine: Apple iMac Retina late 2015
-system: system: Linux
+system: os: Linux
 system: distro: Ubuntu 23.04
 system: kernel: 6.2.0-31-generic #31-Ubuntu SMP PREEMPT_DYNAMIC Mon Aug 14 13:42:26 UTC 2023 x86_64
 system: date: 2023-09-06

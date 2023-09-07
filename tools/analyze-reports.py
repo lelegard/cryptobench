@@ -17,13 +17,23 @@ out_header = """# Comparative benchmarks results
 # Output introduction text.
 out_intro = """## Results overview
 
-The presented numbers are relative execution times (the lower, the better).
+This page compares the performannce of some cryptographic libraries
+on some processors.
 
-The values have no unit and their absolute value is meaningless. They are
-relative to the performance of the CPU. A standard reference test is run on
-each CPU before running the cryptographic operations. The presented number
-is the ratio of the execution time of the evaluated cryptographic operation
-over the execution time of the standard test.
+Several types of results are presented:
+- Execution time in microseconds. Used to compare processors on the same
+  operation.
+- Relative performance factor (the lower, the better). This the ratio between
+  the execution time of an algorithm and a "reference test" on the same
+  system.
+- Ratio between encryption and decryption (or signature and verification)
+  on the same algorithm.
+
+The relative performance factor values have no unit and their absolute value
+is meaningless. They are relative to the performance of the CPU. A standard
+reference test is run on each CPU before running the cryptographic operations.
+The presented number is the ratio of the execution time of the evaluated
+cryptographic operation over the execution time of the standard test.
 
 Thus, if all CPU's had the same implementation and only differed in speed,
 the score of one operation would be the same on all CPU's.
@@ -33,9 +43,6 @@ A lower relative execution time on a CPU maybe due to several reasons:
 - Dedicated accelerated instructions for that operation (e.g. AES and SHA-x).
 - More efficient compiler (gcc is used on Linux, clang on macOS).
 - More efficient code generation options to produce the binary of the library.
-
-Note: In addition to relative execution times, we also present ratio between
-encryption and decryption or signature and verification.
 
 Due to the level of support of the different operating systems, it was not
 possible to use the same version of each library on all systems. Therefore,
@@ -54,13 +61,34 @@ The tested cryptographic libraries are:
   through C/C++ intrinsics. It is run only on Arm64 processors supporting FEAT_AES.
   Note that some cryptographic libraries also uses such an implementation.
 
+Additional results are provided for elementary operations on large numbers,
+as used in asymmetric cryptography.
+
 In the result tables, Intel/AMD processors come first, them Arm processors.
+"""
+
+# Reference test description.
+out_reference_test = """
+The "reference test" is a set of basic integer operations which are typically used in
+cryptography. There is no floating point operation. This test serves two purposes:
+- The absolute time of the reference test is a comparision between processors.
+- Each cryptographic algorithm is compared to the reference test on the same machine.
+"""
+
+# Description texts.
+out_execution_time = """
+Execution time in microseconds (the lower, the better):
+
+"""
+out_score = """
+Relative performance score (the lower, the better):
+
 """
 
 # Output body text.
 out_body = ''
 
-# Full name of libraries from index in report files, in order of appearance in columns.
+# Full name of cryptographic libraries: table columns.
 lib_names = {
     'openssl': 'OpenSSL',
     'mbedtls': 'MbedTLS',
@@ -71,17 +99,16 @@ lib_names = {
     'arm64': 'Arm64 accel'
 }
 
-# Full names of algorithms from index in report files, in order of level-1 sections.
-algo_names = {
-    'rsa-2048': {'name': 'RSA-2048', "math": False},
-    'rsa-4096': {'name': 'RSA-4096', "math": False},
-    'aes-128':  {'name': 'AES-128-CBC', "math": False},
-    'aes-256':  {'name': 'AES-256-CBC', "math": False},
-    'mod-2048': {'name': '2048-bit modular arithmetic', "math": True}
+# Full names of cryptographic algorithms: level 2 sections
+crypto_algo_names = {
+    'rsa-2048': 'RSA-2048',
+    'rsa-4096': 'RSA-4096',
+    'aes-128': 'AES-128-CBC',
+    'aes-256': 'AES-256-CBC'
 }
 
-# Operation names from index in report files, in order of level-2 sections.
-oper_names = {
+# Full names of cryptographic operations: level 3 sections.
+crypto_oper_names = {
     'encrypt': 'encryption', # RSA + AES
     'decrypt': 'decryption', # RSA + AES
     'decrypt/encrypt-ratio': 'decryption/encryption ratio', # RSA
@@ -99,27 +126,111 @@ oper_names = {
     'load-private': 'parse private key'
 }
 
-# Names of mathematical operations, in horizontal order of the math table.
-math_names = {
-    'add': 'Add',
-    'mul': 'Mult',
-    'mul-montgomery': 'Mult<br/>(Montgomery)',
-    'mul-reciprocal': 'Mult<br/>(reciprocal)',
-    'sqr': 'Square',
-    'div-reciprocal': 'Div<br/>(reciprocal)',
-    'inv': 'Inverse',
-    'sqrt': 'Square<br/>Root',
-    'exp-public': 'Exponent<br/>(public)',
-    'exp-public-montgomery': 'Exponent<br/>(public)<br/>(Montgomery)',
-    'exp-public-montgomery-word': 'Exponent<br/>(public)<br/>(Montgomery)<br/>(word)',
-    'exp-public-reciprocal': 'Exponent<br/>(public)<br/>(reciprocal)',
-    'exp-public-simple': 'Exponent<br/>(public)<br/>(simple)',
-    'exp-private': 'Exponent<br/>(private)',
-    'exp-private-montgomery': 'Exponent<br/>(private)<br/>(Montgomery)',
-    'exp-private-montgomery-word': 'Exponent<br/>(private)<br/>(Montgomery)<br/>(word)',
-    'exp-private-reciprocal': 'Exponent<br/>(private)<br/>(reciprocal)',
-    'exp-private-simple': 'Exponent<br/>(private)<br/>(simple)',
+# Full names of math algorithms: level 2 sections
+math_algo_names = {
+    'mod-2048': '2048-bit modular arithmetic'
 }
+
+# Names of mathematical categories: level 3 sections, and names of operations: table columns.
+math_names = {
+    'basic operations': {
+        'add': 'Add',
+        'mul': 'Mult',
+        'mul-montgomery': 'Mult<br/>(Montgomery)',
+        'mul-reciprocal': 'Mult<br/>(reciprocal)',
+        'sqr': 'Square',
+        'div-reciprocal': 'Div<br/>(reciprocal)',
+        'inv': 'Inverse',
+        'sqrt': 'Square<br/>Root'
+    },
+    'exponentiations': {
+        'exp-public': 'Exponent<br/>(public)',
+        'exp-public-montgomery': 'Exponent<br/>(public)<br/>(Montgomery)',
+        'exp-public-montgomery-word': 'Exponent<br/>(public)<br/>(Montgomery)<br/>(word)',
+        'exp-public-reciprocal': 'Exponent<br/>(public)<br/>(reciprocal)',
+        'exp-public-simple': 'Exponent<br/>(public)<br/>(simple)',
+        'exp-private': 'Exponent<br/>(private)',
+        'exp-private-montgomery': 'Exponent<br/>(private)<br/>(Montgomery)',
+        'exp-private-montgomery-word': 'Exponent<br/>(private)<br/>(Montgomery)<br/>(word)',
+        'exp-private-reciprocal': 'Exponent<br/>(private)<br/>(reciprocal)',
+        'exp-private-simple': 'Exponent<br/>(private)<br/>(simple)'
+    }
+}
+
+#----------------------------------------------------------------------------
+
+# Get/set in nested dictionaries without throwing exceptions.
+# Return None if non existent. Create intermediate levels if necessary.
+
+def get_nested(obj, key_list):
+    for key in key_list:
+        if not type(obj) is dict or key not in obj:
+            return None
+        obj = obj[key]
+    return obj
+
+def set_nested(obj, key_list, value):
+    for key in key_list[:-1]:
+        if key not in obj:
+            obj[key] = {}
+        obj = obj[key]
+    obj[key_list[-1]] = value
+
+#----------------------------------------------------------------------------
+
+# Definition of a line in a report file.
+#
+# Examples:
+#   system: os: Linux
+#   reference: iterations=598: usec-total=5,017,580: usec/iter=8,391
+#   openssl: rsa-2048: verify: iterations=198,637: usec-total=4,999,943: usec/iter=25: score=3.0
+#   openssl: rsa-2048: sign/verify-ratio=38
+#   math: mod-2048: mul: iterations=841,842: usec-total=4,999,525: usec/iter=5.9: score=0.71
+
+class report_line:
+    def __init__(self, text):
+        # Public fields
+        self.system_item = ''
+        self.system_value = ''
+        self.library = ''
+        self.algo = ''
+        self.oper = ''
+        self.ratio = -1.0
+        self.utime = -1.0 # microseconds per operation
+        self.score = -1.0
+        # Analyze the line.
+        fields = [s.strip() for s in text.split(':')] + ['', '', '', '']
+        if fields[0] == 'system':
+            self.system_item = fields[1]
+            self.system_value = text.split(':', 2)[-1].strip()
+        else:
+            self.library = fields[0]
+            if self.library == 'reference':
+                self.algo = 'reference'
+                self.oper = 'reference'
+                start_index = 1
+            else:
+                self.algo = fields[1]
+                f2 = [s.strip() for s in fields[2].split('=',1)]
+                self.oper = f2[0]
+                if self.oper.endswith('-ratio') and len(f2) > 1:
+                    self.ratio = float(f2[1])
+                start_index = 3
+            iterations = 0
+            utotal = 0
+            for pair in [f.split('=') for f in fields[start_index:]]:
+                name = pair[0].strip()
+                value = '' if len(pair) < 2 else pair[1].strip().replace(',', '')
+                if name == 'score':
+                    self.score = float(value)
+                elif name == 'usec/iter':
+                    self.utime = float(value)
+                elif name == 'iterations':
+                    iterations = int(value)
+                elif name == 'usec-total':
+                    utotal = int(value)
+            if iterations > 0:
+                self.utime = utotal / iterations
 
 #----------------------------------------------------------------------------
 
@@ -128,63 +239,27 @@ math_names = {
 #   'name': 'filename',
 #   'cpu': 'cpuname';
 #   'os': 'osname';
-#   'lib': {
-#     'openssl': {
-#       'rsa-2048': {'encrypt': '5.9', 'decrypt': '160', ...},
-#       'rsa-4096': {'encrypt': '17.9', 'decrypt': '1058', ...},
-#       ...
-#      },
-#      ....
-#   },
-#   'math': {
-#     'mod-2048': {'add': '0.037', 'mul': '0.79', ...},
-#   }
+#   library: { algo: { oper: {'score': nn, 'utime': nn, 'ratio': nn}, ...}, ...}, ...
 # }
+
 def read_file(filename):
-    fd = {'name': filename, 'cpu':'', 'os':'', 'lib':{}, 'math':{}}
+    fd = {'name': filename, 'cpu':'', 'os':''}
     with open(filename, 'r') as input:
         for line in input:
-            # Split the input line into a list of tuples (tag, value).
-            # Make sure that there are at least 3 tuples in the line, possibly empty.
-            fields = []
-            for f in line.split(':'):
-                subfields = []
-                for sf in f.split('=', 1):
-                    subfields.append(sf.strip())
-                while len(subfields) < 2:
-                    subfields.append('')
-                fields.append(subfields)
-            while len(fields) < 3:
-                fields.append(('', ''))
-            # Get the tags of the three first fields.
-            lib = fields[0][0]
-            algo = fields[1][0]
-            oper = fields[2][0]
-            # First, process system description.
-            if lib == 'system' and algo == 'cpu' and oper != '' and fd['cpu'] == '':
-                fd['cpu'] = line.split(':', 2)[2].strip()
-            elif lib == 'system' and algo == 'cpu-index' and oper != '':
-                fd['cpu'] = line.split(':', 2)[2].strip()
-            elif lib == 'system' and algo == 'system' and oper != '':
-                fd['os'] = oper
-            elif lib == 'math' and algo in algo_names and algo_names[algo]['math'] and oper in math_names and fields[-1][0] == 'score':
-                # This is a "math:" line.
-                if algo not in fd['math']:
-                    fd['math'][algo] = {}
-                fd['math'][algo][oper] = fields[-1][1]
-            elif lib in lib_names and algo in algo_names and not algo_names[algo]['math'] and oper in oper_names:
-                # Now, this is a standard line "lib: algo: oper: ..."
-                if fields[-1][0] == 'score':
-                    value = fields[-1][1]
-                elif oper.endswith('-ratio'):
-                    value = fields[2][1]
-                else:
-                    value = ''
-                if lib not in fd['lib']:
-                    fd['lib'][lib] = {}
-                if algo not in fd['lib'][lib]:
-                    fd['lib'][lib][algo] = {}
-                fd['lib'][lib][algo][oper] = value
+            rep = report_line(line)
+            if rep.system_item == 'cpu' and rep.system_value != '' and fd['cpu'] == '':
+                fd['cpu'] = rep.system_value
+            elif rep.system_item == 'cpu-index' and rep.system_value != '':
+                fd['cpu'] = rep.system_value
+            elif rep.system_item == 'os' and rep.system_value != '':
+                fd['os'] = rep.system_value
+            else:
+                if rep.ratio >= 0.0:
+                    set_nested(fd, [rep.library, rep.algo, rep.oper, 'ratio'], rep.ratio)
+                if rep.utime >= 0.0:
+                    set_nested(fd, [rep.library, rep.algo, rep.oper, 'utime'], rep.utime)
+                if rep.score >= 0.0:
+                    set_nested(fd, [rep.library, rep.algo, rep.oper, 'score'], rep.score)
     return fd
 
 #----------------------------------------------------------------------------
@@ -192,6 +267,7 @@ def read_file(filename):
 # Definition of a markdown table.
 # The first two columns are 'CPU' and 'OS'.
 # Other columns are named from column_names.
+
 class table:
 
     # Constructor.
@@ -207,6 +283,10 @@ class table:
         self.__markdown = ''
         self.__empty = True
 
+    # Check if the table is empty.
+    def empty(self):
+        return self.__empty
+
     # Add a new line in the table.
     def add_line(self, cpu, os):
         if self.__open:
@@ -214,14 +294,44 @@ class table:
 
     # Add a data cell in the last line.
     # The column is an index into self.column_names.
+    # If value is None, it is ignored.
     def set_data(self, col, value):
-        if self.__open and len(self.__lines) > 2 and col in self.__column_names:
+        if value is not None and self.__open and len(self.__lines) > 2 and col in self.__column_names:
+            if type(value) is not float:
+                value = str(value)
+            elif value < 0.1:
+                value = '%.3f' % value
+            elif value < 1.0:
+                value = '%.2f' % value
+            elif value < 20.0:
+                value = '%.1f' % value
+            else:
+                value = '%d' % value
             self.__lines[-1][2 + list(self.__column_names).index(col)] = value
             self.__empty = False
 
-    # Check if the table is empty.
-    def empty(self):
-        return self.__empty
+    # Fill all data from a list of file data.
+    # One of the 4 lists must have more than one element and will be used as column index.
+    def fill_data(self, filedata, library, algo, oper, index):
+        # print('@@@ lib:%s, algo:%s, oper:%s, index: %s\n\n' % (library, algo, oper, index))
+        col_algo = len(algo) > 1
+        col_oper = len(oper) > 1
+        col_index = len(index) > 1
+        for fd in filedata:
+            self.add_line(fd['cpu'], fd['os'])
+            for l in library:
+                for a in algo:
+                    for o in oper:
+                        for i in index:
+                            value = get_nested(fd, [l, a, o, i])
+                            if col_index:
+                                self.set_data(i, value)
+                            elif col_oper:
+                                self.set_data(o, value)
+                            elif col_algo:
+                                self.set_data(a, value)
+                            else:
+                                self.set_data(l, value)
 
     # Get a markdown printable representation.
     # The table is closed and cannot be modified.
@@ -284,34 +394,52 @@ for filename in sys.argv[1:]:
     filedata.append(read_file(filename))
 
 # Build output body text and table of contents.
-for algo in algo_names:
-    add_section_header(2, algo_names[algo]['name'])
-    if algo_names[algo]['math']:
-        # Build a math layout: each column is an operation.
-        tab = table(math_names)
-        for fd in filedata:
-            if algo in fd['math']:
-                tab.add_line(fd['cpu'], fd['os'])
-                for oper in fd['math'][algo]:
-                    tab.set_data(oper, fd['math'][algo][oper])
-        # Output the table for this algo/operation.
-        if not tab.empty():
+# Start with the reference test.
+tab = table({'reference': 'Reference test'})
+tab.fill_data(filedata, ['reference'], ['reference'], ['reference'], ['utime'])
+add_section_header(2, 'Reference test')
+out_body += out_reference_test
+out_body += out_execution_time
+out_body += tab.to_markdown()
+
+# Then, all cryptographic algorithms.
+for algo in crypto_algo_names:
+    add_section_header(2, crypto_algo_names[algo])
+    for oper in crypto_oper_names:
+        tab_utime = table(lib_names)
+        tab_utime.fill_data(filedata, lib_names, [algo], [oper], ['utime'])
+        tab_score = table(lib_names)
+        tab_score.fill_data(filedata, lib_names, [algo], [oper], ['score'])
+        tab_ratio = table(lib_names)
+        tab_ratio.fill_data(filedata, lib_names, [algo], [oper], ['ratio'])
+        if not tab_utime.empty() or not tab_score.empty() or not tab_ratio.empty():
+            add_section_header(3, crypto_algo_names[algo] + ' ' + crypto_oper_names[oper])
+        if not tab_utime.empty():
+            out_body += out_execution_time
+            out_body += tab_utime.to_markdown()
+        if not tab_score.empty():
+            out_body += out_score
+            out_body += tab_score.to_markdown()
+        if not tab_ratio.empty():
             out_body += '\n'
-            out_body += tab.to_markdown()
-    else:
-        for oper in oper_names:
-            # Build a crypto layout for that algo/oper.
-            tab = table(lib_names)
-            for fd in filedata:
-                tab.add_line(fd['cpu'], fd['os'])
-                for lib in fd['lib']:
-                    if algo in fd['lib'][lib] and oper in fd['lib'][lib][algo]:
-                        tab.set_data(lib, fd['lib'][lib][algo][oper])
-            # Output the table for this algo/operation.
-            if not tab.empty():
-                add_section_header(3, algo_names[algo]['name'] + ' ' + oper_names[oper])
-                out_body += '\n'
-                out_body += tab.to_markdown()
+            out_body += tab_ratio.to_markdown()
+
+# Then, all math operations.
+for algo in math_algo_names:
+    add_section_header(2, math_algo_names[algo])
+    for math_type in math_names:
+        tab_utime = table(math_names[math_type])
+        tab_utime.fill_data(filedata, ['math'], [algo], math_names[math_type], ['utime'])
+        tab_score = table(math_names[math_type])
+        tab_score.fill_data(filedata, ['math'], [algo], math_names[math_type], ['score'])
+        if not tab_utime.empty() or not tab_score.empty():
+            add_section_header(3, math_algo_names[algo] + ' ' + math_type)
+        if not tab_utime.empty():
+            out_body += out_execution_time
+            out_body += tab_utime.to_markdown()
+        if not tab_score.empty():
+            out_body += out_score
+            out_body += tab_score.to_markdown()
 
 # Finally, output the markdown file.
 print(out_header)

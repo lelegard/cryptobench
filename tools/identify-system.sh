@@ -39,6 +39,9 @@ elif [[ -e /proc/cpuinfo ]]; then
     CPU=${CPU:-unknown}
 fi
 
+# Raspberry Pi incorrectly identifies its CPU.
+[[ $CPU == *BCM2835*Raspberry*Pi*4* ]] && CPU=${CPU/BCM2835/BCM2711}
+
 # The item "cpu-index:", if not empty, is a short string to use instead of "cpu:" in
 # summary tables. Useful if the "cpu:" string is too long. Can be manually set in the
 # report file afterward or can be preset in environment variable CRYPTOBENCH_CPU_INDEX.
@@ -51,7 +54,7 @@ echo "system: arch: $ARCH"
 echo "system: cpu: $CPU"
 echo "system: cpu-index: $CRYPTOBENCH_CPU_INDEX"
 echo "system: machine: $CRYPTOBENCH_MACHINE"
-echo "system: system: $SYSTEM"
+echo "system: os: $SYSTEM"
 echo "system: distro: $DISTRO"
 echo "system: kernel: $KERNEL"
 echo "system: date: $(date +%Y-%m-%d)"
