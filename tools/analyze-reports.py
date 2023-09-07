@@ -135,27 +135,27 @@ math_algo_names = {
 math_names = {
     'basic operations': {
         'add': 'Add',
-        'mul': 'Mult',
-        'mul-montgomery': 'Mult<br/>(Montgomery)',
-        'mul-reciprocal': 'Mult<br/>(reciprocal)',
+        'mul': 'Multiply',
+        'mul-montgomery': 'Multiply<br/>(Montgomery)',
+        'mul-reciprocal': 'Multiply<br/>(reciprocal)',
         'sqr': 'Square',
-        'div-reciprocal': 'Div<br/>(reciprocal)',
+        'div-reciprocal': 'Divide<br/>(reciprocal)',
         'inv': 'Inverse',
         'sqrt': 'Square<br/>Root'
     },
     'exponentiations on public (short) exponents': {
-        'exp-public': 'Exponent<br/>(public)',
-        'exp-public-montgomery': 'Exponent<br/>(public)<br/>(Montgomery)',
-        'exp-public-montgomery-word': 'Exponent<br/>(public)<br/>(Montgomery)<br/>(word)',
-        'exp-public-reciprocal': 'Exponent<br/>(public)<br/>(reciprocal)',
-        'exp-public-simple': 'Exponent<br/>(public)<br/>(simple)',
+        'exp-public': 'Exponent',
+        'exp-public-montgomery': 'Exponent<br/>(Montgomery)',
+        'exp-public-montgomery-word': 'Exponent<br/>(Montgomery)<br/>(word)',
+        'exp-public-reciprocal': 'Exponent<br/>(reciprocal)',
+        'exp-public-simple': 'Exponent<br/>(simple)',
     },
     'exponentiations on private (large) exponents': {
-        'exp-private': 'Exponent<br/>(private)',
-        'exp-private-montgomery': 'Exponent<br/>(private)<br/>(Montgomery)',
-        'exp-private-montgomery-word': 'Exponent<br/>(private)<br/>(Montgomery)<br/>(word)',
-        'exp-private-reciprocal': 'Exponent<br/>(private)<br/>(reciprocal)',
-        'exp-private-simple': 'Exponent<br/>(private)<br/>(simple)'
+        'exp-private': 'Exponent',
+        'exp-private-montgomery': 'Exponent<br/>(Montgomery)',
+        'exp-private-montgomery-word': 'Exponent<br/>(Montgomery)<br/>(word)',
+        'exp-private-reciprocal': 'Exponent<br/>(reciprocal)',
+        'exp-private-simple': 'Exponent<br/>(simple)'
     }
 }
 

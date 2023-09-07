@@ -1052,39 +1052,39 @@ Relative performance score (the lower, the better):
 
 Execution time in microseconds (the lower, the better):
 
-| CPU                          | OS    | Add  | Mult | Mult<br/>(Montgomery) | Mult<br/>(reciprocal) | Square | Div<br/>(reciprocal) | Inverse | Square<br/>Root |
-| ---------------------------- | ----- | :--: | :--: | :--: | :--: | :----: | :---: | :-----: | :----: |
-| i7-5775R                     | macOS | 0.32 | 4.1  | 0.97 | 2.8  | 4.0    | 0.030 | 255     | 1626   |
-| i7-5775R                     | Linux | 0.28 | 4.2  | 1.0  | 3.0  | 3.9    | 0.036 | 253     | 3424   |
-| i7-8565U                     | Linux | 0.26 | 3.8  | 1.5  | 2.7  | 3.6    | 0.031 | 259     | 2664   |
-| Xeon-6254                    | Linux | 0.26 | 4.0  | 0.92 | 2.5  | 3.7    | 0.029 | 238     | 1616   |
-| Cortex A53 (R.Pi3)           | Linux | 3.5  | 130  | 35   | 87   | 123    | 0.43  | 3180    | 160771 |
-| Cortex A72 (R.Pi4)           | Linux | 0.84 | 16.3 | 8.1  | 14.6 | 15.0   | 0.10  | 679     | 15433  |
-| Apple M1                     | macOS | 0.22 | 4.8  | 0.88 | 3.2  | 4.8    | 0.000 | 228     | 2869   |
-| Apple M1                     | Linux | 0.24 | 5.3  | 1.1  | 3.7  | 5.2    | 0.022 | 252     | 1793   |
-| Ampere Altra (Neoverse N1)   | Linux | 0.38 | 8.3  | 4.9  | 7.5  | 7.6    | 0.034 | 302     | 9234   |
-| AWS Graviton 3 (Neoverse V1) | Linux | 0.30 | 5.9  | 1.5  | 4.3  | 5.8    | 0.025 | 273     | 2624   |
+| CPU                          | OS    | Add  | Multiply | Multiply<br/>(Montgomery) | Multiply<br/>(reciprocal) | Square | Divide<br/>(reciprocal) | Inverse | Square<br/>Root |
+| ---------------------------- | ----- | :--: | :------: | :------: | :------: | :----: | :----: | :-----: | :----: |
+| i7-5775R                     | macOS | 0.32 | 4.1      | 0.97     | 2.8      | 4.0    | 0.030  | 255     | 1626   |
+| i7-5775R                     | Linux | 0.28 | 4.2      | 1.0      | 3.0      | 3.9    | 0.036  | 253     | 3424   |
+| i7-8565U                     | Linux | 0.26 | 3.8      | 1.5      | 2.7      | 3.6    | 0.031  | 259     | 2664   |
+| Xeon-6254                    | Linux | 0.26 | 4.0      | 0.92     | 2.5      | 3.7    | 0.029  | 238     | 1616   |
+| Cortex A53 (R.Pi3)           | Linux | 3.5  | 130      | 35       | 87       | 123    | 0.43   | 3180    | 160771 |
+| Cortex A72 (R.Pi4)           | Linux | 0.84 | 16.3     | 8.1      | 14.6     | 15.0   | 0.10   | 679     | 15433  |
+| Apple M1                     | macOS | 0.22 | 4.8      | 0.88     | 3.2      | 4.8    | 0.000  | 228     | 2869   |
+| Apple M1                     | Linux | 0.24 | 5.3      | 1.1      | 3.7      | 5.2    | 0.022  | 252     | 1793   |
+| Ampere Altra (Neoverse N1)   | Linux | 0.38 | 8.3      | 4.9      | 7.5      | 7.6    | 0.034  | 302     | 9234   |
+| AWS Graviton 3 (Neoverse V1) | Linux | 0.30 | 5.9      | 1.5      | 4.3      | 5.8    | 0.025  | 273     | 2624   |
 
 Relative performance score (the lower, the better):
 
-| CPU                          | OS    | Add   | Mult | Mult<br/>(Montgomery) | Mult<br/>(reciprocal) | Square | Div<br/>(reciprocal) | Inverse | Square<br/>Root |
-| ---------------------------- | ----- | :---: | :--: | :--: | :--: | :----: | :---: | :-----: | :----: |
-| i7-5775R                     | macOS | 0.091 | 1.2  | 0.27 | 0.81 | 1.1    | 0.009 | 72      | 462    |
-| i7-5775R                     | Linux | 0.054 | 0.79 | 0.20 | 0.57 | 0.74   | 0.007 | 48      | 652    |
-| i7-8565U                     | Linux | 0.051 | 0.76 | 0.29 | 0.54 | 0.71   | 0.006 | 51      | 526    |
-| Xeon-6254                    | Linux | 0.038 | 0.58 | 0.13 | 0.36 | 0.54   | 0.004 | 34      | 236    |
-| Cortex A53 (R.Pi3)           | Linux | 0.046 | 1.7  | 0.48 | 1.2  | 1.6    | 0.006 | 42      | 2140   |
-| Cortex A72 (R.Pi4)           | Linux | 0.047 | 0.91 | 0.45 | 0.82 | 0.84   | 0.006 | 37      | 860    |
-| Apple M1                     | macOS | 0.077 | 1.7  | 0.30 | 1.1  | 1.7    | 0.000 | 78      | 991    |
-| Apple M1                     | Linux | 0.045 | 1.0  | 0.20 | 0.70 | 0.98   | 0.004 | 47      | 337    |
-| Ampere Altra (Neoverse N1)   | Linux | 0.037 | 0.81 | 0.48 | 0.73 | 0.74   | 0.003 | 29      | 901    |
-| AWS Graviton 3 (Neoverse V1) | Linux | 0.036 | 0.71 | 0.17 | 0.52 | 0.70   | 0.003 | 32      | 312    |
+| CPU                          | OS    | Add   | Multiply | Multiply<br/>(Montgomery) | Multiply<br/>(reciprocal) | Square | Divide<br/>(reciprocal) | Inverse | Square<br/>Root |
+| ---------------------------- | ----- | :---: | :------: | :------: | :------: | :----: | :----: | :-----: | :----: |
+| i7-5775R                     | macOS | 0.091 | 1.2      | 0.27     | 0.81     | 1.1    | 0.009  | 72      | 462    |
+| i7-5775R                     | Linux | 0.054 | 0.79     | 0.20     | 0.57     | 0.74   | 0.007  | 48      | 652    |
+| i7-8565U                     | Linux | 0.051 | 0.76     | 0.29     | 0.54     | 0.71   | 0.006  | 51      | 526    |
+| Xeon-6254                    | Linux | 0.038 | 0.58     | 0.13     | 0.36     | 0.54   | 0.004  | 34      | 236    |
+| Cortex A53 (R.Pi3)           | Linux | 0.046 | 1.7      | 0.48     | 1.2      | 1.6    | 0.006  | 42      | 2140   |
+| Cortex A72 (R.Pi4)           | Linux | 0.047 | 0.91     | 0.45     | 0.82     | 0.84   | 0.006  | 37      | 860    |
+| Apple M1                     | macOS | 0.077 | 1.7      | 0.30     | 1.1      | 1.7    | 0.000  | 78      | 991    |
+| Apple M1                     | Linux | 0.045 | 1.0      | 0.20     | 0.70     | 0.98   | 0.004  | 47      | 337    |
+| Ampere Altra (Neoverse N1)   | Linux | 0.037 | 0.81     | 0.48     | 0.73     | 0.74   | 0.003  | 29      | 901    |
+| AWS Graviton 3 (Neoverse V1) | Linux | 0.036 | 0.71     | 0.17     | 0.52     | 0.70   | 0.003  | 32      | 312    |
 
 ### 2048-bit modular arithmetic exponentiations on public (short) exponents
 
 Execution time in microseconds (the lower, the better):
 
-| CPU                          | OS    | Exponent<br/>(public) | Exponent<br/>(public)<br/>(Montgomery) | Exponent<br/>(public)<br/>(Montgomery)<br/>(word) | Exponent<br/>(public)<br/>(reciprocal) | Exponent<br/>(public)<br/>(simple) |
+| CPU                          | OS    | Exponent | Exponent<br/>(Montgomery) | Exponent<br/>(Montgomery)<br/>(word) | Exponent<br/>(reciprocal) | Exponent<br/>(simple) |
 | ---------------------------- | ----- | :------: | :------: | :------: | :------: | :------: |
 | i7-5775R                     | macOS | 21       | 14.3     | 12.7     | 53       | 71       |
 | i7-5775R                     | Linux | 22       | 14.9     | 13.3     | 57       | 72       |
@@ -1099,7 +1099,7 @@ Execution time in microseconds (the lower, the better):
 
 Relative performance score (the lower, the better):
 
-| CPU                          | OS    | Exponent<br/>(public) | Exponent<br/>(public)<br/>(Montgomery) | Exponent<br/>(public)<br/>(Montgomery)<br/>(word) | Exponent<br/>(public)<br/>(reciprocal) | Exponent<br/>(public)<br/>(simple) |
+| CPU                          | OS    | Exponent | Exponent<br/>(Montgomery) | Exponent<br/>(Montgomery)<br/>(word) | Exponent<br/>(reciprocal) | Exponent<br/>(simple) |
 | ---------------------------- | ----- | :------: | :------: | :------: | :------: | :------: |
 | i7-5775R                     | macOS | 6.2      | 4.1      | 3.6      | 15.2     | 20       |
 | i7-5775R                     | Linux | 4.3      | 2.8      | 2.5      | 11.0     | 13.7     |
@@ -1116,7 +1116,7 @@ Relative performance score (the lower, the better):
 
 Execution time in microseconds (the lower, the better):
 
-| CPU                          | OS    | Exponent<br/>(private) | Exponent<br/>(private)<br/>(Montgomery) | Exponent<br/>(private)<br/>(Montgomery)<br/>(word) | Exponent<br/>(private)<br/>(reciprocal) | Exponent<br/>(private)<br/>(simple) |
+| CPU                          | OS    | Exponent | Exponent<br/>(Montgomery) | Exponent<br/>(Montgomery)<br/>(word) | Exponent<br/>(reciprocal) | Exponent<br/>(simple) |
 | ---------------------------- | ----- | :------: | :------: | :------: | :------: | :------: |
 | i7-5775R                     | macOS | 1652     | 1640     | 1660     | 6630     | 9672     |
 | i7-5775R                     | Linux | 1851     | 1705     | 1832     | 7138     | 9391     |
@@ -1131,7 +1131,7 @@ Execution time in microseconds (the lower, the better):
 
 Relative performance score (the lower, the better):
 
-| CPU                          | OS    | Exponent<br/>(private) | Exponent<br/>(private)<br/>(Montgomery) | Exponent<br/>(private)<br/>(Montgomery)<br/>(word) | Exponent<br/>(private)<br/>(reciprocal) | Exponent<br/>(private)<br/>(simple) |
+| CPU                          | OS    | Exponent | Exponent<br/>(Montgomery) | Exponent<br/>(Montgomery)<br/>(word) | Exponent<br/>(reciprocal) | Exponent<br/>(simple) |
 | ---------------------------- | ----- | :------: | :------: | :------: | :------: | :------: |
 | i7-5775R                     | macOS | 469      | 466      | 471      | 1884     | 2748     |
 | i7-5775R                     | Linux | 352      | 324      | 348      | 1359     | 1788     |
