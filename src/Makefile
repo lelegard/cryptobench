@@ -4,7 +4,7 @@
 # Makefile for the cryptobench tool.
 #----------------------------------------------------------------------------
 
-default: exec
+default all: exec
 
 # SYSTEM = linux or mac, ARCH = x64 or arm64
 SYSTEM := $(subst Linux,linux,$(subst Darwin,mac,$(shell uname -s)))

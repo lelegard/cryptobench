@@ -8,6 +8,8 @@
 * [Command line usage](#command-line-usage)
 * [Test results](#test-results)
 * [Bugs and limitations](#bugs-and-limitations)
+* [Miscelaneous observations](#miscelaneous-observations)
+  * [RSA performances on old Arm CPU cores](#rsa-performances-on-old-arm-cpu-cores)
 
 ## Purpose
 
@@ -86,7 +88,7 @@ Note: On Ubuntu/Debian, the package `libgnutls28-dev` is probably misnamed.
 It is the gnutls development environment for the latest versions of gnutls,
 3.x.x as of this writing. It is not (or no longer) gnutls version 2.8.
 
-Just run `make -C src` to build the `cryptobench` executable. All objects are
+Just run `make` to build the `cryptobench` executable. All objects are
 produced in subdirectory `build`.
 
 ## Command line usage
@@ -156,3 +158,68 @@ which includes a padding argument does not exist.
 Nettle: RSA tests are currently disabled. There is an issue loading public and private
 key files, as created by OpenSSL. The parsing of the DER sequence fails. See source
 file `src/lib_nettle.cpp` for a fix. To be investigated...
+
+## Miscelaneous observations
+
+### RSA performances on old Arm CPU cores
+
+Looking at [RESULTS.md](RESULTS.md), we see that the RSA performances are surprisingly low
+on Ampere Altra CPU's. By "low", we mean that the RSA operations (encryption, decryption,
+signature, verification) are slow, relatively to any other cryptographic operation on the
+same CPU. On other CPU's, the RSA operations run much faster, again relatively to the
+performance of their respective CPU. This is where the "relative performance score"
+indicators are useful.
+
+No need to blame the Arm ISA, the performance of other Arm CPU's such as the AWS Graviton 3
+or the Apple M1 do not have this performance bias on RSA. They execute RSA operations with
+the same relative efficiency as any other cryptographic operation.
+
+Looking at the OpenSSL modular arithmetic operations benchmarks at the end of
+[RESULTS.md](RESULTS.md), we see the exact same bias on the Ampere Altra only,
+on the modular multiplication (Montgomery algorithm only), the modular square
+root and the modular exponentiation.
+
+This means that the root cause is the implementation of the Montgomery algorithm for
+the multiplication. The four basic RSA operations are based on the modular exponentiation
+which in turn uses the Montgomery multiplication. And the modular square root is based
+on the modular exponentiation too.
+
+So, what is different in the Ampere Altra CPU to impact the Montgomery algorithm
+and nothing else?
+
+The answer is in the CPU core. Ampere Altra is based on an Arm Neoverse N1 core.
+AWS Graviton 3 is based on a more recent Arm Neoverse V1 core. Apple M1 is based
+on Apple Firestorm/Icestorm cores. In the tested systems, the Ampere Altra is the
+only one with a Neoverse N1 core (note: the older Graviton 2 is also based on
+Neoverse N1 but I did not have access to any).
+
+To justify this conclusion, let's investigate how OpenSSL implements the Montgomery
+algorithm. Because it is highly critical for asymmetric cryptography performances,
+this algorithm is implemented in assembly code
+([source code for Armv8 here](https://github.com/openssl/openssl/blob/master/crypto/bn/asm/armv8-mont.pl)).
+
+This implementation makes a heavy usage of the `umulh` instruction. Based on the public
+documentation from Arm, we see that the performance of this instruction is quite bad
+on the Neoverse N1 and much better on the Neoverse V1.
+
+Reference public documents:
+- [Arm Neoverse N1 Core Software Optimization Guide](https://developer.arm.com/documentation/pjdoc466751330-9707/latest/)
+- [Arm Neoverse V1 Software Optimization Guide](https://developer.arm.com/documentation/pjdoc466751330-9685/latest/)
+
+These documents precisely describe the performances of each instruction. Let's check
+the latency of the `umulh` instruction. On the N1, the latency is described as "5(3)"
+cycles, while it is only 3 on the V1.
+
+In the N1 guide, we also read about `umulh` (and `smulh`): _"Multiply high operations stall
+the multiplier pipeline for N extra cycles before any other type M uop can be issued to
+that pipeline, with N shown in parentheses."_
+
+So the actual stall is 8 cycles in the "Integer single/multicycle" pipeline (M) on the N1.
+Looking the OpenSSL assembly source code
+[armv8-mont](https://github.com/openssl/openssl/blob/master/crypto/bn/asm/armv8-mont.pl)
+for the Montgomery algorithm, we see sequences of adjacent instructions such as _"umulh,
+mul, umulh, mul, mov, umulh, mul, subs, umulh, adc"_. All these instructions - except `mov` -
+use the M pipeline which consequently becomes a bottleneck.
+
+This explains why RSA is so slow on CPU's which are based on the Arm Neoverse N1 core.
+This problem no longer exists on Arm Neoverse V1 and more recent Arm cores.
