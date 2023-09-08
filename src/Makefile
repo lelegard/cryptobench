@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------
 # CryptoBench - Copyright (c) 2023, Thierry Lelegard
 # BSD 2-Clause License, see LICENSE file.
-# General makefile
+# Makefile for the cryptobench tool.
 #----------------------------------------------------------------------------
 
 default: exec
@@ -11,8 +11,8 @@ SYSTEM := $(subst Linux,linux,$(subst Darwin,mac,$(shell uname -s)))
 ARCH   := $(subst amd64,x64,$(subst x86_64,x64,$(subst aarch64,arm64,$(shell uname -m))))
 
 # Project directories and files.
-SRCDIR   = src
-BINDIR   = build
+SRCDIR   = .
+BINDIR   = ../build
 EXEC     = $(BINDIR)/cryptobench
 SOURCES := $(wildcard $(SRCDIR)/*.cpp)
 OBJECTS := $(patsubst $(SRCDIR)/%.cpp,$(BINDIR)/%.o,$(SOURCES))
@@ -67,7 +67,7 @@ $(BINDIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(BINDIR)
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c -o $@ $<
 clean:
-	rm -rf build build-* core *.tmp *.log src/*.pro.user __pycache__
+	rm -rf ../build ../build-* core ../core *.tmp *.log *.pro.user __pycache__
 
 # Regenerate implicit dependencies.
 ifneq ($(if $(MAKECMDGOALS),$(filter-out clean listvars cxxmacros,$(MAKECMDGOALS)),true),)

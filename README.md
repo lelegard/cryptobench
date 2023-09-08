@@ -86,7 +86,7 @@ Note: On Ubuntu/Debian, the package `libgnutls28-dev` is probably misnamed.
 It is the gnutls development environment for the latest versions of gnutls,
 3.x.x as of this writing. It is not (or no longer) gnutls version 2.8.
 
-Just run `make` to build the `cryptobench` executable. All objects are
+Just run `make -C src` to build the `cryptobench` executable. All objects are
 produced in subdirectory `build`.
 
 ## Command line usage

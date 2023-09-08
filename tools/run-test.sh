@@ -7,4 +7,4 @@
 
 cd $(dirname "$0")/..
 tools/identify-system.sh
-make -j4 && build/cryptobench --min-time 5
+make -j4 -C src && build/cryptobench --min-time 5
