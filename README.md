@@ -170,9 +170,9 @@ same CPU. On other CPU's, the RSA operations run much faster, again relatively t
 performance of their respective CPU. This is where the "relative performance score"
 indicators are useful.
 
-No need to blame the Arm ISA, the performance of other Arm CPU's such as the AWS Graviton 3
-or the Apple M1 do not have this performance bias on RSA. They execute RSA operations with
-the same relative efficiency as any other cryptographic operation.
+No need to blame the Arm ISA, other Arm CPU's such as the AWS Graviton 3 or the Apple M1
+do not have this performance bias on RSA. They execute RSA operations with the same
+relative efficiency as any other cryptographic operation.
 
 Looking at the OpenSSL modular arithmetic operations benchmarks at the end of
 [RESULTS.md](RESULTS.md), we see the exact same bias on the Ampere Altra only,
@@ -208,7 +208,7 @@ Reference public documents:
 
 These documents precisely describe the performances of each instruction. Let's check
 the latency of the `umulh` instruction. On the N1, the latency is described as "5(3)"
-cycles, while it is only 3 on the V1.
+cycles, while it is only 3 cycles on the V1.
 
 In the N1 guide, we also read about `umulh` (and `smulh`): _"Multiply high operations stall
 the multiplier pipeline for N extra cycles before any other type M uop can be issued to
@@ -220,6 +220,10 @@ Looking the OpenSSL assembly source code
 for the Montgomery algorithm, we see sequences of adjacent instructions such as _"umulh,
 mul, umulh, mul, mov, umulh, mul, subs, umulh, adc"_. All these instructions - except `mov` -
 use the M pipeline which consequently becomes a bottleneck.
+
+This bottleneck does not exist on the Arm Neoverse V1. There is no equivalent public
+document about the Apple Firestorm/Icestorm cores but we can assume that there is
+no such issue either.
 
 This explains why RSA is so slow on CPU's which are based on the Arm Neoverse N1 core.
 This problem no longer exists on Arm Neoverse V1 and more recent Arm cores.
