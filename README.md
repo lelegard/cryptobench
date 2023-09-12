@@ -245,14 +245,14 @@ MUL and UMULH instructions with NOP. The result is of course no longer functiona
 but we focus only on the execution time.
 
 The table below evaluates the execution time in microseconds of the Montgomery
-algoritm on the various CPU cores, with and without MUL or UMULH instructions.
+algorithm on the various CPU cores, with and without MUL or UMULH instructions.
 Thus, we evaluate the marginal cost of these specific instructions.
 
 | Execution time (microseconds)      | Neoverse N1 | Neoverse V1 | Apple M1 |
 | ---------------------------------- | :---------: | :---------: | :------: |
-| OpenSSL source code                | 4.82        | 1.45        | 1.04     |
+| OpenSSL original source code       | 4.82        | 1.45        | 1.04     |
 | Replace all UMULH with MUL         | 4.13        | 1.17        | 1.04     |
-| Replace all UMULH and MUL with MUL | 1.06        | 1.01        | 1.00     |
+| Replace all UMULH and MUL with NOP | 1.06        | 1.01        | 1.00     |
 
 We can see that the MUL and UMULH instructions have a huge cost on the Neoverse N1,
 much higher that on other CPU cores.
