@@ -45,8 +45,9 @@
         int flags;
     };
     int bn_mul_mont(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np, const BN_ULONG *n0, int num);
-    // Our implementation with umulh replaced by mul
-    int test_bn_mul_mont(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np, const BN_ULONG *n0, int num);
+    // Our implementations with umulh replaced by mul or nop
+    int test1_bn_mul_mont(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np, const BN_ULONG *n0, int num);
+    int test2_bn_mul_mont(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np, const BN_ULONG *n0, int num);
 #endif
 
 // A 2048-bit number which is an RSA modulus.
@@ -181,13 +182,18 @@ int main(int argc, char* argv[])
         }
         const uint64_t time6 = cpu_time();
         for (int i = MONT_MUL_ITERATIONS; i > 0; i--) {
-            check(test_bn_mul_mont(res->d, n1->d, n2->d, bn_mont_ctx->N.d, bn_mont_ctx->n0, num), "test1_bn_mul_mont");
+            check(test1_bn_mul_mont(res->d, n1->d, n2->d, bn_mont_ctx->N.d, bn_mont_ctx->n0, num), "test1_bn_mul_mont");
         }
         const uint64_t time7 = cpu_time();
+        for (int i = MONT_MUL_ITERATIONS; i > 0; i--) {
+            check(test2_bn_mul_mont(res->d, n1->d, n2->d, bn_mont_ctx->N.d, bn_mont_ctx->n0, num), "test2_bn_mul_mont");
+        }
+        const uint64_t time8 = cpu_time();
 
-        printf("armv8-mont: %.2f, armv8-mont-no-umulh: %.2f microseconds, rsa_neonized: %d\n",
+        printf("armv8-mont: %.2f, umulh-to-mul: %.2f, mul-to-nop: %.2f microseconds, rsa_neonized: %d\n",
                (double)(time6 - time5) / MONT_MUL_ITERATIONS,
                (double)(time7 - time6) / MONT_MUL_ITERATIONS,
+               (double)(time8 - time7) / MONT_MUL_ITERATIONS,
                OPENSSL_armv8_rsa_neonized);
 
         OPENSSL_armv8_rsa_neonized = !OPENSSL_armv8_rsa_neonized;

@@ -187,43 +187,75 @@ on the modular exponentiation too.
 So, what is different in the Ampere Altra CPU to impact the Montgomery algorithm
 and nothing else?
 
-The answer is in the CPU core. Ampere Altra is based on an Arm Neoverse N1 core.
-AWS Graviton 3 is based on a more recent Arm Neoverse V1 core. Apple M1 is based
-on Apple Firestorm/Icestorm cores. In the tested systems, the Ampere Altra is the
-only one with a Neoverse N1 core (note: the older Graviton 2 is also based on
-Neoverse N1 but I did not have access to any).
+The answer is the difference of CPU core and especially the implementation of the
+64-bit multiplication in the Ampere Altra compared to the AWS Graviton 3 or the
+Apple M1.
+
+Ampere Altra is based on an Arm Neoverse N1 core. AWS Graviton 3 is based on a more
+recent Arm Neoverse V1 core. Apple M1 is based on Apple Firestorm/Icestorm cores.
+In the tested systems, the Ampere Altra is the only one with a Neoverse N1 core
+(note: the older Graviton 2 is also based on Neoverse N1 but I did not have access to any).
 
 To justify this conclusion, let's investigate how OpenSSL implements the Montgomery
 algorithm. Because it is highly critical for asymmetric cryptography performances,
 this algorithm is implemented in assembly code
 ([source code for Armv8 here](https://github.com/openssl/openssl/blob/master/crypto/bn/asm/armv8-mont.pl)).
 
-This implementation makes a heavy usage of the `umulh` instruction. Based on the public
-documentation from Arm, we see that the performance of this instruction is quite bad
-on the Neoverse N1 and much better on the Neoverse V1.
+This implementation makes a heavy usage of the MUL and UMULH instructions. Based
+on the public documentation from Arm, we see that the performance of these instructions
+is significantly lower on the Neoverse N1 and much better on the Neoverse V1.
 
 Reference public documents:
 - [Arm Neoverse N1 Core Software Optimization Guide](https://developer.arm.com/documentation/pjdoc466751330-9707/latest/)
 - [Arm Neoverse V1 Software Optimization Guide](https://developer.arm.com/documentation/pjdoc466751330-9685/latest/)
 
 These documents precisely describe the performances of each instruction. Let's check
-the latency of the `umulh` instruction. On the N1, the latency is described as "5(3)"
-cycles, while it is only 3 cycles on the V1.
-
-In the N1 guide, we also read about `umulh` (and `smulh`): _"Multiply high operations stall
-the multiplier pipeline for N extra cycles before any other type M uop can be issued to
+the latency of the MUL and UMULH instructions. The following table gives the number
+of cycles per instruction. The additional number in parenthesis, when present, is
+described as follow in the N1 documentation: _"Multiply high operations stall the
+multiplier pipeline for N extra cycles before any other type M uop can be issued to
 that pipeline, with N shown in parentheses."_
 
-So the actual stall is 8 cycles in the "Integer single/multicycle" pipeline (M) on the N1.
+| Latency                     | Neoverse N1 | Neoverse V1 |
+| --------------------------- | :---------: | :---------: |
+| MADD, MUL, W-form (32 bits) | 2(1)        | 2(1)        |
+| MADD, MUL, X-form (64 bits) | 4(3)        | 2(1)        |
+| UMULH                       | 5(3)        | 3           |
+
+Surprisingly, on the N1, the 32-bit multiplication (MUL) is much more expensive than
+the 64-bit one. On the V1, they have the same cost. In short 64-bit MUL and UMULH
+are twice as expensive on the N1, compared to the V1.
+
 Looking the OpenSSL assembly source code
 [armv8-mont](https://github.com/openssl/openssl/blob/master/crypto/bn/asm/armv8-mont.pl)
-for the Montgomery algorithm, we see sequences of adjacent instructions such as _"umulh,
-mul, umulh, mul, mov, umulh, mul, subs, umulh, adc"_. All these instructions - except `mov` -
-use the M pipeline which consequently becomes a bottleneck.
+for the Montgomery algorithm, we see sequences of adjacent instructions such as _"UMULH,
+MUL, UMULH, MUL, MOV, UMULH, MUL, SUBS, UMULH, ADC"_. All these instructions - except MOV -
+use the M pipeline which consequently becomes a bottleneck. Each pair of adjacent MUL, UMULH
+costs 15 cycles, especially because of the extra stall.
 
-This bottleneck does not exist on the Arm Neoverse V1. There is no equivalent public
-document about the Apple Firestorm/Icestorm cores but we can assume that there is
-no such issue either.
+This bottleneck does not exist on the Arm Neoverse V1. Each pair of adjacent MUL, UMULH
+only costs 6 cycles (instead of 15).
+
+There is no equivalent public document about the Apple Firestorm/Icestorm cores but we can
+assume that there is no such issue either.
+
+To confirm this diagnostic, we have tweaked the OpenSSL assembly code for the Montgomery
+algorithm. First, we replaced all UMULH instructions with MUL. Then, we replaced all
+MUL and UMULH instructions with NOP. The result is of course no longer functional
+but we focus only on the execution time.
+
+The table below evaluates the execution time in microseconds of the Montgomery
+algoritm on the various CPU cores, with and without MUL or UMULH instructions.
+Thus, we evaluate the marginal cost of these specific instructions.
+
+| Execution time (microseconds)      | Neoverse N1 | Neoverse V1 | Apple M1 |
+| ---------------------------------- | :---------: | :---------: | :------: |
+| OpenSSL source code                | 4.82        | 1.45        | 1.04     |
+| Replace all UMULH with MUL         | 4.13        | 1.17        | 1.04     |
+| Replace all UMULH and MUL with MUL | 1.06        | 1.01        | 1.00     |
+
+We can see that the MUL and UMULH instructions have a huge cost on the Neoverse N1,
+much higher that on other CPU cores.
 
 This explains why RSA is so slow on CPU's which are based on the Arm Neoverse N1 core.
 This problem no longer exists on Arm Neoverse V1 and more recent Arm cores.

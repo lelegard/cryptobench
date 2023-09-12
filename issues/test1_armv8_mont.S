@@ -10,12 +10,12 @@
 #endif
 .text
 
-.globl	test_bn_mul_mont
-.type	test_bn_mul_mont,%function
+.globl	test1_bn_mul_mont
+.type	test1_bn_mul_mont,%function
 .align	5
-test_bn_mul_mont:
+test1_bn_mul_mont:
 	AARCH64_SIGN_LINK_REGISTER
-.Ltest_bn_mul_mont:
+.Ltest1_bn_mul_mont:
 	tst	x5,#3
 	b.ne	.Lmul_mont
 	cmp	x5,#32
@@ -23,14 +23,14 @@ test_bn_mul_mont:
 #ifndef	__KERNEL__
 	adrp	x17,OPENSSL_armv8_rsa_neonized
 	ldr	w17,[x17,#:lo12:OPENSSL_armv8_rsa_neonized]
-	cbnz	w17, test_bn_mul8x_mont_neon
+	cbnz	w17, test1_bn_mul8x_mont_neon
 #endif
 
 .Lscalar_impl:
 	tst	x5,#7
-	b.eq	__test_bn_sqr8x_mont
+	b.eq	__test1_bn_sqr8x_mont
 	tst	x5,#3
-	b.eq	__test_bn_mul4x_mont
+	b.eq	__test1_bn_mul4x_mont
 
 .Lmul_mont:
 	stp	x29,x30,[sp,#-64]!
@@ -227,12 +227,12 @@ test_bn_mul_mont:
 	ldr	x29,[sp],#64
 	AARCH64_VALIDATE_LINK_REGISTER
 	ret
-.size	test_bn_mul_mont,.-test_bn_mul_mont
-.type	test_bn_mul8x_mont_neon,%function
+.size	test1_bn_mul_mont,.-test1_bn_mul_mont
+.type	test1_bn_mul8x_mont_neon,%function
 .align	5
-test_bn_mul8x_mont_neon:
-	// Not adding AARCH64_SIGN_LINK_REGISTER here because test_bn_mul8x_mont_neon is jumped to
-	// only from test_bn_mul_mont which has already signed the return address.
+test1_bn_mul8x_mont_neon:
+	// Not adding AARCH64_SIGN_LINK_REGISTER here because test1_bn_mul8x_mont_neon is jumped to
+	// only from test1_bn_mul_mont which has already signed the return address.
 	stp	x29,x30,[sp,#-80]!
 	mov	x16,sp
 	stp	d8,d9,[sp,#16]
@@ -928,15 +928,15 @@ test_bn_mul8x_mont_neon:
 	AARCH64_VALIDATE_LINK_REGISTER
 	ret	// bx lr
 
-.size	test_bn_mul8x_mont_neon,.-test_bn_mul8x_mont_neon
-.type	__test_bn_sqr8x_mont,%function
+.size	test1_bn_mul8x_mont_neon,.-test1_bn_mul8x_mont_neon
+.type	__test1_bn_sqr8x_mont,%function
 .align	5
-__test_bn_sqr8x_mont:
+__test1_bn_sqr8x_mont:
 	cmp	x1,x2
-	b.ne	__test_bn_mul4x_mont
+	b.ne	__test1_bn_mul4x_mont
 .Lsqr8x_mont:
-	// Not adding AARCH64_SIGN_LINK_REGISTER here because __test_bn_sqr8x_mont is jumped to
-	// only from test_bn_mul_mont which has already signed the return address.
+	// Not adding AARCH64_SIGN_LINK_REGISTER here because __test1_bn_sqr8x_mont is jumped to
+	// only from test1_bn_mul_mont which has already signed the return address.
 	stp	x29,x30,[sp,#-128]!
 	add	x29,sp,#0
 	stp	x19,x20,[sp,#16]
@@ -1690,12 +1690,12 @@ __test_bn_sqr8x_mont:
 	// x30 is loaded earlier
 	AARCH64_VALIDATE_LINK_REGISTER
 	ret
-.size	__test_bn_sqr8x_mont,.-__test_bn_sqr8x_mont
-.type	__test_bn_mul4x_mont,%function
+.size	__test1_bn_sqr8x_mont,.-__test1_bn_sqr8x_mont
+.type	__test1_bn_mul4x_mont,%function
 .align	5
-__test_bn_mul4x_mont:
-	// Not adding AARCH64_SIGN_LINK_REGISTER here because __test_bn_mul4x_mont is jumped to
-	// only from test_bn_mul_mont (or __test_bn_sqr8x_mont from test_bn_mul_mont) which has already signed the return address.
+__test1_bn_mul4x_mont:
+	// Not adding AARCH64_SIGN_LINK_REGISTER here because __test1_bn_mul4x_mont is jumped to
+	// only from test1_bn_mul_mont (or __test1_bn_sqr8x_mont from test1_bn_mul_mont) which has already signed the return address.
 	stp	x29,x30,[sp,#-128]!
 	add	x29,sp,#0
 	stp	x19,x20,[sp,#16]
@@ -2132,7 +2132,7 @@ __test_bn_mul4x_mont:
 	// x30 loaded earlier
 	AARCH64_VALIDATE_LINK_REGISTER
 	ret
-.size	__test_bn_mul4x_mont,.-__test_bn_mul4x_mont
+.size	__test1_bn_mul4x_mont,.-__test1_bn_mul4x_mont
 .byte	77,111,110,116,103,111,109,101,114,121,32,77,117,108,116,105,112,108,105,99,97,116,105,111,110,32,102,111,114,32,65,82,77,118,56,44,32,67,82,89,80,84,79,71,65,77,83,32,98,121,32,60,97,112,112,114,111,64,111,112,101,110,115,115,108,46,111,114,103,62,0
 .align	2
 .align	4

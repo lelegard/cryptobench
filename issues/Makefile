@@ -43,7 +43,7 @@ $(BINDIR)/%.o: $(SRCDIR)/%.S
 	$(CC) $(CPPFLAGS) -c -o $@ $<
 
 # On Linux Arm64, build modified versions of OpenSSL Montgomery multiplication in Armv8 assembly.
-$(BINDIR)/montmult $(BINDIR)/montmult_static: $(if $(findstring linux-arm64,$(SYSTEM)-$(ARCH)),$(BINDIR)/test_armv8_mont.o)
+$(BINDIR)/montmult $(BINDIR)/montmult_static: $(if $(findstring linux-arm64,$(SYSTEM)-$(ARCH)),$(BINDIR)/test1_armv8_mont.o $(BINDIR)/test2_armv8_mont.o)
 
 # Regenerate implicit dependencies.
 ifneq ($(if $(MAKECMDGOALS),$(filter-out clean,$(MAKECMDGOALS)),true),)
