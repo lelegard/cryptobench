@@ -12,7 +12,9 @@ ARCH   := $(subst amd64,x64,$(subst x86_64,x64,$(subst aarch64,arm64,$(shell una
 SHELL   = /usr/bin/env bash --noprofile
 SRCDIR  = .
 BINDIR  = ../build
-EXECS   = $(addprefix $(BINDIR)/,$(TESTS)) $(addprefix $(BINDIR)/,$(addsuffix _static,$(TESTS)))
+
+# Also build a static version on Linux (static builds are deprecated on macOS).
+EXECS = $(addprefix $(BINDIR)/,$(TESTS)) $(findstring linux,$(SYSTEM),$(addprefix $(BINDIR)/,$(addsuffix _static,$(TESTS))))
 
 # Build with OpenSSL static crypto library.
 LIBCRYPTO := $(firstword $(wildcard /opt/homebrew/lib/libcrypto.a /usr/local/lib/libcrypto.a /usr/lib*/libcrypto.a /usr/lib*/*/libcrypto.a))
