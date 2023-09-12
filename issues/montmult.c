@@ -27,7 +27,7 @@
 #endif
 
 #if defined(ARMV8_MONT_TEST)
-    #include <sys/auxv.h>
+    #include "test_arm_arch.h"
     // Stolen from openssl/crypto/bn/bn_local.h 
     struct bignum_st {
         BN_ULONG *d;
@@ -44,13 +44,9 @@
         BN_ULONG n0[2];
         int flags;
     };
-    // Stolen from openssl/include/crypto/bn.h
-    // Rely on static libcrypto.a to export bn_wexpand.
-    BIGNUM *bn_wexpand(BIGNUM *a, int words);
-    // Interface of assembly modules.
-    unsigned int test_OPENSSL_armv8_rsa_neonized = 0;
-    int test1_bn_mul_mont(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np, const BN_ULONG *n0, int num);
-    int test2_bn_mul_mont(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np, const BN_ULONG *n0, int num);
+    int bn_mul_mont(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np, const BN_ULONG *n0, int num);
+    // Our implementation with umulh replaced by mul
+    int test_bn_mul_mont(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np, const BN_ULONG *n0, int num);
 #endif
 
 // A 2048-bit number which is an RSA modulus.
@@ -160,45 +156,42 @@ int main(int argc, char* argv[])
     }
     const uint64_t time4 = cpu_time();
 
+    printf("add: %.2f, mul: %.2f, mont-mul: %.2f microseconds\n",
+           (double)(time2 - time1) / ADD_ITERATIONS,
+           (double)(time3 - time2) / MUL_ITERATIONS,
+           (double)(time4 - time3) / MONT_MUL_ITERATIONS);
+
     // On Linux Arm64, evaluate performances of Armv8 implementation of Montgomery multiplication.
 #if defined(ARMV8_MONT_TEST)
 
-    if (getauxval(AT_HWCAP) & HWCAP_ASIMDRDM) {
-        test_OPENSSL_armv8_rsa_neonized = 1;
-    }
+    printf("armcap: 0x%08x, arm_midr: 0x%08x\n", OPENSSL_armcap_P, OPENSSL_arm_midr);
 
     int num = bn_mont_ctx->N.top;
-    check(bn_wexpand(res, num) != NULL, "bn_wexpand");
-
     if (res->top != num || n1->top != num || n2->top != num) {
         printf("res->top: %d, n1->top: %d, n2->top: %d, mod->top: %d, num: %d\n", res->top, n1->top, n2->top, mod->top, num);
         return EXIT_FAILURE;
     }
 
-    const uint64_t time5 = cpu_time();
-    for (int i = MONT_MUL_ITERATIONS; i > 0; i--) {
-        check(test1_bn_mul_mont(res->d, n1->d, n2->d, bn_mont_ctx->N.d, bn_mont_ctx->n0, num), "test1_bn_mul_mont");
+    // Test twice, first with default OPENSSL_armv8_rsa_neonized, then with flipped.
+    for (int x = 0; x < 2; x++) {
+
+        const uint64_t time5 = cpu_time();
+        for (int i = MONT_MUL_ITERATIONS; i > 0; i--) {
+            check(bn_mul_mont(res->d, n1->d, n2->d, bn_mont_ctx->N.d, bn_mont_ctx->n0, num), "test1_bn_mul_mont");
+        }
+        const uint64_t time6 = cpu_time();
+        for (int i = MONT_MUL_ITERATIONS; i > 0; i--) {
+            check(test_bn_mul_mont(res->d, n1->d, n2->d, bn_mont_ctx->N.d, bn_mont_ctx->n0, num), "test1_bn_mul_mont");
+        }
+        const uint64_t time7 = cpu_time();
+
+        printf("armv8-mont: %.2f, armv8-mont-no-umulh: %.2f microseconds, rsa_neonized: %d\n",
+               (double)(time6 - time5) / MONT_MUL_ITERATIONS,
+               (double)(time7 - time6) / MONT_MUL_ITERATIONS,
+               OPENSSL_armv8_rsa_neonized);
+
+        OPENSSL_armv8_rsa_neonized = !OPENSSL_armv8_rsa_neonized;
     }
-    const uint64_t time6 = cpu_time();
-    for (int i = MONT_MUL_ITERATIONS; i > 0; i--) {
-        check(test2_bn_mul_mont(res->d, n1->d, n2->d, bn_mont_ctx->N.d, bn_mont_ctx->n0, num), "test1_bn_mul_mont");
-    }
-    const uint64_t time7 = cpu_time();
-
-    printf("add: %.2f, mul: %.2f, mont-mul: %.2f, armv8-mont: %.2f, armv8-mont-no-umulh: %.2f microseconds, rsa_neonized: %d\n",
-           (double)(time2 - time1) / ADD_ITERATIONS,
-           (double)(time3 - time2) / MUL_ITERATIONS,
-           (double)(time4 - time3) / MONT_MUL_ITERATIONS,
-           (double)(time6 - time5) / MONT_MUL_ITERATIONS,
-           (double)(time7 - time6) / MONT_MUL_ITERATIONS,
-           test_OPENSSL_armv8_rsa_neonized);
-
-#else
-
-    printf("add: %.2f, mul: %.2f, mont-mul: %.2f microseconds\n",
-           (double)(time2 - time1) / ADD_ITERATIONS,
-           (double)(time3 - time2) / MUL_ITERATIONS,
-           (double)(time4 - time3) / MONT_MUL_ITERATIONS);
 
 #endif
 

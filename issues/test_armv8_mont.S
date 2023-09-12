@@ -1,34 +1,36 @@
 // OpenSSL implementation of Montgomery multiplication for Armv8.
-// Output of openssl/crypto/bn/asm/armv8-mont.pl
-        
+// Output of openssl/crypto/bn/asm/armv8-mont.pl where all umulh instructions are replaced by mul.
+// This is no longer a functional implementation of Montgomery implementation.
+// The purpose of this module is to evaluate the performance impact of umulh.
+
 #include "test_arm_arch.h"
 #ifndef	__KERNEL__
 
-.hidden	test_OPENSSL_armv8_rsa_neonized
+.hidden	OPENSSL_armv8_rsa_neonized
 #endif
 .text
 
-.globl	test1_bn_mul_mont
-.type	test1_bn_mul_mont,%function
+.globl	test_bn_mul_mont
+.type	test_bn_mul_mont,%function
 .align	5
-test1_bn_mul_mont:
+test_bn_mul_mont:
 	AARCH64_SIGN_LINK_REGISTER
-.Ltest1_bn_mul_mont:
+.Ltest_bn_mul_mont:
 	tst	x5,#3
 	b.ne	.Lmul_mont
 	cmp	x5,#32
 	b.le	.Lscalar_impl
 #ifndef	__KERNEL__
-	adrp	x17,test_OPENSSL_armv8_rsa_neonized
-	ldr	w17,[x17,#:lo12:test_OPENSSL_armv8_rsa_neonized]
-	cbnz	w17, test1_bn_mul8x_mont_neon
+	adrp	x17,OPENSSL_armv8_rsa_neonized
+	ldr	w17,[x17,#:lo12:OPENSSL_armv8_rsa_neonized]
+	cbnz	w17, test_bn_mul8x_mont_neon
 #endif
 
 .Lscalar_impl:
 	tst	x5,#7
-	b.eq	__test1_bn_sqr8x_mont
+	b.eq	__test_bn_sqr8x_mont
 	tst	x5,#3
-	b.eq	__test1_bn_mul4x_mont
+	b.eq	__test_bn_mul4x_mont
 
 .Lmul_mont:
 	stp	x29,x30,[sp,#-64]!
@@ -47,15 +49,15 @@ test1_bn_mul_mont:
 
 	mul	x6,x7,x9		// ap[0]*bp[0]
 	sub	x21,x5,#16		// j=num-2
-	umulh	x7,x7,x9
+	mul	x7,x7,x9
 	mul	x10,x8,x9		// ap[1]*bp[0]
-	umulh	x11,x8,x9
+	mul	x11,x8,x9
 
 	mul	x15,x6,x4		// "tp[0]"*n0
 	mov	sp,x22			// alloca
 
 	// (*)	mul	x12,x13,x15	// np[0]*m1
-	umulh	x13,x13,x15
+	mul	x13,x13,x15
 	mul	x16,x14,x15		// np[1]*m1
 	// (*)	adds	x12,x12,x6	// discarded
 	// (*)	As for removal of first multiplication and addition
@@ -68,7 +70,7 @@ test1_bn_mul_mont:
 	//	x6 being non-zero. So that carry can be calculated
 	//	by adding -1 to x6. That's what next instruction does.
 	subs	xzr,x6,#1		// (*)
-	umulh	x17,x14,x15
+	mul	x17,x14,x15
 	adc	x13,x13,xzr
 	cbz	x21,.L1st_skip
 
@@ -82,12 +84,12 @@ test1_bn_mul_mont:
 	adds	x12,x16,x13
 	mul	x10,x8,x9		// ap[j]*bp[0]
 	adc	x13,x17,xzr
-	umulh	x11,x8,x9
+	mul	x11,x8,x9
 
 	adds	x12,x12,x6
 	mul	x16,x14,x15		// np[j]*m1
 	adc	x13,x13,xzr
-	umulh	x17,x14,x15
+	mul	x17,x14,x15
 	str	x12,[x22],#8		// tp[j-1]
 	cbnz	x21,.L1st
 
@@ -115,22 +117,22 @@ test1_bn_mul_mont:
 
 	mul	x6,x7,x9		// ap[0]*bp[i]
 	sub	x21,x5,#16		// j=num-2
-	umulh	x7,x7,x9
+	mul	x7,x7,x9
 	ldp	x13,x14,[x3],#16
 	mul	x10,x8,x9		// ap[1]*bp[i]
 	adds	x6,x6,x23
-	umulh	x11,x8,x9
+	mul	x11,x8,x9
 	adc	x7,x7,xzr
 
 	mul	x15,x6,x4
 	sub	x20,x20,#8		// i--
 
 	// (*)	mul	x12,x13,x15	// np[0]*m1
-	umulh	x13,x13,x15
+	mul	x13,x13,x15
 	mul	x16,x14,x15		// np[1]*m1
 	// (*)	adds	x12,x12,x6
 	subs	xzr,x6,#1		// (*)
-	umulh	x17,x14,x15
+	mul	x17,x14,x15
 	cbz	x21,.Linner_skip
 
 .Linner:
@@ -147,12 +149,12 @@ test1_bn_mul_mont:
 
 	mul	x10,x8,x9		// ap[j]*bp[i]
 	adds	x6,x6,x23
-	umulh	x11,x8,x9
+	mul	x11,x8,x9
 	adc	x7,x7,xzr
 
 	mul	x16,x14,x15		// np[j]*m1
 	adds	x12,x12,x6
-	umulh	x17,x14,x15
+	mul	x17,x14,x15
 	stur	x12,[x22,#-16]		// tp[j-1]
 	cbnz	x21,.Linner
 
@@ -225,12 +227,12 @@ test1_bn_mul_mont:
 	ldr	x29,[sp],#64
 	AARCH64_VALIDATE_LINK_REGISTER
 	ret
-.size	test1_bn_mul_mont,.-test1_bn_mul_mont
-.type	test1_bn_mul8x_mont_neon,%function
+.size	test_bn_mul_mont,.-test_bn_mul_mont
+.type	test_bn_mul8x_mont_neon,%function
 .align	5
-test1_bn_mul8x_mont_neon:
-	// Not adding AARCH64_SIGN_LINK_REGISTER here because test1_bn_mul8x_mont_neon is jumped to
-	// only from test1_bn_mul_mont which has already signed the return address.
+test_bn_mul8x_mont_neon:
+	// Not adding AARCH64_SIGN_LINK_REGISTER here because test_bn_mul8x_mont_neon is jumped to
+	// only from test_bn_mul_mont which has already signed the return address.
 	stp	x29,x30,[sp,#-80]!
 	mov	x16,sp
 	stp	d8,d9,[sp,#16]
@@ -926,15 +928,15 @@ test1_bn_mul8x_mont_neon:
 	AARCH64_VALIDATE_LINK_REGISTER
 	ret	// bx lr
 
-.size	test1_bn_mul8x_mont_neon,.-test1_bn_mul8x_mont_neon
-.type	__test1_bn_sqr8x_mont,%function
+.size	test_bn_mul8x_mont_neon,.-test_bn_mul8x_mont_neon
+.type	__test_bn_sqr8x_mont,%function
 .align	5
-__test1_bn_sqr8x_mont:
+__test_bn_sqr8x_mont:
 	cmp	x1,x2
-	b.ne	__test1_bn_mul4x_mont
+	b.ne	__test_bn_mul4x_mont
 .Lsqr8x_mont:
-	// Not adding AARCH64_SIGN_LINK_REGISTER here because __test1_bn_sqr8x_mont is jumped to
-	// only from test1_bn_mul_mont which has already signed the return address.
+	// Not adding AARCH64_SIGN_LINK_REGISTER here because __test_bn_sqr8x_mont is jumped to
+	// only from test_bn_mul_mont which has already signed the return address.
 	stp	x29,x30,[sp,#-128]!
 	add	x29,sp,#0
 	stp	x19,x20,[sp,#16]
@@ -1026,21 +1028,21 @@ __test1_bn_sqr8x_mont:
 	adcs	x22,x22,x16
 	mul	x16,x13,x6
 	adcs	x23,x23,x17
-	umulh	x17,x7,x6		// hi(a[1..7]*a[0])
+	mul	x17,x7,x6		// hi(a[1..7]*a[0])
 	adcs	x24,x24,x14
-	umulh	x14,x8,x6
+	mul	x14,x8,x6
 	adcs	x25,x25,x15
-	umulh	x15,x9,x6
+	mul	x15,x9,x6
 	adcs	x26,x26,x16
-	umulh	x16,x10,x6
+	mul	x16,x10,x6
 	stp	x19,x20,[x2],#8*2	// t[0..1]
 	adc	x19,xzr,xzr		// t[8]
 	adds	x21,x21,x17		// t[2]+lo(a[1]*a[0])
-	umulh	x17,x11,x6
+	mul	x17,x11,x6
 	adcs	x22,x22,x14
-	umulh	x14,x12,x6
+	mul	x14,x12,x6
 	adcs	x23,x23,x15
-	umulh	x15,x13,x6
+	mul	x15,x13,x6
 	adcs	x24,x24,x16
 	mul	x16,x8,x7		// lo(a[2..7]*a[1])		(ii)
 	adcs	x25,x25,x17
@@ -1055,19 +1057,19 @@ __test1_bn_sqr8x_mont:
 	adcs	x23,x23,x17
 	mul	x17,x13,x7
 	adcs	x24,x24,x14
-	umulh	x14,x8,x7		// hi(a[2..7]*a[1])
+	mul	x14,x8,x7		// hi(a[2..7]*a[1])
 	adcs	x25,x25,x15
-	umulh	x15,x9,x7
+	mul	x15,x9,x7
 	adcs	x26,x26,x16
-	umulh	x16,x10,x7
+	mul	x16,x10,x7
 	adcs	x19,x19,x17
-	umulh	x17,x11,x7
+	mul	x17,x11,x7
 	stp	x21,x22,[x2],#8*2	// t[2..3]
 	adc	x20,xzr,xzr		// t[9]
 	adds	x23,x23,x14
-	umulh	x14,x12,x7
+	mul	x14,x12,x7
 	adcs	x24,x24,x15
-	umulh	x15,x13,x7
+	mul	x15,x13,x7
 	adcs	x25,x25,x16
 	mul	x16,x9,x8		// lo(a[3..7]*a[2])		(iii)
 	adcs	x26,x26,x17
@@ -1080,17 +1082,17 @@ __test1_bn_sqr8x_mont:
 	adds	x24,x24,x16
 	mul	x16,x13,x8
 	adcs	x25,x25,x17
-	umulh	x17,x9,x8		// hi(a[3..7]*a[2])
+	mul	x17,x9,x8		// hi(a[3..7]*a[2])
 	adcs	x26,x26,x14
-	umulh	x14,x10,x8
+	mul	x14,x10,x8
 	adcs	x19,x19,x15
-	umulh	x15,x11,x8
+	mul	x15,x11,x8
 	adcs	x20,x20,x16
-	umulh	x16,x12,x8
+	mul	x16,x12,x8
 	stp	x23,x24,[x2],#8*2	// t[4..5]
 	adc	x21,xzr,xzr		// t[10]
 	adds	x25,x25,x17
-	umulh	x17,x13,x8
+	mul	x17,x13,x8
 	adcs	x26,x26,x14
 	mul	x14,x10,x9		// lo(a[4..7]*a[3])		(iv)
 	adcs	x19,x19,x15
@@ -1101,13 +1103,13 @@ __test1_bn_sqr8x_mont:
 
 	mul	x17,x13,x9
 	adds	x26,x26,x14
-	umulh	x14,x10,x9		// hi(a[4..7]*a[3])
+	mul	x14,x10,x9		// hi(a[4..7]*a[3])
 	adcs	x19,x19,x15
-	umulh	x15,x11,x9
+	mul	x15,x11,x9
 	adcs	x20,x20,x16
-	umulh	x16,x12,x9
+	mul	x16,x12,x9
 	adcs	x21,x21,x17
-	umulh	x17,x13,x9
+	mul	x17,x13,x9
 	stp	x25,x26,[x2],#8*2	// t[6..7]
 	adc	x22,xzr,xzr		// t[11]
 	adds	x19,x19,x14
@@ -1118,25 +1120,25 @@ __test1_bn_sqr8x_mont:
 	mul	x16,x13,x10
 	adc	x22,x22,x17
 
-	umulh	x17,x11,x10		// hi(a[5..7]*a[4])
+	mul	x17,x11,x10		// hi(a[5..7]*a[4])
 	adds	x20,x20,x14
-	umulh	x14,x12,x10
+	mul	x14,x12,x10
 	adcs	x21,x21,x15
-	umulh	x15,x13,x10
+	mul	x15,x13,x10
 	adcs	x22,x22,x16
 	mul	x16,x12,x11		// lo(a[6..7]*a[5])		(vi)
 	adc	x23,xzr,xzr		// t[12]
 	adds	x21,x21,x17
 	mul	x17,x13,x11
 	adcs	x22,x22,x14
-	umulh	x14,x12,x11		// hi(a[6..7]*a[5])
+	mul	x14,x12,x11		// hi(a[6..7]*a[5])
 	adc	x23,x23,x15
 
-	umulh	x15,x13,x11
+	mul	x15,x13,x11
 	adds	x22,x22,x16
 	mul	x16,x13,x12		// lo(a[7]*a[6])		(vii)
 	adcs	x23,x23,x17
-	umulh	x17,x13,x12		// hi(a[7]*a[6])
+	mul	x17,x13,x12		// hi(a[7]*a[6])
 	adc	x24,xzr,xzr		// t[13]
 	adds	x23,x23,x14
 	sub	x27,x3,x1	// done yet?
@@ -1209,23 +1211,23 @@ __test1_bn_sqr8x_mont:
 	adcs	x22,x22,x17
 	mul	x17,x13,x4
 	adcs	x23,x23,x14
-	umulh	x14,x6,x4
+	mul	x14,x6,x4
 	adcs	x24,x24,x15
-	umulh	x15,x7,x4
+	mul	x15,x7,x4
 	adcs	x25,x25,x16
-	umulh	x16,x8,x4
+	mul	x16,x8,x4
 	adcs	x26,x26,x17
-	umulh	x17,x9,x4
+	mul	x17,x9,x4
 	adc	x28,x28,xzr
 	str	x19,[x2],#8
 	adds	x19,x20,x14
-	umulh	x14,x10,x4
+	mul	x14,x10,x4
 	adcs	x20,x21,x15
-	umulh	x15,x11,x4
+	mul	x15,x11,x4
 	adcs	x21,x22,x16
-	umulh	x16,x12,x4
+	mul	x16,x12,x4
 	adcs	x22,x23,x17
-	umulh	x17,x13,x4
+	mul	x17,x13,x4
 	ldr	x4,[x0,x27]
 	adcs	x23,x24,x14
 	adcs	x24,x25,x15
@@ -1294,12 +1296,12 @@ __test1_bn_sqr8x_mont:
 	stp	x19,x20,[x2,#8*0]
 	mul	x19,x7,x7
 	stp	x21,x22,[x2,#8*2]
-	umulh	x7,x7,x7
+	mul	x7,x7,x7
 	stp	x23,x24,[x2,#8*4]
 	mul	x8,x9,x9
 	stp	x25,x26,[x2,#8*6]
 	mov	x2,sp
-	umulh	x9,x9,x9
+	mul	x9,x9,x9
 	adds	x20,x7,x15,lsl#1
 	extr	x15,x16,x15,#63
 	sub	x27,x5,#8*4
@@ -1312,9 +1314,9 @@ __test1_bn_sqr8x_mont:
 	ldp	x15,x16,[x2,#8*5]
 	mul	x10,x11,x11
 	ldp	x7,x9,[x1],#8*2
-	umulh	x11,x11,x11
+	mul	x11,x11,x11
 	mul	x12,x13,x13
-	umulh	x13,x13,x13
+	mul	x13,x13,x13
 	extr	x17,x14,x17,#63
 	stp	x19,x20,[x2,#8*0]
 	adcs	x23,x10,x17
@@ -1329,9 +1331,9 @@ __test1_bn_sqr8x_mont:
 	ldp	x15,x16,[x2,#8*9]
 	mul	x6,x7,x7
 	ldp	x11,x13,[x1],#8*2
-	umulh	x7,x7,x7
+	mul	x7,x7,x7
 	mul	x8,x9,x9
-	umulh	x9,x9,x9
+	mul	x9,x9,x9
 	stp	x23,x24,[x2,#8*4]
 	extr	x17,x14,x17,#63
 	stp	x25,x26,[x2,#8*6]
@@ -1349,10 +1351,10 @@ __test1_bn_sqr8x_mont:
 	adcs	x22,x9,x16
 	ldp	x15,x16,[x2,#8*5]
 	mul	x10,x11,x11
-	umulh	x11,x11,x11
+	mul	x11,x11,x11
 	stp	x19,x20,[x2,#8*0]
 	mul	x12,x13,x13
-	umulh	x13,x13,x13
+	mul	x13,x13,x13
 	stp	x21,x22,[x2,#8*2]
 	extr	x17,x14,x17,#63
 	adcs	x23,x10,x17
@@ -1398,22 +1400,22 @@ __test1_bn_sqr8x_mont:
 	adcs	x21,x22,x17
 	mul	x17,x13,x28
 	adcs	x22,x23,x14
-	umulh	x14,x6,x28		// hi(n[0-7])*lo(t[0]*n0)
+	mul	x14,x6,x28		// hi(n[0-7])*lo(t[0]*n0)
 	adcs	x23,x24,x15
-	umulh	x15,x7,x28
+	mul	x15,x7,x28
 	adcs	x24,x25,x16
-	umulh	x16,x8,x28
+	mul	x16,x8,x28
 	adcs	x25,x26,x17
-	umulh	x17,x9,x28
+	mul	x17,x9,x28
 	adc	x26,xzr,xzr
 	adds	x19,x19,x14
-	umulh	x14,x10,x28
+	mul	x14,x10,x28
 	adcs	x20,x20,x15
-	umulh	x15,x11,x28
+	mul	x15,x11,x28
 	adcs	x21,x21,x16
-	umulh	x16,x12,x28
+	mul	x16,x12,x28
 	adcs	x22,x22,x17
-	umulh	x17,x13,x28
+	mul	x17,x13,x28
 	mul	x28,x4,x19		// next t[0]*n0
 	adcs	x23,x23,x14
 	adcs	x24,x24,x15
@@ -1462,23 +1464,23 @@ __test1_bn_sqr8x_mont:
 	adcs	x22,x22,x17
 	mul	x17,x13,x4
 	adcs	x23,x23,x14
-	umulh	x14,x6,x4
+	mul	x14,x6,x4
 	adcs	x24,x24,x15
-	umulh	x15,x7,x4
+	mul	x15,x7,x4
 	adcs	x25,x25,x16
-	umulh	x16,x8,x4
+	mul	x16,x8,x4
 	adcs	x26,x26,x17
-	umulh	x17,x9,x4
+	mul	x17,x9,x4
 	adc	x28,x28,xzr
 	str	x19,[x2],#8
 	adds	x19,x20,x14
-	umulh	x14,x10,x4
+	mul	x14,x10,x4
 	adcs	x20,x21,x15
-	umulh	x15,x11,x4
+	mul	x15,x11,x4
 	adcs	x21,x22,x16
-	umulh	x16,x12,x4
+	mul	x16,x12,x4
 	adcs	x22,x23,x17
-	umulh	x17,x13,x4
+	mul	x17,x13,x4
 	ldr	x4,[x0,x27]
 	adcs	x23,x24,x14
 	adcs	x24,x25,x15
@@ -1688,12 +1690,12 @@ __test1_bn_sqr8x_mont:
 	// x30 is loaded earlier
 	AARCH64_VALIDATE_LINK_REGISTER
 	ret
-.size	__test1_bn_sqr8x_mont,.-__test1_bn_sqr8x_mont
-.type	__test1_bn_mul4x_mont,%function
+.size	__test_bn_sqr8x_mont,.-__test_bn_sqr8x_mont
+.type	__test_bn_mul4x_mont,%function
 .align	5
-__test1_bn_mul4x_mont:
-	// Not adding AARCH64_SIGN_LINK_REGISTER here because __test1_bn_mul4x_mont is jumped to
-	// only from test1_bn_mul_mont (or __test1_bn_sqr8x_mont from test1_bn_mul_mont) which has already signed the return address.
+__test_bn_mul4x_mont:
+	// Not adding AARCH64_SIGN_LINK_REGISTER here because __test_bn_mul4x_mont is jumped to
+	// only from test_bn_mul_mont (or __test_bn_sqr8x_mont from test_bn_mul_mont) which has already signed the return address.
 	stp	x29,x30,[sp,#-128]!
 	add	x29,sp,#0
 	stp	x19,x20,[sp,#16]
@@ -1735,15 +1737,15 @@ __test1_bn_mul4x_mont:
 	and	x28,x28,#31
 	mul	x13,x9,x24
 	adds	x19,x19,x10
-	umulh	x10,x6,x24		// hi(a[0..3]*b[0])
+	mul	x10,x6,x24		// hi(a[0..3]*b[0])
 	adcs	x20,x20,x11
 	mul	x25,x19,x4		// t[0]*n0
 	adcs	x21,x21,x12
-	umulh	x11,x7,x24
+	mul	x11,x7,x24
 	adcs	x22,x22,x13
-	umulh	x12,x8,x24
+	mul	x12,x8,x24
 	adc	x23,xzr,xzr
-	umulh	x13,x9,x24
+	mul	x13,x9,x24
 	ldr	x24,[x2,x28]		// next b[i] (or b[0])
 	adds	x20,x20,x10
 	// (*)	mul	x10,x14,x25	// lo(n[0..3]*t[0]*n0)
@@ -1756,13 +1758,13 @@ __test1_bn_mul4x_mont:
 	mul	x13,x17,x25
 	// (*)	adds	xzr,x19,x10
 	subs	xzr,x19,#1		// (*)
-	umulh	x10,x14,x25		// hi(n[0..3]*t[0]*n0)
+	mul	x10,x14,x25		// hi(n[0..3]*t[0]*n0)
 	adcs	x19,x20,x11
-	umulh	x11,x15,x25
+	mul	x11,x15,x25
 	adcs	x20,x21,x12
-	umulh	x12,x16,x25
+	mul	x12,x16,x25
 	adcs	x21,x22,x13
-	umulh	x13,x17,x25
+	mul	x13,x17,x25
 	adcs	x22,x23,x0
 	adc	x0,xzr,xzr
 	adds	x19,x19,x10
@@ -1792,13 +1794,13 @@ __test1_bn_mul4x_mont:
 	and	x28,x28,#31
 	mul	x13,x9,x24
 	adds	x19,x19,x10
-	umulh	x10,x6,x24		// hi(a[4..7]*b[i])
+	mul	x10,x6,x24		// hi(a[4..7]*b[i])
 	adcs	x20,x20,x11
-	umulh	x11,x7,x24
+	mul	x11,x7,x24
 	adcs	x21,x21,x12
-	umulh	x12,x8,x24
+	mul	x12,x8,x24
 	adcs	x22,x22,x13
-	umulh	x13,x9,x24
+	mul	x13,x9,x24
 	adc	x23,xzr,xzr
 	ldr	x24,[x2,x28]		// next b[i] (or b[0])
 	adds	x20,x20,x10
@@ -1810,14 +1812,14 @@ __test1_bn_mul4x_mont:
 	adc	x23,x23,x13		// can't overflow
 	mul	x13,x17,x25
 	adds	x19,x19,x10
-	umulh	x10,x14,x25		// hi(n[4..7]*a[0]*n0)
+	mul	x10,x14,x25		// hi(n[4..7]*a[0]*n0)
 	adcs	x20,x20,x11
-	umulh	x11,x15,x25
+	mul	x11,x15,x25
 	adcs	x21,x21,x12
-	umulh	x12,x16,x25
+	mul	x12,x16,x25
 	adcs	x22,x22,x13
 	adcs	x23,x23,x0
-	umulh	x13,x17,x25
+	mul	x13,x17,x25
 	adc	x0,xzr,xzr
 	ldr	x25,[sp,x28]		// next t[0]*n0
 	str	x19,[x26],#8		// result!!!
@@ -1870,15 +1872,15 @@ __test1_bn_mul4x_mont:
 	and	x28,x28,#31
 	mul	x13,x9,x24
 	adds	x19,x19,x10
-	umulh	x10,x6,x24		// hi(a[0..3]*b[4])
+	mul	x10,x6,x24		// hi(a[0..3]*b[4])
 	adcs	x20,x20,x11
 	mul	x25,x19,x4		// t[0]*n0
 	adcs	x21,x21,x12
-	umulh	x11,x7,x24
+	mul	x11,x7,x24
 	adcs	x22,x22,x13
-	umulh	x12,x8,x24
+	mul	x12,x8,x24
 	adc	x23,xzr,xzr
-	umulh	x13,x9,x24
+	mul	x13,x9,x24
 	ldr	x24,[x2,x28]		// next b[i]
 	adds	x20,x20,x10
 	// (*)	mul	x10,x14,x25
@@ -1891,13 +1893,13 @@ __test1_bn_mul4x_mont:
 	mul	x13,x17,x25
 	// (*)	adds	xzr,x19,x10
 	subs	xzr,x19,#1		// (*)
-	umulh	x10,x14,x25		// hi(n[0..3]*t[0]*n0
+	mul	x10,x14,x25		// hi(n[0..3]*t[0]*n0
 	adcs	x19,x20,x11
-	umulh	x11,x15,x25
+	mul	x11,x15,x25
 	adcs	x20,x21,x12
-	umulh	x12,x16,x25
+	mul	x12,x16,x25
 	adcs	x21,x22,x13
-	umulh	x13,x17,x25
+	mul	x13,x17,x25
 	adcs	x22,x23,x0
 	adc	x0,xzr,xzr
 	adds	x19,x19,x10
@@ -1934,13 +1936,13 @@ __test1_bn_mul4x_mont:
 	and	x28,x28,#31
 	mul	x13,x9,x24
 	adds	x19,x19,x10
-	umulh	x10,x6,x24		// hi(a[4..7]*b[4])
+	mul	x10,x6,x24		// hi(a[4..7]*b[4])
 	adcs	x20,x20,x11
-	umulh	x11,x7,x24
+	mul	x11,x7,x24
 	adcs	x21,x21,x12
-	umulh	x12,x8,x24
+	mul	x12,x8,x24
 	adcs	x22,x22,x13
-	umulh	x13,x9,x24
+	mul	x13,x9,x24
 	adc	x23,xzr,xzr
 	ldr	x24,[x2,x28]		// next b[i]
 	adds	x20,x20,x10
@@ -1952,13 +1954,13 @@ __test1_bn_mul4x_mont:
 	adc	x23,x23,x13		// can't overflow
 	mul	x13,x17,x25
 	adds	x19,x19,x10
-	umulh	x10,x14,x25		// hi(n[4..7]*t[0]*n0)
+	mul	x10,x14,x25		// hi(n[4..7]*t[0]*n0)
 	adcs	x20,x20,x11
-	umulh	x11,x15,x25
+	mul	x11,x15,x25
 	adcs	x21,x21,x12
-	umulh	x12,x16,x25
+	mul	x12,x16,x25
 	adcs	x22,x22,x13
-	umulh	x13,x17,x25
+	mul	x13,x17,x25
 	adcs	x23,x23,x0
 	ldr	x25,[sp,x28]		// next a[0]*n0
 	adc	x0,xzr,xzr
@@ -2130,7 +2132,7 @@ __test1_bn_mul4x_mont:
 	// x30 loaded earlier
 	AARCH64_VALIDATE_LINK_REGISTER
 	ret
-.size	__test1_bn_mul4x_mont,.-__test1_bn_mul4x_mont
+.size	__test_bn_mul4x_mont,.-__test_bn_mul4x_mont
 .byte	77,111,110,116,103,111,109,101,114,121,32,77,117,108,116,105,112,108,105,99,97,116,105,111,110,32,102,111,114,32,65,82,77,118,56,44,32,67,82,89,80,84,79,71,65,77,83,32,98,121,32,60,97,112,112,114,111,64,111,112,101,110,115,115,108,46,111,114,103,62,0
 .align	2
 .align	4
