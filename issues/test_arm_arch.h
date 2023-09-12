@@ -1,6 +1,6 @@
 /*
  * A copy of openssl/crypto/arm_arch.h
- * Brought here to compile openssl_armv8_mont.S
+ * Brought here to compile test?_armv8_mont.S
  */
 
 /*
