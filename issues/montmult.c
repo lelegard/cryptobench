@@ -27,6 +27,7 @@
 #endif
 
 #if defined(ARMV8_MONT_TEST)
+    #include <sys/auxv.h>
     // Stolen from openssl/crypto/bn/bn_local.h 
     struct bignum_st {
         BN_ULONG *d;
@@ -162,6 +163,10 @@ int main(int argc, char* argv[])
     // On Linux Arm64, evaluate performances of Armv8 implementation of Montgomery multiplication.
 #if defined(ARMV8_MONT_TEST)
 
+    if (getauxval(AT_HWCAP) & HWCAP_ASIMDRDM) {
+        test_OPENSSL_armv8_rsa_neonized = 1;
+    }
+
     int num = bn_mont_ctx->N.top;
     check(bn_wexpand(res, num) != NULL, "bn_wexpand");
 
@@ -180,12 +185,13 @@ int main(int argc, char* argv[])
     }
     const uint64_t time7 = cpu_time();
 
-    printf("add: %.2f, mul: %.2f, mont-mul: %.2f, armv8-mont: %.2f, armv8-mont-no-umulh: %.2f microseconds\n",
+    printf("add: %.2f, mul: %.2f, mont-mul: %.2f, armv8-mont: %.2f, armv8-mont-no-umulh: %.2f microseconds, rsa_neonized: %d\n",
            (double)(time2 - time1) / ADD_ITERATIONS,
            (double)(time3 - time2) / MUL_ITERATIONS,
            (double)(time4 - time3) / MONT_MUL_ITERATIONS,
            (double)(time6 - time5) / MONT_MUL_ITERATIONS,
-           (double)(time7 - time6) / MONT_MUL_ITERATIONS);
+           (double)(time7 - time6) / MONT_MUL_ITERATIONS,
+           test_OPENSSL_armv8_rsa_neonized);
 
 #else
 

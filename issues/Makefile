@@ -14,7 +14,7 @@ SRCDIR  = .
 BINDIR  = ../build
 
 # Also build a static version on Linux (static builds are deprecated on macOS).
-EXECS = $(addprefix $(BINDIR)/,$(TESTS)) $(findstring linux,$(SYSTEM),$(addprefix $(BINDIR)/,$(addsuffix _static,$(TESTS))))
+EXECS = $(addprefix $(BINDIR)/,$(TESTS)) $(if $(findstring linux,$(SYSTEM)),$(addprefix $(BINDIR)/,$(addsuffix _static,$(TESTS))))
 
 # Build with OpenSSL static crypto library.
 LIBCRYPTO := $(firstword $(wildcard /opt/homebrew/lib/libcrypto.a /usr/local/lib/libcrypto.a /usr/lib*/libcrypto.a /usr/lib*/*/libcrypto.a))
