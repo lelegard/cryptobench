@@ -8,17 +8,17 @@
         .text
 
         .align  2
-        .globl	_mul_empty
-_mul_empty:
+        .globl	mul_empty
+mul_empty:
         cbz     x0, L_end_empty
         sub     x0, x0, #1
-        b       _mul_empty
+        b       mul_empty
 L_end_empty:
         ret
 
         .align  2
-        .globl	_mul_nop_8
-_mul_nop_8:
+        .globl	mul_nop_8
+mul_nop_8:
         cbz     x0, L_end_nop_8
         sub     x0, x0, #1
         nop
@@ -29,13 +29,13 @@ _mul_nop_8:
         nop
         nop
         nop
-        b       _mul_nop_8
+        b       mul_nop_8
 L_end_nop_8:
         ret
 
         .align  2
-        .globl	_mul_nop_16
-_mul_nop_16:
+        .globl	mul_nop_16
+mul_nop_16:
         cbz     x0, L_end_nop_16
         sub     x0, x0, #1
         nop
@@ -54,13 +54,13 @@ _mul_nop_16:
         nop
         nop
         nop
-        b       _mul_nop_16
+        b       mul_nop_16
 L_end_nop_16:
         ret
 
         .align  2
-        .globl	_mul_mul_8
-_mul_mul_8:
+        .globl	mul_mul_8
+mul_mul_8:
         cbz     x0, L_end_mul_8
         sub     x0, x0, #1
         mul     x9, x1, x2
@@ -71,14 +71,14 @@ _mul_mul_8:
         mul     x14, x1, x2
         mul     x15, x1, x2
         mul     x9, x1, x2
-        b       _mul_mul_8
+        b       mul_mul_8
 L_end_mul_8:
         ret
 
 // Four mul/umulh instruction pairs.
         .align  2
-        .globl	_mul_mul_umulh_4
-_mul_mul_umulh_4:
+        .globl	mul_mul_umulh_4
+mul_mul_umulh_4:
         cbz     x0, L_end_mul_umulh_4
         sub     x0, x0, #1
         mul     x9, x1, x2
@@ -89,13 +89,13 @@ _mul_mul_umulh_4:
         umulh   x14, x1, x2
         mul     x15, x1, x2
         umulh   x9, x1, x2
-        b       _mul_mul_umulh_4
+        b       mul_mul_umulh_4
 L_end_mul_umulh_4:
         ret
 
         .align  2
-        .globl	_mul_maua_2
-_mul_maua_2:
+        .globl	mul_maua_2
+mul_maua_2:
         cbz     x0, L_end_maua_2
         sub     x0, x0, #1
         mul     x9, x1, x2
@@ -106,6 +106,6 @@ _mul_maua_2:
         adcs    x14, x1, x2
         umulh   x15, x1, x2
         adcs    x9, x1, x2
-        b       _mul_maua_2
+        b       mul_maua_2
 L_end_maua_2:
         ret
