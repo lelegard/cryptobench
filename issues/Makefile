@@ -6,12 +6,13 @@
 
 default: execs
 
-TESTS   = montmult
 SYSTEM := $(subst Linux,linux,$(subst Darwin,mac,$(shell uname -s)))
 ARCH   := $(subst amd64,x64,$(subst x86_64,x64,$(subst aarch64,arm64,$(shell uname -m))))
 SHELL   = /usr/bin/env bash --noprofile
 SRCDIR  = .
 BINDIR  = ../build
+
+TESTS   = montmult $(if $(findstring arm64,$(ARCH)),mult)
 
 # Also build a static version on Linux (static builds are deprecated on macOS).
 EXECS = $(addprefix $(BINDIR)/,$(TESTS)) $(if $(findstring linux,$(SYSTEM)),$(addprefix $(BINDIR)/,$(addsuffix _static,$(TESTS))))
@@ -42,8 +43,9 @@ $(BINDIR)/%.o: $(SRCDIR)/%.S
 	@mkdir -p $(BINDIR)
 	$(CC) $(CPPFLAGS) -c -o $@ $<
 
-# On Linux Arm64, build modified versions of OpenSSL Montgomery multiplication in Armv8 assembly.
-$(BINDIR)/montmult $(BINDIR)/montmult_static: $(if $(findstring linux-arm64,$(SYSTEM)-$(ARCH)),$(BINDIR)/test1_armv8_mont.o $(BINDIR)/test2_armv8_mont.o)
+$(EXECS): $(BINDIR)/cpu_time.o
+$(BINDIR)/mult $(BINDIR)/mult_static: $(if $(findstring arm64,$(ARCH)),$(BINDIR)/mult_arm.o)
+$(BINDIR)/montmult $(BINDIR)/montmult_static: $(if $(findstring linux-arm64,$(SYSTEM)-$(ARCH)),$(BINDIR)/montmult_arm1.o $(BINDIR)/montmult_arm2.o)
 
 # Regenerate implicit dependencies.
 ifneq ($(if $(MAKECMDGOALS),$(filter-out clean,$(MAKECMDGOALS)),true),)

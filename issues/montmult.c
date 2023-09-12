@@ -4,11 +4,10 @@
 // Standalone Montgomery multiplication test.
 //----------------------------------------------------------------------------
 
+#include "cpu_time.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <inttypes.h>
-#include <sys/resource.h>
 #include <openssl/bn.h>
 #include <openssl/opensslv.h>
 
@@ -27,7 +26,7 @@
 #endif
 
 #if defined(ARMV8_MONT_TEST)
-    #include "test_arm_arch.h"
+    #include "montmult_arm_arch.h"
     // Stolen from openssl/crypto/bn/bn_local.h 
     struct bignum_st {
         BN_ULONG *d;
@@ -108,18 +107,6 @@ static const uint8_t bin_2[] = {
     0x4B, 0x6E, 0x43, 0x63, 0xA6, 0xB1, 0xBC, 0x36, 0xFF, 0x8A, 0x48, 0x54, 0x2C, 0x6C, 0xF3, 0x81,
     0xDD, 0x81, 0xB3, 0x00, 0x2B, 0xE0, 0x16, 0x5E, 0x4A, 0x53, 0x0D, 0x4E, 0x7A, 0xA5, 0x41, 0x85,
 };
-
-// Get current CPU time resource usage in microseconds.
-static int64_t cpu_time()
-{
-    struct rusage ru;
-    if (getrusage(RUSAGE_SELF, &ru) < 0) {
-        perror("getrusage");
-        exit(EXIT_FAILURE);
-    }
-    return ((int64_t)(ru.ru_utime.tv_sec) * USECPERSEC) + ru.ru_utime.tv_usec +
-           ((int64_t)(ru.ru_stime.tv_sec) * USECPERSEC) + ru.ru_stime.tv_usec;
-}
 
 // Check a BIGNUM error.
 static inline void check(int err, const char* func)
