@@ -6,28 +6,42 @@
 
 default: execs
 
-TESTS    = montmult
-SHELL    = /usr/bin/env bash --noprofile
-SRCDIR   = .
-BINDIR   = ../build
-EXECS    = $(addprefix $(BINDIR)/,$(TESTS)) $(addprefix $(BINDIR)/,$(addsuffix _static,$(TESTS)))
+TESTS   = montmult
+SYSTEM := $(subst Linux,linux,$(subst Darwin,mac,$(shell uname -s)))
+ARCH   := $(subst amd64,x64,$(subst x86_64,x64,$(subst aarch64,arm64,$(shell uname -m))))
+SHELL   = /usr/bin/env bash --noprofile
+SRCDIR  = .
+BINDIR  = ../build
+EXECS   = $(addprefix $(BINDIR)/,$(TESTS)) $(addprefix $(BINDIR)/,$(addsuffix _static,$(TESTS)))
+
+# Build with OpenSSL static crypto library.
+LIBCRYPTO := $(firstword $(wildcard /opt/homebrew/lib/libcrypto.a /usr/local/lib/libcrypto.a /usr/lib*/libcrypto.a /usr/lib*/*/libcrypto.a))
+$(if $(LIBCRYPTO),,$(error libcrypto.a not found))
+
+# Build options.
 CFLAGS   += -Werror -Wall -Wextra -Wno-unused-parameter $(if $(DEBUG),-g,-O2)
 CPPFLAGS += $(addprefix -I,$(wildcard /opt/homebrew/include /usr/local/include))
 LDFLAGS  += $(addprefix -L,$(wildcard /opt/homebrew/lib /usr/local/lib)) $(if $(DEBUG),-g)
-LDLIBS   += -lcrypto
+LDLIBS   += $(LIBCRYPTO)
 
 # Build operations.
 execs: $(EXECS)
 	@true
 clean:
 	rm -rf ../build ../build-* core ../core *.tmp *.log *.pro.user __pycache__
-$(BINDIR)/%: $(SRCDIR)/%.o
+$(BINDIR)/%: $(BINDIR)/%.o
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
-$(BINDIR)/%_static: $(SRCDIR)/%.o
+$(BINDIR)/%_static: $(BINDIR)/%.o
 	$(CC) -static $(LDFLAGS) $^ $(LDLIBS) -o $@
 $(BINDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(BINDIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+$(BINDIR)/%.o: $(SRCDIR)/%.S
+	@mkdir -p $(BINDIR)
+	$(CC) $(CPPFLAGS) -c -o $@ $<
+
+# On Linux Arm64, build modified versions of OpenSSL Montgomery multiplication in Armv8 assembly.
+$(BINDIR)/montmult $(BINDIR)/montmult_static: $(if $(findstring linux-arm64,$(SYSTEM)-$(ARCH)),$(BINDIR)/test1_armv8_mont.o $(BINDIR)/test2_armv8_mont.o)
 
 # Regenerate implicit dependencies.
 ifneq ($(if $(MAKECMDGOALS),$(filter-out clean,$(MAKECMDGOALS)),true),)

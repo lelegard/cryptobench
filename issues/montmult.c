@@ -10,11 +10,47 @@
 #include <inttypes.h>
 #include <sys/resource.h>
 #include <openssl/bn.h>
+#include <openssl/opensslv.h>
 
 #define USECPERSEC          1000000  // microseconds per second
 #define ADD_ITERATIONS      1000000  // number of iterations for BN_mod_add()
 #define MUL_ITERATIONS       500000  // number of iterations for BN_mod_mul()
 #define MONT_MUL_ITERATIONS 1000000  // number of iterations for BN_mod_mul_montgomery()
+
+#if !defined(OPENSSL_VERSION_MAJOR) // before v3
+    #define OPENSSL_VERSION_MAJOR (OPENSSL_VERSION_NUMBER >> 28)
+#endif
+
+// On Linux Arm64, evaluate performances of Armv8 implementation of Montgomery multiplication.
+#if defined(__linux__) && defined(__aarch64__) && OPENSSL_VERSION_MAJOR >= 3
+    #define ARMV8_MONT_TEST 1
+#endif
+
+#if defined(ARMV8_MONT_TEST)
+    // Stolen from openssl/crypto/bn/bn_local.h 
+    struct bignum_st {
+        BN_ULONG *d;
+        int top;
+        int dmax;
+        int neg;
+        int flags;
+    };
+    struct bn_mont_ctx_st {
+        int ri;
+        BIGNUM RR;
+        BIGNUM N;
+        BIGNUM Ni;
+        BN_ULONG n0[2];
+        int flags;
+    };
+    // Stolen from openssl/include/crypto/bn.h
+    // Rely on static libcrypto.a to export bn_wexpand.
+    BIGNUM *bn_wexpand(BIGNUM *a, int words);
+    // Interface of assembly modules.
+    unsigned int test_OPENSSL_armv8_rsa_neonized = 0;
+    int test1_bn_mul_mont(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np, const BN_ULONG *n0, int num);
+    int test2_bn_mul_mont(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np, const BN_ULONG *n0, int num);
+#endif
 
 // A 2048-bit number which is an RSA modulus.
 static const uint8_t bin_mod[] = {
@@ -123,10 +159,42 @@ int main(int argc, char* argv[])
     }
     const uint64_t time4 = cpu_time();
 
+    // On Linux Arm64, evaluate performances of Armv8 implementation of Montgomery multiplication.
+#if defined(ARMV8_MONT_TEST)
+
+    int num = bn_mont_ctx->N.top;
+    check(bn_wexpand(res, num) != NULL, "bn_wexpand");
+
+    if (res->top != num || n1->top != num || n2->top != num) {
+        printf("res->top: %d, n1->top: %d, n2->top: %d, mod->top: %d, num: %d\n", res->top, n1->top, n2->top, mod->top, num);
+        return EXIT_FAILURE;
+    }
+
+    const uint64_t time5 = cpu_time();
+    for (int i = MONT_MUL_ITERATIONS; i > 0; i--) {
+        check(test1_bn_mul_mont(res->d, n1->d, n2->d, bn_mont_ctx->N.d, bn_mont_ctx->n0, num), "test1_bn_mul_mont");
+    }
+    const uint64_t time6 = cpu_time();
+    for (int i = MONT_MUL_ITERATIONS; i > 0; i--) {
+        check(test2_bn_mul_mont(res->d, n1->d, n2->d, bn_mont_ctx->N.d, bn_mont_ctx->n0, num), "test1_bn_mul_mont");
+    }
+    const uint64_t time7 = cpu_time();
+
+    printf("add: %.2f, mul: %.2f, mont-mul: %.2f, armv8-mont: %.2f, armv8-mont-no-umulh: %.2f microseconds\n",
+           (double)(time2 - time1) / ADD_ITERATIONS,
+           (double)(time3 - time2) / MUL_ITERATIONS,
+           (double)(time4 - time3) / MONT_MUL_ITERATIONS,
+           (double)(time6 - time5) / MONT_MUL_ITERATIONS,
+           (double)(time7 - time6) / MONT_MUL_ITERATIONS);
+
+#else
+
     printf("add: %.2f, mul: %.2f, mont-mul: %.2f microseconds\n",
            (double)(time2 - time1) / ADD_ITERATIONS,
            (double)(time3 - time2) / MUL_ITERATIONS,
            (double)(time4 - time3) / MONT_MUL_ITERATIONS);
+
+#endif
 
     // Don't free resources, this is just a test and we exit anyway.
     return EXIT_SUCCESS;
