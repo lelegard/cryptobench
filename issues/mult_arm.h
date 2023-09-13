@@ -16,7 +16,8 @@ DECLARE(mul_nop_128);
 DECLARE(mul_nop_512);
 DECLARE(mul_mul_8);
 DECLARE(mul_mul_umulh_4);
-DECLARE(mul_maua_2);
+DECLARE(mul_maua_2_adcs);
+DECLARE(mul_maua_2_add);
 #undef DECLARE
 
 #endif

@@ -116,7 +116,7 @@ mul.stack_size:
         umulh   x9, x1, x2
         mul_end
 
-        mul_begin mul_maua_2
+        mul_begin mul_maua_2_adcs
         mul     x9, x1, x2
         adcs    x10, x1, x2
         umulh   x11, x1, x2
@@ -125,4 +125,15 @@ mul.stack_size:
         adcs    x14, x1, x2
         umulh   x15, x1, x2
         adcs    x9, x1, x2
+        mul_end
+
+        mul_begin mul_maua_2_add
+        mul     x9, x1, x2
+        add     x10, x1, x2
+        umulh   x11, x1, x2
+        add     x12, x1, x2
+        mul     x13, x1, x2
+        add     x14, x1, x2
+        umulh   x15, x1, x2
+        add     x9, x1, x2
         mul_end
