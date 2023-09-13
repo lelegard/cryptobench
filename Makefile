@@ -8,3 +8,4 @@ MAKEFLAGS += --no-print-directory
 
 default clean:
 	@$(MAKE) $@ -C src
+	@$(MAKE) $@ -C issues

@@ -11,11 +11,9 @@ ARCH   := $(subst amd64,x64,$(subst x86_64,x64,$(subst aarch64,arm64,$(shell una
 SHELL   = /usr/bin/env bash --noprofile
 SRCDIR  = .
 BINDIR  = ../build
-
 TESTS   = montmult $(if $(findstring arm64,$(ARCH)),mult)
-
-# Also build a static version on Linux (static builds are deprecated on macOS).
-EXECS = $(addprefix $(BINDIR)/,$(TESTS)) $(if $(findstring linux,$(SYSTEM)),$(addprefix $(BINDIR)/,$(addsuffix _static,$(TESTS))))
+EXECS   = $(addprefix $(BINDIR)/,$(TESTS))
+STATICS = $(if $(findstring linux,$(SYSTEM)),$(addsuffix _static,$(EXECS)))
 
 # Build with OpenSSL static crypto library.
 LIBCRYPTO := $(firstword $(wildcard /opt/homebrew/lib/libcrypto.a /usr/local/lib/libcrypto.a /usr/lib*/libcrypto.a /usr/lib*/*/libcrypto.a))
@@ -30,6 +28,8 @@ LDLIBS   += $(LIBCRYPTO)
 # Build operations.
 execs: $(EXECS)
 	@true
+static: $(STATICS)
+	@true
 clean:
 	rm -rf ../build ../build-* core ../core *.tmp *.log *.pro.user __pycache__
 $(BINDIR)/%: $(BINDIR)/%.o
@@ -43,7 +43,7 @@ $(BINDIR)/%.o: $(SRCDIR)/%.S
 	@mkdir -p $(BINDIR)
 	$(CC) $(CPPFLAGS) -c -o $@ $<
 
-$(EXECS): $(BINDIR)/cpu_time.o
+$(EXECS) $(STATICS): $(BINDIR)/cpu_time.o
 $(BINDIR)/mult $(BINDIR)/mult_static: $(if $(findstring arm64,$(ARCH)),$(BINDIR)/mult_arm.o)
 $(BINDIR)/montmult $(BINDIR)/montmult_static: $(if $(findstring linux-arm64,$(SYSTEM)-$(ARCH)),$(BINDIR)/montmult_arm1.o $(BINDIR)/montmult_arm2.o)
 

@@ -11,6 +11,6 @@
 
 #define USECPERSEC 1000000 // microseconds per second
 
-int64_t cpu_time();
+int64_t cpu_time() asm("cpu_time");
 
 #endif
