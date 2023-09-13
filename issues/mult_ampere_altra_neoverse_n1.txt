@@ -1,0 +1,7 @@
+nop (x8): 0.043 ns/inst
+nop (x16): 0.059 ns/inst
+nop (x128): 0.081 ns/inst
+nop (x512): 0.083 ns/inst
+mul (x8): 0.918 ns/inst
+mul umulh (x4): 1.085 ns/inst
+mul adcs umulh adcs (x2): 0.501 ns/inst
