@@ -5,3 +5,4 @@ nop (x512): 0.042 ns/inst
 mul (x8): 0.126 ns/inst
 mul umulh (x4): 0.126 ns/inst
 mul adcs umulh adcs (x2): 0.126 ns/inst
+mul add umulh add (x2): 0.069 ns/inst
