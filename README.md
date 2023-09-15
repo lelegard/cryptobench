@@ -328,17 +328,17 @@ explained before. And MUL and UMULH have the same execution time. The situation
 was clearly improved in the V1.
 
 However... when we intersperse ADCS between MUL and/or UMULH, the time per
-instruction almost ***doubles*** (0.248 instead of 0.144). The interspersed ADCS
-use an independent pipeline and are very cheap. Nonetheless, the mean time
-per instruction in the sequence doubles.
+instruction almost ***doubles*** (0.248 instead of 0.144) on the Neoverse V1.
+The interspersed ADCS use an independent pipeline and are very cheap.
+Nonetheless, the mean time per instruction in the sequence doubles.
 
-However, if we replace ADCS with ADD (no use of carry), the mean time per
+Additionally, if we replace ADCS with ADD (no use of carry), the mean time per
 instruction drops to 0.092 (compared to 0.248 with ADCS and 0.144 with MUL).
 
-Consequently, it is safe to assume that the usage of the carry on addition
-(and maybe other instructions, still to be tested) has a nefarious impact
-on the instruction throughput, even though the other instructions execute
-on a distinct pipeline and do not use the carry.
+Consequently, on the Neoverse V1, it is safe to assume that the usage of the
+carry on addition (and maybe other instructions, still to be tested) has a
+nefarious impact on the instruction throughput, even though the other
+instructions execute on a distinct pipeline and do not use the carry.
 
 The impact on the real code sequence in OpenSSL is slightly less important
 but still by 30%. This sequence is likely executed less often than the sequence
