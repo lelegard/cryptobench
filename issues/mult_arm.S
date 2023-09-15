@@ -12,22 +12,42 @@
 \symbol:
         .endm
 
+        // Declare the start of a structure (typically a stack frame).
+        .macro  struct_begin
+        .struct_offset = 0
+        .endm
+
+        // Declare a field in the current structure. Size in bytes.
+        .macro  struct_field name, size
+        \name = .struct_offset
+        .struct_offset = .struct_offset + \size
+        .endm
+
+        // Realign inside current structure.
+        .macro  struct_align align
+        .struct_offset = .struct_offset + (\align - (.struct_offset % \align)) % \align
+        .endm
+
+        // End of current structure. Define alignment in bytes and name for structure size.
+        .macro  struct_end size_name, align=16
+        struct_align \align
+        \size_name = .struct_offset
+        .endm
+
         // Prolog of all functions in this module.
         // Profile: double func(int64_t iterations);
         // Return: average time of one instruction in iteration body in nanoseconds.
         .macro  xxx_begin symbol
         func    \symbol
         // Stack frame layout.
-        .struct 0
-xxx.call_frame: .space  16      // call frame (x29, x30)
-xxx.iter:       .space  8       // iteration count
-xxx.time1:      .space  8       // start / duration of main instruction loop
-xxx.time2:      .space  8       // start of empty loop
-xxx.reg1920:    .space  16      // saved registers x19-x20
-xxx.reg2122:    .space  16      // saved registers x21-x22
-                .align  4       // align stack frame on 16 bytes
-xxx.stack_size:
-        .text
+        struct_begin
+        struct_field xxx.call_frame, 16 // call frame (x29, x30)
+        struct_field xxx.reg1920, 16    // saved registers x19-x20
+        struct_field xxx.reg2122, 16    // saved registers x21-x22
+        struct_field xxx.iter, 8        // iteration count
+        struct_field xxx.time1, 8       // start / duration of main instruction loop
+        struct_field xxx.time2, 8       // start of empty loop
+        struct_end   xxx.stack_size
         // Function prolog.
         stp     x29, x30, [sp, -xxx.stack_size]!
         stp     x19, x20, [sp, xxx.reg1920]
