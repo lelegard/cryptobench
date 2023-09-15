@@ -328,7 +328,7 @@ explained before. And MUL and UMULH have the same execution time. The situation
 was clearly improved in the V1.
 
 However... when we intersperse ADCS between MUL and/or UMULH, the time per
-instruction almost DOUBLES (0.248 instead of 0.144). The interspersed ADCS
+instruction almost __**doubles**__ (0.248 instead of 0.144). The interspersed ADCS
 use an independent pipeline and are very cheap. Nonetheless, the mean time
 per instruction in the sequence doubles.
 
