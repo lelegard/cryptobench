@@ -346,4 +346,11 @@ but still by 30%. This sequence is likely executed less often than the sequence
 of MUL UMULH. Thus, the macroscopic effect on RSA is less noticeable.
 
 In the meantime, the Apple M1 maintains a consistent execution throughput,
-regardless of the combinations of instructions.
+regardless of the combinations of instructions. There is one remark, however,
+about the M1. When running the test program, we get two sets of consistent
+results. The execution times differ by 20 to 25% between the two. Each time the
+tests program is run, the results are from one set or the other. It is possible
+that the fastest results are obtained when the program runs on a Firestorm
+core and the other results are from an Icestorm core (an Apple MI chip contains
+cores of the two types). The presented results for the M1 in the table above
+are from the fastest set.
