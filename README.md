@@ -342,4 +342,4 @@ on a distinct pipeline and do not use the carry.
 
 The impact on the real code sequence in OpenSSL is slightly less important
 but still by 30%. This sequence is likely executed less often than the sequence
-of MUL UMULH. Thus, the macroscopic effect on RSA is less noticeble.
+of MUL UMULH. Thus, the macroscopic effect on RSA is less noticeable.
