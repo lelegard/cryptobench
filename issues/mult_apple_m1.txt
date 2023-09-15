@@ -1,8 +1,7 @@
-nop (x8): 0.016 ns/inst
-nop (x16): 0.029 ns/inst
-nop (x128): 0.041 ns/inst
-nop (x512): 0.042 ns/inst
-mul (x8): 0.126 ns/inst
-mul umulh (x4): 0.126 ns/inst
-mul adcs umulh adcs (x2): 0.126 ns/inst
-mul add umulh add (x2): 0.069 ns/inst
+nop:                 0.050 ns/inst
+mul:                 0.169 ns/inst
+mul umulh:           0.169 ns/inst
+mul add umulh add:   0.106 ns/inst
+mul adcs umulh adcs: 0.181 ns/inst
+ossl seq with add:   0.092 ns/inst
+ossl seq with adcs:  0.098 ns/inst
