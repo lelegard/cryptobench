@@ -301,13 +301,13 @@ The results are summarized below:
 
 | Mean instruction time (nanoseconds) | Neoverse N1 | Neoverse V1 | Apple M1 |
 | ----------------------------------- | :---------: | :---------: | :------: |
-| NOP                                 | 0.083       | 0.032       | 0.048    |
-| MUL                                 | 0.918       | 0.144       | 0.145    |
-| MUL UMULH                           | 1.085       | 0.144       | 0.145    |
-| MUL ADCS UMULH ADCS                 | 0.501       | 0.248       | 0.152    |
-| MUL ADD UMULH ADD                   | 0.501       | 0.092       | 0.086    |
-| Full OpenSSL sequence (MUL & ADCS)  | 0.525       | 0.130       | 0.086    |
-| Same sequence with ADD only         | 0.525       | 0.106       | 0.081    |
+| NOP                                 | 0.083       | 0.032       | 0.040    |
+| MUL                                 | 0.918       | 0.144       | 0.117    |
+| MUL UMULH                           | 1.085       | 0.144       | 0.117    |
+| MUL ADCS UMULH ADCS                 | 0.501       | 0.248       | 0.117    |
+| MUL ADD UMULH ADD                   | 0.501       | 0.092       | 0.064    |
+| Full OpenSSL sequence (MUL & ADCS)  | 0.525       | 0.130       | 0.064    |
+| Same sequence with ADD only         | 0.525       | 0.106       | 0.062    |
 
 The results are quite surprising when comparing the Neoverse N1 and V1.
 
@@ -339,7 +339,11 @@ Consequently, on the Neoverse V1, it is safe to assume that the usage of the
 carry on addition (and maybe other instructions, still to be tested) has a
 nefarious impact on the instruction throughput, even though the other
 instructions execute on a distinct pipeline and do not use the carry.
+This is new and did not exist in the Neoverse N1.
 
 The impact on the real code sequence in OpenSSL is slightly less important
 but still by 30%. This sequence is likely executed less often than the sequence
 of MUL UMULH. Thus, the macroscopic effect on RSA is less noticeable.
+
+In the meantime, the Apple M1 maintains a consistent execution throughput,
+regardless of the combinations of instructions.
