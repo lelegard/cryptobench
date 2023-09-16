@@ -11,6 +11,9 @@
 * [Miscelaneous observations](#miscelaneous-observations)
   * [RSA performances on old Arm CPU cores](#rsa-performances-on-old-arm-cpu-cores)
   * [Multiplication and carry on Neoverse V1](#multiplication-and-carry-on-neoverse-v1)
+    * [About the multiplication](#about-the-multiplication)
+    * [About the addition](#about-the-addition)
+    * [Interleaving multiplications and additions](#interleaving-multiplications-and-additions)
 
 ## Purpose
 
@@ -273,10 +276,7 @@ multiplication again and let's try to find other characteristic sequences of
 instructions involving multiplications.
 
 We easily spot another long sequence of ADCS MUL ADCS UMULH instructions.
-
-For the record, ADCS is an addition with input carry (C) and setting the
-carry on output (S). Variants ADC, ADDS and ADD exist with carry on input
-only, output only or no carry at all.
+So, let's try to characterize it.
 
 This time, we try to evaluate the mean time of an instruction inside a given
 sequence. We start with a sequence of NOP to have a reference. Then we test
@@ -285,9 +285,10 @@ are repeated a large number of times.
 
 In each 8-instruction sequence, the output registers of the instructions are all
 distinct to avoid execution dependencies. The input registers are the same in
-all instructions. 
+all instructions. The same sequence (and consequently the same output registers)
+are reused after 8 instructions.
 
-At the end, we test a full long sequence from OpenSSL, with many MUL ADCS UMULH ADCS.
+Last, we test the full long sequence from OpenSSL, with many MUL ADCS UMULH ADCS.
 There are also some ADC and ADDS. Finally, we test the same sequence with ADD
 instead of ADCS, ADC, ADDS.
 
@@ -312,26 +313,63 @@ The results are summarized below:
 
 The results are quite surprising when comparing the Neoverse N1 and V1.
 
+#### About the multiplication
+
 On the Neoverse N1, interleaving MUL and UMULH is not good (we already knew that).
 Having said that, the 64-bit multiplication alone is not that good either.
 Replacing the interspersed UMULH with MUL is slightly faster but not that much
 (0.918 ns/inst instead of 1.085).
 
-When we intersperse ADCS between MUL and/or UMULH, the time per instruction
-drops by a half (0.501 ns instead of 1.085). According to the Arm Neoverse N1
-and V1 Software Optimization Guides, the MUL and UMULH use the pipeline M or M0
-and all forms of ADxx use the pipeline I. The two pipelines are independent in
-the two cores, which explains the performance boost. Moreover, the latency of
-ADCS is only 1 in the two cores. ADCS is a very cheap instruction.
-
 On the Neoverse V1, MUL and UMULH are much faster for the reasons which were
-explained before. And MUL and UMULH have the same execution time. The situation
-was clearly improved in the V1.
+explained before. And MUL and UMULH have the same execution time and are much
+faster (0.144 ns). The situation was clearly improved in the V1.
 
-However... when we intersperse ADCS between MUL and/or UMULH, the time per
-instruction almost ***doubles*** (0.248 instead of 0.144) on the Neoverse V1.
-The interspersed ADCS use an independent pipeline and are very cheap.
-Nonetheless, the mean time per instruction in the sequence doubles.
+#### About the addition
+
+Since our characteristic sequence in OpenSSL interleaves multiplications and
+additions, let's focus on the addition for a start.
+
+For the record, ADCS is an addition with input carry (C) and setting the
+carry on output (S). Variants ADC, ADDS and ADD exist with carry on input
+only, output only or no carry at all.
+
+Using the carry on input, output, or both, creates a potential dependency
+between instructions which may slown down the execution.
+
+We see that sequences of ADD, ADC, or ADDS execute at the same speed (0.042 ns
+on the N1). However, the sequence of ADCS uses 0.250 ns per instruction. Unlike
+the 3 previous sequences, an ADCS need to wait for the output carry of the
+previous instruction to use it as input carry. This explains the lower speed.
+
+However, when the carry is not used (ADD), always read but never written (ADC),
+always written but never read (ADDS), there is no dependency between instructions
+and they all execute at the same speed.
+
+The important lesson is: _when the carry is not used by an instruction A, accessing
+it from an instruction B shall have no influence on the execution time of A._
+
+#### Interleaving multiplications and additions
+
+When we intersperse ADCS between MUL and/or UMULH, as used in the OpenSSL sequence,
+the time per instruction drops by a half on the Neoverse N1 (0.501 ns instead of 1.085).
+
+According to the Arm Neoverse N1 and V1 Software Optimization Guides, MUL and UMULH
+use the pipeline M or M0. All forms of ADxx use the pipeline I. The two pipelines are
+independent in the two cores. According to the instruction pseudo-code in the
+[Arm Architecture Reference Manual](https://developer.arm.com/documentation/ddi0487/latest),
+MUL and UMULH do not use the carry of any other PSTATE flag.
+
+Therefore, MUL/UMULH and ADCS are completely independent.
+
+This explains the performance boost on the Neoverse N1. A sequence of MUL and
+UMULH uses 1.085 nanosecond per instruction. After interleaving independent ADCS
+between MUL and UMUL, the mean instruction time drops to 0.501 nanosecond.
+
+However... on the Neoverse V1, when we intersperse ADCS between MUL and UMULH,
+the mean time per instruction almost ***doubles*** (0.248 instead of 0.144).
+
+Even though the interspersed ADCS use an independent pipeline and are very cheap
+(the latency of ADCS is only 1), the mean time per instruction in the sequence doubles.
 
 Additionally, if we replace ADCS with ADD (no use of carry), the mean time per
 instruction drops to 0.092 (compared to 0.248 with ADCS and 0.144 with MUL).
