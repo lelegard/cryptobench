@@ -288,8 +288,8 @@ distinct to avoid execution dependencies. The input registers are the same in
 all instructions. The same sequence (and consequently the same output registers)
 are reused after 8 instructions.
 
-Last, we test the full long sequence from OpenSSL, with many MUL ADCS UMULH ADCS.
-There are also some ADC and ADDS. Finally, we test the same sequence with ADD
+Last, we test the full long sequence from OpenSSL, with many MUL ADCS UMULH ADCS
+(there are also some ADC and ADDS). Finally, we test the same sequence with ADD
 instead of ADCS, ADC, ADDS.
 
 See the [test source code](issues/mult_arm.S) for the details.
