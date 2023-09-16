@@ -23,7 +23,7 @@
         .struct_offset = .struct_offset + \size
         .endm
 
-        // Realign inside current structure.
+        // Realign inside current structure. Alignment in bytes.
         .macro  struct_align align
         .struct_offset = .struct_offset + (\align - (.struct_offset % \align)) % \align
         .endm
@@ -104,7 +104,7 @@
         mul     x3, x1, x0              // x3 = total number of executed instructions
         ucvtf   d2, x2
         ucvtf   d1, x3
-        fdiv    d0, d2, d1              // d0 (result) = average duration of one instruction in nanosecond
+        fdiv    d0, d2, d1              // d0 (result) = average duration of one instruction in nanoseconds
         // Function epilog
         ldp     x19, x20, [sp, xxx.reg1920]
         ldp     x21, x22, [sp, xxx.reg2122]
@@ -114,21 +114,53 @@
 
 //----------------------------------------------------------------------------
 
-        // NOP, use 512 to avoid looping in a cache line
+        // To keep a fair comparison between all sequences, try to keep all
+        // loops to the same number of instructions. Otherwise, distinct usages
+        // of cache may introduce some bias.
+
+        // NOP
         xxx_begin xxx_nop
-        .rept   512
+        .rept   8
         nop
         .endr
         xxx_end
 
-        // MUL, 8 instructions, independent output registers.
+        // MUL, independent output registers.
         xxx_begin xxx_mul
         .irp    reg,3,4,5,6,7,8,9,10
         mul     x\reg, x1, x2
         .endr
         xxx_end
 
-        // MUL UMULH, 8 instructions, independent output registers.
+        // ADD, independent output registers.
+        xxx_begin xxx_add
+        .irp    reg,3,4,5,6,7,8,9,10
+        add     x\reg, x1, x2
+        .endr
+        xxx_end
+
+        // ADCS, independent output registers.
+        xxx_begin xxx_adcs
+        .irp    reg,3,4,5,6,7,8,9,10
+        adcs    x\reg, x1, x2
+        .endr
+        xxx_end
+
+        // ADDS, independent output registers.
+        xxx_begin xxx_adds
+        .irp    reg,3,4,5,6,7,8,9,10
+        adds    x\reg, x1, x2
+        .endr
+        xxx_end
+
+        // ADC, independent output registers.
+        xxx_begin xxx_adc
+        .irp    reg,3,4,5,6,7,8,9,10
+        adc     x\reg, x1, x2
+        .endr
+        xxx_end
+
+        // MUL UMULH, independent output registers.
         xxx_begin xxx_mul_umulh
         mul     x3, x1, x2
         umulh   x4, x1, x2
@@ -140,7 +172,7 @@
         umulh   x10, x1, x2
         xxx_end
 
-        // MUL ADD UMULH ADD, 8 instructions, independent output registers.
+        // MUL ADD UMULH ADD, independent output registers.
         xxx_begin xxx_mul_add_umulh_add
         mul     x3, x1, x2
         add     x4, x1, x2
@@ -152,7 +184,19 @@
         add     x10, x1, x2
         xxx_end
 
-        // MUL ADCS UMULH ADCS, 8 instructions, independent output registers.
+        // MUL ADCS MUL ADCS, independent output registers.
+        xxx_begin xxx_mul_adcs
+        mul     x3, x1, x2
+        adcs    x4, x1, x2
+        mul     x5, x1, x2
+        adcs    x6, x1, x2
+        mul     x7, x1, x2
+        adcs    x8, x1, x2
+        mul     x9, x1, x2
+        adcs    x10, x1, x2
+        xxx_end
+
+        // MUL ADCS UMULH ADCS, independent output registers.
         xxx_begin xxx_mul_adcs_umulh_adcs
         mul     x3, x1, x2
         adcs    x4, x1, x2
@@ -165,23 +209,25 @@
         xxx_end
 
         // OpenSSL sequence for Montgomery multiplication.
+        // This sequence has more than 8 instructions but we will
+        // keep the same number of instructions in the next one.
         xxx_begin xxx_montgo_seq_adcs
-        adds    x3,x3,x11               
+        adds    x3,x3,x11
         mul     x11,x12,x13
         adcs    x4,x4,x14
         mul     x14,x15,x13
         adcs    x5,x5,x20
         mul     x20,x19,x13
         adcs    x8,x8,x21
-        umulh   x21,x16,x13             
+        umulh   x21,x16,x13
         adcs    x9,x9,x11
         umulh   x11,x17,x13
         adcs    x6,x6,x14
         umulh   x14,x18,x13
         adcs    x7,x7,x20
         umulh   x20,x22,x13
-        adc     x10,xzr,xzr             
-        adds    x4,x4,x21               
+        adc     x10,xzr,xzr
+        adds    x4,x4,x21
         umulh   x21,x12,x13
         adcs    x5,x5,x11
         umulh   x11,x15,x13
@@ -198,22 +244,22 @@
 
         // OpenSSL sequence for Montgomery multiplication with ADD instead of AD[C][S].
         xxx_begin xxx_montgo_seq_add
-        add     x3,x3,x11               
+        add     x3,x3,x11
         mul     x11,x12,x13
         add     x4,x4,x14
         mul     x14,x15,x13
         add     x5,x5,x20
         mul     x20,x19,x13
         add     x8,x8,x21
-        umulh   x21,x16,x13             
+        umulh   x21,x16,x13
         add     x9,x9,x11
         umulh   x11,x17,x13
         add     x6,x6,x14
         umulh   x14,x18,x13
         add     x7,x7,x20
         umulh   x20,x22,x13
-        add     x10,xzr,xzr             
-        add     x4,x4,x21               
+        add     x10,xzr,xzr
+        add     x4,x4,x21
         umulh   x21,x12,x13
         add     x5,x5,x11
         umulh   x11,x15,x13

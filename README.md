@@ -279,21 +279,17 @@ carry on output (S). Variants ADC, ADDS and ADD exist with carry on input
 only, output only or no carry at all.
 
 This time, we try to evaluate the mean time of an instruction inside a given
-sequence:
+sequence. We start with a sequence of NOP to have a reference. Then we test
+multiple combinations of instructions. Most sequences are 8 instructions long and
+are repeated a large number of times.
 
-1. We start with a long sequence of NOP to have a reference.
-2. MUL instructions.
-3. Interspersed MUL and UMULH (issue from the previous section).
-4. Interspersed MUL ADCS UMULH ADCS (from the new instruction pattern).
-5. Same sequence with ADD instead of ADCS.
-6. Full long sequence from OpenSSL, with many MUL ADCS UMULH ADCS.
-   There are also some ADC and ADDS.
-7. Same sequence with ADD instead of ADCS, ADC, ADDS.
-
-In cases number 2, 3, 4, 5, the output registers of the instructions are all
+In each 8-instruction sequence, the output registers of the instructions are all
 distinct to avoid execution dependencies. The input registers are the same in
-all instructions. In cases number 6 and 7, the register allocation from OpenSSL
-code was not modified.
+all instructions. 
+
+At the end, we test a full long sequence from OpenSSL, with many MUL ADCS UMULH ADCS.
+There are also some ADC and ADDS. Finally, we test the same sequence with ADD
+instead of ADCS, ADC, ADDS.
 
 See the [test source code](issues/mult_arm.S) for the details.
 
@@ -301,12 +297,17 @@ The results are summarized below:
 
 | Mean instruction time (nanoseconds) | Neoverse N1 | Neoverse V1 | Apple M1 |
 | ----------------------------------- | :---------: | :---------: | :------: |
-| NOP                                 | 0.083       | 0.032       | 0.040    |
+| NOP                                 | 0.083       | 0.032       | 0.020    |
+| ADD                                 |             |             | 0.041    |
+| ADC                                 |             |             | 0.078    |
+| ADDS                                |             |             | 0.078    |
+| ADCS                                |             |             | 0.274    |
 | MUL                                 | 0.918       | 0.144       | 0.117    |
 | MUL UMULH                           | 1.085       | 0.144       | 0.117    |
 | MUL ADCS UMULH ADCS                 | 0.501       | 0.248       | 0.117    |
+| MUL ADCS                            |             |             | 0.117    |
 | MUL ADD UMULH ADD                   | 0.501       | 0.092       | 0.064    |
-| Full OpenSSL sequence (MUL & ADCS)  | 0.525       | 0.130       | 0.064    |
+| Full OpenSSL sequence (MUL & ADCS)  | 0.525       | 0.130       | 0.065    |
 | Same sequence with ADD only         | 0.525       | 0.106       | 0.062    |
 
 The results are quite surprising when comparing the Neoverse N1 and V1.
@@ -344,13 +345,3 @@ This is new and did not exist in the Neoverse N1.
 The impact on the real code sequence in OpenSSL is slightly less important
 but still by 30%. This sequence is likely executed less often than the sequence
 of MUL UMULH. Thus, the macroscopic effect on RSA is less noticeable.
-
-In the meantime, the Apple M1 maintains a consistent execution throughput,
-regardless of the combinations of instructions. There is one remark, however,
-about the M1. When running the test program, we get two sets of consistent
-results. The execution times differ by 20 to 25% between the two. Each time the
-tests program is run, the results are from one set or the other. It is possible
-that the fastest results are obtained when the program runs on a Firestorm
-core and the other results are from an Icestorm core (an Apple M1 chip contains
-cores of the two types). The presented results for the M1 in the table above
-are from the fastest set.
