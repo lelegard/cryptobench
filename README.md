@@ -297,18 +297,18 @@ The results are summarized below:
 
 | Mean instruction time (nanoseconds) | Neoverse N1 | Neoverse V1 | Apple M1 |
 | ----------------------------------- | :---------: | :---------: | :------: |
-| NOP                                 | 0.083       | 0.032       | 0.020    |
-| ADD                                 |             |             | 0.041    |
-| ADC                                 |             |             | 0.078    |
-| ADDS                                |             |             | 0.078    |
-| ADCS                                |             |             | 0.274    |
+| NOP                                 | 0.043       | 0.032       | 0.020    |
+| ADD                                 | 0.042       |             | 0.041    |
+| ADC                                 | 0.042       |             | 0.078    |
+| ADDS                                | 0.042       |             | 0.078    |
+| ADCS                                | 0.250       |             | 0.274    |
 | MUL                                 | 0.918       | 0.144       | 0.117    |
 | MUL UMULH                           | 1.085       | 0.144       | 0.117    |
 | MUL ADCS UMULH ADCS                 | 0.501       | 0.248       | 0.117    |
-| MUL ADCS                            |             |             | 0.117    |
+| MUL ADCS                            | 0.417       |             | 0.117    |
 | MUL ADD UMULH ADD                   | 0.501       | 0.092       | 0.064    |
-| Full OpenSSL sequence (MUL & ADCS)  | 0.525       | 0.130       | 0.065    |
-| Same sequence with ADD only         | 0.525       | 0.106       | 0.062    |
+| Full OpenSSL sequence (MUL & ADCS)  | 0.524       | 0.130       | 0.065    |
+| Same sequence with ADD only         | 0.524       | 0.106       | 0.062    |
 
 The results are quite surprising when comparing the Neoverse N1 and V1.
 

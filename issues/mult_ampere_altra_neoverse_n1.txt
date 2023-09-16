@@ -1,7 +1,12 @@
-nop:                 0.083 ns/inst
+nop:                 0.043 ns/inst
+add:                 0.042 ns/inst
+adc:                 0.042 ns/inst
+adds:                0.042 ns/inst
+adcs:                0.250 ns/inst
 mul:                 0.918 ns/inst
 mul umulh:           1.085 ns/inst
-mul add umulh add:   0.501 ns/inst
 mul adcs umulh adcs: 0.501 ns/inst
-ossl seq with add:   0.525 ns/inst
-ossl seq with adcs:  0.525 ns/inst
+mul adcs:            0.417 ns/inst
+mul add umulh add:   0.501 ns/inst
+ossl seq with adcs:  0.524 ns/inst
+ossl seq with add:   0.524 ns/inst
