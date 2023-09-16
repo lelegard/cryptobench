@@ -318,11 +318,11 @@ The results are quite surprising when comparing the Neoverse N1 and V1.
 On the Neoverse N1, interleaving MUL and UMULH is not good (we already knew that).
 Having said that, the 64-bit multiplication alone is not that good either.
 Replacing the interspersed UMULH with MUL is slightly faster but not that much
-(0.918 ns/inst instead of 1.085).
+(0.918 nanosecond per instruction instead of 1.085).
 
 On the Neoverse V1, MUL and UMULH are much faster for the reasons which were
-explained before. And MUL and UMULH have the same execution time and are much
-faster (0.144 ns). The situation was clearly improved in the V1.
+explained before. Additionally MUL and UMULH have the same execution time (0.144 ns).
+The situation was clearly improved in the V1.
 
 #### About the addition
 
@@ -331,22 +331,23 @@ additions, let's focus on the addition for a start.
 
 For the record, ADCS is an addition with input carry (C) and setting the
 carry on output (S). Variants ADC, ADDS and ADD exist with carry on input
-only, output only or no carry at all.
+only (C), output only (S), or no carry at all.
 
 Using the carry on input, output, or both, creates a potential dependency
 between instructions which may slown down the execution.
 
 We see that sequences of ADD, ADC, or ADDS execute at the same speed (0.042 ns
 on the N1). However, the sequence of ADCS uses 0.250 ns per instruction. Unlike
-the 3 previous sequences, an ADCS need to wait for the output carry of the
+the 3 previous sequences, an ADCS needs to wait for the output carry of the
 previous instruction to use it as input carry. This explains the lower speed.
 
 However, when the carry is not used (ADD), always read but never written (ADC),
 always written but never read (ADDS), there is no dependency between instructions
-and they all execute at the same speed.
+and they all execute at the same faster speed.
 
 The important lesson is: _when the carry is not used by an instruction A, accessing
-it from an instruction B shall have no influence on the execution time of A._
+it from an adjacent instruction B shall have no influence on the execution time of A._
+If A and B are otherwise independent, using independent pipelines, etc.
 
 #### Interleaving multiplications and additions
 
@@ -357,26 +358,25 @@ According to the Arm Neoverse N1 and V1 Software Optimization Guides, MUL and UM
 use the pipeline M or M0. All forms of ADxx use the pipeline I. The two pipelines are
 independent in the two cores. According to the instruction pseudo-code in the
 [Arm Architecture Reference Manual](https://developer.arm.com/documentation/ddi0487/latest),
-MUL and UMULH do not use the carry of any other PSTATE flag.
+MUL and UMULH do not use the carry or any other PSTATE flag.
 
 Therefore, MUL/UMULH and ADCS are completely independent.
 
-This explains the performance boost on the Neoverse N1. A sequence of MUL and
-UMULH uses 1.085 nanosecond per instruction. After interleaving independent ADCS
-between MUL and UMUL, the mean instruction time drops to 0.501 nanosecond.
+Interleaving independent instructions explains the performance boost on the Neoverse N1,
+from 1.085 nanosecond per instruction down to 0.501.
 
 However... on the Neoverse V1, when we intersperse ADCS between MUL and UMULH,
-the mean time per instruction almost ***doubles*** (0.248 instead of 0.144).
+the mean time per instruction almost ***doubles*** (from 0.144 to 0.248 ns),
+instead of being _divided by two_ as on the Neoverse N1.
 
-Even though the interspersed ADCS use an independent pipeline and are very cheap
-(the latency of ADCS is only 1), the mean time per instruction in the sequence doubles.
-
-Additionally, if we replace ADCS with ADD (no use of carry), the mean time per
+Interestingly, if we replace ADCS with ADD (no use of carry), the mean time per
 instruction drops to 0.092 (compared to 0.248 with ADCS and 0.144 with MUL).
+Without using the carry, interleaving independent instructions reduces the
+mean instruction time by a third, an expected result.
 
 Consequently, on the Neoverse V1, it is safe to assume that the usage of the
-carry on addition (and maybe other instructions, still to be tested) has a
-nefarious impact on the instruction throughput, even though the other
+carry on addition (and maybe other instructions, still to be tested) has an
+unexpected impact on the instruction throughput, even though the other
 instructions execute on a distinct pipeline and do not use the carry.
 This is new and did not exist in the Neoverse N1.
 
