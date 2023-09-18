@@ -22,11 +22,11 @@ DECLARE(xxx_mul_adcs_umulh_adcs);
 DECLARE(xxx_montgo_seq_add);
 DECLARE(xxx_montgo_seq_adcs);
 
-#define REFCOUNT 200000000
+#define REFCOUNT 200000000 // 200 million iterations (adapted to sequence)
 
 int main(int argc, char* argv[])
 {
-    printf("nop:                 %.3f ns/inst\n", xxx_nop(REFCOUNT * 3));
+    printf("nop:                 %.3f ns/inst\n", xxx_nop(REFCOUNT * 4));
     printf("add:                 %.3f ns/inst\n", xxx_add(REFCOUNT));
     printf("adc:                 %.3f ns/inst\n", xxx_adc(REFCOUNT));
     printf("adds:                %.3f ns/inst\n", xxx_adds(REFCOUNT));

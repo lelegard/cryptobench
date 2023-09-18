@@ -296,22 +296,26 @@ See the [test source code](issues/mult_arm.S) for the details.
 
 The results are summarized below:
 
-| Mean instruction time (nanoseconds) | Neoverse N1 | Neoverse V1 | Apple M1 |
-| ----------------------------------- | :---------: | :---------: | :------: |
-| NOP                                 | 0.043       | 0.032       | 0.020    |
-| ADD                                 | 0.042       |             | 0.041    |
-| ADC                                 | 0.042       |             | 0.078    |
-| ADDS                                | 0.042       |             | 0.078    |
-| ADCS                                | 0.250       |             | 0.274    |
-| MUL                                 | 0.918       | 0.144       | 0.117    |
-| MUL UMULH                           | 1.085       | 0.144       | 0.117    |
-| MUL ADCS UMULH ADCS                 | 0.501       | 0.248       | 0.117    |
-| MUL ADCS                            | 0.417       |             | 0.117    |
-| MUL ADD UMULH ADD                   | 0.501       | 0.092       | 0.064    |
-| Full OpenSSL sequence (MUL & ADCS)  | 0.524       | 0.130       | 0.065    |
-| Same sequence with ADD only         | 0.524       | 0.106       | 0.062    |
+| Mean instruction time (nanoseconds) | Cortex A72 | Neoverse N1 | Neoverse V1 | Apple M1 |
+| ----------------------------------- | :--------: | :---------: | :---------: | :------: |
+| NOP                                 | 0.419      | 0.043       | 0.000       | 0.020    |
+| ADD                                 | 0.209      | 0.042       | 0.079       | 0.041    |
+| ADC                                 | 0.209      | 0.042       | 0,079       | 0.078    |
+| ADDS                                | 0.209      | 0.042       | 0,085       | 0.078    |
+| ADCS                                | 0.418      | 0.250       | 0,337       | 0.274    |
+| MUL                                 | 1.532      | 0.918       | 0.144       | 0.117    |
+| MUL UMULH                           | 1.810      | 1.085       | 0.144       | 0.117    |
+| MUL ADCS UMULH ADCS                 | 0.835      | 0.501       | 0.248       | 0.117    |
+| MUL ADCS                            | 0.696      | 0.417       | 0,145       | 0.117    |
+| MUL ADD UMULH ADD                   | 0.835      | 0.501       | 0.092       | 0.064    |
+| Full OpenSSL sequence (MUL & ADCS)  | 0.875      | 0.524       | 0.130       | 0.065    |
+| Same sequence with ADD only         | 0.875      | 0.524       | 0.106       | 0.062    |
 
 The results are quite surprising when comparing the Neoverse N1 and V1.
+
+For a start, NOP is not measureable on the Neoverse V1 while its execution gives
+perfectly measurable execution times on other cores (even twice as long as the
+addition on the Cortex A72). But let's not focus on NOP.
 
 #### About the multiplication
 
@@ -349,10 +353,23 @@ The important lesson is: _when the carry is not used by an instruction A, access
 it from an adjacent instruction B shall have no influence on the execution time of A._
 If A and B are otherwise independent, using independent pipelines, etc.
 
+Let's add two observations:
+- The execution times of ADD, ADC, ADDS, are stricly identical on Cortex A72 and
+  Neoverse N1 only. On Neoverse V1, ADDS is slightly more expensive. On Apple M1,
+  ADD is cheaper.
+- While the multiplication was improved between Neoverse N1 and V1
+  (0.918 to 0.144 ns), the addition was degraded (0.042 to 0.079 for ADD and
+  0.250 to 0,337 for ADCS). The improvement of the multiplication (-84%) hardly
+  compensates the degradation of the addition (+88% for ADD, +35% for ADCS).
+  At application level, the improvement is perceptible because the multiplication
+  is much more expensive in absolute time than the addition. However, in relative
+  execution time, one just compensates the other.
+
 #### Interleaving multiplications and additions
 
 When we intersperse ADCS between MUL and/or UMULH, as used in the OpenSSL sequence,
-the time per instruction drops by a half on the Neoverse N1 (0.501 ns instead of 1.085).
+the time per instruction drops by a half on Neoverse N1 (0.501 ns instead of 1.085),
+compared MUL/UMULH alone.
 
 According to the Arm Neoverse N1 and V1 Software Optimization Guides, MUL and UMULH
 use the pipeline M or M0. All forms of ADxx use the pipeline I. The two pipelines are
@@ -374,7 +391,16 @@ instruction drops to 0.092 (compared to 0.248 with ADCS and 0.144 with MUL).
 Without using the carry, interleaving independent instructions reduces the
 mean instruction time by a third, an expected result.
 
-Consequently, on the Neoverse V1, it is safe to assume that the usage of the
+We already observed that the addition was degraded from Neoverse N1 to V1.
+However, the degradation of ADD without carry (+88%) was worse than the
+degradion of ADCS (+35%). This was evaluated for these instructions alone.
+When we interleave ADD and then ADCS with MUL/UMULH, the relative improvements
+are reversed: -82% with ADD and -50% with ADCS. This is still an improvement
+because of the improvement of the very costly multiplication. However, the
+improvement is much better with ADD, compared to ADCS, while the degradation
+of ADD alone is worse than the degradation of ADCS alone.
+
+Consequently, on Neoverse V1, it is safe to assume that the usage of the
 carry on addition (and maybe other instructions, still to be tested) has an
 unexpected impact on the instruction throughput, even though the other
 instructions execute on a distinct pipeline and do not use the carry.
