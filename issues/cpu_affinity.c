@@ -4,15 +4,15 @@
 // Lock the current thread on one CPU core.
 //----------------------------------------------------------------------------
 
-#include "cpu_affinity.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
 #if defined(__linux__)
     #define _GNU_SOURCE
     #include <sched.h>
 #endif
+
+#include "cpu_affinity.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 // Number of active CPU cores in the systems.
 int cpu_count()
