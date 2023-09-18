@@ -43,7 +43,7 @@ $(BINDIR)/%.o: $(SRCDIR)/%.S
 	@mkdir -p $(BINDIR)
 	$(CC) $(CPPFLAGS) -c -o $@ $<
 
-$(EXECS) $(STATICS): $(BINDIR)/cpu_time.o
+$(EXECS) $(STATICS): $(BINDIR)/cpu_time.o $(BINDIR)/cpu_affinity.o
 $(BINDIR)/mult $(BINDIR)/mult_static: $(if $(findstring arm64,$(ARCH)),$(BINDIR)/mult_arm.o)
 $(BINDIR)/montmult $(BINDIR)/montmult_static: $(if $(findstring linux-arm64,$(SYSTEM)-$(ARCH)),$(BINDIR)/montmult_arm1.o $(BINDIR)/montmult_arm2.o)
 

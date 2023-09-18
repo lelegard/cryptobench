@@ -5,6 +5,7 @@
 //----------------------------------------------------------------------------
 
 #include "cpu_time.h"
+#include "cpu_affinity.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
@@ -120,6 +121,8 @@ static inline void check(int err, const char* func)
 // Test program.
 int main(int argc, char* argv[])
 {
+    lock_cpu_affinity();
+
     // Don't check errors here, will crash later anyway in case of error...
     BIGNUM* mod = BN_bin2bn(bin_mod, sizeof(bin_mod), NULL);
     BIGNUM* n1 = BN_bin2bn(bin_1, sizeof(bin_1), NULL);
