@@ -11,7 +11,7 @@ ARCH   := $(subst amd64,x64,$(subst x86_64,x64,$(subst aarch64,arm64,$(shell una
 SHELL   = /usr/bin/env bash --noprofile
 SRCDIR  = .
 BINDIR  = ../build
-TESTS   = montmult $(if $(findstring arm64,$(ARCH)),mult)
+TESTS   = montmult $(if $(findstring arm64,$(ARCH)),mult armcounters)
 EXECS   = $(addprefix $(BINDIR)/,$(TESTS))
 STATICS = $(if $(findstring linux,$(SYSTEM)),$(addsuffix _static,$(EXECS)))
 
