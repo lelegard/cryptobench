@@ -306,7 +306,7 @@ The results are summarized below:
 | MUL                                 | 1.532      | 0.918       | 0.144       | 0.117    |
 | MUL UMULH                           | 1.810      | 1.085       | 0.144       | 0.117    |
 | MUL ADCS UMULH ADCS                 | 0.835      | 0.501       | 0.248       | 0.117    |
-| MUL ADCS                            | 0.696      | 0.417       | 0,145       | 0.117    |
+| MUL ADCS                            | 0.696      | 0.417       | 0,144       | 0.117    |
 | MUL ADD UMULH ADD                   | 0.835      | 0.501       | 0.092       | 0.064    |
 | Full OpenSSL sequence (MUL & ADCS)  | 0.875      | 0.524       | 0.130       | 0.065    |
 | Same sequence with ADD only         | 0.875      | 0.524       | 0.106       | 0.062    |
