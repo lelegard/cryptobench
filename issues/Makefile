@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------
 # CryptoBench - Copyright (c) 2023, Thierry Lelegard
 # BSD 2-Clause License, see LICENSE file.
-# Makefile for test programs to investigate specifc issues
+# Makefile for test programs to investigate specific issues
 #----------------------------------------------------------------------------
 
 default: execs
@@ -11,7 +11,7 @@ ARCH   := $(subst amd64,x64,$(subst x86_64,x64,$(subst aarch64,arm64,$(shell una
 SHELL   = /usr/bin/env bash --noprofile
 SRCDIR  = .
 BINDIR  = ../build
-TESTS   = montmult $(if $(findstring arm64,$(ARCH)),mult armcounters)
+TESTS   = montmult $(if $(findstring arm64,$(ARCH)),mult)
 EXECS   = $(addprefix $(BINDIR)/,$(TESTS))
 STATICS = $(if $(findstring linux,$(SYSTEM)),$(addsuffix _static,$(EXECS)))
 
@@ -43,7 +43,6 @@ $(BINDIR)/%.o: $(SRCDIR)/%.S
 	@mkdir -p $(BINDIR)
 	$(CC) $(CPPFLAGS) -c -o $@ $<
 
-$(EXECS) $(STATICS): $(BINDIR)/cpu_time.o $(BINDIR)/cpu_affinity.o
 $(BINDIR)/mult $(BINDIR)/mult_static: $(if $(findstring arm64,$(ARCH)),$(BINDIR)/mult_arm.o)
 $(BINDIR)/montmult $(BINDIR)/montmult_static: $(if $(findstring linux-arm64,$(SYSTEM)-$(ARCH)),$(BINDIR)/montmult_arm1.o $(BINDIR)/montmult_arm2.o)
 

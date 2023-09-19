@@ -6,7 +6,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "cpu_affinity.h"
 
 #define DECLARE(func) extern double func(int64_t count) asm(#func);
 
@@ -27,8 +26,6 @@ DECLARE(xxx_montgo_seq_adcs);
 
 int main(int argc, char* argv[])
 {
-    lock_cpu_affinity();
-
     printf("nop:                 %.3f ns/inst\n", xxx_nop(REFCOUNT * 4));
     printf("add:                 %.3f ns/inst\n", xxx_add(REFCOUNT));
     printf("adc:                 %.3f ns/inst\n", xxx_adc(REFCOUNT));

@@ -4,11 +4,11 @@
 // Standalone Montgomery multiplication test.
 //----------------------------------------------------------------------------
 
-#include "cpu_time.h"
-#include "cpu_affinity.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
+#include <unistd.h>
+#include <sys/resource.h>
 #include <openssl/bn.h>
 #include <openssl/opensslv.h>
 
@@ -118,11 +118,21 @@ static inline void check(int err, const char* func)
     }
 }
 
+// Get current CPU time resource usage in microseconds.
+static int64_t cpu_time()
+{
+    struct rusage ru;
+    if (getrusage(RUSAGE_SELF, &ru) < 0) {
+        perror("getrusage");
+        exit(EXIT_FAILURE);
+    }
+    return ((int64_t)(ru.ru_utime.tv_sec) * USECPERSEC) + ru.ru_utime.tv_usec +
+           ((int64_t)(ru.ru_stime.tv_sec) * USECPERSEC) + ru.ru_stime.tv_usec;
+}
+
 // Test program.
 int main(int argc, char* argv[])
 {
-    lock_cpu_affinity();
-
     // Don't check errors here, will crash later anyway in case of error...
     BIGNUM* mod = BN_bin2bn(bin_mod, sizeof(bin_mod), NULL);
     BIGNUM* n1 = BN_bin2bn(bin_1, sizeof(bin_1), NULL);

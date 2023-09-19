@@ -55,9 +55,6 @@
         mov     x29, sp
         // Start of function.
         str     x0, [sp, xxx.iter]
-        bl      cpu_time
-        str     x0, [sp, xxx.time1]
-        ldr     x0, [sp, xxx.iter]
         mov     x1, #0xCDEF             // x1 = 0x0123456789ABCDEF
         movk    x1, #0x89AB, lsl 16
         movk    x1, #0x4567, lsl 32
@@ -66,6 +63,9 @@
         movk    x2, #0x7654, lsl 16
         movk    x2, #0xBA98, lsl 32
         movk    x2, #0xFEDC, lsl 48
+        isb                             // instruction barrier before getting timer counter
+        mrs     x1, cntvct_el0          // virtual timer counter
+        str     x1, [sp, xxx.time1]
         // Start of main instruction loop.
         // Iteration count in x0, generic operands in x1 and x2.
         // Register usage in main instruction loop:
@@ -81,7 +81,8 @@
         .macro  xxx_end
 4:      b       1b                      // Loop back to instruction sequence.
 5:      // End of main instruction loop.
-        bl      cpu_time
+        isb
+        mrs     x0, cntvct_el0
         str     x0, [sp, xxx.time2]     // time2 = start of second loop
         ldr     x1, [sp, xxx.time1]
         sub     x2, x0, x1
@@ -92,19 +93,25 @@
         sub     x0, x0, #1
         b       6b
 7:      // End of empty instruction loop.
-        bl      cpu_time
+        isb
+        mrs     x0, cntvct_el0
         ldr     x1, [sp, xxx.time2]
         sub     x2, x0, x1              // x2 = duration of empty loop
-        ldr     x1, [sp, xxx.time1]
-        sub     x0, x1, x2              // x0 = instructions duration (main loop - empty loop)
-        mov     x1, #1000
-        mul     x2, x0, x1              // x2 = instructions duration in nanoseconds
+        ldr     x1, [sp, xxx.time1]     // x1 = duration of the instruction loop
+        sub     x0, x1, x2              // x0 = instructions duration, in virtual timer units
+        ucvtf   d0, x0
+        mov     x1, #0xCA00             // x1 = 0x3B9ACA00 = 1 billion = nano-sec / sec
+        movk    x1, #0x3B9A, lsl 16
+        ucvtf   d1, x1
+        fmul    d2, d0, d1              // d2 = instructions duration * 1 billion
+        mrs     x1, cntfrq_el0          // x1 = frequency in Hz of virtual timer
+        ucvtf   d1, x1
+        fdiv    d3, d2, d1              // d3 = instructions duration in nanoseconds
         mov     x1, #(4b - 3b) / 4      // x1 = number in instructions in main loop
         ldr     x0, [sp, xxx.iter]
-        mul     x3, x1, x0              // x3 = total number of executed instructions
+        mul     x2, x1, x0              // x2 = total number of executed instructions
         ucvtf   d2, x2
-        ucvtf   d1, x3
-        fdiv    d0, d2, d1              // d0 (result) = average duration of one instruction in nanoseconds
+        fdiv    d0, d3, d2              // d0 (result) = average duration of one instruction in nanoseconds
         // Function epilog
         ldp     x19, x20, [sp, xxx.reg1920]
         ldp     x21, x22, [sp, xxx.reg2122]
