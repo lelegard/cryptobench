@@ -43,6 +43,7 @@ $(BINDIR)/%.o: $(SRCDIR)/%.S
 	@mkdir -p $(BINDIR)
 	$(CC) $(CPPFLAGS) -c -o $@ $<
 
+$(BINDIR)/mult_arm.o: CPPFLAGS += $(if $(findstring linux-arm64,$(SYSTEM)-$(ARCH)),-march=armv8.3-a)
 $(BINDIR)/mult $(BINDIR)/mult_static: $(if $(findstring arm64,$(ARCH)),$(BINDIR)/mult_arm.o)
 $(BINDIR)/montmult $(BINDIR)/montmult_static: $(if $(findstring linux-arm64,$(SYSTEM)-$(ARCH)),$(BINDIR)/montmult_arm1.o $(BINDIR)/montmult_arm2.o)
 

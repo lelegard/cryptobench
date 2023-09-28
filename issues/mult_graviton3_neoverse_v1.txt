@@ -10,3 +10,6 @@ mul adcs:            0.144 ns/inst
 mul add umulh add:   0.092 ns/inst
 ossl seq with adcs:  0.130 ns/inst
 ossl seq with add:   0.106 ns/inst
+pacia:               0.337 ns/inst
+autia:               0.337 ns/inst
+pacia autia:         0.433 ns/inst

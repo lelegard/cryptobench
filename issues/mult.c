@@ -6,6 +6,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#if defined(__linux__)
+    #include <sys/auxv.h>
+#endif
 
 #define DECLARE(func) extern double func(int64_t count) asm(#func);
 
@@ -27,6 +30,17 @@ DECLARE(xxx_pacia_autia);
 
 #define REFCOUNT 200000000 // 200 million iterations (adapted to sequence)
 
+// Check if PAC is supported on the current CPU.
+int has_pac()
+{
+#if defined(__APPLE__)
+    return 1; // supported on all Apple Silicon chips
+#else
+    return (getauxval(AT_HWCAP) & HWCAP_PACA) != 0;
+#endif
+}
+
+// Application entry point.
 int main(int argc, char* argv[])
 {
     printf("nop:                 %.3f ns/inst\n", xxx_nop(REFCOUNT * 4));
@@ -41,9 +55,10 @@ int main(int argc, char* argv[])
     printf("mul add umulh add:   %.3f ns/inst\n", xxx_mul_add_umulh_add(REFCOUNT));
     printf("ossl seq with adcs:  %.3f ns/inst\n", xxx_montgo_seq_adcs(REFCOUNT / 2));
     printf("ossl seq with add:   %.3f ns/inst\n", xxx_montgo_seq_add(REFCOUNT / 2));
-    printf("pacia:               %.3f ns/inst\n", xxx_pacia(REFCOUNT));
-    printf("autia:               %.3f ns/inst\n", xxx_autia(REFCOUNT));
-    printf("pacia autia:         %.3f ns/inst\n", xxx_pacia_autia(REFCOUNT));
-
+    if (has_pac()) {
+        printf("pacia:               %.3f ns/inst\n", xxx_pacia(REFCOUNT));
+        printf("autia:               %.3f ns/inst\n", xxx_autia(REFCOUNT));
+        printf("pacia autia:         %.3f ns/inst\n", xxx_pacia_autia(REFCOUNT));
+    }
     return EXIT_SUCCESS;
 }
