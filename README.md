@@ -114,11 +114,14 @@ Command line options:
   -r, --reference : run reference benchmark only
 
 Algorithms selection (all by default):
-  --aes, --rsa
+  --aes, --rsa, --math
 
 Crytographic libraries selection (all by default):
-  --gnutls, --mbedtls, --openssl, --nettle, --tomcrypt, --tomcrypt-gmp --arm64
+  --gnutls, --mbedtls, --openssl, --nettle, --tomcrypt, --tomcrypt-gmp, --arm64
 ~~~
+
+The `--math` option selects the individual modular arithmetics tests which
+characterize RSA operations.
 
 The `arm64` pseudo-library is an implementation of AES using Arm64 specialized
 accelerated instructions, through C/C++ intrinsics. It is run only on Arm64

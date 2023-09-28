@@ -24,7 +24,7 @@ void options::usage() const
               << "  --aes, --rsa, --math" << std::endl
               << std::endl
               << "Crytographic libraries selection (all by default):" << std::endl
-              << "  --gnutls, --mbedtls, --openssl, --nettle, --tomcrypt, --tomcrypt-gmp --arm64" << std::endl
+              << "  --gnutls, --mbedtls, --openssl, --nettle, --tomcrypt, --tomcrypt-gmp, --arm64" << std::endl
               << std::endl;
     std::exit(EXIT_FAILURE);
 }
