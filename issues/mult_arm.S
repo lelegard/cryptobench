@@ -280,3 +280,39 @@
         mul     x11,x22,x16
         add     x10,x10,x14
         xxx_end
+
+        // PAC instructions.
+        xxx_begin xxx_pacia
+        pacia   x3, sp
+        pacia   x4, sp
+        pacia   x5, sp
+        pacia   x6, sp
+        pacia   x7, sp
+        pacia   x8, sp
+        pacia   x9, sp
+        pacia   x10, sp
+        xxx_end
+
+        // AUT instructions.
+        xxx_begin xxx_autia
+        autia   x3, sp
+        autia   x4, sp
+        autia   x5, sp
+        autia   x6, sp
+        autia   x7, sp
+        autia   x8, sp
+        autia   x9, sp
+        autia   x10, sp
+        xxx_end
+
+        // PAC/AUT instructions.
+        xxx_begin xxx_pacia_autia
+        pacia   x3, sp
+        autia   x3, sp
+        pacia   x5, sp
+        autia   x5, sp
+        pacia   x7, sp
+        autia   x7, sp
+        pacia   x9, sp
+        autia   x9, sp
+        xxx_end

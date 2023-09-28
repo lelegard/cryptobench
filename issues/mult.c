@@ -21,6 +21,9 @@ DECLARE(xxx_mul_adcs);
 DECLARE(xxx_mul_adcs_umulh_adcs);
 DECLARE(xxx_montgo_seq_add);
 DECLARE(xxx_montgo_seq_adcs);
+DECLARE(xxx_pacia);
+DECLARE(xxx_autia);
+DECLARE(xxx_pacia_autia);
 
 #define REFCOUNT 200000000 // 200 million iterations (adapted to sequence)
 
@@ -38,6 +41,9 @@ int main(int argc, char* argv[])
     printf("mul add umulh add:   %.3f ns/inst\n", xxx_mul_add_umulh_add(REFCOUNT));
     printf("ossl seq with adcs:  %.3f ns/inst\n", xxx_montgo_seq_adcs(REFCOUNT / 2));
     printf("ossl seq with add:   %.3f ns/inst\n", xxx_montgo_seq_add(REFCOUNT / 2));
+    printf("pacia:               %.3f ns/inst\n", xxx_pacia(REFCOUNT));
+    printf("autia:               %.3f ns/inst\n", xxx_autia(REFCOUNT));
+    printf("pacia autia:         %.3f ns/inst\n", xxx_pacia_autia(REFCOUNT));
 
     return EXIT_SUCCESS;
 }
