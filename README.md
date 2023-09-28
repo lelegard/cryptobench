@@ -8,7 +8,7 @@
 * [Command line usage](#command-line-usage)
 * [Test results](#test-results)
 * [Bugs and limitations](#bugs-and-limitations)
-* [Miscelaneous observations](#miscelaneous-observations)
+* [Miscellaneous observations](#miscellaneous-observations)
   * [RSA performances on old Arm CPU cores](#rsa-performances-on-old-arm-cpu-cores)
   * [Multiplication and carry on Neoverse V1](#multiplication-and-carry-on-neoverse-v1)
     * [About the multiplication](#about-the-multiplication)
@@ -163,7 +163,7 @@ Nettle: RSA tests are currently disabled. There is an issue loading public and p
 key files, as created by OpenSSL. The parsing of the DER sequence fails. See source
 file `src/lib_nettle.cpp` for a fix. To be investigated...
 
-## Miscelaneous observations
+## Miscellaneous observations
 
 ### RSA performances on old Arm CPU cores
 
