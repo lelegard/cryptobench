@@ -119,6 +119,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 5307           |
 | Ampere Altra (Neoverse N1)   | Linux | 10241          |
 | AWS Graviton 3 (Neoverse V1) | Linux | 8390           |
+| Qemu RISC-V                  | Linux | 19068          |
 
 ## RSA-2048
 
@@ -138,6 +139,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 16.7    | 38      | 20.0   | 54          | 24                |
 | Ampere Altra (Neoverse N1)   | Linux | 81      | 116     | 74     | 156         | 79                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 26      | 61      | 29     | 74          | 32                |
+| Qemu RISC-V                  | Linux | 298     | 690     | 143    | 393         | 171               |
 
 Relative performance score (the lower, the better):
 
@@ -153,6 +155,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 3.1     | 7.3     | 3.8    | 10.2        | 4.6               |
 | Ampere Altra (Neoverse N1)   | Linux | 8.0     | 11.4    | 7.3    | 15.3        | 7.7               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 3.2     | 7.4     | 3.5    | 8.9         | 3.9               |
+| Qemu RISC-V                  | Linux | 15.7    | 36      | 7.5    | 20          | 9.0               |
 
 ### RSA-2048 decryption
 
@@ -170,6 +173,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 601     | 3781    | 1240   | 1481        | 733               |
 | Ampere Altra (Neoverse N1)   | Linux | 2857    | 4523    | 3617   | 4145        | 2569              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 965     | 2538    | 1675   | 2046        | 952               |
+| Qemu RISC-V                  | Linux | 11311   | 33374   | 10874  | 10760       | 5675              |
 
 Relative performance score (the lower, the better):
 
@@ -185,6 +189,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 113     | 712     | 233    | 279         | 138               |
 | Ampere Altra (Neoverse N1)   | Linux | 279     | 441     | 353    | 404         | 250               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 115     | 302     | 199    | 243         | 113               |
+| Qemu RISC-V                  | Linux | 593     | 1750    | 570    | 564         | 297               |
 
 ### RSA-2048 decryption/encryption ratio
 
@@ -200,6 +205,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 36      | 97      | 62     | 27          | 29                |
 | Ampere Altra (Neoverse N1)   | Linux | 35      | 38      | 48     | 26          | 32                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 35      | 40      | 57     | 27          | 29                |
+| Qemu RISC-V                  | Linux | 37      | 48      | 75     | 27          | 33                |
 
 ### RSA-2048 encryption with rekeying
 
@@ -217,6 +223,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 18.4    | 38      | 19.8   | 52          | 24                |
 | Ampere Altra (Neoverse N1)   | Linux | 85      | 116     | 74     | 155         | 78                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 29      | 61      | 29     | 74          | 32                |
+| Qemu RISC-V                  | Linux | 357     | 689     | 143    | 392         | 171               |
 
 Relative performance score (the lower, the better):
 
@@ -232,6 +239,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 3.5     | 7.3     | 3.7    | 9.9         | 4.6               |
 | Ampere Altra (Neoverse N1)   | Linux | 8.3     | 11.4    | 7.3    | 15.2        | 7.7               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 3.6     | 7.4     | 3.5    | 8.9         | 3.9               |
+| Qemu RISC-V                  | Linux | 18.7    | 36      | 7.5    | 20          | 9.0               |
 
 ### RSA-2048 decryption with rekeying
 
@@ -249,6 +257,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 601     | 3741    | 1253   | 1500        | 729               |
 | Ampere Altra (Neoverse N1)   | Linux | 2862    | 4523    | 3617   | 4145        | 2555              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 968     | 2538    | 1674   | 2045        | 952               |
+| Qemu RISC-V                  | Linux | 11420   | 33344   | 10873  | 10763       | 5673              |
 
 Relative performance score (the lower, the better):
 
@@ -264,6 +273,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 113     | 704     | 236    | 282         | 137               |
 | Ampere Altra (Neoverse N1)   | Linux | 279     | 441     | 353    | 404         | 249               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 115     | 302     | 199    | 243         | 113               |
+| Qemu RISC-V                  | Linux | 598     | 1748    | 570    | 564         | 297               |
 
 ### RSA-2048 decryption/encryption ratio, with rekeying
 
@@ -279,6 +289,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 32      | 97      | 63     | 28          | 30                |
 | Ampere Altra (Neoverse N1)   | Linux | 33      | 38      | 48     | 26          | 32                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 32      | 40      | 57     | 27          | 29                |
+| Qemu RISC-V                  | Linux | 31      | 48      | 75     | 27          | 33                |
 
 ### RSA-2048 signature
 
@@ -296,6 +307,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 598     | 3761    | 1226   | 1465        | 723               |
 | Ampere Altra (Neoverse N1)   | Linux | 2856    | 4523    | 3615   | 4144        | 2568              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 964     | 2541    | 1674   | 2043        | 951               |
+| Qemu RISC-V                  | Linux | 11331   | 33357   | 10883  | 10770       | 5667              |
 
 Relative performance score (the lower, the better):
 
@@ -311,6 +323,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 112     | 708     | 231    | 276         | 136               |
 | Ampere Altra (Neoverse N1)   | Linux | 278     | 441     | 353    | 404         | 250               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 114     | 302     | 199    | 243         | 113               |
+| Qemu RISC-V                  | Linux | 594     | 1749    | 570    | 564         | 297               |
 
 ### RSA-2048 verification
 
@@ -328,6 +341,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 15.3    | 37      | 19.5   | 51          | 22                |
 | Ampere Altra (Neoverse N1)   | Linux | 79      | 115     | 75     | 155         | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 25      | 60      | 30     | 73          | 31                |
+| Qemu RISC-V                  | Linux | 281     | 683     | 156    | 385         | 164               |
 
 Relative performance score (the lower, the better):
 
@@ -343,6 +357,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 2.9     | 7.0     | 3.7    | 9.7         | 4.2               |
 | Ampere Altra (Neoverse N1)   | Linux | 7.7     | 11.2    | 7.4    | 15.2        | 7.6               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 3.0     | 7.2     | 3.6    | 8.7         | 3.8               |
+| Qemu RISC-V                  | Linux | 14.8    | 35      | 8.2    | 20          | 8.6               |
 
 ### RSA-2048 signature/verification ratio
 
@@ -358,6 +373,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 39      | 101     | 63     | 28          | 32                |
 | Ampere Altra (Neoverse N1)   | Linux | 36      | 39      | 47     | 26          | 32                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 38      | 41      | 55     | 27          | 30                |
+| Qemu RISC-V                  | Linux | 40      | 48      | 69     | 27          | 34                |
 
 ### RSA-2048 signature with rekeying
 
@@ -375,6 +391,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 599     | 3785    | 1253   | 1501        | 742               |
 | Ampere Altra (Neoverse N1)   | Linux | 2863    | 4523    | 3615   | 4145        | 2568              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 969     | 2541    | 1674   | 2043        | 951               |
+| Qemu RISC-V                  | Linux | 11416   | 33356   | 10897  | 10767       | 5668              |
 
 Relative performance score (the lower, the better):
 
@@ -390,6 +407,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 112     | 713     | 236    | 282         | 139               |
 | Ampere Altra (Neoverse N1)   | Linux | 279     | 441     | 353    | 404         | 250               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 115     | 302     | 199    | 243         | 113               |
+| Qemu RISC-V                  | Linux | 598     | 1749    | 571    | 564         | 297               |
 
 ### RSA-2048 verification with rekeying
 
@@ -407,6 +425,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 17.7    | 37      | 19.5   | 51          | 22                |
 | Ampere Altra (Neoverse N1)   | Linux | 83      | 115     | 75     | 154         | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 29      | 60      | 30     | 73          | 31                |
+| Qemu RISC-V                  | Linux | 349     | 683     | 157    | 385         | 164               |
 
 Relative performance score (the lower, the better):
 
@@ -422,6 +441,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 3.3     | 7.0     | 3.7    | 9.7         | 4.3               |
 | Ampere Altra (Neoverse N1)   | Linux | 8.2     | 11.2    | 7.4    | 15.1        | 7.6               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 3.5     | 7.2     | 3.6    | 8.7         | 3.8               |
+| Qemu RISC-V                  | Linux | 18.4    | 35      | 8.2    | 20          | 8.6               |
 
 ### RSA-2048 signature/verification ratio, with rekeying
 
@@ -437,6 +457,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 33      | 101     | 64     | 29          | 32                |
 | Ampere Altra (Neoverse N1)   | Linux | 34      | 39      | 47     | 26          | 32                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 33      | 41      | 55     | 27          | 30                |
+| Qemu RISC-V                  | Linux | 32      | 48      | 69     | 27          | 34                |
 
 ### RSA-2048 parse public key
 
@@ -454,6 +475,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 80      | 0.58    | 1.9    | 10.7        | 7.0               |
 | Ampere Altra (Neoverse N1)   | Linux | 393     | 0.76    | 3.2    | 12.0        | 5.9               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 378     | 0.66    | 2.6    | 9.6         | 4.8               |
+| Qemu RISC-V                  | Linux | 2078    | 10.0    | 39     | 57          | 20                |
 
 Relative performance score (the lower, the better):
 
@@ -469,6 +491,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 15.1    | 0.11    | 0.37   | 2.0         | 1.3               |
 | Ampere Altra (Neoverse N1)   | Linux | 38      | 0.075   | 0.31   | 1.2         | 0.58              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 45      | 0.079   | 0.31   | 1.1         | 0.57              |
+| Qemu RISC-V                  | Linux | 109     | 0.52    | 2.1    | 3.0         | 1.1               |
 
 ### RSA-2048 parse private key
 
@@ -486,6 +509,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 83      | 21      | 20     | 16.9        | 3.0               |
 | Ampere Altra (Neoverse N1)   | Linux | 400     | 35      | 32     | 26          | 4.5               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 383     | 24      | 23     | 20          | 3.4               |
+| Qemu RISC-V                  | Linux | 2061    | 421     | 307    | 170         | 26                |
 
 Relative performance score (the lower, the better):
 
@@ -501,6 +525,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 15.8    | 4.0     | 3.8    | 3.2         | 0.56              |
 | Ampere Altra (Neoverse N1)   | Linux | 39      | 3.5     | 3.1    | 2.6         | 0.44              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 45      | 3.0     | 2.8    | 2.4         | 0.40              |
+| Qemu RISC-V                  | Linux | 108     | 22      | 16.1   | 9.0         | 1.4               |
 
 ## RSA-4096
 
@@ -520,6 +545,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 58      | 143     | 79     | 167         | 79                |
 | Ampere Altra (Neoverse N1)   | Linux | 253     | 433     | 220    | 563         | 227               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 94      | 223     | 94     | 238         | 101               |
+| Qemu RISC-V                  | Linux | 847     | 2445    | 481    | 1062        | 531               |
 
 Relative performance score (the lower, the better):
 
@@ -535,6 +561,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 11.0    | 27      | 14.9   | 31          | 14.9              |
 | Ampere Altra (Neoverse N1)   | Linux | 24      | 42      | 21     | 55          | 22                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 11.3    | 26      | 11.3   | 28          | 12.1              |
+| Qemu RISC-V                  | Linux | 44      | 128     | 25     | 55          | 27                |
 
 ### RSA-4096 decryption
 
@@ -552,6 +579,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 3878    | 14981   | 7477   | 7644        | 4860              |
 | Ampere Altra (Neoverse N1)   | Linux | 20248   | 28560   | 28455  | 25751       | 17497             |
 | AWS Graviton 3 (Neoverse V1) | Linux | 6295    | 15070   | 11590  | 10845       | 6575              |
+| Qemu RISC-V                  | Linux | 61093   | 192521  | 59195  | 48199       | 33403             |
 
 Relative performance score (the lower, the better):
 
@@ -567,6 +595,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 730     | 2822    | 1408   | 1440        | 915               |
 | Ampere Altra (Neoverse N1)   | Linux | 1977    | 2788    | 2778   | 2514        | 1708              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 750     | 1796    | 1381   | 1292        | 783               |
+| Qemu RISC-V                  | Linux | 3203    | 10096   | 3104   | 2527        | 1751              |
 
 ### RSA-4096 decryption/encryption ratio
 
@@ -582,6 +611,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 66      | 104     | 94     | 45          | 61                |
 | Ampere Altra (Neoverse N1)   | Linux | 79      | 65      | 128    | 45          | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 66      | 67      | 122    | 45          | 64                |
+| Qemu RISC-V                  | Linux | 72      | 78      | 122    | 45          | 62                |
 
 ### RSA-4096 encryption with rekeying
 
@@ -599,6 +629,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 60      | 143     | 81     | 174         | 82                |
 | Ampere Altra (Neoverse N1)   | Linux | 257     | 433     | 219    | 563         | 227               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 98      | 223     | 94     | 237         | 101               |
+| Qemu RISC-V                  | Linux | 916     | 2424    | 481    | 1058        | 532               |
 
 Relative performance score (the lower, the better):
 
@@ -614,6 +645,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 11.5    | 27      | 15.3   | 32          | 15.4              |
 | Ampere Altra (Neoverse N1)   | Linux | 25      | 42      | 21     | 55          | 22                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 11.7    | 26      | 11.3   | 28          | 12.1              |
+| Qemu RISC-V                  | Linux | 48      | 127     | 25     | 55          | 27                |
 
 ### RSA-4096 decryption with rekeying
 
@@ -631,6 +663,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 3916    | 15090   | 7411   | 7499        | 4770              |
 | Ampere Altra (Neoverse N1)   | Linux | 20263   | 28559   | 28557  | 25629       | 17501             |
 | AWS Graviton 3 (Neoverse V1) | Linux | 6299    | 15072   | 11591  | 10844       | 6574              |
+| Qemu RISC-V                  | Linux | 61343   | 192813  | 59115  | 48175       | 33408             |
 
 Relative performance score (the lower, the better):
 
@@ -646,6 +679,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 737     | 2843    | 1396   | 1412        | 898               |
 | Ampere Altra (Neoverse N1)   | Linux | 1978    | 2788    | 2788   | 2502        | 1708              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 750     | 1796    | 1381   | 1292        | 783               |
+| Qemu RISC-V                  | Linux | 3217    | 10111   | 3100   | 2526        | 1752              |
 
 ### RSA-4096 decryption/encryption ratio, with rekeying
 
@@ -661,6 +695,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 64      | 105     | 91     | 42          | 58                |
 | Ampere Altra (Neoverse N1)   | Linux | 78      | 65      | 129    | 45          | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 64      | 67      | 122    | 45          | 64                |
+| Qemu RISC-V                  | Linux | 66      | 79      | 122    | 45          | 62                |
 
 ### RSA-4096 signature
 
@@ -678,6 +713,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 3929    | 15137   | 7496   | 7722        | 4709              |
 | Ampere Altra (Neoverse N1)   | Linux | 20251   | 28563   | 28445  | 25749       | 17499             |
 | AWS Graviton 3 (Neoverse V1) | Linux | 6292    | 15072   | 11591  | 10853       | 6569              |
+| Qemu RISC-V                  | Linux | 61217   | 192723  | 59295  | 48211       | 33395             |
 
 Relative performance score (the lower, the better):
 
@@ -693,6 +729,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 740     | 2851    | 1412   | 1454        | 887               |
 | Ampere Altra (Neoverse N1)   | Linux | 1977    | 2788    | 2777   | 2514        | 1708              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 749     | 1796    | 1381   | 1293        | 783               |
+| Qemu RISC-V                  | Linux | 3210    | 10107   | 3109   | 2528        | 1751              |
 
 ### RSA-4096 verification
 
@@ -710,6 +747,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 57      | 142     | 75     | 169         | 83                |
 | Ampere Altra (Neoverse N1)   | Linux | 250     | 431     | 222    | 561         | 225               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 92      | 221     | 96     | 234         | 99                |
+| Qemu RISC-V                  | Linux | 819     | 2412    | 502    | 1049        | 519               |
 
 Relative performance score (the lower, the better):
 
@@ -725,6 +763,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 10.9    | 26      | 14.3   | 31          | 15.7              |
 | Ampere Altra (Neoverse N1)   | Linux | 24      | 42      | 21     | 54          | 21                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 11.0    | 26      | 11.5   | 27          | 11.8              |
+| Qemu RISC-V                  | Linux | 42      | 126     | 26     | 55          | 27                |
 
 ### RSA-4096 signature/verification ratio
 
@@ -740,6 +779,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 67      | 106     | 99     | 45          | 56                |
 | Ampere Altra (Neoverse N1)   | Linux | 80      | 66      | 127    | 45          | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 67      | 67      | 119    | 46          | 66                |
+| Qemu RISC-V                  | Linux | 74      | 79      | 117    | 45          | 64                |
 
 ### RSA-4096 signature with rekeying
 
@@ -757,6 +797,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 3943    | 15398   | 7429   | 7523        | 4620              |
 | Ampere Altra (Neoverse N1)   | Linux | 20254   | 28563   | 28549  | 25757       | 17499             |
 | AWS Graviton 3 (Neoverse V1) | Linux | 6297    | 15074   | 11591  | 10845       | 6573              |
+| Qemu RISC-V                  | Linux | 61290   | 192573  | 59315  | 48211       | 33538             |
 
 Relative performance score (the lower, the better):
 
@@ -772,6 +813,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 743     | 2901    | 1399   | 1417        | 870               |
 | Ampere Altra (Neoverse N1)   | Linux | 1977    | 2788    | 2787   | 2514        | 1708              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 750     | 1796    | 1381   | 1292        | 783               |
+| Qemu RISC-V                  | Linux | 3214    | 10099   | 3110   | 2528        | 1758              |
 
 ### RSA-4096 verification with rekeying
 
@@ -789,6 +831,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 60      | 142     | 75     | 170         | 83                |
 | Ampere Altra (Neoverse N1)   | Linux | 255     | 431     | 222    | 561         | 225               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 96      | 221     | 96     | 235         | 99                |
+| Qemu RISC-V                  | Linux | 893     | 2412    | 503    | 1050        | 521               |
 
 Relative performance score (the lower, the better):
 
@@ -804,6 +847,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 11.4    | 26      | 14.3   | 32          | 15.7              |
 | Ampere Altra (Neoverse N1)   | Linux | 24      | 42      | 21     | 54          | 21                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 11.5    | 26      | 11.5   | 28          | 11.8              |
+| Qemu RISC-V                  | Linux | 46      | 126     | 26     | 55          | 27                |
 
 ### RSA-4096 signature/verification ratio, with rekeying
 
@@ -819,6 +863,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 65      | 108     | 97     | 44          | 55                |
 | Ampere Altra (Neoverse N1)   | Linux | 79      | 66      | 128    | 45          | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 64      | 67      | 119    | 46          | 66                |
+| Qemu RISC-V                  | Linux | 68      | 79      | 117    | 45          | 64                |
 
 ### RSA-4096 parse public key
 
@@ -836,6 +881,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 85      | 0.61    | 2.5    | 24          | 13.3              |
 | Ampere Altra (Neoverse N1)   | Linux | 395     | 0.75    | 3.8    | 30          | 10.8              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 379     | 0.67    | 3.1    | 24          | 8.7               |
+| Qemu RISC-V                  | Linux | 2006    | 12.0    | 44     | 126         | 32                |
 
 Relative performance score (the lower, the better):
 
@@ -851,6 +897,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 16.1    | 0.11    | 0.47   | 4.7         | 2.5               |
 | Ampere Altra (Neoverse N1)   | Linux | 38      | 0.073   | 0.37   | 3.0         | 1.1               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 45      | 0.080   | 0.37   | 2.9         | 1.0               |
+| Qemu RISC-V                  | Linux | 105     | 0.63    | 2.3    | 6.6         | 1.7               |
 
 ### RSA-4096 parse private key
 
@@ -868,6 +915,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 89      | 71      | 35     | 43          | 4.7               |
 | Ampere Altra (Neoverse N1)   | Linux | 406     | 100     | 67     | 75          | 7.2               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 384     | 71      | 40     | 59          | 5.3               |
+| Qemu RISC-V                  | Linux | 2055    | 1118    | 422    | 386         | 32                |
 
 Relative performance score (the lower, the better):
 
@@ -883,6 +931,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 16.8    | 13.5    | 6.8    | 8.3         | 0.89              |
 | Ampere Altra (Neoverse N1)   | Linux | 39      | 9.8     | 6.6    | 7.4         | 0.70              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 45      | 8.5     | 4.9    | 7.1         | 0.64              |
+| Qemu RISC-V                  | Linux | 107     | 58      | 22     | 20          | 1.7               |
 
 ## AES-128-CBC
 
@@ -902,6 +951,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 723     | 4849    | 720    | 1317   | 4179        | 1126        |
 | Ampere Altra (Neoverse N1)   | Linux | 424     | 4648    | 423    | 4976   | 4738        | 730         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 488     | 4266    | 492    | 4605   | 4273        | 850         |
+| Qemu RISC-V                  | Linux | 19301   | 28468   | 27597  | 27583  | 38513       |             |
 
 Relative performance score (the lower, the better):
 
@@ -917,6 +967,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 136     | 913     | 135    | 248    | 787         | 212         |
 | Ampere Altra (Neoverse N1)   | Linux | 41      | 453     | 41     | 485    | 462         | 71          |
 | AWS Graviton 3 (Neoverse V1) | Linux | 58      | 508     | 58     | 548    | 509         | 101         |
+| Qemu RISC-V                  | Linux | 1012    | 1493    | 1447   | 1446   | 2019        |             |
 
 ### AES-128-CBC decryption
 
@@ -934,6 +985,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 97      | 4676    | 97     | 150    | 3643        | 190         |
 | Ampere Altra (Neoverse N1)   | Linux | 234     | 4495    | 259    | 4668   | 4900        | 390         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 114     | 4009    | 124    | 3993   | 4336        | 260         |
+| Qemu RISC-V                  | Linux | 19085   | 35403   | 16119  | 16127  | 57693       |             |
 
 Relative performance score (the lower, the better):
 
@@ -949,6 +1001,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 18.3    | 881     | 18.4   | 28     | 686         | 35          |
 | Ampere Altra (Neoverse N1)   | Linux | 22      | 438     | 25     | 455    | 478         | 38          |
 | AWS Graviton 3 (Neoverse V1) | Linux | 13.7    | 477     | 14.9   | 475    | 516         | 31          |
+| Qemu RISC-V                  | Linux | 1000    | 1856    | 845    | 845    | 3025        |             |
 
 ### AES-128-CBC encryption/decryption ratio
 
@@ -964,6 +1017,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 7.4     | 1.0     | 7.4    | 8.7    | 1.1         | 5.9         |
 | Ampere Altra (Neoverse N1)   | Linux | 1.8     | 1.0     | 1.6    | 1.1    | 0.97        | 1.9         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 4.2     | 1.1     | 3.9    | 1.2    | 0.99        | 3.3         |
+| Qemu RISC-V                  | Linux | 1.0     | 0.80    | 1.7    | 1.7    | 0.67        |             |
 
 ## AES-256-CBC
 
@@ -983,6 +1037,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 1020    | 5845    | 1026   | 1613   | 5373        | 1470        |
 | Ampere Altra (Neoverse N1)   | Linux | 593     | 5957    | 592    | 6641   | 6144        | 949         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 679     | 5567    | 682    | 6147   | 5580        | 1081        |
+| Qemu RISC-V                  | Linux | 24467   | 33076   | 33149  | 33143  | 43845       |             |
 
 Relative performance score (the lower, the better):
 
@@ -998,6 +1053,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 192     | 1101    | 193    | 303    | 1012        | 277         |
 | Ampere Altra (Neoverse N1)   | Linux | 57      | 581     | 57     | 648    | 599         | 92          |
 | AWS Graviton 3 (Neoverse V1) | Linux | 80      | 663     | 81     | 732    | 665         | 128         |
+| Qemu RISC-V                  | Linux | 1283    | 1734    | 1738   | 1738   | 2299        |             |
 
 ### AES-256-CBC decryption
 
@@ -1015,6 +1071,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 171     | 5860    | 153    | 174    | 5035        | 252         |
 | Ampere Altra (Neoverse N1)   | Linux | 317     | 5786    | 307    | 6313   | 6220        | 537         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 155     | 5283    | 175    | 5683   | 5621        | 347         |
+| Qemu RISC-V                  | Linux | 24193   | 40043   | 21814  | 21842  | 71284       |             |
 
 Relative performance score (the lower, the better):
 
@@ -1030,6 +1087,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 32      | 1104    | 28     | 32     | 948         | 47          |
 | Ampere Altra (Neoverse N1)   | Linux | 31      | 565     | 30     | 616    | 607         | 52          |
 | AWS Graviton 3 (Neoverse V1) | Linux | 18.6    | 629     | 20     | 677    | 669         | 41          |
+| Qemu RISC-V                  | Linux | 1268    | 2099    | 1144   | 1145   | 3738        |             |
 
 ### AES-256-CBC encryption/decryption ratio
 
@@ -1045,6 +1103,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 5.9     | 1.0     | 6.7    | 9.3    | 1.1         | 5.8         |
 | Ampere Altra (Neoverse N1)   | Linux | 1.9     | 1.0     | 1.9    | 1.1    | 0.99        | 1.8         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 4.4     | 1.1     | 3.9    | 1.1    | 0.99        | 3.1         |
+| Qemu RISC-V                  | Linux | 1.0     | 0.83    | 1.5    | 1.5    | 0.62        |             |
 
 ## 2048-bit modular arithmetic
 
@@ -1064,6 +1123,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 0.24 | 5.3      | 1.1      | 3.7      | 5.2    | 0.022  | 252     | 1793   |
 | Ampere Altra (Neoverse N1)   | Linux | 0.38 | 8.3      | 4.9      | 7.5      | 7.6    | 0.034  | 302     | 9234   |
 | AWS Graviton 3 (Neoverse V1) | Linux | 0.30 | 5.9      | 1.5      | 4.3      | 5.8    | 0.025  | 273     | 2624   |
+| Qemu RISC-V                  | Linux | 2.2  | 33       | 16.0     | 43       | 28     | 0.62   | 1878    | 27965  |
 
 Relative performance score (the lower, the better):
 
@@ -1079,6 +1139,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 0.045 | 1.0      | 0.20     | 0.70     | 0.98   | 0.004  | 47      | 337    |
 | Ampere Altra (Neoverse N1)   | Linux | 0.037 | 0.81     | 0.48     | 0.73     | 0.74   | 0.003  | 29      | 901    |
 | AWS Graviton 3 (Neoverse V1) | Linux | 0.036 | 0.71     | 0.17     | 0.52     | 0.70   | 0.003  | 32      | 312    |
+| Qemu RISC-V                  | Linux | 0.12  | 1.8      | 0.84     | 2.3      | 1.5    | 0.033  | 98      | 1466   |
 
 ### 2048-bit modular arithmetic exponentiations on public (short) exponents
 
@@ -1096,6 +1157,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 22       | 15.4     | 12.9     | 65       | 92       |
 | Ampere Altra (Neoverse N1)   | Linux | 87       | 76       | 61       | 125      | 131      |
 | AWS Graviton 3 (Neoverse V1) | Linux | 30       | 22       | 19.0     | 78       | 101      |
+| Qemu RISC-V                  | Linux | 314      | 230      | 183      | 690      | 486      |
 
 Relative performance score (the lower, the better):
 
@@ -1111,6 +1173,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 4.2      | 2.9      | 2.4      | 12.4     | 17.5     |
 | Ampere Altra (Neoverse N1)   | Linux | 8.5      | 7.5      | 6.1      | 12.3     | 12.9     |
 | AWS Graviton 3 (Neoverse V1) | Linux | 3.6      | 2.7      | 2.3      | 9.4      | 12.1     |
+| Qemu RISC-V                  | Linux | 16.5     | 12.1     | 9.6      | 36       | 25       |
 
 ### 2048-bit modular arithmetic exponentiations on private (large) exponents
 
@@ -1128,6 +1191,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 1742     | 1737     | 1701     | 8719     | 13003    |
 | Ampere Altra (Neoverse N1)   | Linux | 9189     | 9180     | 8052     | 16628    | 18248    |
 | AWS Graviton 3 (Neoverse V1) | Linux | 2617     | 2609     | 2441     | 10329    | 14145    |
+| Qemu RISC-V                  | Linux | 27633    | 27523    | 24490    | 92583    | 67942    |
 
 Relative performance score (the lower, the better):
 
@@ -1143,4 +1207,5 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 328      | 327      | 320      | 1642     | 2449     |
 | Ampere Altra (Neoverse N1)   | Linux | 897      | 896      | 786      | 1623     | 1781     |
 | AWS Graviton 3 (Neoverse V1) | Linux | 311      | 310      | 290      | 1231     | 1685     |
+| Qemu RISC-V                  | Linux | 1449     | 1443     | 1284     | 4855     | 3563     |
 
