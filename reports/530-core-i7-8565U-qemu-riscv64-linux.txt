@@ -6,8 +6,6 @@ system: os: Linux
 system: distro: Ubuntu 23.10
 system: kernel: 6.5.0-14-generic #14.1-Ubuntu SMP Fri Nov 24 06:09:26 UTC 2023 riscv64
 system: date: 2024-01-18
-make: Entering directory '/home/lelegard/cryptobench/src'
-make: Leaving directory '/home/lelegard/cryptobench/src'
 
 openssl: version=3.0.10 (CPUINFO: N/A)
 mbedtls: version=mbed TLS 2.28.3
