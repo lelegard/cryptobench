@@ -1,7 +1,7 @@
 system: arch: riscv64
-system: cpu: Qemu 64-bit RISC-V
-system: cpu-index: Qemu RISC-V
-system: machine: Qemu
+system: cpu: 64-bit RISC-V (Qemu on Apple M1)
+system: cpu-index: RISC-V (Qemu on Apple M1)
+system: machine: Qemu on Apple MacBook M1
 system: os: Linux
 system: distro: Ubuntu 23.10
 system: kernel: 6.5.0-14-generic #14.1-Ubuntu SMP Fri Nov 24 06:09:26 UTC 2023 riscv64
