@@ -112,6 +112,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 3518           |
 | i7-5775R                     | Linux | 5250           |
 | i7-8565U                     | Linux | 5058           |
+| i7-13700H                    | Linux | 2846           |
 | Xeon-6254                    | Linux | 6846           |
 | Cortex A53 (R.Pi3)           | Linux | 75122          |
 | Cortex A72 (R.Pi4)           | Linux | 17928          |
@@ -134,6 +135,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 20      | 57      | 25     | 93          | 29                |
 | i7-5775R                     | Linux | 21      | 59      | 28     | 95          | 31                |
 | i7-8565U                     | Linux | 36      | 55      | 26     | 74          | 29                |
+| i7-13700H                    | Linux | 17.2    | 35      | 14.8   | 47          | 16.7              |
 | Xeon-6254                    | Linux | 19.8    | 51      | 23     | 82          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 775     | 1328    | 671    | 1927        | 698               |
 | Cortex A72 (R.Pi4)           | Linux | 154     | 205     | 127    | 295         | 138               |
@@ -152,6 +154,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 5.8     | 16.4    | 7.2    | 26          | 8.5               |
 | i7-5775R                     | Linux | 4.1     | 11.4    | 5.4    | 18.1        | 6.0               |
 | i7-8565U                     | Linux | 7.2     | 11.0    | 5.3    | 14.6        | 5.7               |
+| i7-13700H                    | Linux | 6.0     | 12.3    | 5.2    | 16.8        | 5.9               |
 | Xeon-6254                    | Linux | 2.9     | 7.6     | 3.4    | 12.1        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 10.3    | 17.7    | 8.9    | 25          | 9.3               |
 | Cortex A72 (R.Pi4)           | Linux | 8.6     | 11.5    | 7.1    | 16.5        | 7.7               |
@@ -172,6 +175,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 551     | 2545    | 1661   | 2373        | 803               |
 | i7-5775R                     | Linux | 589     | 5625    | 2073   | 2300        | 878               |
 | i7-8565U                     | Linux | 598     | 5537    | 2021   | 1976        | 823               |
+| i7-13700H                    | Linux | 500     | 1479    | 979    | 1317        | 457               |
 | Xeon-6254                    | Linux | 1483    | 2412    | 1548   | 2024        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 26744   | 59438   | 35755  | 50136       | 23283             |
 | Cortex A72 (R.Pi4)           | Linux | 4997    | 16383   | 6631   | 7686        | 4347              |
@@ -190,6 +194,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 156     | 723     | 472    | 674         | 228               |
 | i7-5775R                     | Linux | 112     | 1071    | 394    | 438         | 167               |
 | i7-8565U                     | Linux | 118     | 1094    | 399    | 390         | 162               |
+| i7-13700H                    | Linux | 175     | 519     | 344    | 462         | 160               |
 | Xeon-6254                    | Linux | 216     | 352     | 226    | 295         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 356     | 791     | 475    | 667         | 309               |
 | Cortex A72 (R.Pi4)           | Linux | 278     | 913     | 369    | 428         | 242               |
@@ -208,6 +213,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 27      | 44      | 65     | 25          | 26                |
 | i7-5775R                     | Linux | 27      | 94      | 73     | 24          | 27                |
 | i7-8565U                     | Linux | 16.3    | 99      | 76     | 26          | 28                |
+| i7-13700H                    | Linux | 29      | 42      | 66     | 27          | 27                |
 | Xeon-6254                    | Linux | 74      | 46      | 66     | 24          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 34      | 44      | 53     | 26          | 33                |
 | Cortex A72 (R.Pi4)           | Linux | 32      | 79      | 51     | 25          | 31                |
@@ -228,6 +234,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 23      | 57      | 25     | 93          | 29                |
 | i7-5775R                     | Linux | 26      | 62      | 28     | 86          | 31                |
 | i7-8565U                     | Linux | 41      | 56      | 25     | 74          | 29                |
+| i7-13700H                    | Linux | 18.9    | 34      | 14.7   | 47          | 16.8              |
 | Xeon-6254                    | Linux | 20      | 51      | 23     | 82          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 826     | 1328    | 670    | 1927        | 698               |
 | Cortex A72 (R.Pi4)           | Linux | 170     | 205     | 127    | 295         | 138               |
@@ -246,6 +253,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 6.8     | 16.4    | 7.2    | 26          | 8.5               |
 | i7-5775R                     | Linux | 5.1     | 11.8    | 5.4    | 16.5        | 5.9               |
 | i7-8565U                     | Linux | 8.2     | 11.1    | 5.0    | 14.7        | 5.9               |
+| i7-13700H                    | Linux | 6.6     | 12.0    | 5.2    | 16.8        | 5.9               |
 | Xeon-6254                    | Linux | 2.9     | 7.5     | 3.4    | 12.1        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 11.0    | 17.7    | 8.9    | 25          | 9.3               |
 | Cortex A72 (R.Pi4)           | Linux | 9.5     | 11.5    | 7.1    | 16.5        | 7.7               |
@@ -266,6 +274,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 558     | 2544    | 1657   | 2363        | 802               |
 | i7-5775R                     | Linux | 692     | 6200    | 2104   | 2292        | 904               |
 | i7-8565U                     | Linux | 552     | 5046    | 1821   | 2002        | 841               |
+| i7-13700H                    | Linux | 502     | 1515    | 977    | 1312        | 457               |
 | Xeon-6254                    | Linux | 1481    | 2410    | 1550   | 2020        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 26820   | 59495   | 35773  | 50100       | 23282             |
 | Cortex A72 (R.Pi4)           | Linux | 5017    | 16382   | 6632   | 7686        | 4348              |
@@ -284,6 +293,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 158     | 723     | 471    | 671         | 228               |
 | i7-5775R                     | Linux | 131     | 1180    | 400    | 436         | 172               |
 | i7-8565U                     | Linux | 109     | 997     | 360    | 395         | 166               |
+| i7-13700H                    | Linux | 176     | 532     | 343    | 461         | 160               |
 | Xeon-6254                    | Linux | 216     | 352     | 226    | 295         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 357     | 791     | 476    | 666         | 309               |
 | Cortex A72 (R.Pi4)           | Linux | 279     | 913     | 369    | 428         | 242               |
@@ -302,6 +312,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 23      | 43      | 65     | 25          | 26                |
 | i7-5775R                     | Linux | 26      | 99      | 73     | 26          | 28                |
 | i7-8565U                     | Linux | 13.3    | 90      | 72     | 26          | 28                |
+| i7-13700H                    | Linux | 26      | 44      | 66     | 27          | 27                |
 | Xeon-6254                    | Linux | 73      | 46      | 66     | 24          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 32      | 44      | 53     | 25          | 33                |
 | Cortex A72 (R.Pi4)           | Linux | 29      | 79      | 51     | 26          | 31                |
@@ -322,6 +333,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 547     | 2546    | 1652   | 2364        | 803               |
 | i7-5775R                     | Linux | 623     | 5633    | 2102   | 2363        | 1003              |
 | i7-8565U                     | Linux | 546     | 5356    | 1830   | 1958        | 846               |
+| i7-13700H                    | Linux | 506     | 1735    | 979    | 1322        | 456               |
 | Xeon-6254                    | Linux | 533     | 2476    | 1558   | 1999        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 26762   | 59432   | 35750  | 50109       | 23280             |
 | Cortex A72 (R.Pi4)           | Linux | 5005    | 16439   | 6626   | 7728        | 4344              |
@@ -340,6 +352,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 155     | 723     | 469    | 672         | 228               |
 | i7-5775R                     | Linux | 118     | 1072    | 400    | 450         | 191               |
 | i7-8565U                     | Linux | 108     | 1058    | 361    | 387         | 167               |
+| i7-13700H                    | Linux | 177     | 609     | 344    | 464         | 160               |
 | Xeon-6254                    | Linux | 77      | 361     | 227    | 292         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 356     | 791     | 475    | 667         | 309               |
 | Cortex A72 (R.Pi4)           | Linux | 279     | 916     | 369    | 431         | 242               |
@@ -360,6 +373,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 19.1    | 56      | 27     | 92          | 28                |
 | i7-5775R                     | Linux | 21      | 58      | 30     | 96          | 33                |
 | i7-8565U                     | Linux | 25      | 53      | 27     | 71          | 27                |
+| i7-13700H                    | Linux | 16.6    | 35      | 15.9   | 46          | 16.4              |
 | Xeon-6254                    | Linux | 18.0    | 50      | 25     | 82          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 752     | 1316    | 685    | 1920        | 692               |
 | Cortex A72 (R.Pi4)           | Linux | 140     | 202     | 131    | 294         | 135               |
@@ -378,6 +392,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 5.4     | 16.2    | 7.7    | 26          | 8.2               |
 | i7-5775R                     | Linux | 4.1     | 11.2    | 5.8    | 18.4        | 6.5               |
 | i7-8565U                     | Linux | 5.1     | 10.6    | 5.4    | 14.2        | 5.5               |
+| i7-13700H                    | Linux | 5.8     | 12.4    | 5.6    | 16.4        | 5.8               |
 | Xeon-6254                    | Linux | 2.6     | 7.3     | 3.7    | 12.0        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 10.0    | 17.5    | 9.1    | 25          | 9.2               |
 | Cortex A72 (R.Pi4)           | Linux | 7.8     | 11.3    | 7.3    | 16.4        | 7.6               |
@@ -396,6 +411,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 28      | 44      | 60     | 25          | 28                |
 | i7-5775R                     | Linux | 29      | 95      | 69     | 24          | 29                |
 | i7-8565U                     | Linux | 21      | 99      | 67     | 27          | 30                |
+| i7-13700H                    | Linux | 30      | 49      | 61     | 28          | 27                |
 | Xeon-6254                    | Linux | 29      | 49      | 61     | 24          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 35      | 45      | 52     | 26          | 33                |
 | Cortex A72 (R.Pi4)           | Linux | 35      | 81      | 50     | 26          | 32                |
@@ -416,6 +432,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 553     | 2544    | 1652   | 2362        | 804               |
 | i7-5775R                     | Linux | 597     | 5892    | 2033   | 2329        | 857               |
 | i7-8565U                     | Linux | 586     | 4923    | 1848   | 1965        | 851               |
+| i7-13700H                    | Linux | 508     | 1503    | 974    | 1301        | 460               |
 | Xeon-6254                    | Linux | 534     | 2478    | 1550   | 1999        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 26844   | 59451   | 35753  | 50104       | 23279             |
 | Cortex A72 (R.Pi4)           | Linux | 5034    | 16433   | 6626   | 7739        | 4344              |
@@ -434,6 +451,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 157     | 723     | 469    | 671         | 228               |
 | i7-5775R                     | Linux | 113     | 1122    | 387    | 443         | 163               |
 | i7-8565U                     | Linux | 115     | 973     | 365    | 388         | 168               |
+| i7-13700H                    | Linux | 178     | 528     | 342    | 457         | 161               |
 | Xeon-6254                    | Linux | 78      | 362     | 226    | 292         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 357     | 791     | 475    | 666         | 309               |
 | Cortex A72 (R.Pi4)           | Linux | 280     | 916     | 369    | 431         | 242               |
@@ -454,6 +472,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 23      | 56      | 27     | 91          | 28                |
 | i7-5775R                     | Linux | 25      | 70      | 29     | 86          | 29                |
 | i7-8565U                     | Linux | 41      | 53      | 27     | 73          | 27                |
+| i7-13700H                    | Linux | 19.0    | 30      | 16.0   | 46          | 16.2              |
 | Xeon-6254                    | Linux | 18.0    | 49      | 25     | 82          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 814     | 1316    | 685    | 1919        | 693               |
 | Cortex A72 (R.Pi4)           | Linux | 159     | 203     | 131    | 294         | 135               |
@@ -472,6 +491,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 6.6     | 16.2    | 7.7    | 26          | 8.2               |
 | i7-5775R                     | Linux | 4.9     | 13.4    | 5.6    | 16.5        | 5.7               |
 | i7-8565U                     | Linux | 8.3     | 10.6    | 5.5    | 14.6        | 5.5               |
+| i7-13700H                    | Linux | 6.7     | 10.8    | 5.6    | 16.3        | 5.7               |
 | Xeon-6254                    | Linux | 2.6     | 7.3     | 3.7    | 12.0        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 10.8    | 17.5    | 9.1    | 25          | 9.2               |
 | Cortex A72 (R.Pi4)           | Linux | 8.9     | 11.3    | 7.3    | 16.4        | 7.6               |
@@ -490,6 +510,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 23      | 44      | 60     | 25          | 28                |
 | i7-5775R                     | Linux | 23      | 83      | 69     | 26          | 28                |
 | i7-8565U                     | Linux | 14.0    | 92      | 66     | 26          | 30                |
+| i7-13700H                    | Linux | 26      | 49      | 61     | 28          | 28                |
 | Xeon-6254                    | Linux | 29      | 49      | 60     | 24          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 32      | 45      | 52     | 26          | 33                |
 | Cortex A72 (R.Pi4)           | Linux | 31      | 80      | 50     | 26          | 32                |
@@ -510,6 +531,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 60      | 1.1     | 4.1    | 16.0        | 7.2               |
 | i7-5775R                     | Linux | 149     | 0.86    | 3.7    | 15.4        | 6.8               |
 | i7-8565U                     | Linux | 192     | 0.56    | 2.8    | 12.3        | 5.9               |
+| i7-13700H                    | Linux | 72      | 0.45    | 2.0    | 6.2         | 3.0               |
 | Xeon-6254                    | Linux | 1.2     | 0.62    | 2.8    | 14.2        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 1504    | 8.1     | 34     | 144         | 43                |
 | Cortex A72 (R.Pi4)           | Linux | 435     | 2.0     | 9.9    | 28          | 13.4              |
@@ -528,6 +550,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 17.3    | 0.30    | 1.2    | 4.6         | 2.0               |
 | i7-5775R                     | Linux | 28      | 0.16    | 0.71   | 2.9         | 1.3               |
 | i7-8565U                     | Linux | 38      | 0.11    | 0.55   | 2.4         | 1.2               |
+| i7-13700H                    | Linux | 25      | 0.16    | 0.72   | 2.2         | 1.1               |
 | Xeon-6254                    | Linux | 0.18    | 0.091   | 0.40   | 2.1         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 20      | 0.11    | 0.47   | 1.9         | 0.58              |
 | Cortex A72 (R.Pi4)           | Linux | 24      | 0.11    | 0.55   | 1.6         | 0.75              |
@@ -548,6 +571,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 65      | 39      | 35     | 34          | 5.1               |
 | i7-5775R                     | Linux | 151     | 36      | 41     | 34          | 4.9               |
 | i7-8565U                     | Linux | 198     | 27      | 30     | 28          | 5.5               |
+| i7-13700H                    | Linux | 74      | 18.2    | 26     | 13.2        | 2.1               |
 | Xeon-6254                    | Linux | 3.7     | 30      | 24     | 34          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 1562    | 662     | 317    | 381         | 39                |
 | Cortex A72 (R.Pi4)           | Linux | 445     | 97      | 87     | 67          | 11.3              |
@@ -566,6 +590,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 18.7    | 11.2    | 10.2   | 9.8         | 1.4               |
 | i7-5775R                     | Linux | 28      | 7.0     | 7.9    | 6.6         | 0.93              |
 | i7-8565U                     | Linux | 39      | 5.4     | 6.0    | 5.6         | 1.1               |
+| i7-13700H                    | Linux | 26      | 6.4     | 9.4    | 4.6         | 0.74              |
 | Xeon-6254                    | Linux | 0.54    | 4.5     | 3.6    | 5.0         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 20      | 8.8     | 4.2    | 5.1         | 0.53              |
 | Cortex A72 (R.Pi4)           | Linux | 24      | 5.5     | 4.9    | 3.7         | 0.63              |
@@ -588,6 +613,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 62      | 198     | 82     | 310         | 90                |
 | i7-5775R                     | Linux | 69      | 214     | 91     | 276         | 98                |
 | i7-8565U                     | Linux | 129     | 185     | 84     | 245         | 92                |
+| i7-13700H                    | Linux | 60      | 130     | 54     | 158         | 57                |
 | Xeon-6254                    | Linux | 61      | 179     | 80     | 276         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2856    | 4936    | 2245   | 6881        | 2296              |
 | Cortex A72 (R.Pi4)           | Linux | 480     | 738     | 393    | 1015        | 412               |
@@ -606,6 +632,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 17.9    | 56      | 23     | 88          | 25                |
 | i7-5775R                     | Linux | 13.3    | 40      | 17.5   | 52          | 18.9              |
 | i7-8565U                     | Linux | 25      | 36      | 16.7   | 48          | 18.3              |
+| i7-13700H                    | Linux | 21      | 45      | 19.1   | 55          | 20                |
 | Xeon-6254                    | Linux | 8.9     | 26      | 11.7   | 40          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 38      | 65      | 29     | 91          | 30                |
 | Cortex A72 (R.Pi4)           | Linux | 26      | 41      | 21     | 56          | 23                |
@@ -626,6 +653,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 3640    | 14755   | 9000   | 12502       | 5556              |
 | i7-5775R                     | Linux | 4473    | 23882   | 10585  | 13504       | 6024              |
 | i7-8565U                     | Linux | 8661    | 20292   | 9796   | 10669       | 5483              |
+| i7-13700H                    | Linux | 3647    | 9209    | 5601   | 7107        | 3208              |
 | Xeon-6254                    | Linux | 7260    | 13781   | 9852   | 10608       |                   |
 | Cortex A53 (R.Pi3)           | Linux | 186535  | 378405  | 214376 | 312961      | 158954            |
 | Cortex A72 (R.Pi4)           | Linux | 34813   | 72849   | 49520  | 45186       | 29517             |
@@ -644,6 +672,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 1034    | 4193    | 2557   | 3553        | 1579              |
 | i7-5775R                     | Linux | 852     | 4548    | 2015   | 2571        | 1147              |
 | i7-8565U                     | Linux | 1712    | 4011    | 1936   | 2109        | 1084              |
+| i7-13700H                    | Linux | 1281    | 3235    | 1968   | 2497        | 1127              |
 | Xeon-6254                    | Linux | 1060    | 2013    | 1439   | 1549        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2483    | 5037    | 2853   | 4166        | 2115              |
 | Cortex A72 (R.Pi4)           | Linux | 1941    | 4063    | 2762   | 2520        | 1646              |
@@ -662,6 +691,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 57      | 74      | 109    | 40          | 61                |
 | i7-5775R                     | Linux | 64      | 111     | 115    | 48          | 60                |
 | i7-8565U                     | Linux | 67      | 109     | 116    | 43          | 59                |
+| i7-13700H                    | Linux | 60      | 70      | 102    | 44          | 55                |
 | Xeon-6254                    | Linux | 118     | 76      | 122    | 38          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 65      | 76      | 95     | 45          | 69                |
 | Cortex A72 (R.Pi4)           | Linux | 72      | 98      | 125    | 44          | 71                |
@@ -682,6 +712,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 66      | 197     | 81     | 310         | 90                |
 | i7-5775R                     | Linux | 77      | 217     | 90     | 313         | 99                |
 | i7-8565U                     | Linux | 188     | 181     | 84     | 242         | 90                |
+| i7-13700H                    | Linux | 63      | 130     | 54     | 158         | 57                |
 | Xeon-6254                    | Linux | 60      | 178     | 80     | 276         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2908    | 4934    | 2245   | 6916        | 2296              |
 | Cortex A72 (R.Pi4)           | Linux | 497     | 738     | 392    | 1015        | 412               |
@@ -700,6 +731,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 18.9    | 56      | 23     | 88          | 25                |
 | i7-5775R                     | Linux | 14.7    | 41      | 17.3   | 59          | 19.0              |
 | i7-8565U                     | Linux | 37      | 35      | 16.7   | 47          | 18.0              |
+| i7-13700H                    | Linux | 22      | 45      | 19.2   | 55          | 20                |
 | Xeon-6254                    | Linux | 8.9     | 26      | 11.7   | 40          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 38      | 65      | 29     | 92          | 30                |
 | Cortex A72 (R.Pi4)           | Linux | 27      | 41      | 21     | 56          | 23                |
@@ -720,6 +752,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 3641    | 14754   | 8994   | 12526       | 5556              |
 | i7-5775R                     | Linux | 4176    | 24461   | 10711  | 11867       | 5861              |
 | i7-8565U                     | Linux | 7029    | 23341   | 9711   | 10505       | 5566              |
+| i7-13700H                    | Linux | 3659    | 9280    | 5575   | 7095        | 3221              |
 | Xeon-6254                    | Linux | 7243    | 13776   | 9884   | 10626       |                   |
 | Cortex A53 (R.Pi3)           | Linux | 187251  | 379170  | 214359 | 311307      | 158941            |
 | Cortex A72 (R.Pi4)           | Linux | 34867   | 72833   | 49520  | 45177       | 29516             |
@@ -738,6 +771,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 1034    | 4193    | 2556   | 3559        | 1579              |
 | i7-5775R                     | Linux | 795     | 4658    | 2040   | 2260        | 1116              |
 | i7-8565U                     | Linux | 1389    | 4614    | 1919   | 2076        | 1100              |
+| i7-13700H                    | Linux | 1285    | 3260    | 1958   | 2493        | 1131              |
 | Xeon-6254                    | Linux | 1057    | 2012    | 1443   | 1552        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2492    | 5047    | 2853   | 4143        | 2115              |
 | Cortex A72 (R.Pi4)           | Linux | 1944    | 4062    | 2762   | 2519        | 1646              |
@@ -756,6 +790,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 54      | 74      | 109    | 40          | 61                |
 | i7-5775R                     | Linux | 54      | 112     | 117    | 37          | 58                |
 | i7-8565U                     | Linux | 37      | 128     | 115    | 43          | 61                |
+| i7-13700H                    | Linux | 58      | 71      | 102    | 44          | 55                |
 | Xeon-6254                    | Linux | 119     | 77      | 123    | 38          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 64      | 76      | 95     | 45          | 69                |
 | Cortex A72 (R.Pi4)           | Linux | 70      | 98      | 126    | 44          | 71                |
@@ -776,6 +811,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 3636    | 14716   | 8973   | 12516       | 5534              |
 | i7-5775R                     | Linux | 4464    | 23671   | 10773  | 11314       | 5775              |
 | i7-8565U                     | Linux | 7816    | 27146   | 9718   | 10258       | 5632              |
+| i7-13700H                    | Linux | 4037    | 8906    | 5588   | 7073        | 3216              |
 | Xeon-6254                    | Linux | 3724    | 13886   | 9806   | 10610       |                   |
 | Cortex A53 (R.Pi3)           | Linux | 187189  | 379076  | 214369 | 311659      | 158949            |
 | Cortex A72 (R.Pi4)           | Linux | 34822   | 72850   | 49495  | 45169       | 29500             |
@@ -794,6 +830,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 1033    | 4182    | 2550   | 3557        | 1572              |
 | i7-5775R                     | Linux | 850     | 4508    | 2051   | 2154        | 1100              |
 | i7-8565U                     | Linux | 1545    | 5366    | 1921   | 2027        | 1113              |
+| i7-13700H                    | Linux | 1418    | 3129    | 1963   | 2485        | 1130              |
 | Xeon-6254                    | Linux | 543     | 2028    | 1432   | 1549        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2491    | 5046    | 2853   | 4148        | 2115              |
 | Cortex A72 (R.Pi4)           | Linux | 1942    | 4063    | 2760   | 2519        | 1645              |
@@ -814,6 +851,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 61      | 195     | 85     | 306         | 87                |
 | i7-5775R                     | Linux | 69      | 220     | 96     | 268         | 92                |
 | i7-8565U                     | Linux | 132     | 195     | 87     | 245         | 90                |
+| i7-13700H                    | Linux | 67      | 130     | 56     | 156         | 56                |
 | Xeon-6254                    | Linux | 58      | 175     | 84     | 273         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2827    | 4921    | 2277   | 6868        | 2284              |
 | Cortex A72 (R.Pi4)           | Linux | 464     | 733     | 399    | 1009        | 407               |
@@ -832,6 +870,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 17.4    | 55      | 24     | 87          | 25                |
 | i7-5775R                     | Linux | 13.1    | 41      | 18.4   | 51          | 17.7              |
 | i7-8565U                     | Linux | 26      | 38      | 17.3   | 48          | 17.9              |
+| i7-13700H                    | Linux | 23      | 45      | 19.8   | 55          | 19.7              |
 | Xeon-6254                    | Linux | 8.6     | 25      | 12.3   | 39          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 37      | 65      | 30     | 91          | 30                |
 | Cortex A72 (R.Pi4)           | Linux | 25      | 40      | 22     | 56          | 22                |
@@ -850,6 +889,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 59      | 75      | 105    | 40          | 62                |
 | i7-5775R                     | Linux | 64      | 107     | 111    | 42          | 62                |
 | i7-8565U                     | Linux | 58      | 139     | 111    | 41          | 62                |
+| i7-13700H                    | Linux | 59      | 68      | 99     | 45          | 57                |
 | Xeon-6254                    | Linux | 63      | 79      | 116    | 38          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 66      | 77      | 94     | 45          | 69                |
 | Cortex A72 (R.Pi4)           | Linux | 74      | 99      | 124    | 44          | 72                |
@@ -870,6 +910,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 3644    | 14713   | 8977   | 12508       | 5533              |
 | i7-5775R                     | Linux | 4249    | 23898   | 11284  | 11382       | 5623              |
 | i7-8565U                     | Linux | 6083    | 21523   | 9845   | 10463       | 5765              |
+| i7-13700H                    | Linux | 4097    | 8865    | 5614   | 7055        | 3219              |
 | Xeon-6254                    | Linux | 3700    | 13923   | 9808   | 10619       |                   |
 | Cortex A53 (R.Pi3)           | Linux | 187283  | 378629  | 214372 | 311857      | 158939            |
 | Cortex A72 (R.Pi4)           | Linux | 34884   | 72824   | 49495  | 45175       | 29507             |
@@ -888,6 +929,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 1035    | 4181    | 2551   | 3554        | 1572              |
 | i7-5775R                     | Linux | 809     | 4551    | 2148   | 2167        | 1070              |
 | i7-8565U                     | Linux | 1202    | 4254    | 1946   | 2068        | 1139              |
+| i7-13700H                    | Linux | 1439    | 3114    | 1972   | 2478        | 1131              |
 | Xeon-6254                    | Linux | 540     | 2033    | 1432   | 1551        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2493    | 5040    | 2853   | 4151        | 2115              |
 | Cortex A72 (R.Pi4)           | Linux | 1945    | 4062    | 2760   | 2519        | 1645              |
@@ -908,6 +950,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 65      | 196     | 85     | 305         | 88                |
 | i7-5775R                     | Linux | 74      | 211     | 101    | 270         | 100               |
 | i7-8565U                     | Linux | 112     | 184     | 88     | 243         | 90                |
+| i7-13700H                    | Linux | 70      | 117     | 56     | 156         | 56                |
 | Xeon-6254                    | Linux | 58      | 176     | 83     | 272         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2888    | 4921    | 2277   | 6866        | 2285              |
 | Cortex A72 (R.Pi4)           | Linux | 484     | 733     | 399    | 1010        | 406               |
@@ -926,6 +969,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 18.7    | 55      | 24     | 86          | 25                |
 | i7-5775R                     | Linux | 14.2    | 40      | 19.3   | 51          | 19.1              |
 | i7-8565U                     | Linux | 22      | 36      | 17.5   | 48          | 17.9              |
+| i7-13700H                    | Linux | 24      | 41      | 19.8   | 54          | 19.8              |
 | Xeon-6254                    | Linux | 8.6     | 25      | 12.2   | 39          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 38      | 65      | 30     | 91          | 30                |
 | Cortex A72 (R.Pi4)           | Linux | 27      | 40      | 22     | 56          | 22                |
@@ -944,6 +988,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 55      | 74      | 105    | 40          | 62                |
 | i7-5775R                     | Linux | 56      | 112     | 111    | 42          | 56                |
 | i7-8565U                     | Linux | 54      | 116     | 111    | 42          | 63                |
+| i7-13700H                    | Linux | 58      | 75      | 99     | 45          | 57                |
 | Xeon-6254                    | Linux | 62      | 79      | 117    | 38          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 64      | 76      | 94     | 45          | 69                |
 | Cortex A72 (R.Pi4)           | Linux | 72      | 99      | 124    | 44          | 72                |
@@ -964,6 +1009,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 60      | 1.1     | 4.7    | 44          | 12.6              |
 | i7-5775R                     | Linux | 173     | 0.87    | 6.8    | 44          | 12.4              |
 | i7-8565U                     | Linux | 144     | 0.60    | 4.5    | 33          | 10.9              |
+| i7-13700H                    | Linux | 81      | 0.43    | 3.4    | 16.2        | 5.5               |
 | Xeon-6254                    | Linux | 1.4     | 0.69    | 3.3    | 39          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 1515    | 8.4     | 40     | 407         | 75                |
 | Cortex A72 (R.Pi4)           | Linux | 434     | 2.0     | 12.2   | 74          | 24                |
@@ -982,6 +1028,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 17.2    | 0.30    | 1.3    | 12.7        | 3.6               |
 | i7-5775R                     | Linux | 33      | 0.16    | 1.3    | 8.5         | 2.4               |
 | i7-8565U                     | Linux | 28      | 0.12    | 0.89   | 6.5         | 2.2               |
+| i7-13700H                    | Linux | 28      | 0.15    | 1.2    | 5.7         | 1.9               |
 | Xeon-6254                    | Linux | 0.20    | 0.10    | 0.48   | 5.8         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 20      | 0.11    | 0.54   | 5.4         | 1.0               |
 | Cortex A72 (R.Pi4)           | Linux | 24      | 0.11    | 0.68   | 4.1         | 1.3               |
@@ -1002,6 +1049,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 66      | 116     | 65     | 113         | 7.7               |
 | i7-5775R                     | Linux | 168     | 88      | 99     | 111         | 7.7               |
 | i7-8565U                     | Linux | 185     | 70      | 56     | 86          | 8.9               |
+| i7-13700H                    | Linux | 87      | 47      | 44     | 39          | 3.2               |
 | Xeon-6254                    | Linux | 4.5     | 75      | 44     | 106         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 1567    | 1824    | 622    | 1170        | 60                |
 | Cortex A72 (R.Pi4)           | Linux | 451     | 265     | 164    | 191         | 18.0              |
@@ -1020,6 +1068,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 19.0    | 32      | 18.5   | 32          | 2.2               |
 | i7-5775R                     | Linux | 32      | 16.8    | 18.9   | 21          | 1.5               |
 | i7-8565U                     | Linux | 36      | 14.0    | 11.2   | 17.0        | 1.8               |
+| i7-13700H                    | Linux | 30      | 16.6    | 15.6   | 13.9        | 1.1               |
 | Xeon-6254                    | Linux | 0.65    | 11.1    | 6.4    | 15.6        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 20      | 24      | 8.3    | 15.6        | 0.81              |
 | Cortex A72 (R.Pi4)           | Linux | 25      | 14.8    | 9.2    | 10.7        | 1.0               |
@@ -1042,6 +1091,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 1180    | 1679    | 1177   | 1723   | 4491        |             |
 | i7-5775R                     | Linux | 1244    | 2290    | 1227   | 1553   | 3692        |             |
 | i7-8565U                     | Linux | 667     | 1436    | 677    | 956    | 3587        |             |
+| i7-13700H                    | Linux | 429     | 932     | 447    | 782    | 2994        |             |
 | Xeon-6254                    | Linux | 678     | 1411    | 679    | 947    | 3474        |             |
 | Cortex A53 (R.Pi3)           | Linux | 21010   | 50739   | 56339  | 54874  | 37195       |             |
 | Cortex A72 (R.Pi4)           | Linux | 19761   | 10909   | 12656  | 12638  | 12095       |             |
@@ -1060,6 +1110,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 335     | 477     | 334    | 489    | 1276        |             |
 | i7-5775R                     | Linux | 237     | 436     | 233    | 295    | 703         |             |
 | i7-8565U                     | Linux | 131     | 283     | 133    | 189    | 709         |             |
+| i7-13700H                    | Linux | 150     | 327     | 157    | 275    | 1051        |             |
 | Xeon-6254                    | Linux | 99      | 206     | 99     | 138    | 507         |             |
 | Cortex A53 (R.Pi3)           | Linux | 279     | 675     | 749    | 730    | 495         |             |
 | Cortex A72 (R.Pi4)           | Linux | 1102    | 608     | 705    | 704    | 674         |             |
@@ -1080,6 +1131,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 168     | 915     | 168    | 226    | 4136        |             |
 | i7-5775R                     | Linux | 176     | 1512    | 174    | 234    | 3761        |             |
 | i7-8565U                     | Linux | 163     | 1190    | 161    | 209    | 3469        |             |
+| i7-13700H                    | Linux | 66      | 792     | 68     | 116    | 2541        |             |
 | Xeon-6254                    | Linux | 161     | 1019    | 161    | 279    | 3333        |             |
 | Cortex A53 (R.Pi3)           | Linux | 22138   | 45732   | 47236  | 47203  | 39899       |             |
 | Cortex A72 (R.Pi4)           | Linux | 14152   | 11032   | 11686  | 11682  | 12878       |             |
@@ -1098,6 +1150,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 47      | 260     | 47     | 64     | 1175        |             |
 | i7-5775R                     | Linux | 33      | 288     | 33     | 44     | 716         |             |
 | i7-8565U                     | Linux | 32      | 235     | 31     | 41     | 685         |             |
+| i7-13700H                    | Linux | 23      | 278     | 24     | 40     | 893         |             |
 | Xeon-6254                    | Linux | 23      | 148     | 23     | 40     | 486         |             |
 | Cortex A53 (R.Pi3)           | Linux | 294     | 608     | 628    | 628    | 531         |             |
 | Cortex A72 (R.Pi4)           | Linux | 789     | 615     | 651    | 651    | 718         |             |
@@ -1116,6 +1169,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 7.0     | 1.8     | 7.0    | 7.6    | 1.1         |             |
 | i7-5775R                     | Linux | 7.1     | 1.5     | 7.0    | 6.6    | 0.98        |             |
 | i7-8565U                     | Linux | 4.1     | 1.2     | 4.2    | 4.6    | 1.0         |             |
+| i7-13700H                    | Linux | 6.4     | 1.2     | 6.5    | 6.7    | 1.2         |             |
 | Xeon-6254                    | Linux | 4.2     | 1.4     | 4.2    | 3.4    | 1.0         |             |
 | Cortex A53 (R.Pi3)           | Linux | 0.95    | 1.1     | 1.2    | 1.2    | 0.93        |             |
 | Cortex A72 (R.Pi4)           | Linux | 1.4     | 0.99    | 1.1    | 1.1    | 0.94        |             |
@@ -1138,6 +1192,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 1643    | 2139    | 1646   | 2142   | 6009        |             |
 | i7-5775R                     | Linux | 1742    | 2676    | 1719   | 2081   | 5112        |             |
 | i7-8565U                     | Linux | 979     | 1737    | 927    | 1199   | 4814        |             |
+| i7-13700H                    | Linux | 583     | 1089    | 613    | 981    | 4011        |             |
 | Xeon-6254                    | Linux | 935     | 1661    | 934    | 1204   | 4604        |             |
 | Cortex A53 (R.Pi3)           | Linux | 27673   | 65286   | 72289  | 70831  | 47898       |             |
 | Cortex A72 (R.Pi4)           | Linux | 27705   | 13703   | 16892  | 16825  | 15757       |             |
@@ -1156,6 +1211,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 466     | 608     | 467    | 608    | 1707        |             |
 | i7-5775R                     | Linux | 331     | 509     | 327    | 396    | 973         |             |
 | i7-8565U                     | Linux | 193     | 343     | 183    | 237    | 951         |             |
+| i7-13700H                    | Linux | 205     | 382     | 215    | 344    | 1409        |             |
 | Xeon-6254                    | Linux | 136     | 242     | 136    | 175    | 672         |             |
 | Cortex A53 (R.Pi3)           | Linux | 368     | 869     | 962    | 942    | 637         |             |
 | Cortex A72 (R.Pi4)           | Linux | 1545    | 764     | 942    | 938    | 878         |             |
@@ -1176,6 +1232,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 234     | 1186    | 234    | 315    | 5730        |             |
 | i7-5775R                     | Linux | 246     | 1668    | 245    | 328    | 4982        |             |
 | i7-8565U                     | Linux | 230     | 1342    | 224    | 269    | 4746        |             |
+| i7-13700H                    | Linux | 96      | 938     | 121    | 154    | 2859        |             |
 | Xeon-6254                    | Linux | 225     | 1159    | 226    | 353    | 4431        |             |
 | Cortex A53 (R.Pi3)           | Linux | 28485   | 58836   | 63194  | 63130  | 51241       |             |
 | Cortex A72 (R.Pi4)           | Linux | 19975   | 13948   | 15877  | 15883  | 16647       |             |
@@ -1194,6 +1251,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 66      | 337     | 66     | 89     | 1628        |             |
 | i7-5775R                     | Linux | 46      | 317     | 46     | 62     | 948         |             |
 | i7-8565U                     | Linux | 45      | 265     | 44     | 53     | 938         |             |
+| i7-13700H                    | Linux | 33      | 329     | 42     | 54     | 1004        |             |
 | Xeon-6254                    | Linux | 32      | 169     | 33     | 51     | 647         |             |
 | Cortex A53 (R.Pi3)           | Linux | 379     | 783     | 841    | 840    | 682         |             |
 | Cortex A72 (R.Pi4)           | Linux | 1114    | 778     | 885    | 885    | 928         |             |
@@ -1212,6 +1270,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 7.0     | 1.8     | 7.0    | 6.8    | 1.0         |             |
 | i7-5775R                     | Linux | 7.1     | 1.6     | 7.0    | 6.3    | 1.0         |             |
 | i7-8565U                     | Linux | 4.2     | 1.3     | 4.1    | 4.5    | 1.0         |             |
+| i7-13700H                    | Linux | 6.0     | 1.2     | 5.0    | 6.3    | 1.4         |             |
 | Xeon-6254                    | Linux | 4.2     | 1.4     | 4.1    | 3.4    | 1.0         |             |
 | Cortex A53 (R.Pi3)           | Linux | 0.97    | 1.1     | 1.1    | 1.1    | 0.93        |             |
 | Cortex A72 (R.Pi4)           | Linux | 1.4     | 0.98    | 1.1    | 1.1    | 0.95        |             |
@@ -1234,6 +1293,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 0.32  | 4.1      | 0.97     | 2.8      | 4.0    | 0.030  | 255     | 1626   |
 | i7-5775R                     | Linux | 0.28  | 4.2      | 1.0      | 3.0      | 3.9    | 0.036  | 253     | 3424   |
 | i7-8565U                     | Linux | 0.26  | 3.8      | 1.5      | 2.7      | 3.6    | 0.031  | 259     | 2664   |
+| i7-13700H                    | Linux | 0.14  | 1.7      | 0.93     | 1.5      | 1.7    | 0.019  | 147     | 1581   |
 | Xeon-6254                    | Linux | 0.26  | 4.0      | 0.92     | 2.5      | 3.7    | 0.029  | 238     | 1616   |
 | Cortex A53 (R.Pi3)           | Linux | 3.5   | 130      | 35       | 87       | 123    | 0.43   | 3180    | 160771 |
 | Cortex A72 (R.Pi4)           | Linux | 0.84  | 16.3     | 8.1      | 14.6     | 15.0   | 0.10   | 679     | 15433  |
@@ -1252,6 +1312,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 0.091 | 1.2      | 0.27     | 0.81     | 1.1    | 0.009  | 72      | 462    |
 | i7-5775R                     | Linux | 0.054 | 0.79     | 0.20     | 0.57     | 0.74   | 0.007  | 48      | 652    |
 | i7-8565U                     | Linux | 0.051 | 0.76     | 0.29     | 0.54     | 0.71   | 0.006  | 51      | 526    |
+| i7-13700H                    | Linux | 0.049 | 0.61     | 0.33     | 0.54     | 0.61   | 0.007  | 51      | 555    |
 | Xeon-6254                    | Linux | 0.038 | 0.58     | 0.13     | 0.36     | 0.54   | 0.004  | 34      | 236    |
 | Cortex A53 (R.Pi3)           | Linux | 0.046 | 1.7      | 0.48     | 1.2      | 1.6    | 0.006  | 42      | 2140   |
 | Cortex A72 (R.Pi4)           | Linux | 0.047 | 0.91     | 0.45     | 0.82     | 0.84   | 0.006  | 37      | 860    |
@@ -1272,6 +1333,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 21       | 14.3     | 12.7     | 53       | 71       |
 | i7-5775R                     | Linux | 22       | 14.9     | 13.3     | 57       | 72       |
 | i7-8565U                     | Linux | 28       | 22       | 19.5     | 49       | 62       |
+| i7-13700H                    | Linux | 16.7     | 13.4     | 10.9     | 28       | 29       |
 | Xeon-6254                    | Linux | 20       | 14.2     | 12.5     | 46       | 64       |
 | Cortex A53 (R.Pi3)           | Linux | 857      | 708      | 636      | 1523     | 2117     |
 | Cortex A72 (R.Pi4)           | Linux | 152      | 128      | 104      | 246      | 261      |
@@ -1290,6 +1352,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 6.2      | 4.1      | 3.6      | 15.2     | 20       |
 | i7-5775R                     | Linux | 4.3      | 2.8      | 2.5      | 11.0     | 13.7     |
 | i7-8565U                     | Linux | 5.7      | 4.4      | 3.9      | 9.9      | 12.3     |
+| i7-13700H                    | Linux | 5.9      | 4.7      | 3.8      | 10.1     | 10.4     |
 | Xeon-6254                    | Linux | 3.0      | 2.1      | 1.8      | 6.7      | 9.5      |
 | Cortex A53 (R.Pi3)           | Linux | 11.4     | 9.4      | 8.5      | 20       | 28       |
 | Cortex A72 (R.Pi4)           | Linux | 8.5      | 7.2      | 5.8      | 13.7     | 14.6     |
@@ -1310,6 +1373,7 @@ Execution time in microseconds (the lower, the better):
 | i7-5775R                     | macOS | 1652     | 1640     | 1660     | 6630     | 9672     |
 | i7-5775R                     | Linux | 1851     | 1705     | 1832     | 7138     | 9391     |
 | i7-8565U                     | Linux | 2610     | 2684     | 2388     | 6300     | 8666     |
+| i7-13700H                    | Linux | 1593     | 1582     | 1417     | 3893     | 4069     |
 | Xeon-6254                    | Linux | 1595     | 1597     | 1639     | 5935     | 9039     |
 | Cortex A53 (R.Pi3)           | Linux | 84912    | 84760    | 78166    | 196706   | 295110   |
 | Cortex A72 (R.Pi4)           | Linux | 15397    | 15371    | 13614    | 32410    | 36296    |
@@ -1328,6 +1392,7 @@ Relative performance score (the lower, the better):
 | i7-5775R                     | macOS | 469      | 466      | 471      | 1884     | 2748     |
 | i7-5775R                     | Linux | 352      | 324      | 348      | 1359     | 1788     |
 | i7-8565U                     | Linux | 516      | 530      | 472      | 1245     | 1713     |
+| i7-13700H                    | Linux | 559      | 556      | 498      | 1367     | 1429     |
 | Xeon-6254                    | Linux | 233      | 233      | 239      | 866      | 1320     |
 | Cortex A53 (R.Pi3)           | Linux | 1130     | 1128     | 1040     | 2618     | 3928     |
 | Cortex A72 (R.Pi4)           | Linux | 858      | 857      | 759      | 1807     | 2024     |
