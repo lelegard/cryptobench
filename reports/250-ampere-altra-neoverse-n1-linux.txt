@@ -2,6 +2,7 @@ system: arch: arm64
 system: cpu: unknown
 system: cpu-index: Ampere Altra (Neoverse N1)
 system: machine: Ampere Mt.Jade Server
+system: frequency: 3.00
 system: os: Linux
 system: distro: Ubuntu 22.04.2 LTS
 system: kernel: 5.15.0-60-generic #66-Ubuntu SMP Fri Jan 20 14:34:57 UTC 2023 aarch64

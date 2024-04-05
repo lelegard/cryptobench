@@ -2,6 +2,7 @@ system: arch: arm64
 system: cpu: unknown
 system: cpu-index: Apple M1
 system: machine: Apple MacBook M1
+system: frequency: 3.20
 system: os: Linux
 system: distro: Ubuntu 23.04
 system: kernel: 6.2.0-31-generic #31-Ubuntu SMP PREEMPT_DYNAMIC Mon Aug 14 18:19:29 UTC 2023 aarch64

@@ -2,6 +2,7 @@ system: arch: x86_64
 system: cpu: 13th Gen Intel(R) Core(TM) i7-13700H  186
 system: cpu-index: i7-13700H
 system: machine: Lenovo ThinkBook 16 G6 IRL
+system: frequency: 
 system: os: Linux
 system: distro: Ubuntu 23.10
 system: kernel: 6.5.0-15-generic #15-Ubuntu SMP PREEMPT_DYNAMIC Tue Jan  9 17:03:36 UTC 2024 x86_64

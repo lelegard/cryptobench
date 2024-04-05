@@ -2,6 +2,7 @@ system: arch: riscv64
 system: cpu: 64-bit RISC-V (Qemu on Intel i7-8565U)
 system: cpu-index: RISC-V (Qemu on i7-8565U)
 system: machine: Qemu on Asus Notebook P5440F
+system: frequency: 
 system: os: Linux
 system: distro: Ubuntu 23.10
 system: kernel: 6.5.0-14-generic #14.1-Ubuntu SMP Fri Nov 24 06:09:26 UTC 2023 riscv64

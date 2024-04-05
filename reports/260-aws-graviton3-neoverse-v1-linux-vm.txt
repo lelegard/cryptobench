@@ -2,6 +2,7 @@ system: arch: arm64
 system: cpu: unknown
 system: cpu-index: AWS Graviton 3 (Neoverse V1)
 system: machine: AWS EC2 instance c7g.xlarge
+system: frequency: 2.60
 system: os: Linux
 system: distro: Ubuntu 22.04.3 LTS
 system: kernel: 6.2.0-1010-aws #10~22.04.1-Ubuntu SMP Wed Aug 16 20:03:46 UTC 2023 aarch64

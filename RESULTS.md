@@ -97,6 +97,10 @@ as used in asymmetric cryptography.
 
 In the result tables, Intel/AMD processors come first, them Arm processors.
 
+For systems with known CPU core frequencies, the "execution time" ratio is presented.
+This is a performance ratio, compared to a reference system, with respect to their frequencies.
+
+Reference system: AWS Graviton 3 (Neoverse V1)
 
 ## Reference test
 
@@ -124,6 +128,17 @@ Execution time in microseconds (the lower, the better):
 | RISC-V (Qemu on Apple M1)    | Linux | 19068          |
 | RISC-V (Qemu on i7-8565U)    | Linux | 31487          |
 | s390x (Qemu on i7-8565U)     | Linux | 42621          |
+
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | Reference test |
+| ---------------------------- | ----- | :------------: |
+| Cortex A72 (R.Pi4)           | Linux | 3.1            |
+| Apple M1                     | macOS | 0.28           |
+| Apple M1                     | Linux | 0.51           |
+| Ampere Altra (Neoverse N1)   | Linux | 1.1            |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0            |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.65           |
 
 ## RSA-2048
 
@@ -169,6 +184,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on i7-8565U)    | Linux | 15.0    | 30      | 7.5    | 20          | 9.1               |
 | s390x (Qemu on i7-8565U)     | Linux | 20      | 0.000   | 22     | 56          | 0.000             |
 
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 8.3     | 4.8     | 6.4    | 5.7         | 6.1               |
+| Apple M1                     | macOS | 0.46    | 0.45    | 0.46   | 0.57        | 0.53              |
+| Apple M1                     | Linux | 0.50    | 0.51    | 0.56   | 0.59        | 0.61              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.6     | 1.6     | 2.2    | 1.8         | 2.1               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.58    | 0.48    | 0.56   | 0.53        |                   |
+
 ### RSA-2048 decryption
 
 Execution time in microseconds (the lower, the better):
@@ -210,6 +236,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on Apple M1)    | Linux | 593     | 1750    | 570    | 564         | 297               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 556     | 1488    | 539    | 512         | 298               |
 | s390x (Qemu on i7-8565U)     | Linux | 489     | 927     | 1458   | 1694        | 537               |
+
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 7.5     | 9.3     | 5.7    | 5.4         | 6.6               |
+| Apple M1                     | macOS | 0.46    | 0.45    | 0.50   | 0.56        | 0.51              |
+| Apple M1                     | Linux | 0.51    | 1.2     | 0.60   | 0.59        | 0.63              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.6     | 1.5     | 1.9    | 1.8         | 2.3               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 1.3     | 0.52    | 0.55   | 0.52        |                   |
 
 ### RSA-2048 decryption/encryption ratio
 
@@ -273,6 +310,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on i7-8565U)    | Linux | 19.4    | 31      | 7.4    | 24          | 9.6               |
 | s390x (Qemu on i7-8565U)     | Linux | 24      | 25      | 19.8   | 62          | 0.000             |
 
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 8.2     | 4.8     | 6.4    | 5.7         | 6.1               |
+| Apple M1                     | macOS | 0.45    | 0.45    | 0.46   | 0.57        | 0.53              |
+| Apple M1                     | Linux | 0.50    | 0.51    | 0.55   | 0.57        | 0.60              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.5     | 1.6     | 2.2    | 1.8         | 2.1               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.58    | 0.48    | 0.56   | 0.53        |                   |
+
 ### RSA-2048 decryption with rekeying
 
 Execution time in microseconds (the lower, the better):
@@ -314,6 +362,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on Apple M1)    | Linux | 598     | 1748    | 570    | 564         | 297               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 558     | 1481    | 537    | 772         | 305               |
 | s390x (Qemu on i7-8565U)     | Linux | 527     | 1027    | 1253   | 1580        | 452               |
+
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 7.5     | 9.3     | 5.7    | 5.4         | 6.6               |
+| Apple M1                     | macOS | 0.46    | 0.46    | 0.50   | 0.56        | 0.51              |
+| Apple M1                     | Linux | 0.50    | 1.2     | 0.61   | 0.60        | 0.62              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.6     | 1.5     | 1.9    | 1.8         | 2.3               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 1.3     | 0.52    | 0.55   | 0.53        |                   |
 
 ### RSA-2048 decryption/encryption ratio, with rekeying
 
@@ -377,6 +436,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on i7-8565U)    | Linux | 592     | 1494    | 534    | 768         | 309               |
 | s390x (Qemu on i7-8565U)     | Linux | 506     | 1077    | 1536   | 1479        | 463               |
 
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 7.5     | 9.3     | 5.7    | 5.5         | 6.6               |
+| Apple M1                     | macOS | 0.46    | 0.46    | 0.50   | 0.56        | 0.51              |
+| Apple M1                     | Linux | 0.50    | 1.2     | 0.60   | 0.58        | 0.62              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.6     | 1.5     | 1.9    | 1.8         | 2.3               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.60    | 0.51    | 0.55   | 0.53        |                   |
+
 ### RSA-2048 verification
 
 Execution time in microseconds (the lower, the better):
@@ -418,6 +488,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on Apple M1)    | Linux | 14.8    | 35      | 8.2    | 20          | 8.6               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 13.8    | 30      | 8.2    | 29          | 8.7               |
 | s390x (Qemu on i7-8565U)     | Linux | 13.1    | 21      | 23     | 58          | 15.2              |
+
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 8.1     | 4.8     | 6.3    | 5.8         | 6.2               |
+| Apple M1                     | macOS | 0.46    | 0.45    | 0.48   | 0.56        | 0.51              |
+| Apple M1                     | Linux | 0.49    | 0.50    | 0.52   | 0.57        | 0.58              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.7     | 1.6     | 2.2    | 1.8         | 2.1               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.59    | 0.49    | 0.54   | 0.53        |                   |
 
 ### RSA-2048 signature/verification ratio
 
@@ -481,6 +562,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on i7-8565U)    | Linux | 566     | 1488    | 544    | 798         | 302               |
 | s390x (Qemu on i7-8565U)     | Linux | 547     | 871     | 1350   | 1404        | 478               |
 
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 7.5     | 9.3     | 5.7    | 5.5         | 6.6               |
+| Apple M1                     | macOS | 0.46    | 0.46    | 0.50   | 0.56        | 0.51              |
+| Apple M1                     | Linux | 0.50    | 1.2     | 0.61   | 0.60        | 0.63              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.6     | 1.5     | 1.9    | 1.8         | 2.3               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.60    | 0.52    | 0.56   | 0.53        |                   |
+
 ### RSA-2048 verification with rekeying
 
 Execution time in microseconds (the lower, the better):
@@ -522,6 +614,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on Apple M1)    | Linux | 18.4    | 35      | 8.2    | 20          | 8.6               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 18.8    | 30      | 8.1    | 30          | 8.7               |
 | s390x (Qemu on i7-8565U)     | Linux | 16.7    | 17.6    | 28     | 53          | 15.7              |
+
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 7.9     | 4.8     | 6.3    | 5.8         | 6.2               |
+| Apple M1                     | macOS | 0.45    | 0.45    | 0.48   | 0.56        | 0.51              |
+| Apple M1                     | Linux | 0.49    | 0.50    | 0.52   | 0.57        | 0.58              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.5     | 1.6     | 2.2    | 1.8         | 2.1               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.60    | 0.48    | 0.53   | 0.53        |                   |
 
 ### RSA-2048 signature/verification ratio, with rekeying
 
@@ -585,6 +688,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on i7-8565U)    | Linux | 88      | 0.52    | 2.1    | 4.7         | 1.0               |
 | s390x (Qemu on i7-8565U)     | Linux | 75      | 0.000   | 0.000  | 3.3         | 0.000             |
 
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 1.7     | 4.3     | 5.5    | 4.4         | 4.1               |
+| Apple M1                     | macOS | 0.062   | 0.58    | 0.60   | 0.81        | 1.0               |
+| Apple M1                     | Linux | 0.17    | 0.71    | 0.60   | 0.91        | 1.2               |
+| Ampere Altra (Neoverse N1)   | Linux | 0.90    | 0.99    | 1.0    | 1.1         | 1.1               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.19    | 0.44    | 0.52   | 0.53        |                   |
+
 ### RSA-2048 parse private key
 
 Execution time in microseconds (the lower, the better):
@@ -626,6 +740,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on Apple M1)    | Linux | 108     | 22      | 16.1   | 9.0         | 1.4               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 90      | 20      | 17.5   | 13.3        | 1.2               |
 | s390x (Qemu on i7-8565U)     | Linux | 74      | 21      | 33     | 7.9         | 0.000             |
+
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 1.7     | 5.7     | 5.4    | 4.7         | 4.8               |
+| Apple M1                     | macOS | 0.067   | 0.74    | 0.62   | 0.59        | 0.61              |
+| Apple M1                     | Linux | 0.18    | 0.69    | 0.71   | 0.67        | 0.72              |
+| Ampere Altra (Neoverse N1)   | Linux | 0.91    | 1.3     | 1.2    | 1.1         | 1.1               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.19    | 0.57    | 0.60   | 0.52        |                   |
 
 ## RSA-4096
 
@@ -671,6 +796,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on i7-8565U)    | Linux | 41      | 107     | 24     | 110         | 27                |
 | s390x (Qemu on i7-8565U)     | Linux | 33      | 113     | 83     | 175         | 52                |
 
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 7.3     | 4.8     | 6.0    | 6.2         | 5.9               |
+| Apple M1                     | macOS | 0.46    | 0.46    | 0.52   | 0.61        | 0.56              |
+| Apple M1                     | Linux | 0.50    | 0.52    | 0.68   | 0.57        | 0.64              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.3     | 1.7     | 2.0    | 2.1         | 1.9               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.59    | 0.49    | 0.55   | 0.53        |                   |
+
 ### RSA-4096 decryption
 
 Execution time in microseconds (the lower, the better):
@@ -712,6 +848,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on Apple M1)    | Linux | 3203    | 10096   | 3104   | 2527        | 1751              |
 | RISC-V (Qemu on i7-8565U)    | Linux | 3053    | 8484    | 2616   | 4453        | 1707              |
 | s390x (Qemu on i7-8565U)     | Linux | 2272    | 6334    | 8102   | 8663        | 3347              |
+
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 8.0     | 7.0     | 6.2    | 6.0         | 6.5               |
+| Apple M1                     | macOS | 0.45    | 0.47    | 0.43   | 0.54        | 0.46              |
+| Apple M1                     | Linux | 0.50    | 0.81    | 0.52   | 0.57        | 0.60              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.8     | 1.6     | 2.1    | 2.1         | 2.3               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.99    | 0.54    | 0.57   | 0.53        |                   |
 
 ### RSA-4096 decryption/encryption ratio
 
@@ -775,6 +922,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on i7-8565U)    | Linux | 45      | 106     | 24     | 156         | 27                |
 | s390x (Qemu on i7-8565U)     | Linux | 42      | 67      | 78     | 184         | 52                |
 
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 7.3     | 4.8     | 6.0    | 6.2         | 5.9               |
+| Apple M1                     | macOS | 0.45    | 0.46    | 0.52   | 0.61        | 0.56              |
+| Apple M1                     | Linux | 0.50    | 0.52    | 0.70   | 0.60        | 0.66              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.3     | 1.7     | 2.0    | 2.1         | 1.9               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.59    | 0.48    | 0.55   | 0.54        |                   |
+
 ### RSA-4096 decryption with rekeying
 
 Execution time in microseconds (the lower, the better):
@@ -816,6 +974,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on Apple M1)    | Linux | 3217    | 10111   | 3100   | 2526        | 1752              |
 | RISC-V (Qemu on i7-8565U)    | Linux | 2957    | 8546    | 2624   | 4362        | 1705              |
 | s390x (Qemu on i7-8565U)     | Linux | 2533    | 5658    | 8256   | 8137        | 3355              |
+
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 8.0     | 7.0     | 6.2    | 6.0         | 6.5               |
+| Apple M1                     | macOS | 0.45    | 0.47    | 0.43   | 0.54        | 0.46              |
+| Apple M1                     | Linux | 0.51    | 0.81    | 0.52   | 0.56        | 0.59              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.8     | 1.6     | 2.1    | 2.0         | 2.3               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.99    | 0.53    | 0.57   | 0.53        |                   |
 
 ### RSA-4096 decryption/encryption ratio, with rekeying
 
@@ -879,6 +1048,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on i7-8565U)    | Linux | 2985    | 8506    | 2621   | 3984        | 1695              |
 | s390x (Qemu on i7-8565U)     | Linux | 2682    | 6028    | 8327   | 8016        | 3373              |
 
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 8.0     | 7.0     | 6.2    | 6.0         | 6.5               |
+| Apple M1                     | macOS | 0.45    | 0.47    | 0.43   | 0.54        | 0.46              |
+| Apple M1                     | Linux | 0.51    | 0.82    | 0.53   | 0.58        | 0.58              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.8     | 1.6     | 2.1    | 2.1         | 2.3               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.60    | 0.53    | 0.57   | 0.53        |                   |
+
 ### RSA-4096 verification
 
 Execution time in microseconds (the lower, the better):
@@ -920,6 +1100,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on Apple M1)    | Linux | 42      | 126     | 26     | 55          | 27                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 39      | 106     | 26     | 90          | 27                |
 | s390x (Qemu on i7-8565U)     | Linux | 31      | 94      | 85     | 168         | 54                |
+
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 7.2     | 4.8     | 6.0    | 6.2         | 5.9               |
+| Apple M1                     | macOS | 0.46    | 0.46    | 0.54   | 0.61        | 0.56              |
+| Apple M1                     | Linux | 0.51    | 0.52    | 0.64   | 0.59        | 0.68              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.3     | 1.7     | 2.0    | 2.1         | 2.0               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.59    | 0.48    | 0.54   | 0.53        |                   |
 
 ### RSA-4096 signature/verification ratio
 
@@ -983,6 +1174,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on i7-8565U)    | Linux | 2984    | 8579    | 2610   | 3872        | 1680              |
 | s390x (Qemu on i7-8565U)     | Linux | 2434    | 9121    | 8489   | 8074        | 3525              |
 
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 8.0     | 7.0     | 6.2    | 6.0         | 6.5               |
+| Apple M1                     | macOS | 0.45    | 0.47    | 0.43   | 0.54        | 0.46              |
+| Apple M1                     | Linux | 0.51    | 0.83    | 0.52   | 0.56        | 0.57              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.8     | 1.6     | 2.1    | 2.1         | 2.3               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.60    | 0.53    | 0.57   | 0.53        |                   |
+
 ### RSA-4096 verification with rekeying
 
 Execution time in microseconds (the lower, the better):
@@ -1024,6 +1226,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on Apple M1)    | Linux | 46      | 126     | 26     | 55          | 27                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 45      | 107     | 26     | 89          | 27                |
 | s390x (Qemu on i7-8565U)     | Linux | 43      | 78      | 82     | 170         | 57                |
+
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 7.2     | 4.8     | 6.0    | 6.2         | 5.9               |
+| Apple M1                     | macOS | 0.45    | 0.46    | 0.54   | 0.61        | 0.56              |
+| Apple M1                     | Linux | 0.51    | 0.52    | 0.64   | 0.59        | 0.68              |
+| Ampere Altra (Neoverse N1)   | Linux | 2.3     | 1.7     | 2.0    | 2.1         | 2.0               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.60    | 0.48    | 0.54   | 0.53        |                   |
 
 ### RSA-4096 signature/verification ratio, with rekeying
 
@@ -1087,6 +1300,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on i7-8565U)    | Linux | 87      | 0.60    | 2.5    | 8.4         | 1.7               |
 | s390x (Qemu on i7-8565U)     | Linux | 112     | 0.000   | 0.000  | 8.0         | 0.000             |
 
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 1.7     | 4.4     | 5.7    | 4.5         | 4.0               |
+| Apple M1                     | macOS | 0.063   | 0.62    | 0.59   | 0.85        | 1.0               |
+| Apple M1                     | Linux | 0.18    | 0.74    | 0.66   | 0.85        | 1.2               |
+| Ampere Altra (Neoverse N1)   | Linux | 0.90    | 0.97    | 1.1    | 1.1         | 1.1               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.19    | 0.49    | 0.50   | 0.55        |                   |
+
 ### RSA-4096 parse private key
 
 Execution time in microseconds (the lower, the better):
@@ -1128,6 +1352,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on Apple M1)    | Linux | 107     | 58      | 22     | 20          | 1.7               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 90      | 60      | 24     | 19.3        | 1.6               |
 | s390x (Qemu on i7-8565U)     | Linux | 98      | 51      | 44     | 19.5        | 0.000             |
+
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Libtomcrypt | Libtomcrypt / GMP |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
+| Cortex A72 (R.Pi4)           | Linux | 1.7     | 5.4     | 5.8    | 4.7         | 4.9               |
+| Apple M1                     | macOS | 0.070   | 0.71    | 0.68   | 0.68        | 0.65              |
+| Apple M1                     | Linux | 0.19    | 0.81    | 0.72   | 0.60        | 0.72              |
+| Ampere Altra (Neoverse N1)   | Linux | 0.92    | 1.2     | 1.4    | 1.1         | 1.2               |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.19    | 0.58    | 0.59   | 0.53        |                   |
 
 ## AES-128-CBC
 
@@ -1173,6 +1408,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on i7-8565U)    | Linux | 956     | 1331    | 1229   | 1232   | 1818        |             |
 | s390x (Qemu on i7-8565U)     | Linux | 1189    | 1288    | 1428   | 1377   | 1140        |             |
 
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt | Arm64 accel |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :----: | :---------: | :---------: |
+| Cortex A72 (R.Pi4)           | Linux | 58      | 3.7     | 37     | 4.0    | 4.1         |             |
+| Apple M1                     | macOS | 1.1     | 0.22    | 5.4    | 0.58   | 0.65        | 0.93        |
+| Apple M1                     | Linux | 1.2     | 0.92    | 1.2    | 0.23   | 0.79        | 1.1         |
+| Ampere Altra (Neoverse N1)   | Linux | 0.75    | 0.94    | 0.75   | 0.94   | 0.96        | 0.74        |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0    | 1.0         | 1.0         |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.62    | 0.58    | 0.60   | 0.12   | 0.59        | 0.56        |
+
 ### AES-128-CBC decryption
 
 Execution time in microseconds (the lower, the better):
@@ -1214,6 +1460,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on Apple M1)    | Linux | 1000    | 1856    | 845    | 845    | 3025        |             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 942     | 1582    | 866    | 844    | 2444        |             |
 | s390x (Qemu on i7-8565U)     | Linux | 730     | 1292    | 932    | 927    | 2299        |             |
+
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt | Arm64 accel |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :----: | :---------: | :---------: |
+| Cortex A72 (R.Pi4)           | Linux | 177     | 4.0     | 135    | 4.2    | 4.3         |             |
+| Apple M1                     | macOS | 0.55    | 0.097   | 17.0   | 0.53   | 0.60        | 0.45        |
+| Apple M1                     | Linux | 0.69    | 0.95    | 0.64   | 0.031  | 0.68        | 0.60        |
+| Ampere Altra (Neoverse N1)   | Linux | 1.8     | 0.97    | 1.8    | 1.0    | 0.98        | 1.3         |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0    | 1.0         | 1.0         |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.62    | 0.57    | 0.60   | 0.021  | 0.58        | 0.47        |
 
 ### AES-128-CBC encryption/decryption ratio
 
@@ -1279,6 +1536,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on i7-8565U)    | Linux | 1203    | 1595    | 1517   | 1512   | 2095        |             |
 | s390x (Qemu on i7-8565U)     | Linux | 1517    | 1536    | 1671   | 1702   | 1458        |             |
 
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt | Arm64 accel |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :----: | :---------: | :---------: |
+| Cortex A72 (R.Pi4)           | Linux | 58      | 3.6     | 35     | 4.0    | 4.1         |             |
+| Apple M1                     | macOS | 1.1     | 0.21    | 5.1    | 0.57   | 0.65        | 0.96        |
+| Apple M1                     | Linux | 1.2     | 0.85    | 1.2    | 0.21   | 0.78        | 1.1         |
+| Ampere Altra (Neoverse N1)   | Linux | 0.76    | 0.93    | 0.75   | 0.94   | 0.95        | 0.76        |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0    | 1.0         | 1.0         |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.61    | 0.58    | 0.60   | 0.11   | 0.59        | 0.58        |
+
 ### AES-256-CBC decryption
 
 Execution time in microseconds (the lower, the better):
@@ -1320,6 +1588,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on Apple M1)    | Linux | 1268    | 2099    | 1144   | 1145   | 3738        |             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 1181    | 1825    | 1120   | 1103   | 3006        |             |
 | s390x (Qemu on i7-8565U)     | Linux | 997     | 1553    | 1207   | 1253   | 2619        |             |
+
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | OpenSSL | MbedTLS | GnuTLS | Nettle | Libtomcrypt | Arm64 accel |
+| ---------------------------- | ----- | :-----: | :-----: | :----: | :----: | :---------: | :---------: |
+| Cortex A72 (R.Pi4)           | Linux | 185     | 3.8     | 130    | 4.0    | 4.3         |             |
+| Apple M1                     | macOS | 0.75    | 0.086   | 17.0   | 0.56   | 0.62        | 0.44        |
+| Apple M1                     | Linux | 0.90    | 0.90    | 0.71   | 0.025  | 0.73        | 0.59        |
+| Ampere Altra (Neoverse N1)   | Linux | 1.8     | 0.95    | 1.5    | 0.96   | 0.96        | 1.3         |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0    | 1.0         | 1.0         |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.61    | 0.57    | 0.56   | 0.019  | 0.58        | 0.46        |
 
 ### AES-256-CBC encryption/decryption ratio
 
@@ -1385,6 +1664,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on i7-8565U)    | Linux | 0.11  | 1.7      | 0.82     | 2.3      | 1.4    | 0.025  | 81      | 1355   |
 | s390x (Qemu on i7-8565U)     | Linux | 0.000 | 0.000    | 0.000    | 0.000    | 0.000  | 0.000  | 69      | 1805   |
 
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | Add  | Multiply | Multiply<br/>(Montgomery) | Multiply<br/>(reciprocal) | Square | Divide<br/>(reciprocal) | Inverse | Square<br/>Root |
+| ---------------------------- | ----- | :--: | :------: | :------: | :------: | :----: | :----: | :-----: | :----: |
+| Cortex A72 (R.Pi4)           | Linux | 4.1  | 4.0      | 8.0      | 4.9      | 3.7    | 5.9    | 3.6     | 8.5    |
+| Apple M1                     | macOS | 0.60 | 0.66     | 0.49     | 0.61     | 0.67   | 0.000  | 0.68    | 0.89   |
+| Apple M1                     | Linux | 0.65 | 0.73     | 0.59     | 0.70     | 0.72   | 0.72   | 0.75    | 0.56   |
+| Ampere Altra (Neoverse N1)   | Linux | 1.1  | 1.2      | 2.9      | 1.5      | 1.1    | 1.2    | 0.96    | 3.0    |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0  | 1.0      | 1.0      | 1.0      | 1.0    | 1.0    | 1.0     | 1.0    |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.51 | 0.48     | 0.59     | 0.52     | 0.48   | 0.58   | 0.50    | 1.1    |
+
 ### 2048-bit modular arithmetic exponentiations on public (short) exponents
 
 Execution time in microseconds (the lower, the better):
@@ -1427,6 +1717,17 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on i7-8565U)    | Linux | 15.5     | 11.5     | 9.4      | 36       | 25       |
 | s390x (Qemu on i7-8565U)     | Linux | 0.000    | 8.2      | 0.000    | 17.9     | 15.7     |
 
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | Exponent | Exponent<br/>(Montgomery) | Exponent<br/>(Montgomery)<br/>(word) | Exponent<br/>(reciprocal) | Exponent<br/>(simple) |
+| ---------------------------- | ----- | :------: | :------: | :------: | :------: | :------: |
+| Cortex A72 (R.Pi4)           | Linux | 7.2      | 8.3      | 7.9      | 4.5      | 3.7      |
+| Apple M1                     | macOS | 0.51     | 0.46     | 0.47     | 0.63     | 0.67     |
+| Apple M1                     | Linux | 0.60     | 0.56     | 0.55     | 0.68     | 0.74     |
+| Ampere Altra (Neoverse N1)   | Linux | 2.5      | 3.0      | 2.8      | 1.4      | 1.1      |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0      | 1.0      | 1.0      | 1.0      | 1.0      |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.56     | 0.58     | 0.58     | 0.51     | 0.49     |
+
 ### 2048-bit modular arithmetic exponentiations on private (large) exponents
 
 Execution time in microseconds (the lower, the better):
@@ -1468,4 +1769,15 @@ Relative performance score (the lower, the better):
 | RISC-V (Qemu on Apple M1)    | Linux | 1449     | 1443     | 1284     | 4855     | 3563     |
 | RISC-V (Qemu on i7-8565U)    | Linux | 1355     | 1348     | 1218     | 4884     | 3474     |
 | s390x (Qemu on i7-8565U)     | Linux | 994      | 988      | 998      | 2382     | 2228     |
+
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
+
+| CPU                          | OS    | Exponent | Exponent<br/>(Montgomery) | Exponent<br/>(Montgomery)<br/>(word) | Exponent<br/>(reciprocal) | Exponent<br/>(simple) |
+| ---------------------------- | ----- | :------: | :------: | :------: | :------: | :------: |
+| Cortex A72 (R.Pi4)           | Linux | 8.5      | 8.5      | 8.1      | 4.5      | 3.7      |
+| Apple M1                     | macOS | 0.46     | 0.46     | 0.48     | 0.62     | 0.67     |
+| Apple M1                     | Linux | 0.54     | 0.54     | 0.57     | 0.69     | 0.75     |
+| Ampere Altra (Neoverse N1)   | Linux | 3.0      | 3.0      | 2.9      | 1.4      | 1.1      |
+| AWS Graviton 3 (Neoverse V1) | Linux | 1.0      | 1.0      | 1.0      | 1.0      | 1.0      |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.59     | 0.59     | 0.58     | 0.52     | 0.51     |
 

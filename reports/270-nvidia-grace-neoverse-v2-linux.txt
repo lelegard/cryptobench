@@ -2,6 +2,7 @@ system: arch: arm64
 system: cpu: unknown
 system: cpu-index: Nvidia Grace (Neoverse V2)
 system: machine: Supermicro ARS-221GL-NR
+system: frequency: 3.30
 system: os: Linux
 system: distro: Red Hat Enterprise Linux release 9.3 (Plow)
 system: kernel: 5.14.0-362.24.1.el9_3.aarch64 #1 SMP PREEMPT_DYNAMIC Thu Feb 15 10:36:28 EST 2024 aarch64

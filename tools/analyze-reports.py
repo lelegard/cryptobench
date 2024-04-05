@@ -5,7 +5,7 @@
 # Analyze report files and produce an analysis in markdown format.
 #----------------------------------------------------------------------------
 
-import os, sys, string
+import os, sys, string, pprint
 
 # Output header.
 out_header = """# Comparative benchmarks results
@@ -67,6 +67,12 @@ as used in asymmetric cryptography.
 In the result tables, Intel/AMD processors come first, them Arm processors.
 """
 
+out_refratio_intro = """
+For systems with known CPU core frequencies, the "execution time" ratio is presented.
+This is a performance ratio, compared to a reference system, with respect to their frequencies.
+
+Reference system: """
+
 # Reference test description.
 out_reference_test = """
 The "reference test" is a set of basic integer operations which are typically used in
@@ -82,6 +88,10 @@ Execution time in microseconds (the lower, the better):
 """
 out_score = """
 Relative performance score (the lower, the better):
+
+"""
+out_refratio = """
+Execution time ratio, compared to reference system, frequencies included (the lower, the better):
 
 """
 
@@ -239,13 +249,14 @@ class report_line:
 # Read a report file and return a structure as follow:
 # {
 #   'name': 'filename',
-#   'cpu': 'cpuname';
-#   'os': 'osname';
+#   'cpu': 'cpuname',
+#   'os': 'osname',
+#   'frequency': ghz,
 #   library: { algo: { oper: {'score': nn, 'utime': nn, 'ratio': nn}, ...}, ...}, ...
 # }
 
 def read_file(filename):
-    fd = {'name': filename, 'cpu':'', 'os':''}
+    fd = {'name': filename, 'cpu':'', 'os':'', 'frequency': 0.0}
     with open(filename, 'r') as input:
         for line in input:
             rep = report_line(line)
@@ -255,6 +266,8 @@ def read_file(filename):
                 fd['cpu'] = rep.system_value
             elif rep.system_item == 'os' and rep.system_value != '':
                 fd['os'] = rep.system_value
+            elif rep.system_item == 'frequency' and rep.system_value != '':
+                fd['frequency'] = float(rep.system_value)
             else:
                 if rep.ratio >= 0.0:
                     set_nested(fd, [rep.library, rep.algo, rep.oper, 'ratio'], rep.ratio)
@@ -263,6 +276,22 @@ def read_file(filename):
                 if rep.score >= 0.0:
                     set_nested(fd, [rep.library, rep.algo, rep.oper, 'score'], rep.score)
     return fd
+
+#----------------------------------------------------------------------------
+
+# Merge 'utime' fields from a reference file, computing 'refratio' fields.
+# The 'refratio' value is a ratio of utimes, frequency ratio included.
+
+def merge_reference(ref, ref_freq, data, data_freq):
+    if type(ref) is dict and type(data) is dict:
+        if 'utime' in ref and 'utime' in data:
+            if ref['utime'] == 0.0:
+                data['refratio'] = 0.0
+            else:
+                data['refratio'] = (data['utime'] * ref_freq) / (ref['utime'] * data_freq)
+        for key in data:
+            if key in ref:
+                merge_reference(ref[key], ref_freq, data[key], data_freq)
 
 #----------------------------------------------------------------------------
 
@@ -395,14 +424,33 @@ filedata = []
 for filename in sys.argv[1:]:
     filedata.append(read_file(filename))
 
+# Find a "reference" system. This is one with 'neoverse-v1' in file name and non-null frequency.
+refsystem = None
+for data in filedata:
+    if data['name'].find('neoverse-v1') >= 0 and data['frequency'] > 0.0:
+        refsystem = data
+        break
+
+# Compute the performance/frequency ratios for file with frequency information.
+if refsystem != None:
+    out_intro += out_refratio_intro + refsystem['cpu']
+    for data in filedata:
+        if data['frequency'] > 0.0:
+            merge_reference(refsystem, refsystem['frequency'], data, data['frequency'])
+
 # Build output body text and table of contents.
 # Start with the reference test.
 tab = table({'reference': 'Reference test'})
 tab.fill_data(filedata, ['reference'], ['reference'], ['reference'], ['utime'])
+tab_refratio = table({'reference': 'Reference test'})
+tab_refratio.fill_data(filedata, ['reference'], ['reference'], ['reference'], ['refratio'])
 add_section_header(2, 'Reference test')
 out_body += out_reference_test
 out_body += out_execution_time
 out_body += tab.to_markdown()
+if not tab_refratio.empty():
+    out_body += out_refratio
+    out_body += tab_refratio.to_markdown()
 
 # Then, all cryptographic algorithms.
 for algo in crypto_algo_names:
@@ -414,7 +462,9 @@ for algo in crypto_algo_names:
         tab_score.fill_data(filedata, lib_names, [algo], [oper], ['score'])
         tab_ratio = table(lib_names)
         tab_ratio.fill_data(filedata, lib_names, [algo], [oper], ['ratio'])
-        if not tab_utime.empty() or not tab_score.empty() or not tab_ratio.empty():
+        tab_refratio = table(lib_names)
+        tab_refratio.fill_data(filedata, lib_names, [algo], [oper], ['refratio'])
+        if not tab_utime.empty() or not tab_score.empty() or not tab_ratio.empty() or not tab_refratio.empty():
             add_section_header(3, crypto_algo_names[algo] + ' ' + crypto_oper_names[oper])
         if not tab_utime.empty():
             out_body += out_execution_time
@@ -425,6 +475,9 @@ for algo in crypto_algo_names:
         if not tab_ratio.empty():
             out_body += '\n'
             out_body += tab_ratio.to_markdown()
+        if not tab_refratio.empty():
+            out_body += out_refratio
+            out_body += tab_refratio.to_markdown()
 
 # Then, all math operations.
 for algo in math_algo_names:
@@ -434,7 +487,9 @@ for algo in math_algo_names:
         tab_utime.fill_data(filedata, ['math'], [algo], math_names[math_type], ['utime'])
         tab_score = table(math_names[math_type])
         tab_score.fill_data(filedata, ['math'], [algo], math_names[math_type], ['score'])
-        if not tab_utime.empty() or not tab_score.empty():
+        tab_refratio = table(math_names[math_type])
+        tab_refratio.fill_data(filedata, ['math'], [algo], math_names[math_type], ['refratio'])
+        if not tab_utime.empty() or not tab_score.empty() or not tab_refratio.empty():
             add_section_header(3, math_algo_names[algo] + ' ' + math_type)
         if not tab_utime.empty():
             out_body += out_execution_time
@@ -442,6 +497,9 @@ for algo in math_algo_names:
         if not tab_score.empty():
             out_body += out_score
             out_body += tab_score.to_markdown()
+        if not tab_refratio.empty():
+            out_body += out_refratio
+            out_body += tab_refratio.to_markdown()
 
 # Finally, output the markdown file.
 print(out_header)
