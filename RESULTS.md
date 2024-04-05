@@ -120,6 +120,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 5307           |
 | Ampere Altra (Neoverse N1)   | Linux | 10241          |
 | AWS Graviton 3 (Neoverse V1) | Linux | 8390           |
+| Nvidia Grace (Neoverse V2)   | Linux | 6894           |
 | RISC-V (Qemu on Apple M1)    | Linux | 19068          |
 | RISC-V (Qemu on i7-8565U)    | Linux | 31487          |
 | s390x (Qemu on i7-8565U)     | Linux | 42621          |
@@ -143,6 +144,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 16.7    | 38      | 20.0   | 54          | 24                |
 | Ampere Altra (Neoverse N1)   | Linux | 81      | 116     | 74     | 156         | 79                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 26      | 61      | 29     | 74          | 32                |
+| Nvidia Grace (Neoverse V2)   | Linux | 20.0    | 37      | 20     | 49          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 298     | 690     | 143    | 393         | 171               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 470     | 970     | 235    | 650         | 285               |
 | s390x (Qemu on i7-8565U)     | Linux | 870     | 0.000   | 942    | 2406        | 0.000             |
@@ -162,6 +164,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 3.1     | 7.3     | 3.8    | 10.2        | 4.6               |
 | Ampere Altra (Neoverse N1)   | Linux | 8.0     | 11.4    | 7.3    | 15.3        | 7.7               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 3.2     | 7.4     | 3.5    | 8.9         | 3.9               |
+| Nvidia Grace (Neoverse V2)   | Linux | 2.9     | 5.5     | 3.0    | 7.2         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 15.7    | 36      | 7.5    | 20          | 9.0               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 15.0    | 30      | 7.5    | 20          | 9.1               |
 | s390x (Qemu on i7-8565U)     | Linux | 20      | 0.000   | 22     | 56          | 0.000             |
@@ -183,6 +186,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 601     | 3781    | 1240   | 1481        | 733               |
 | Ampere Altra (Neoverse N1)   | Linux | 2857    | 4523    | 3617   | 4145        | 2569              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 965     | 2538    | 1675   | 2046        | 952               |
+| Nvidia Grace (Neoverse V2)   | Linux | 1548    | 1659    | 1172   | 1363        |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 11311   | 33374   | 10874  | 10760       | 5675              |
 | RISC-V (Qemu on i7-8565U)    | Linux | 17508   | 46882   | 16979  | 16146       | 9388              |
 | s390x (Qemu on i7-8565U)     | Linux | 20866   | 39536   | 62180  | 72203       | 22908             |
@@ -202,6 +206,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 113     | 712     | 233    | 279         | 138               |
 | Ampere Altra (Neoverse N1)   | Linux | 279     | 441     | 353    | 404         | 250               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 115     | 302     | 199    | 243         | 113               |
+| Nvidia Grace (Neoverse V2)   | Linux | 224     | 240     | 170    | 197         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 593     | 1750    | 570    | 564         | 297               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 556     | 1488    | 539    | 512         | 298               |
 | s390x (Qemu on i7-8565U)     | Linux | 489     | 927     | 1458   | 1694        | 537               |
@@ -221,6 +226,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 36      | 97      | 62     | 27          | 29                |
 | Ampere Altra (Neoverse N1)   | Linux | 35      | 38      | 48     | 26          | 32                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 35      | 40      | 57     | 27          | 29                |
+| Nvidia Grace (Neoverse V2)   | Linux | 77      | 43      | 57     | 27          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 37      | 48      | 75     | 27          | 33                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 37      | 48      | 72     | 24          | 32                |
 | s390x (Qemu on i7-8565U)     | Linux | 23      | 0.000   | 65     | 30          | 0.000             |
@@ -242,6 +248,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 18.4    | 38      | 19.8   | 52          | 24                |
 | Ampere Altra (Neoverse N1)   | Linux | 85      | 116     | 74     | 155         | 78                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 29      | 61      | 29     | 74          | 32                |
+| Nvidia Grace (Neoverse V2)   | Linux | 21      | 38      | 20     | 50          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 357     | 689     | 143    | 392         | 171               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 612     | 992     | 234    | 769         | 301               |
 | s390x (Qemu on i7-8565U)     | Linux | 1028    | 1090    | 844    | 2643        | 0.000             |
@@ -261,6 +268,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 3.5     | 7.3     | 3.7    | 9.9         | 4.6               |
 | Ampere Altra (Neoverse N1)   | Linux | 8.3     | 11.4    | 7.3    | 15.2        | 7.7               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 3.6     | 7.4     | 3.5    | 8.9         | 3.9               |
+| Nvidia Grace (Neoverse V2)   | Linux | 3.2     | 5.5     | 3.0    | 7.3         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 18.7    | 36      | 7.5    | 20          | 9.0               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 19.4    | 31      | 7.4    | 24          | 9.6               |
 | s390x (Qemu on i7-8565U)     | Linux | 24      | 25      | 19.8   | 62          | 0.000             |
@@ -282,6 +290,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 601     | 3741    | 1253   | 1500        | 729               |
 | Ampere Altra (Neoverse N1)   | Linux | 2862    | 4523    | 3617   | 4145        | 2555              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 968     | 2538    | 1674   | 2045        | 952               |
+| Nvidia Grace (Neoverse V2)   | Linux | 1551    | 1660    | 1172   | 1367        |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 11420   | 33344   | 10873  | 10763       | 5673              |
 | RISC-V (Qemu on i7-8565U)    | Linux | 17576   | 46636   | 16914  | 24326       | 9631              |
 | s390x (Qemu on i7-8565U)     | Linux | 22485   | 43794   | 53415  | 67351       | 19283             |
@@ -301,6 +310,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 113     | 704     | 236    | 282         | 137               |
 | Ampere Altra (Neoverse N1)   | Linux | 279     | 441     | 353    | 404         | 249               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 115     | 302     | 199    | 243         | 113               |
+| Nvidia Grace (Neoverse V2)   | Linux | 225     | 240     | 170    | 198         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 598     | 1748    | 570    | 564         | 297               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 558     | 1481    | 537    | 772         | 305               |
 | s390x (Qemu on i7-8565U)     | Linux | 527     | 1027    | 1253   | 1580        | 452               |
@@ -320,6 +330,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 32      | 97      | 63     | 28          | 30                |
 | Ampere Altra (Neoverse N1)   | Linux | 33      | 38      | 48     | 26          | 32                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 32      | 40      | 57     | 27          | 29                |
+| Nvidia Grace (Neoverse V2)   | Linux | 70      | 43      | 57     | 27          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 31      | 48      | 75     | 27          | 33                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 28      | 47      | 72     | 31          | 31                |
 | s390x (Qemu on i7-8565U)     | Linux | 21      | 40      | 63     | 25          | 0.000             |
@@ -341,6 +352,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 598     | 3761    | 1226   | 1465        | 723               |
 | Ampere Altra (Neoverse N1)   | Linux | 2856    | 4523    | 3615   | 4144        | 2568              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 964     | 2541    | 1674   | 2043        | 951               |
+| Nvidia Grace (Neoverse V2)   | Linux | 732     | 1659    | 1170   | 1362        |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 11331   | 33357   | 10883  | 10770       | 5667              |
 | RISC-V (Qemu on i7-8565U)    | Linux | 18653   | 47068   | 16817  | 24189       | 9752              |
 | s390x (Qemu on i7-8565U)     | Linux | 21569   | 45935   | 65504  | 63075       | 19758             |
@@ -360,6 +372,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 112     | 708     | 231    | 276         | 136               |
 | Ampere Altra (Neoverse N1)   | Linux | 278     | 441     | 353    | 404         | 250               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 114     | 302     | 199    | 243         | 113               |
+| Nvidia Grace (Neoverse V2)   | Linux | 106     | 240     | 169    | 197         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 594     | 1749    | 570    | 564         | 297               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 592     | 1494    | 534    | 768         | 309               |
 | s390x (Qemu on i7-8565U)     | Linux | 506     | 1077    | 1536   | 1479        | 463               |
@@ -381,6 +394,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 15.3    | 37      | 19.5   | 51          | 22                |
 | Ampere Altra (Neoverse N1)   | Linux | 79      | 115     | 75     | 155         | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 25      | 60      | 30     | 73          | 31                |
+| Nvidia Grace (Neoverse V2)   | Linux | 18.9    | 37      | 20     | 48          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 281     | 683     | 156    | 385         | 164               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 434     | 965     | 259    | 939         | 274               |
 | s390x (Qemu on i7-8565U)     | Linux | 559     | 898     | 997    | 2492        | 647               |
@@ -400,6 +414,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 2.9     | 7.0     | 3.7    | 9.7         | 4.2               |
 | Ampere Altra (Neoverse N1)   | Linux | 7.7     | 11.2    | 7.4    | 15.2        | 7.6               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 3.0     | 7.2     | 3.6    | 8.7         | 3.8               |
+| Nvidia Grace (Neoverse V2)   | Linux | 2.7     | 5.4     | 3.0    | 7.1         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 14.8    | 35      | 8.2    | 20          | 8.6               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 13.8    | 30      | 8.2    | 29          | 8.7               |
 | s390x (Qemu on i7-8565U)     | Linux | 13.1    | 21      | 23     | 58          | 15.2              |
@@ -419,6 +434,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 39      | 101     | 63     | 28          | 32                |
 | Ampere Altra (Neoverse N1)   | Linux | 36      | 39      | 47     | 26          | 32                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 38      | 41      | 55     | 27          | 30                |
+| Nvidia Grace (Neoverse V2)   | Linux | 38      | 44      | 56     | 27          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 40      | 48      | 69     | 27          | 34                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 42      | 48      | 64     | 25          | 35                |
 | s390x (Qemu on i7-8565U)     | Linux | 38      | 51      | 65     | 25          | 30                |
@@ -440,6 +456,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 599     | 3785    | 1253   | 1501        | 742               |
 | Ampere Altra (Neoverse N1)   | Linux | 2863    | 4523    | 3615   | 4145        | 2568              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 969     | 2541    | 1674   | 2043        | 951               |
+| Nvidia Grace (Neoverse V2)   | Linux | 736     | 1681    | 1180   | 1362        |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 11416   | 33356   | 10897  | 10767       | 5668              |
 | RISC-V (Qemu on i7-8565U)    | Linux | 17846   | 46877   | 17130  | 25144       | 9521              |
 | s390x (Qemu on i7-8565U)     | Linux | 23340   | 37137   | 57571  | 59882       | 20397             |
@@ -459,6 +476,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 112     | 713     | 236    | 282         | 139               |
 | Ampere Altra (Neoverse N1)   | Linux | 279     | 441     | 353    | 404         | 250               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 115     | 302     | 199    | 243         | 113               |
+| Nvidia Grace (Neoverse V2)   | Linux | 106     | 243     | 171    | 197         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 598     | 1749    | 571    | 564         | 297               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 566     | 1488    | 544    | 798         | 302               |
 | s390x (Qemu on i7-8565U)     | Linux | 547     | 871     | 1350   | 1404        | 478               |
@@ -480,6 +498,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 17.7    | 37      | 19.5   | 51          | 22                |
 | Ampere Altra (Neoverse N1)   | Linux | 83      | 115     | 75     | 154         | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 29      | 60      | 30     | 73          | 31                |
+| Nvidia Grace (Neoverse V2)   | Linux | 22      | 37      | 20     | 49          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 349     | 683     | 157    | 385         | 164               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 593     | 960     | 256    | 967         | 272               |
 | s390x (Qemu on i7-8565U)     | Linux | 711     | 751     | 1218   | 2278        | 668               |
@@ -499,6 +518,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 3.3     | 7.0     | 3.7    | 9.7         | 4.3               |
 | Ampere Altra (Neoverse N1)   | Linux | 8.2     | 11.2    | 7.4    | 15.1        | 7.6               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 3.5     | 7.2     | 3.6    | 8.7         | 3.8               |
+| Nvidia Grace (Neoverse V2)   | Linux | 3.3     | 5.4     | 3.0    | 7.1         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 18.4    | 35      | 8.2    | 20          | 8.6               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 18.8    | 30      | 8.1    | 30          | 8.7               |
 | s390x (Qemu on i7-8565U)     | Linux | 16.7    | 17.6    | 28     | 53          | 15.7              |
@@ -518,6 +538,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 33      | 101     | 64     | 29          | 32                |
 | Ampere Altra (Neoverse N1)   | Linux | 34      | 39      | 47     | 26          | 32                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 33      | 41      | 55     | 27          | 30                |
+| Nvidia Grace (Neoverse V2)   | Linux | 32      | 45      | 57     | 27          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 32      | 48      | 69     | 27          | 34                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 30      | 48      | 66     | 25          | 34                |
 | s390x (Qemu on i7-8565U)     | Linux | 32      | 49      | 47     | 26          | 30                |
@@ -539,6 +560,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 80      | 0.58    | 1.9    | 10.7        | 7.0               |
 | Ampere Altra (Neoverse N1)   | Linux | 393     | 0.76    | 3.2    | 12.0        | 5.9               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 378     | 0.66    | 2.6    | 9.6         | 4.8               |
+| Nvidia Grace (Neoverse V2)   | Linux | 89      | 0.37    | 1.7    | 6.4         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 2078    | 10.0    | 39     | 57          | 20                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 2787    | 16.5    | 66     | 149         | 31                |
 | s390x (Qemu on i7-8565U)     | Linux | 3222    | 0.000   | 0.000  | 140         | 0.000             |
@@ -558,6 +580,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 15.1    | 0.11    | 0.37   | 2.0         | 1.3               |
 | Ampere Altra (Neoverse N1)   | Linux | 38      | 0.075   | 0.31   | 1.2         | 0.58              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 45      | 0.079   | 0.31   | 1.1         | 0.57              |
+| Nvidia Grace (Neoverse V2)   | Linux | 12.9    | 0.054   | 0.25   | 0.93        |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 109     | 0.52    | 2.1    | 3.0         | 1.1               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 88      | 0.52    | 2.1    | 4.7         | 1.0               |
 | s390x (Qemu on i7-8565U)     | Linux | 75      | 0.000   | 0.000  | 3.3         | 0.000             |
@@ -579,6 +602,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 83      | 21      | 20     | 16.9        | 3.0               |
 | Ampere Altra (Neoverse N1)   | Linux | 400     | 35      | 32     | 26          | 4.5               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 383     | 24      | 23     | 20          | 3.4               |
+| Nvidia Grace (Neoverse V2)   | Linux | 90      | 18.0    | 17.9   | 13.6        |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 2061    | 421     | 307    | 170         | 26                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 2863    | 651     | 549    | 418         | 37                |
 | s390x (Qemu on i7-8565U)     | Linux | 3194    | 926     | 1417   | 336         | 0.000             |
@@ -598,6 +622,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 15.8    | 4.0     | 3.8    | 3.2         | 0.56              |
 | Ampere Altra (Neoverse N1)   | Linux | 39      | 3.5     | 3.1    | 2.6         | 0.44              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 45      | 3.0     | 2.8    | 2.4         | 0.40              |
+| Nvidia Grace (Neoverse V2)   | Linux | 13.1    | 2.6     | 2.6    | 2.0         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 108     | 22      | 16.1   | 9.0         | 1.4               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 90      | 20      | 17.5   | 13.3        | 1.2               |
 | s390x (Qemu on i7-8565U)     | Linux | 74      | 21      | 33     | 7.9         | 0.000             |
@@ -621,6 +646,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 58      | 143     | 79     | 167         | 79                |
 | Ampere Altra (Neoverse N1)   | Linux | 253     | 433     | 220    | 563         | 227               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 94      | 223     | 94     | 238         | 101               |
+| Nvidia Grace (Neoverse V2)   | Linux | 71      | 138     | 65     | 160         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 847     | 2445    | 481    | 1062        | 531               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 1304    | 3373    | 785    | 3477        | 863               |
 | s390x (Qemu on i7-8565U)     | Linux | 1425    | 4839    | 3546   | 7484        | 2226              |
@@ -640,6 +666,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 11.0    | 27      | 14.9   | 31          | 14.9              |
 | Ampere Altra (Neoverse N1)   | Linux | 24      | 42      | 21     | 55          | 22                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 11.3    | 26      | 11.3   | 28          | 12.1              |
+| Nvidia Grace (Neoverse V2)   | Linux | 10.4    | 20      | 9.5    | 23          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 44      | 128     | 25     | 55          | 27                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 41      | 107     | 24     | 110         | 27                |
 | s390x (Qemu on i7-8565U)     | Linux | 33      | 113     | 83     | 175         | 52                |
@@ -661,6 +688,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 3878    | 14981   | 7477   | 7644        | 4860              |
 | Ampere Altra (Neoverse N1)   | Linux | 20248   | 28560   | 28455  | 25751       | 17497             |
 | AWS Graviton 3 (Neoverse V1) | Linux | 6295    | 15070   | 11590  | 10845       | 6575              |
+| Nvidia Grace (Neoverse V2)   | Linux | 7935    | 10243   | 8444   | 7296        |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 61093   | 192521  | 59195  | 48199       | 33403             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 96142   | 267158  | 82392  | 140225      | 53760             |
 | s390x (Qemu on i7-8565U)     | Linux | 96877   | 269989  | 345333 | 369270      | 142696            |
@@ -680,6 +708,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 730     | 2822    | 1408   | 1440        | 915               |
 | Ampere Altra (Neoverse N1)   | Linux | 1977    | 2788    | 2778   | 2514        | 1708              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 750     | 1796    | 1381   | 1292        | 783               |
+| Nvidia Grace (Neoverse V2)   | Linux | 1150    | 1485    | 1224   | 1058        |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 3203    | 10096   | 3104   | 2527        | 1751              |
 | RISC-V (Qemu on i7-8565U)    | Linux | 3053    | 8484    | 2616   | 4453        | 1707              |
 | s390x (Qemu on i7-8565U)     | Linux | 2272    | 6334    | 8102   | 8663        | 3347              |
@@ -699,6 +728,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 66      | 104     | 94     | 45          | 61                |
 | Ampere Altra (Neoverse N1)   | Linux | 79      | 65      | 128    | 45          | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 66      | 67      | 122    | 45          | 64                |
+| Nvidia Grace (Neoverse V2)   | Linux | 111     | 73      | 128    | 45          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 72      | 78      | 122    | 45          | 62                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 73      | 79      | 104    | 40          | 62                |
 | s390x (Qemu on i7-8565U)     | Linux | 67      | 55      | 97     | 49          | 64                |
@@ -720,6 +750,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 60      | 143     | 81     | 174         | 82                |
 | Ampere Altra (Neoverse N1)   | Linux | 257     | 433     | 219    | 563         | 227               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 98      | 223     | 94     | 237         | 101               |
+| Nvidia Grace (Neoverse V2)   | Linux | 73      | 136     | 65     | 161         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 916     | 2424    | 481    | 1058        | 532               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 1418    | 3361    | 783    | 4922        | 858               |
 | s390x (Qemu on i7-8565U)     | Linux | 1792    | 2872    | 3365   | 7866        | 2225              |
@@ -739,6 +770,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 11.5    | 27      | 15.3   | 32          | 15.4              |
 | Ampere Altra (Neoverse N1)   | Linux | 25      | 42      | 21     | 55          | 22                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 11.7    | 26      | 11.3   | 28          | 12.1              |
+| Nvidia Grace (Neoverse V2)   | Linux | 10.6    | 19.9    | 9.5    | 23          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 48      | 127     | 25     | 55          | 27                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 45      | 106     | 24     | 156         | 27                |
 | s390x (Qemu on i7-8565U)     | Linux | 42      | 67      | 78     | 184         | 52                |
@@ -760,6 +792,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 3916    | 15090   | 7411   | 7499        | 4770              |
 | Ampere Altra (Neoverse N1)   | Linux | 20263   | 28559   | 28557  | 25629       | 17501             |
 | AWS Graviton 3 (Neoverse V1) | Linux | 6299    | 15072   | 11591  | 10844       | 6574              |
+| Nvidia Grace (Neoverse V2)   | Linux | 7925    | 10130   | 8412   | 7296        |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 61343   | 192813  | 59115  | 48175       | 33408             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 93131   | 269093  | 82632  | 137372      | 53696             |
 | s390x (Qemu on i7-8565U)     | Linux | 107973  | 241173  | 351911 | 346849      | 142998            |
@@ -779,6 +812,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 737     | 2843    | 1396   | 1412        | 898               |
 | Ampere Altra (Neoverse N1)   | Linux | 1978    | 2788    | 2788   | 2502        | 1708              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 750     | 1796    | 1381   | 1292        | 783               |
+| Nvidia Grace (Neoverse V2)   | Linux | 1149    | 1469    | 1220   | 1058        |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 3217    | 10111   | 3100   | 2526        | 1752              |
 | RISC-V (Qemu on i7-8565U)    | Linux | 2957    | 8546    | 2624   | 4362        | 1705              |
 | s390x (Qemu on i7-8565U)     | Linux | 2533    | 5658    | 8256   | 8137        | 3355              |
@@ -798,6 +832,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 64      | 105     | 91     | 42          | 58                |
 | Ampere Altra (Neoverse N1)   | Linux | 78      | 65      | 129    | 45          | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 64      | 67      | 122    | 45          | 64                |
+| Nvidia Grace (Neoverse V2)   | Linux | 108     | 73      | 127    | 45          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 66      | 79      | 122    | 45          | 62                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 65      | 80      | 105    | 27          | 62                |
 | s390x (Qemu on i7-8565U)     | Linux | 60      | 83      | 104    | 44          | 64                |
@@ -819,6 +854,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 3929    | 15137   | 7496   | 7722        | 4709              |
 | Ampere Altra (Neoverse N1)   | Linux | 20251   | 28563   | 28445  | 25749       | 17499             |
 | AWS Graviton 3 (Neoverse V1) | Linux | 6292    | 15072   | 11591  | 10853       | 6569              |
+| Nvidia Grace (Neoverse V2)   | Linux | 4770    | 10126   | 8406   | 7284        |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 61217   | 192723  | 59295  | 48211       | 33395             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 94018   | 267837  | 82538  | 125473      | 53400             |
 | s390x (Qemu on i7-8565U)     | Linux | 114340  | 256951  | 354929 | 341691      | 143775            |
@@ -838,6 +874,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 740     | 2851    | 1412   | 1454        | 887               |
 | Ampere Altra (Neoverse N1)   | Linux | 1977    | 2788    | 2777   | 2514        | 1708              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 749     | 1796    | 1381   | 1293        | 783               |
+| Nvidia Grace (Neoverse V2)   | Linux | 692     | 1468    | 1219   | 1056        |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 3210    | 10107   | 3109   | 2528        | 1751              |
 | RISC-V (Qemu on i7-8565U)    | Linux | 2985    | 8506    | 2621   | 3984        | 1695              |
 | s390x (Qemu on i7-8565U)     | Linux | 2682    | 6028    | 8327   | 8016        | 3373              |
@@ -859,6 +896,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 57      | 142     | 75     | 169         | 83                |
 | Ampere Altra (Neoverse N1)   | Linux | 250     | 431     | 222    | 561         | 225               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 92      | 221     | 96     | 234         | 99                |
+| Nvidia Grace (Neoverse V2)   | Linux | 68      | 135     | 66     | 158         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 819     | 2412    | 502    | 1049        | 519               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 1237    | 3368    | 823    | 2863        | 850               |
 | s390x (Qemu on i7-8565U)     | Linux | 1346    | 4026    | 3646   | 7198        | 2317              |
@@ -878,6 +916,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 10.9    | 26      | 14.3   | 31          | 15.7              |
 | Ampere Altra (Neoverse N1)   | Linux | 24      | 42      | 21     | 54          | 21                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 11.0    | 26      | 11.5   | 27          | 11.8              |
+| Nvidia Grace (Neoverse V2)   | Linux | 10.0    | 19.6    | 9.6    | 23          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 42      | 126     | 26     | 55          | 27                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 39      | 106     | 26     | 90          | 27                |
 | s390x (Qemu on i7-8565U)     | Linux | 31      | 94      | 85     | 168         | 54                |
@@ -897,6 +936,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 67      | 106     | 99     | 45          | 56                |
 | Ampere Altra (Neoverse N1)   | Linux | 80      | 66      | 127    | 45          | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 67      | 67      | 119    | 46          | 66                |
+| Nvidia Grace (Neoverse V2)   | Linux | 69      | 74      | 127    | 45          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 74      | 79      | 117    | 45          | 64                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 75      | 79      | 100    | 43          | 62                |
 | s390x (Qemu on i7-8565U)     | Linux | 84      | 63      | 97     | 47          | 62                |
@@ -918,6 +958,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 3943    | 15398   | 7429   | 7523        | 4620              |
 | Ampere Altra (Neoverse N1)   | Linux | 20254   | 28563   | 28549  | 25757       | 17499             |
 | AWS Graviton 3 (Neoverse V1) | Linux | 6297    | 15074   | 11591  | 10845       | 6573              |
+| Nvidia Grace (Neoverse V2)   | Linux | 4806    | 10127   | 8417   | 7288        |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 61290   | 192573  | 59315  | 48211       | 33538             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 93959   | 270152  | 82190  | 121945      | 52905             |
 | s390x (Qemu on i7-8565U)     | Linux | 103769  | 388794  | 361854 | 344166      | 150272            |
@@ -937,6 +978,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 743     | 2901    | 1399   | 1417        | 870               |
 | Ampere Altra (Neoverse N1)   | Linux | 1977    | 2788    | 2787   | 2514        | 1708              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 750     | 1796    | 1381   | 1292        | 783               |
+| Nvidia Grace (Neoverse V2)   | Linux | 697     | 1469    | 1220   | 1057        |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 3214    | 10099   | 3110   | 2528        | 1758              |
 | RISC-V (Qemu on i7-8565U)    | Linux | 2984    | 8579    | 2610   | 3872        | 1680              |
 | s390x (Qemu on i7-8565U)     | Linux | 2434    | 9121    | 8489   | 8074        | 3525              |
@@ -958,6 +1000,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 60      | 142     | 75     | 170         | 83                |
 | Ampere Altra (Neoverse N1)   | Linux | 255     | 431     | 222    | 561         | 225               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 96      | 221     | 96     | 235         | 99                |
+| Nvidia Grace (Neoverse V2)   | Linux | 73      | 135     | 66     | 158         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 893     | 2412    | 503    | 1050        | 521               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 1428    | 3371    | 836    | 2830        | 864               |
 | s390x (Qemu on i7-8565U)     | Linux | 1868    | 3329    | 3508   | 7246        | 2456              |
@@ -977,6 +1020,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 11.4    | 26      | 14.3   | 32          | 15.7              |
 | Ampere Altra (Neoverse N1)   | Linux | 24      | 42      | 21     | 54          | 21                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 11.5    | 26      | 11.5   | 28          | 11.8              |
+| Nvidia Grace (Neoverse V2)   | Linux | 10.7    | 19.6    | 9.6    | 22          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 46      | 126     | 26     | 55          | 27                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 45      | 107     | 26     | 89          | 27                |
 | s390x (Qemu on i7-8565U)     | Linux | 43      | 78      | 82     | 170         | 57                |
@@ -996,6 +1040,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 65      | 108     | 97     | 44          | 55                |
 | Ampere Altra (Neoverse N1)   | Linux | 79      | 66      | 128    | 45          | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 64      | 67      | 119    | 46          | 66                |
+| Nvidia Grace (Neoverse V2)   | Linux | 65      | 74      | 127    | 46          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 68      | 79      | 117    | 45          | 64                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 65      | 80      | 98     | 43          | 61                |
 | s390x (Qemu on i7-8565U)     | Linux | 55      | 116     | 103    | 47          | 61                |
@@ -1017,6 +1062,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 85      | 0.61    | 2.5    | 24          | 13.3              |
 | Ampere Altra (Neoverse N1)   | Linux | 395     | 0.75    | 3.8    | 30          | 10.8              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 379     | 0.67    | 3.1    | 24          | 8.7               |
+| Nvidia Grace (Neoverse V2)   | Linux | 89      | 0.42    | 2.0    | 16.7        |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 2006    | 12.0    | 44     | 126         | 32                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 2768    | 19.0    | 78     | 266         | 54                |
 | s390x (Qemu on i7-8565U)     | Linux | 4776    | 0.000   | 0.000  | 339         | 0.000             |
@@ -1036,6 +1082,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 16.1    | 0.11    | 0.47   | 4.7         | 2.5               |
 | Ampere Altra (Neoverse N1)   | Linux | 38      | 0.073   | 0.37   | 3.0         | 1.1               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 45      | 0.080   | 0.37   | 2.9         | 1.0               |
+| Nvidia Grace (Neoverse V2)   | Linux | 13.0    | 0.061   | 0.28   | 2.4         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 105     | 0.63    | 2.3    | 6.6         | 1.7               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 87      | 0.60    | 2.5    | 8.4         | 1.7               |
 | s390x (Qemu on i7-8565U)     | Linux | 112     | 0.000   | 0.000  | 8.0         | 0.000             |
@@ -1057,6 +1104,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 89      | 71      | 35     | 43          | 4.7               |
 | Ampere Altra (Neoverse N1)   | Linux | 406     | 100     | 67     | 75          | 7.2               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 384     | 71      | 40     | 59          | 5.3               |
+| Nvidia Grace (Neoverse V2)   | Linux | 91      | 53      | 30     | 40          |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 2055    | 1118    | 422    | 386         | 32                |
 | RISC-V (Qemu on i7-8565U)    | Linux | 2838    | 1917    | 772    | 606         | 50                |
 | s390x (Qemu on i7-8565U)     | Linux | 4178    | 2199    | 1896   | 833         | 0.000             |
@@ -1076,6 +1124,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 16.8    | 13.5    | 6.8    | 8.3         | 0.89              |
 | Ampere Altra (Neoverse N1)   | Linux | 39      | 9.8     | 6.6    | 7.4         | 0.70              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 45      | 8.5     | 4.9    | 7.1         | 0.64              |
+| Nvidia Grace (Neoverse V2)   | Linux | 13.3    | 7.7     | 4.4    | 5.8         |                   |
 | RISC-V (Qemu on Apple M1)    | Linux | 107     | 58      | 22     | 20          | 1.7               |
 | RISC-V (Qemu on i7-8565U)    | Linux | 90      | 60      | 24     | 19.3        | 1.6               |
 | s390x (Qemu on i7-8565U)     | Linux | 98      | 51      | 44     | 19.5        | 0.000             |
@@ -1099,6 +1148,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 723     | 4849    | 720    | 1317   | 4179        | 1126        |
 | Ampere Altra (Neoverse N1)   | Linux | 424     | 4648    | 423    | 4976   | 4738        | 730         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 488     | 4266    | 492    | 4605   | 4273        | 850         |
+| Nvidia Grace (Neoverse V2)   | Linux | 382     | 3131    | 374    | 728    | 3220        | 602         |
 | RISC-V (Qemu on Apple M1)    | Linux | 19301   | 28468   | 27597  | 27583  | 38513       |             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 30125   | 41928   | 38709  | 38793  | 57255       |             |
 | s390x (Qemu on i7-8565U)     | Linux | 50705   | 54921   | 60871  | 58705  | 48596       |             |
@@ -1118,6 +1168,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 136     | 913     | 135    | 248    | 787         | 212         |
 | Ampere Altra (Neoverse N1)   | Linux | 41      | 453     | 41     | 485    | 462         | 71          |
 | AWS Graviton 3 (Neoverse V1) | Linux | 58      | 508     | 58     | 548    | 509         | 101         |
+| Nvidia Grace (Neoverse V2)   | Linux | 55      | 454     | 54     | 105    | 467         | 87          |
 | RISC-V (Qemu on Apple M1)    | Linux | 1012    | 1493    | 1447   | 1446   | 2019        |             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 956     | 1331    | 1229   | 1232   | 1818        |             |
 | s390x (Qemu on i7-8565U)     | Linux | 1189    | 1288    | 1428   | 1377   | 1140        |             |
@@ -1139,6 +1190,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 97      | 4676    | 97     | 150    | 3643        | 190         |
 | Ampere Altra (Neoverse N1)   | Linux | 234     | 4495    | 259    | 4668   | 4900        | 390         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 114     | 4009    | 124    | 3993   | 4336        | 260         |
+| Nvidia Grace (Neoverse V2)   | Linux | 89      | 2917    | 95     | 105    | 3173        | 154         |
 | RISC-V (Qemu on Apple M1)    | Linux | 19085   | 35403   | 16119  | 16127  | 57693       |             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 29662   | 49837   | 27297  | 26578  | 76965       |             |
 | s390x (Qemu on i7-8565U)     | Linux | 31146   | 55083   | 39750  | 39514  | 98029       |             |
@@ -1158,6 +1210,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 18.3    | 881     | 18.4   | 28     | 686         | 35          |
 | Ampere Altra (Neoverse N1)   | Linux | 22      | 438     | 25     | 455    | 478         | 38          |
 | AWS Graviton 3 (Neoverse V1) | Linux | 13.7    | 477     | 14.9   | 475    | 516         | 31          |
+| Nvidia Grace (Neoverse V2)   | Linux | 13.0    | 423     | 13.9   | 15.3   | 460         | 22          |
 | RISC-V (Qemu on Apple M1)    | Linux | 1000    | 1856    | 845    | 845    | 3025        |             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 942     | 1582    | 866    | 844    | 2444        |             |
 | s390x (Qemu on i7-8565U)     | Linux | 730     | 1292    | 932    | 927    | 2299        |             |
@@ -1177,6 +1230,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 7.4     | 1.0     | 7.4    | 8.7    | 1.1         | 5.9         |
 | Ampere Altra (Neoverse N1)   | Linux | 1.8     | 1.0     | 1.6    | 1.1    | 0.97        | 1.9         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 4.2     | 1.1     | 3.9    | 1.2    | 0.99        | 3.3         |
+| Nvidia Grace (Neoverse V2)   | Linux | 4.3     | 1.1     | 3.9    | 6.9    | 1.0         | 3.9         |
 | RISC-V (Qemu on Apple M1)    | Linux | 1.0     | 0.80    | 1.7    | 1.7    | 0.67        |             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 1.0     | 0.84    | 1.4    | 1.5    | 0.74        |             |
 | s390x (Qemu on i7-8565U)     | Linux | 1.6     | 1.0     | 1.5    | 1.5    | 0.50        |             |
@@ -1200,6 +1254,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 1020    | 5845    | 1026   | 1613   | 5373        | 1470        |
 | Ampere Altra (Neoverse N1)   | Linux | 593     | 5957    | 592    | 6641   | 6144        | 949         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 679     | 5567    | 682    | 6147   | 5580        | 1081        |
+| Nvidia Grace (Neoverse V2)   | Linux | 523     | 4081    | 523    | 875    | 4200        | 790         |
 | RISC-V (Qemu on Apple M1)    | Linux | 24467   | 33076   | 33149  | 33143  | 43845       |             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 37893   | 50247   | 47783  | 47619  | 65983       |             |
 | s390x (Qemu on i7-8565U)     | Linux | 64662   | 65498   | 71239  | 72580  | 62154       |             |
@@ -1219,6 +1274,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 192     | 1101    | 193    | 303    | 1012        | 277         |
 | Ampere Altra (Neoverse N1)   | Linux | 57      | 581     | 57     | 648    | 599         | 92          |
 | AWS Graviton 3 (Neoverse V1) | Linux | 80      | 663     | 81     | 732    | 665         | 128         |
+| Nvidia Grace (Neoverse V2)   | Linux | 75      | 592     | 75     | 127    | 609         | 114         |
 | RISC-V (Qemu on Apple M1)    | Linux | 1283    | 1734    | 1738   | 1738   | 2299        |             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 1203    | 1595    | 1517   | 1512   | 2095        |             |
 | s390x (Qemu on i7-8565U)     | Linux | 1517    | 1536    | 1671   | 1702   | 1458        |             |
@@ -1240,6 +1296,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 171     | 5860    | 153    | 174    | 5035        | 252         |
 | Ampere Altra (Neoverse N1)   | Linux | 317     | 5786    | 307    | 6313   | 6220        | 537         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 155     | 5283    | 175    | 5683   | 5621        | 347         |
+| Nvidia Grace (Neoverse V2)   | Linux | 121     | 3850    | 123    | 133    | 4141        | 202         |
 | RISC-V (Qemu on Apple M1)    | Linux | 24193   | 40043   | 21814  | 21842  | 71284       |             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 37198   | 57469   | 35277  | 34749  | 94678       |             |
 | s390x (Qemu on i7-8565U)     | Linux | 42516   | 66216   | 51480  | 53434  | 111634      |             |
@@ -1259,6 +1316,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 32      | 1104    | 28     | 32     | 948         | 47          |
 | Ampere Altra (Neoverse N1)   | Linux | 31      | 565     | 30     | 616    | 607         | 52          |
 | AWS Graviton 3 (Neoverse V1) | Linux | 18.6    | 629     | 20     | 677    | 669         | 41          |
+| Nvidia Grace (Neoverse V2)   | Linux | 17.6    | 558     | 18.0   | 19.4   | 600         | 29          |
 | RISC-V (Qemu on Apple M1)    | Linux | 1268    | 2099    | 1144   | 1145   | 3738        |             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 1181    | 1825    | 1120   | 1103   | 3006        |             |
 | s390x (Qemu on i7-8565U)     | Linux | 997     | 1553    | 1207   | 1253   | 2619        |             |
@@ -1278,6 +1336,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 5.9     | 1.0     | 6.7    | 9.3    | 1.1         | 5.8         |
 | Ampere Altra (Neoverse N1)   | Linux | 1.9     | 1.0     | 1.9    | 1.1    | 0.99        | 1.8         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 4.4     | 1.1     | 3.9    | 1.1    | 0.99        | 3.1         |
+| Nvidia Grace (Neoverse V2)   | Linux | 4.3     | 1.1     | 4.2    | 6.5    | 1.0         | 3.9         |
 | RISC-V (Qemu on Apple M1)    | Linux | 1.0     | 0.83    | 1.5    | 1.5    | 0.62        |             |
 | RISC-V (Qemu on i7-8565U)    | Linux | 1.0     | 0.87    | 1.4    | 1.4    | 0.70        |             |
 | s390x (Qemu on i7-8565U)     | Linux | 1.5     | 0.99    | 1.4    | 1.4    | 0.56        |             |
@@ -1301,6 +1360,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 0.24  | 5.3      | 1.1      | 3.7      | 5.2    | 0.022  | 252     | 1793   |
 | Ampere Altra (Neoverse N1)   | Linux | 0.38  | 8.3      | 4.9      | 7.5      | 7.6    | 0.034  | 302     | 9234   |
 | AWS Graviton 3 (Neoverse V1) | Linux | 0.30  | 5.9      | 1.5      | 4.3      | 5.8    | 0.025  | 273     | 2624   |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.19  | 3.6      | 1.1      | 2.9      | 3.6    | 0.018  | 173     | 3714   |
 | RISC-V (Qemu on Apple M1)    | Linux | 2.2   | 33       | 16.0     | 43       | 28     | 0.62   | 1878    | 27965  |
 | RISC-V (Qemu on i7-8565U)    | Linux | 3.4   | 53       | 25       | 70       | 44     | 0.78   | 2557    | 42683  |
 | s390x (Qemu on i7-8565U)     | Linux | 0.000 | 0.000    | 0.000    | 0.000    | 0.000  | 0.000  | 2966    | 76952  |
@@ -1320,6 +1380,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 0.045 | 1.0      | 0.20     | 0.70     | 0.98   | 0.004  | 47      | 337    |
 | Ampere Altra (Neoverse N1)   | Linux | 0.037 | 0.81     | 0.48     | 0.73     | 0.74   | 0.003  | 29      | 901    |
 | AWS Graviton 3 (Neoverse V1) | Linux | 0.036 | 0.71     | 0.17     | 0.52     | 0.70   | 0.003  | 32      | 312    |
+| Nvidia Grace (Neoverse V2)   | Linux | 0.028 | 0.53     | 0.16     | 0.41     | 0.52   | 0.003  | 25      | 538    |
 | RISC-V (Qemu on Apple M1)    | Linux | 0.12  | 1.8      | 0.84     | 2.3      | 1.5    | 0.033  | 98      | 1466   |
 | RISC-V (Qemu on i7-8565U)    | Linux | 0.11  | 1.7      | 0.82     | 2.3      | 1.4    | 0.025  | 81      | 1355   |
 | s390x (Qemu on i7-8565U)     | Linux | 0.000 | 0.000    | 0.000    | 0.000    | 0.000  | 0.000  | 69      | 1805   |
@@ -1341,6 +1402,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 22       | 15.4     | 12.9     | 65       | 92       |
 | Ampere Altra (Neoverse N1)   | Linux | 87       | 76       | 61       | 125      | 131      |
 | AWS Graviton 3 (Neoverse V1) | Linux | 30       | 22       | 19.0     | 78       | 101      |
+| Nvidia Grace (Neoverse V2)   | Linux | 21       | 16.7     | 14.0     | 51       | 63       |
 | RISC-V (Qemu on Apple M1)    | Linux | 314      | 230      | 183      | 690      | 486      |
 | RISC-V (Qemu on i7-8565U)    | Linux | 487      | 361      | 294      | 1156     | 789      |
 | s390x (Qemu on i7-8565U)     | Linux | 0.000    | 349      | 0.000    | 764      | 669      |
@@ -1360,6 +1422,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 4.2      | 2.9      | 2.4      | 12.4     | 17.5     |
 | Ampere Altra (Neoverse N1)   | Linux | 8.5      | 7.5      | 6.1      | 12.3     | 12.9     |
 | AWS Graviton 3 (Neoverse V1) | Linux | 3.6      | 2.7      | 2.3      | 9.4      | 12.1     |
+| Nvidia Grace (Neoverse V2)   | Linux | 3.1      | 2.4      | 2.0      | 7.4      | 9.1      |
 | RISC-V (Qemu on Apple M1)    | Linux | 16.5     | 12.1     | 9.6      | 36       | 25       |
 | RISC-V (Qemu on i7-8565U)    | Linux | 15.5     | 11.5     | 9.4      | 36       | 25       |
 | s390x (Qemu on i7-8565U)     | Linux | 0.000    | 8.2      | 0.000    | 17.9     | 15.7     |
@@ -1381,6 +1444,7 @@ Execution time in microseconds (the lower, the better):
 | Apple M1                     | Linux | 1742     | 1737     | 1701     | 8719     | 13003    |
 | Ampere Altra (Neoverse N1)   | Linux | 9189     | 9180     | 8052     | 16628    | 18248    |
 | AWS Graviton 3 (Neoverse V1) | Linux | 2617     | 2609     | 2441     | 10329    | 14145    |
+| Nvidia Grace (Neoverse V2)   | Linux | 1951     | 1949     | 1808     | 6793     | 9234     |
 | RISC-V (Qemu on Apple M1)    | Linux | 27633    | 27523    | 24490    | 92583    | 67942    |
 | RISC-V (Qemu on i7-8565U)    | Linux | 42673    | 42464    | 38362    | 153789   | 109387   |
 | s390x (Qemu on i7-8565U)     | Linux | 42387    | 42138    | 42543    | 101567   | 94984    |
@@ -1400,6 +1464,7 @@ Relative performance score (the lower, the better):
 | Apple M1                     | Linux | 328      | 327      | 320      | 1642     | 2449     |
 | Ampere Altra (Neoverse N1)   | Linux | 897      | 896      | 786      | 1623     | 1781     |
 | AWS Graviton 3 (Neoverse V1) | Linux | 311      | 310      | 290      | 1231     | 1685     |
+| Nvidia Grace (Neoverse V2)   | Linux | 283      | 282      | 262      | 985      | 1339     |
 | RISC-V (Qemu on Apple M1)    | Linux | 1449     | 1443     | 1284     | 4855     | 3563     |
 | RISC-V (Qemu on i7-8565U)    | Linux | 1355     | 1348     | 1218     | 4884     | 3474     |
 | s390x (Qemu on i7-8565U)     | Linux | 994      | 988      | 998      | 2382     | 2228     |

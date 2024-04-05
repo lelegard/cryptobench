@@ -17,7 +17,7 @@ KERNEL=$(uname -p -r -v )
 DISTRO=
 if [[ $SYSTEM == macOS ]]; then
     DISTRO="$(echo $(sw_vers -productName) $(sw_vers -productVersion) $(sw_vers -buildVersion) | trim)"
-elif [[ -n $(which lsb_release) ]]; then
+elif [[ -n $(which lsb_release 2>/dev/null) ]]; then
     DISTRO=$(lsb_release -d | firstvalue)
 else
     for name in fedora redhat ubuntu debian alpine os; do
