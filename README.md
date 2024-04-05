@@ -299,20 +299,20 @@ See the [test source code](issues/mult_arm.S) for the details.
 
 The results are summarized below:
 
-| Mean instruction time (nanoseconds) | Cortex A72 | Neoverse N1 | Neoverse V1 | Apple M1 |
-| ----------------------------------- | :--------: | :---------: | :---------: | :------: |
-| NOP                                 | 0.419      | 0.043       | 0.000       | 0.020    |
-| ADD                                 | 0.209      | 0.042       | 0.079       | 0.041    |
-| ADC                                 | 0.209      | 0.042       | 0.079       | 0.078    |
-| ADDS                                | 0.209      | 0.042       | 0.085       | 0.078    |
-| ADCS                                | 0.418      | 0.250       | 0.337       | 0.274    |
-| MUL                                 | 1.532      | 0.918       | 0.144       | 0.117    |
-| MUL UMULH                           | 1.810      | 1.085       | 0.144       | 0.117    |
-| MUL ADCS UMULH ADCS                 | 0.835      | 0.501       | 0.248       | 0.117    |
-| MUL ADCS                            | 0.696      | 0.417       | 0.144       | 0.117    |
-| MUL ADD UMULH ADD                   | 0.835      | 0.501       | 0.092       | 0.064    |
-| Full OpenSSL sequence (MUL & ADCS)  | 0.875      | 0.524       | 0.130       | 0.065    |
-| Same sequence with ADD only         | 0.875      | 0.524       | 0.106       | 0.062    |
+| Mean instruction time (nanoseconds) | Cortex A72 | Neoverse N1 | Neoverse V1 | Neoverse V2 | Apple M1 |
+| ----------------------------------- | :--------: | :---------: | :---------: | :---------: | :------: |
+| NOP                                 | 0.419      | 0.043       | 0.000       | 0.000       | 0.020    |
+| ADD                                 | 0.209      | 0.042       | 0.079       | 0.037       | 0.041    |
+| ADC                                 | 0.209      | 0.042       | 0.079       | 0.058       | 0.078    |
+| ADDS                                | 0.209      | 0.042       | 0.085       | 0.087       | 0.078    |
+| ADCS                                | 0.418      | 0.250       | 0.337       | 0.267       | 0.274    |
+| MUL                                 | 1.532      | 0.918       | 0.144       | 0.115       | 0.117    |
+| MUL UMULH                           | 1.810      | 1.085       | 0.144       | 0.115       | 0.117    |
+| MUL ADCS UMULH ADCS                 | 0.835      | 0.501       | 0.248       | 0.204       | 0.117    |
+| MUL ADCS                            | 0.696      | 0.417       | 0.144       | 0.134       | 0.117    |
+| MUL ADD UMULH ADD                   | 0.835      | 0.501       | 0.092       | 0.064       | 0.064    |
+| Full OpenSSL sequence (MUL & ADCS)  | 0.875      | 0.524       | 0.130       | 0.098       | 0.065    |
+| Same sequence with ADD only         | 0.875      | 0.524       | 0.106       | 0.068       | 0.062    |
 
 The results are quite surprising when comparing the Neoverse N1 and V1.
 

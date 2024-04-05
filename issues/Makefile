@@ -15,15 +15,14 @@ TESTS   = montmult $(if $(findstring arm64,$(ARCH)),mult)
 EXECS   = $(addprefix $(BINDIR)/,$(TESTS))
 STATICS = $(if $(findstring linux,$(SYSTEM)),$(addsuffix _static,$(EXECS)))
 
-# Build with OpenSSL static crypto library.
+# Build with OpenSSL static crypto library if available.
 LIBCRYPTO := $(firstword $(wildcard /opt/homebrew/lib/libcrypto.a /usr/local/lib/libcrypto.a /usr/lib*/libcrypto.a /usr/lib*/*/libcrypto.a))
-$(if $(LIBCRYPTO),,$(error libcrypto.a not found))
 
 # Build options.
 CFLAGS   += -Werror -Wall -Wextra -Wno-unused-parameter $(if $(DEBUG),-g,-O2)
 CPPFLAGS += $(addprefix -I,$(wildcard /opt/homebrew/include /usr/local/include))
 LDFLAGS  += $(addprefix -L,$(wildcard /opt/homebrew/lib /usr/local/lib)) $(if $(DEBUG),-g)
-LDLIBS   += $(LIBCRYPTO)
+LDLIBS   += $(if $(LIBCRYPTO),$(LIBCRYPTO),-lcrypto)
 
 # Build operations.
 execs: $(EXECS)
