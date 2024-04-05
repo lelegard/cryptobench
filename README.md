@@ -229,8 +229,8 @@ that pipeline, with N shown in parentheses."_
 | MADD, MUL, X-form (64 bits) | 4(3)        | 2(1)        |
 | UMULH                       | 5(3)        | 3           |
 
-Surprisingly, on the N1, the 32-bit multiplication (MUL) is much more expensive than
-the 64-bit one. On the V1, they have the same cost. In short 64-bit MUL and UMULH
+Surprisingly, on the N1, the 64-bit multiplication (MUL) is much more expensive than
+the 32-bit one. On the V1, they have the same cost. In short 64-bit MUL and UMULH
 are twice as expensive on the N1, compared to the V1.
 
 Looking the OpenSSL assembly source code
