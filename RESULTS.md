@@ -122,6 +122,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 17928          |
 | Apple M1                     | macOS | 2892           |
 | Apple M1                     | Linux | 5307           |
+| Apple M3                     | macOS | 2430           |
 | Ampere Altra (Neoverse N1)   | Linux | 10241          |
 | AWS Graviton 3 (Neoverse V1) | Linux | 8390           |
 | Nvidia Grace (Neoverse V2)   | Linux | 6894           |
@@ -136,6 +137,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 3.1            |
 | Apple M1                     | macOS | 0.28           |
 | Apple M1                     | Linux | 0.51           |
+| Apple M3                     | macOS | 0.19           |
 | Ampere Altra (Neoverse N1)   | Linux | 1.1            |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0            |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.65           |
@@ -157,6 +159,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 154     | 205     | 127    | 295         | 138               |
 | Apple M1                     | macOS | 15.2    | 34      | 16.5   | 52          | 21                |
 | Apple M1                     | Linux | 16.7    | 38      | 20.0   | 54          | 24                |
+| Apple M3                     | macOS | 11.2    | 143     | 13.0   | 40          | 17.0              |
 | Ampere Altra (Neoverse N1)   | Linux | 81      | 116     | 74     | 156         | 79                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 26      | 61      | 29     | 74          | 32                |
 | Nvidia Grace (Neoverse V2)   | Linux | 20.0    | 37      | 20     | 49          |                   |
@@ -177,6 +180,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 8.6     | 11.5    | 7.1    | 16.5        | 7.7               |
 | Apple M1                     | macOS | 5.3     | 11.8    | 5.7    | 18.1        | 7.4               |
 | Apple M1                     | Linux | 3.1     | 7.3     | 3.8    | 10.2        | 4.6               |
+| Apple M3                     | macOS | 4.6     | 59      | 5.3    | 16.9        | 7.0               |
 | Ampere Altra (Neoverse N1)   | Linux | 8.0     | 11.4    | 7.3    | 15.3        | 7.7               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 3.2     | 7.4     | 3.5    | 8.9         | 3.9               |
 | Nvidia Grace (Neoverse V2)   | Linux | 2.9     | 5.5     | 3.0    | 7.2         |                   |
@@ -191,6 +195,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 8.3     | 4.8     | 6.4    | 5.7         | 6.1               |
 | Apple M1                     | macOS | 0.46    | 0.45    | 0.46   | 0.57        | 0.53              |
 | Apple M1                     | Linux | 0.50    | 0.51    | 0.56   | 0.59        | 0.61              |
+| Apple M3                     | macOS | 0.27    | 1.5     | 0.29   | 0.36        | 0.34              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.6     | 1.6     | 2.2    | 1.8         | 2.1               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.58    | 0.48    | 0.56   | 0.53        |                   |
@@ -210,6 +215,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 4997    | 16383   | 6631   | 7686        | 4347              |
 | Apple M1                     | macOS | 550     | 1409    | 1036   | 1407        | 593               |
 | Apple M1                     | Linux | 601     | 3781    | 1240   | 1481        | 733               |
+| Apple M3                     | macOS | 392     | 1108    | 773    | 1179        | 436               |
 | Ampere Altra (Neoverse N1)   | Linux | 2857    | 4523    | 3617   | 4145        | 2569              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 965     | 2538    | 1675   | 2046        | 952               |
 | Nvidia Grace (Neoverse V2)   | Linux | 1548    | 1659    | 1172   | 1363        |                   |
@@ -230,6 +236,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 278     | 913     | 369    | 428         | 242               |
 | Apple M1                     | macOS | 190     | 487     | 358    | 486         | 205               |
 | Apple M1                     | Linux | 113     | 712     | 233    | 279         | 138               |
+| Apple M3                     | macOS | 161     | 456     | 318    | 485         | 179               |
 | Ampere Altra (Neoverse N1)   | Linux | 279     | 441     | 353    | 404         | 250               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 115     | 302     | 199    | 243         | 113               |
 | Nvidia Grace (Neoverse V2)   | Linux | 224     | 240     | 170    | 197         |                   |
@@ -244,6 +251,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 7.5     | 9.3     | 5.7    | 5.4         | 6.6               |
 | Apple M1                     | macOS | 0.46    | 0.45    | 0.50   | 0.56        | 0.51              |
 | Apple M1                     | Linux | 0.51    | 1.2     | 0.60   | 0.59        | 0.63              |
+| Apple M3                     | macOS | 0.26    | 0.28    | 0.30   | 0.37        | 0.30              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.6     | 1.5     | 1.9    | 1.8         | 2.3               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 1.3     | 0.52    | 0.55   | 0.52        |                   |
@@ -261,6 +269,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 32      | 79      | 51     | 25          | 31                |
 | Apple M1                     | macOS | 36      | 41      | 62     | 26          | 27                |
 | Apple M1                     | Linux | 36      | 97      | 62     | 27          | 29                |
+| Apple M3                     | macOS | 34      | 7.7     | 59     | 28          | 25                |
 | Ampere Altra (Neoverse N1)   | Linux | 35      | 38      | 48     | 26          | 32                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 35      | 40      | 57     | 27          | 29                |
 | Nvidia Grace (Neoverse V2)   | Linux | 77      | 43      | 57     | 27          |                   |
@@ -283,6 +292,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 170     | 205     | 127    | 295         | 138               |
 | Apple M1                     | macOS | 16.6    | 34      | 16.5   | 52          | 21                |
 | Apple M1                     | Linux | 18.4    | 38      | 19.8   | 52          | 24                |
+| Apple M3                     | macOS | 12.5    | 143     | 13.0   | 41          | 17.0              |
 | Ampere Altra (Neoverse N1)   | Linux | 85      | 116     | 74     | 155         | 78                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 29      | 61      | 29     | 74          | 32                |
 | Nvidia Grace (Neoverse V2)   | Linux | 21      | 38      | 20     | 50          |                   |
@@ -303,6 +313,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 9.5     | 11.5    | 7.1    | 16.5        | 7.7               |
 | Apple M1                     | macOS | 5.7     | 11.8    | 5.7    | 18.1        | 7.3               |
 | Apple M1                     | Linux | 3.5     | 7.3     | 3.7    | 9.9         | 4.6               |
+| Apple M3                     | macOS | 5.2     | 59      | 5.3    | 16.9        | 7.0               |
 | Ampere Altra (Neoverse N1)   | Linux | 8.3     | 11.4    | 7.3    | 15.2        | 7.7               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 3.6     | 7.4     | 3.5    | 8.9         | 3.9               |
 | Nvidia Grace (Neoverse V2)   | Linux | 3.2     | 5.5     | 3.0    | 7.3         |                   |
@@ -317,6 +328,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 8.2     | 4.8     | 6.4    | 5.7         | 6.1               |
 | Apple M1                     | macOS | 0.45    | 0.45    | 0.46   | 0.57        | 0.53              |
 | Apple M1                     | Linux | 0.50    | 0.51    | 0.55   | 0.57        | 0.60              |
+| Apple M3                     | macOS | 0.27    | 1.5     | 0.29   | 0.36        | 0.34              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.5     | 1.6     | 2.2    | 1.8         | 2.1               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.58    | 0.48    | 0.56   | 0.53        |                   |
@@ -336,6 +348,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 5017    | 16382   | 6632   | 7686        | 4348              |
 | Apple M1                     | macOS | 552     | 1427    | 1031   | 1406        | 592               |
 | Apple M1                     | Linux | 601     | 3741    | 1253   | 1500        | 729               |
+| Apple M3                     | macOS | 395     | 1109    | 776    | 1177        | 436               |
 | Ampere Altra (Neoverse N1)   | Linux | 2862    | 4523    | 3617   | 4145        | 2555              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 968     | 2538    | 1674   | 2045        | 952               |
 | Nvidia Grace (Neoverse V2)   | Linux | 1551    | 1660    | 1172   | 1367        |                   |
@@ -356,6 +369,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 279     | 913     | 369    | 428         | 242               |
 | Apple M1                     | macOS | 190     | 493     | 356    | 486         | 204               |
 | Apple M1                     | Linux | 113     | 704     | 236    | 282         | 137               |
+| Apple M3                     | macOS | 162     | 456     | 319    | 484         | 179               |
 | Ampere Altra (Neoverse N1)   | Linux | 279     | 441     | 353    | 404         | 249               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 115     | 302     | 199    | 243         | 113               |
 | Nvidia Grace (Neoverse V2)   | Linux | 225     | 240     | 170    | 198         |                   |
@@ -370,6 +384,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 7.5     | 9.3     | 5.7    | 5.4         | 6.6               |
 | Apple M1                     | macOS | 0.46    | 0.46    | 0.50   | 0.56        | 0.51              |
 | Apple M1                     | Linux | 0.50    | 1.2     | 0.61   | 0.60        | 0.62              |
+| Apple M3                     | macOS | 0.27    | 0.28    | 0.30   | 0.37        | 0.30              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.6     | 1.5     | 1.9    | 1.8         | 2.3               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 1.3     | 0.52    | 0.55   | 0.53        |                   |
@@ -387,6 +402,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 29      | 79      | 51     | 26          | 31                |
 | Apple M1                     | macOS | 33      | 41      | 62     | 26          | 27                |
 | Apple M1                     | Linux | 32      | 97      | 63     | 28          | 30                |
+| Apple M3                     | macOS | 31      | 7.7     | 59     | 28          | 25                |
 | Ampere Altra (Neoverse N1)   | Linux | 33      | 38      | 48     | 26          | 32                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 32      | 40      | 57     | 27          | 29                |
 | Nvidia Grace (Neoverse V2)   | Linux | 70      | 43      | 57     | 27          |                   |
@@ -409,6 +425,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 5005    | 16439   | 6626   | 7728        | 4344              |
 | Apple M1                     | macOS | 549     | 1430    | 1036   | 1405        | 595               |
 | Apple M1                     | Linux | 598     | 3761    | 1226   | 1465        | 723               |
+| Apple M3                     | macOS | 390     | 1102    | 774    | 1177        | 435               |
 | Ampere Altra (Neoverse N1)   | Linux | 2856    | 4523    | 3615   | 4144        | 2568              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 964     | 2541    | 1674   | 2043        | 951               |
 | Nvidia Grace (Neoverse V2)   | Linux | 732     | 1659    | 1170   | 1362        |                   |
@@ -429,6 +446,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 279     | 916     | 369    | 431         | 242               |
 | Apple M1                     | macOS | 189     | 494     | 358    | 485         | 205               |
 | Apple M1                     | Linux | 112     | 708     | 231    | 276         | 136               |
+| Apple M3                     | macOS | 160     | 453     | 318    | 484         | 179               |
 | Ampere Altra (Neoverse N1)   | Linux | 278     | 441     | 353    | 404         | 250               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 114     | 302     | 199    | 243         | 113               |
 | Nvidia Grace (Neoverse V2)   | Linux | 106     | 240     | 169    | 197         |                   |
@@ -443,6 +461,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 7.5     | 9.3     | 5.7    | 5.5         | 6.6               |
 | Apple M1                     | macOS | 0.46    | 0.46    | 0.50   | 0.56        | 0.51              |
 | Apple M1                     | Linux | 0.50    | 1.2     | 0.60   | 0.58        | 0.62              |
+| Apple M3                     | macOS | 0.26    | 0.28    | 0.30   | 0.37        | 0.30              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.6     | 1.5     | 1.9    | 1.8         | 2.3               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.60    | 0.51    | 0.55   | 0.53        |                   |
@@ -462,6 +481,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 140     | 202     | 131    | 294         | 135               |
 | Apple M1                     | macOS | 14.4    | 33      | 17.9   | 50          | 20.0              |
 | Apple M1                     | Linux | 15.3    | 37      | 19.5   | 51          | 22                |
+| Apple M3                     | macOS | 10.7    | 144     | 16.1   | 39          | 17.9              |
 | Ampere Altra (Neoverse N1)   | Linux | 79      | 115     | 75     | 155         | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 25      | 60      | 30     | 73          | 31                |
 | Nvidia Grace (Neoverse V2)   | Linux | 18.9    | 37      | 20     | 48          |                   |
@@ -482,6 +502,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 7.8     | 11.3    | 7.3    | 16.4        | 7.6               |
 | Apple M1                     | macOS | 5.0     | 11.6    | 6.2    | 17.5        | 6.9               |
 | Apple M1                     | Linux | 2.9     | 7.0     | 3.7    | 9.7         | 4.2               |
+| Apple M3                     | macOS | 4.4     | 59      | 6.6    | 16.4        | 7.3               |
 | Ampere Altra (Neoverse N1)   | Linux | 7.7     | 11.2    | 7.4    | 15.2        | 7.6               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 3.0     | 7.2     | 3.6    | 8.7         | 3.8               |
 | Nvidia Grace (Neoverse V2)   | Linux | 2.7     | 5.4     | 3.0    | 7.1         |                   |
@@ -496,6 +517,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 8.1     | 4.8     | 6.3    | 5.8         | 6.2               |
 | Apple M1                     | macOS | 0.46    | 0.45    | 0.48   | 0.56        | 0.51              |
 | Apple M1                     | Linux | 0.49    | 0.50    | 0.52   | 0.57        | 0.58              |
+| Apple M3                     | macOS | 0.28    | 1.5     | 0.34   | 0.35        | 0.37              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.7     | 1.6     | 2.2    | 1.8         | 2.1               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.59    | 0.49    | 0.54   | 0.53        |                   |
@@ -513,6 +535,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 35      | 81      | 50     | 26          | 32                |
 | Apple M1                     | macOS | 38      | 42      | 57     | 27          | 29                |
 | Apple M1                     | Linux | 39      | 101     | 63     | 28          | 32                |
+| Apple M3                     | macOS | 36      | 7.6     | 48     | 29          | 24                |
 | Ampere Altra (Neoverse N1)   | Linux | 36      | 39      | 47     | 26          | 32                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 38      | 41      | 55     | 27          | 30                |
 | Nvidia Grace (Neoverse V2)   | Linux | 38      | 44      | 56     | 27          |                   |
@@ -535,6 +558,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 5034    | 16433   | 6626   | 7739        | 4344              |
 | Apple M1                     | macOS | 551     | 1432    | 1032   | 1404        | 594               |
 | Apple M1                     | Linux | 599     | 3785    | 1253   | 1501        | 742               |
+| Apple M3                     | macOS | 399     | 1102    | 774    | 1175        | 435               |
 | Ampere Altra (Neoverse N1)   | Linux | 2863    | 4523    | 3615   | 4145        | 2568              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 969     | 2541    | 1674   | 2043        | 951               |
 | Nvidia Grace (Neoverse V2)   | Linux | 736     | 1681    | 1180   | 1362        |                   |
@@ -555,6 +579,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 280     | 916     | 369    | 431         | 242               |
 | Apple M1                     | macOS | 190     | 495     | 357    | 485         | 205               |
 | Apple M1                     | Linux | 112     | 713     | 236    | 282         | 139               |
+| Apple M3                     | macOS | 164     | 453     | 318    | 483         | 179               |
 | Ampere Altra (Neoverse N1)   | Linux | 279     | 441     | 353    | 404         | 250               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 115     | 302     | 199    | 243         | 113               |
 | Nvidia Grace (Neoverse V2)   | Linux | 106     | 243     | 171    | 197         |                   |
@@ -569,6 +594,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 7.5     | 9.3     | 5.7    | 5.5         | 6.6               |
 | Apple M1                     | macOS | 0.46    | 0.46    | 0.50   | 0.56        | 0.51              |
 | Apple M1                     | Linux | 0.50    | 1.2     | 0.61   | 0.60        | 0.63              |
+| Apple M3                     | macOS | 0.27    | 0.28    | 0.30   | 0.37        | 0.30              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.6     | 1.5     | 1.9    | 1.8         | 2.3               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.60    | 0.52    | 0.56   | 0.53        |                   |
@@ -588,6 +614,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 159     | 203     | 131    | 294         | 135               |
 | Apple M1                     | macOS | 16.1    | 33      | 17.9   | 50          | 20.0              |
 | Apple M1                     | Linux | 17.7    | 37      | 19.5   | 51          | 22                |
+| Apple M3                     | macOS | 12.4    | 144     | 16.0   | 39          | 17.9              |
 | Ampere Altra (Neoverse N1)   | Linux | 83      | 115     | 75     | 154         | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 29      | 60      | 30     | 73          | 31                |
 | Nvidia Grace (Neoverse V2)   | Linux | 22      | 37      | 20     | 49          |                   |
@@ -608,6 +635,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 8.9     | 11.3    | 7.3    | 16.4        | 7.6               |
 | Apple M1                     | macOS | 5.6     | 11.7    | 6.2    | 17.5        | 6.9               |
 | Apple M1                     | Linux | 3.3     | 7.0     | 3.7    | 9.7         | 4.3               |
+| Apple M3                     | macOS | 5.1     | 59      | 6.6    | 16.4        | 7.4               |
 | Ampere Altra (Neoverse N1)   | Linux | 8.2     | 11.2    | 7.4    | 15.1        | 7.6               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 3.5     | 7.2     | 3.6    | 8.7         | 3.8               |
 | Nvidia Grace (Neoverse V2)   | Linux | 3.3     | 5.4     | 3.0    | 7.1         |                   |
@@ -622,6 +650,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 7.9     | 4.8     | 6.3    | 5.8         | 6.2               |
 | Apple M1                     | macOS | 0.45    | 0.45    | 0.48   | 0.56        | 0.51              |
 | Apple M1                     | Linux | 0.49    | 0.50    | 0.52   | 0.57        | 0.58              |
+| Apple M3                     | macOS | 0.27    | 1.5     | 0.34   | 0.35        | 0.37              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.5     | 1.6     | 2.2    | 1.8         | 2.1               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.60    | 0.48    | 0.53   | 0.53        |                   |
@@ -639,6 +668,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 31      | 80      | 50     | 26          | 32                |
 | Apple M1                     | macOS | 34      | 42      | 57     | 27          | 29                |
 | Apple M1                     | Linux | 33      | 101     | 64     | 29          | 32                |
+| Apple M3                     | macOS | 32      | 7.6     | 48     | 29          | 24                |
 | Ampere Altra (Neoverse N1)   | Linux | 34      | 39      | 47     | 26          | 32                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 33      | 41      | 55     | 27          | 30                |
 | Nvidia Grace (Neoverse V2)   | Linux | 32      | 45      | 57     | 27          |                   |
@@ -661,6 +691,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 435     | 2.0     | 9.9    | 28          | 13.4              |
 | Apple M1                     | macOS | 28      | 0.47    | 1.9    | 9.6         | 6.0               |
 | Apple M1                     | Linux | 80      | 0.58    | 1.9    | 10.7        | 7.0               |
+| Apple M3                     | macOS | 5.6     | 0.33    | 1.6    | 7.4         | 4.6               |
 | Ampere Altra (Neoverse N1)   | Linux | 393     | 0.76    | 3.2    | 12.0        | 5.9               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 378     | 0.66    | 2.6    | 9.6         | 4.8               |
 | Nvidia Grace (Neoverse V2)   | Linux | 89      | 0.37    | 1.7    | 6.4         |                   |
@@ -681,6 +712,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 24      | 0.11    | 0.55   | 1.6         | 0.75              |
 | Apple M1                     | macOS | 10.0    | 0.16    | 0.67   | 3.3         | 2.1               |
 | Apple M1                     | Linux | 15.1    | 0.11    | 0.37   | 2.0         | 1.3               |
+| Apple M3                     | macOS | 2.3     | 0.14    | 0.68   | 3.0         | 1.9               |
 | Ampere Altra (Neoverse N1)   | Linux | 38      | 0.075   | 0.31   | 1.2         | 0.58              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 45      | 0.079   | 0.31   | 1.1         | 0.57              |
 | Nvidia Grace (Neoverse V2)   | Linux | 12.9    | 0.054   | 0.25   | 0.93        |                   |
@@ -695,6 +727,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 1.7     | 4.3     | 5.5    | 4.4         | 4.1               |
 | Apple M1                     | macOS | 0.062   | 0.58    | 0.60   | 0.81        | 1.0               |
 | Apple M1                     | Linux | 0.17    | 0.71    | 0.60   | 0.91        | 1.2               |
+| Apple M3                     | macOS | 0.010   | 0.33    | 0.41   | 0.50        | 0.63              |
 | Ampere Altra (Neoverse N1)   | Linux | 0.90    | 0.99    | 1.0    | 1.1         | 1.1               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.19    | 0.44    | 0.52   | 0.53        |                   |
@@ -714,6 +747,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 445     | 97      | 87     | 67          | 11.3              |
 | Apple M1                     | macOS | 31      | 22      | 17.8   | 15.0        | 2.6               |
 | Apple M1                     | Linux | 83      | 21      | 20     | 16.9        | 3.0               |
+| Apple M3                     | macOS | 8.5     | 18.0    | 15.3   | 11.6        | 2.2               |
 | Ampere Altra (Neoverse N1)   | Linux | 400     | 35      | 32     | 26          | 4.5               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 383     | 24      | 23     | 20          | 3.4               |
 | Nvidia Grace (Neoverse V2)   | Linux | 90      | 18.0    | 17.9   | 13.6        |                   |
@@ -734,6 +768,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 24      | 5.5     | 4.9    | 3.7         | 0.63              |
 | Apple M1                     | macOS | 11.0    | 7.9     | 6.1    | 5.2         | 0.89              |
 | Apple M1                     | Linux | 15.8    | 4.0     | 3.8    | 3.2         | 0.56              |
+| Apple M3                     | macOS | 3.5     | 7.4     | 6.3    | 4.8         | 0.89              |
 | Ampere Altra (Neoverse N1)   | Linux | 39      | 3.5     | 3.1    | 2.6         | 0.44              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 45      | 3.0     | 2.8    | 2.4         | 0.40              |
 | Nvidia Grace (Neoverse V2)   | Linux | 13.1    | 2.6     | 2.6    | 2.0         |                   |
@@ -748,6 +783,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 1.7     | 5.7     | 5.4    | 4.7         | 4.8               |
 | Apple M1                     | macOS | 0.067   | 0.74    | 0.62   | 0.59        | 0.61              |
 | Apple M1                     | Linux | 0.18    | 0.69    | 0.71   | 0.67        | 0.72              |
+| Apple M3                     | macOS | 0.014   | 0.47    | 0.43   | 0.37        | 0.42              |
 | Ampere Altra (Neoverse N1)   | Linux | 0.91    | 1.3     | 1.2    | 1.1         | 1.1               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.19    | 0.57    | 0.60   | 0.52        |                   |
@@ -769,6 +805,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 480     | 738     | 393    | 1015        | 412               |
 | Apple M1                     | macOS | 53      | 126     | 60     | 179         | 69                |
 | Apple M1                     | Linux | 58      | 143     | 79     | 167         | 79                |
+| Apple M3                     | macOS | 40      | 583     | 45     | 134         | 52                |
 | Ampere Altra (Neoverse N1)   | Linux | 253     | 433     | 220    | 563         | 227               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 94      | 223     | 94     | 238         | 101               |
 | Nvidia Grace (Neoverse V2)   | Linux | 71      | 138     | 65     | 160         |                   |
@@ -789,6 +826,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 26      | 41      | 21     | 56          | 23                |
 | Apple M1                     | macOS | 18.5    | 43      | 20     | 62          | 23                |
 | Apple M1                     | Linux | 11.0    | 27      | 14.9   | 31          | 14.9              |
+| Apple M3                     | macOS | 16.6    | 239     | 18.7   | 55          | 21                |
 | Ampere Altra (Neoverse N1)   | Linux | 24      | 42      | 21     | 55          | 22                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 11.3    | 26      | 11.3   | 28          | 12.1              |
 | Nvidia Grace (Neoverse V2)   | Linux | 10.4    | 20      | 9.5    | 23          |                   |
@@ -803,6 +841,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 7.3     | 4.8     | 6.0    | 6.2         | 5.9               |
 | Apple M1                     | macOS | 0.46    | 0.46    | 0.52   | 0.61        | 0.56              |
 | Apple M1                     | Linux | 0.50    | 0.52    | 0.68   | 0.57        | 0.64              |
+| Apple M3                     | macOS | 0.28    | 1.7     | 0.31   | 0.37        | 0.34              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.3     | 1.7     | 2.0    | 2.1         | 1.9               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.59    | 0.49    | 0.55   | 0.53        |                   |
@@ -822,6 +861,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 34813   | 72849   | 49520  | 45186       | 29517             |
 | Apple M1                     | macOS | 3497    | 8798    | 6179   | 7253        | 3732              |
 | Apple M1                     | Linux | 3878    | 14981   | 7477   | 7644        | 4860              |
+| Apple M3                     | macOS | 2603    | 7021    | 5023   | 5638        | 2910              |
 | Ampere Altra (Neoverse N1)   | Linux | 20248   | 28560   | 28455  | 25751       | 17497             |
 | AWS Graviton 3 (Neoverse V1) | Linux | 6295    | 15070   | 11590  | 10845       | 6575              |
 | Nvidia Grace (Neoverse V2)   | Linux | 7935    | 10243   | 8444   | 7296        |                   |
@@ -842,6 +882,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 1941    | 4063    | 2762   | 2520        | 1646              |
 | Apple M1                     | macOS | 1209    | 3041    | 2136   | 2507        | 1290              |
 | Apple M1                     | Linux | 730     | 2822    | 1408   | 1440        | 915               |
+| Apple M3                     | macOS | 1071    | 2888    | 2066   | 2319        | 1197              |
 | Ampere Altra (Neoverse N1)   | Linux | 1977    | 2788    | 2778   | 2514        | 1708              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 750     | 1796    | 1381   | 1292        | 783               |
 | Nvidia Grace (Neoverse V2)   | Linux | 1150    | 1485    | 1224   | 1058        |                   |
@@ -856,6 +897,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 8.0     | 7.0     | 6.2    | 6.0         | 6.5               |
 | Apple M1                     | macOS | 0.45    | 0.47    | 0.43   | 0.54        | 0.46              |
 | Apple M1                     | Linux | 0.50    | 0.81    | 0.52   | 0.57        | 0.60              |
+| Apple M3                     | macOS | 0.27    | 0.30    | 0.28   | 0.34        | 0.29              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.8     | 1.6     | 2.1    | 2.1         | 2.3               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.99    | 0.54    | 0.57   | 0.53        |                   |
@@ -873,6 +915,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 72      | 98      | 125    | 44          | 71                |
 | Apple M1                     | macOS | 65      | 69      | 102    | 40          | 53                |
 | Apple M1                     | Linux | 66      | 104     | 94     | 45          | 61                |
+| Apple M3                     | macOS | 64      | 12.0    | 110    | 41          | 55                |
 | Ampere Altra (Neoverse N1)   | Linux | 79      | 65      | 128    | 45          | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 66      | 67      | 122    | 45          | 64                |
 | Nvidia Grace (Neoverse V2)   | Linux | 111     | 73      | 128    | 45          |                   |
@@ -895,6 +938,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 497     | 738     | 392    | 1015        | 412               |
 | Apple M1                     | macOS | 54      | 126     | 60     | 179         | 69                |
 | Apple M1                     | Linux | 60      | 143     | 81     | 174         | 82                |
+| Apple M3                     | macOS | 41      | 546     | 45     | 134         | 52                |
 | Ampere Altra (Neoverse N1)   | Linux | 257     | 433     | 219    | 563         | 227               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 98      | 223     | 94     | 237         | 101               |
 | Nvidia Grace (Neoverse V2)   | Linux | 73      | 136     | 65     | 161         |                   |
@@ -915,6 +959,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 27      | 41      | 21     | 56          | 23                |
 | Apple M1                     | macOS | 18.9    | 43      | 20     | 61          | 23                |
 | Apple M1                     | Linux | 11.5    | 27      | 15.3   | 32          | 15.4              |
+| Apple M3                     | macOS | 17.2    | 224     | 18.6   | 55          | 21                |
 | Ampere Altra (Neoverse N1)   | Linux | 25      | 42      | 21     | 55          | 22                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 11.7    | 26      | 11.3   | 28          | 12.1              |
 | Nvidia Grace (Neoverse V2)   | Linux | 10.6    | 19.9    | 9.5    | 23          |                   |
@@ -929,6 +974,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 7.3     | 4.8     | 6.0    | 6.2         | 5.9               |
 | Apple M1                     | macOS | 0.45    | 0.46    | 0.52   | 0.61        | 0.56              |
 | Apple M1                     | Linux | 0.50    | 0.52    | 0.70   | 0.60        | 0.66              |
+| Apple M3                     | macOS | 0.28    | 1.6     | 0.31   | 0.37        | 0.34              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.3     | 1.7     | 2.0    | 2.1         | 1.9               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.59    | 0.48    | 0.55   | 0.54        |                   |
@@ -948,6 +994,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 34867   | 72833   | 49520  | 45177       | 29516             |
 | Apple M1                     | macOS | 3499    | 8798    | 6179   | 7253        | 3732              |
 | Apple M1                     | Linux | 3916    | 15090   | 7411   | 7499        | 4770              |
+| Apple M3                     | macOS | 2650    | 7045    | 5024   | 5609        | 2920              |
 | Ampere Altra (Neoverse N1)   | Linux | 20263   | 28559   | 28557  | 25629       | 17501             |
 | AWS Graviton 3 (Neoverse V1) | Linux | 6299    | 15072   | 11591  | 10844       | 6574              |
 | Nvidia Grace (Neoverse V2)   | Linux | 7925    | 10130   | 8412   | 7296        |                   |
@@ -968,6 +1015,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 1944    | 4062    | 2762   | 2519        | 1646              |
 | Apple M1                     | macOS | 1209    | 3041    | 2135   | 2507        | 1290              |
 | Apple M1                     | Linux | 737     | 2843    | 1396   | 1412        | 898               |
+| Apple M3                     | macOS | 1090    | 2898    | 2067   | 2307        | 1201              |
 | Ampere Altra (Neoverse N1)   | Linux | 1978    | 2788    | 2788   | 2502        | 1708              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 750     | 1796    | 1381   | 1292        | 783               |
 | Nvidia Grace (Neoverse V2)   | Linux | 1149    | 1469    | 1220   | 1058        |                   |
@@ -982,6 +1030,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 8.0     | 7.0     | 6.2    | 6.0         | 6.5               |
 | Apple M1                     | macOS | 0.45    | 0.47    | 0.43   | 0.54        | 0.46              |
 | Apple M1                     | Linux | 0.51    | 0.81    | 0.52   | 0.56        | 0.59              |
+| Apple M3                     | macOS | 0.27    | 0.30    | 0.28   | 0.34        | 0.29              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.8     | 1.6     | 2.1    | 2.0         | 2.3               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.99    | 0.53    | 0.57   | 0.53        |                   |
@@ -999,6 +1048,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 70      | 98      | 126    | 44          | 71                |
 | Apple M1                     | macOS | 63      | 69      | 102    | 40          | 53                |
 | Apple M1                     | Linux | 64      | 105     | 91     | 42          | 58                |
+| Apple M3                     | macOS | 63      | 12.9    | 110    | 41          | 55                |
 | Ampere Altra (Neoverse N1)   | Linux | 78      | 65      | 129    | 45          | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 64      | 67      | 122    | 45          | 64                |
 | Nvidia Grace (Neoverse V2)   | Linux | 108     | 73      | 127    | 45          |                   |
@@ -1021,6 +1071,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 34822   | 72850   | 49495  | 45169       | 29500             |
 | Apple M1                     | macOS | 3495    | 8806    | 6183   | 7250        | 3741              |
 | Apple M1                     | Linux | 3929    | 15137   | 7496   | 7722        | 4709              |
+| Apple M3                     | macOS | 2618    | 7040    | 5022   | 5641        | 2924              |
 | Ampere Altra (Neoverse N1)   | Linux | 20251   | 28563   | 28445  | 25749       | 17499             |
 | AWS Graviton 3 (Neoverse V1) | Linux | 6292    | 15072   | 11591  | 10853       | 6569              |
 | Nvidia Grace (Neoverse V2)   | Linux | 4770    | 10126   | 8406   | 7284        |                   |
@@ -1041,6 +1092,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 1942    | 4063    | 2760   | 2519        | 1645              |
 | Apple M1                     | macOS | 1208    | 3044    | 2137   | 2506        | 1293              |
 | Apple M1                     | Linux | 740     | 2851    | 1412   | 1454        | 887               |
+| Apple M3                     | macOS | 1077    | 2896    | 2066   | 2320        | 1203              |
 | Ampere Altra (Neoverse N1)   | Linux | 1977    | 2788    | 2777   | 2514        | 1708              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 749     | 1796    | 1381   | 1293        | 783               |
 | Nvidia Grace (Neoverse V2)   | Linux | 692     | 1468    | 1219   | 1056        |                   |
@@ -1055,6 +1107,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 8.0     | 7.0     | 6.2    | 6.0         | 6.5               |
 | Apple M1                     | macOS | 0.45    | 0.47    | 0.43   | 0.54        | 0.46              |
 | Apple M1                     | Linux | 0.51    | 0.82    | 0.53   | 0.58        | 0.58              |
+| Apple M3                     | macOS | 0.27    | 0.30    | 0.28   | 0.34        | 0.29              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.8     | 1.6     | 2.1    | 2.1         | 2.3               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.60    | 0.53    | 0.57   | 0.53        |                   |
@@ -1074,6 +1127,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 464     | 733     | 399    | 1009        | 407               |
 | Apple M1                     | macOS | 51      | 124     | 64     | 177         | 68                |
 | Apple M1                     | Linux | 57      | 142     | 75     | 169         | 83                |
+| Apple M3                     | macOS | 39      | 544     | 45     | 130         | 49                |
 | Ampere Altra (Neoverse N1)   | Linux | 250     | 431     | 222    | 561         | 225               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 92      | 221     | 96     | 234         | 99                |
 | Nvidia Grace (Neoverse V2)   | Linux | 68      | 135     | 66     | 158         |                   |
@@ -1094,6 +1148,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 25      | 40      | 22     | 56          | 22                |
 | Apple M1                     | macOS | 18.0    | 43      | 22     | 61          | 23                |
 | Apple M1                     | Linux | 10.9    | 26      | 14.3   | 31          | 15.7              |
+| Apple M3                     | macOS | 16.4    | 224     | 18.9   | 53          | 20                |
 | Ampere Altra (Neoverse N1)   | Linux | 24      | 42      | 21     | 54          | 21                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 11.0    | 26      | 11.5   | 27          | 11.8              |
 | Nvidia Grace (Neoverse V2)   | Linux | 10.0    | 19.6    | 9.6    | 23          |                   |
@@ -1108,6 +1163,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 7.2     | 4.8     | 6.0    | 6.2         | 5.9               |
 | Apple M1                     | macOS | 0.46    | 0.46    | 0.54   | 0.61        | 0.56              |
 | Apple M1                     | Linux | 0.51    | 0.52    | 0.64   | 0.59        | 0.68              |
+| Apple M3                     | macOS | 0.28    | 1.6     | 0.31   | 0.36        | 0.32              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.3     | 1.7     | 2.0    | 2.1         | 2.0               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.59    | 0.48    | 0.54   | 0.53        |                   |
@@ -1125,6 +1181,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 74      | 99      | 124    | 44          | 72                |
 | Apple M1                     | macOS | 67      | 70      | 95     | 40          | 54                |
 | Apple M1                     | Linux | 67      | 106     | 99     | 45          | 56                |
+| Apple M3                     | macOS | 65      | 12.9    | 109    | 43          | 59                |
 | Ampere Altra (Neoverse N1)   | Linux | 80      | 66      | 127    | 45          | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 67      | 67      | 119    | 46          | 66                |
 | Nvidia Grace (Neoverse V2)   | Linux | 69      | 74      | 127    | 45          |                   |
@@ -1147,6 +1204,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 34884   | 72824   | 49495  | 45175       | 29507             |
 | Apple M1                     | macOS | 3497    | 8802    | 6186   | 7271        | 3743              |
 | Apple M1                     | Linux | 3943    | 15398   | 7429   | 7523        | 4620              |
+| Apple M3                     | macOS | 2638    | 7045    | 5029   | 5632        | 2921              |
 | Ampere Altra (Neoverse N1)   | Linux | 20254   | 28563   | 28549  | 25757       | 17499             |
 | AWS Graviton 3 (Neoverse V1) | Linux | 6297    | 15074   | 11591  | 10845       | 6573              |
 | Nvidia Grace (Neoverse V2)   | Linux | 4806    | 10127   | 8417   | 7288        |                   |
@@ -1167,6 +1225,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 1945    | 4062    | 2760   | 2519        | 1645              |
 | Apple M1                     | macOS | 1209    | 3042    | 2138   | 2513        | 1293              |
 | Apple M1                     | Linux | 743     | 2901    | 1399   | 1417        | 870               |
+| Apple M3                     | macOS | 1085    | 2898    | 2069   | 2317        | 1202              |
 | Ampere Altra (Neoverse N1)   | Linux | 1977    | 2788    | 2787   | 2514        | 1708              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 750     | 1796    | 1381   | 1292        | 783               |
 | Nvidia Grace (Neoverse V2)   | Linux | 697     | 1469    | 1220   | 1057        |                   |
@@ -1181,6 +1240,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 8.0     | 7.0     | 6.2    | 6.0         | 6.5               |
 | Apple M1                     | macOS | 0.45    | 0.47    | 0.43   | 0.54        | 0.46              |
 | Apple M1                     | Linux | 0.51    | 0.83    | 0.52   | 0.56        | 0.57              |
+| Apple M3                     | macOS | 0.27    | 0.30    | 0.28   | 0.34        | 0.29              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.8     | 1.6     | 2.1    | 2.1         | 2.3               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.60    | 0.53    | 0.57   | 0.53        |                   |
@@ -1200,6 +1260,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 484     | 733     | 399    | 1010        | 406               |
 | Apple M1                     | macOS | 53      | 124     | 64     | 177         | 68                |
 | Apple M1                     | Linux | 60      | 142     | 75     | 170         | 83                |
+| Apple M3                     | macOS | 41      | 544     | 45     | 130         | 49                |
 | Ampere Altra (Neoverse N1)   | Linux | 255     | 431     | 222    | 561         | 225               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 96      | 221     | 96     | 235         | 99                |
 | Nvidia Grace (Neoverse V2)   | Linux | 73      | 135     | 66     | 158         |                   |
@@ -1220,6 +1281,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 27      | 40      | 22     | 56          | 22                |
 | Apple M1                     | macOS | 18.6    | 43      | 22     | 61          | 23                |
 | Apple M1                     | Linux | 11.4    | 26      | 14.3   | 32          | 15.7              |
+| Apple M3                     | macOS | 17.2    | 224     | 18.9   | 53          | 20                |
 | Ampere Altra (Neoverse N1)   | Linux | 24      | 42      | 21     | 54          | 21                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 11.5    | 26      | 11.5   | 28          | 11.8              |
 | Nvidia Grace (Neoverse V2)   | Linux | 10.7    | 19.6    | 9.6    | 22          |                   |
@@ -1234,6 +1296,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 7.2     | 4.8     | 6.0    | 6.2         | 5.9               |
 | Apple M1                     | macOS | 0.45    | 0.46    | 0.54   | 0.61        | 0.56              |
 | Apple M1                     | Linux | 0.51    | 0.52    | 0.64   | 0.59        | 0.68              |
+| Apple M3                     | macOS | 0.28    | 1.6     | 0.31   | 0.36        | 0.32              |
 | Ampere Altra (Neoverse N1)   | Linux | 2.3     | 1.7     | 2.0    | 2.1         | 2.0               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.60    | 0.48    | 0.54   | 0.53        |                   |
@@ -1251,6 +1314,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 72      | 99      | 124    | 44          | 72                |
 | Apple M1                     | macOS | 64      | 70      | 95     | 41          | 54                |
 | Apple M1                     | Linux | 65      | 108     | 97     | 44          | 55                |
+| Apple M3                     | macOS | 63      | 12.9    | 109    | 43          | 59                |
 | Ampere Altra (Neoverse N1)   | Linux | 79      | 66      | 128    | 45          | 77                |
 | AWS Graviton 3 (Neoverse V1) | Linux | 64      | 67      | 119    | 46          | 66                |
 | Nvidia Grace (Neoverse V2)   | Linux | 65      | 74      | 127    | 46          |                   |
@@ -1273,6 +1337,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 434     | 2.0     | 12.2   | 74          | 24                |
 | Apple M1                     | macOS | 29      | 0.51    | 2.3    | 25          | 11.1              |
 | Apple M1                     | Linux | 85      | 0.61    | 2.5    | 24          | 13.3              |
+| Apple M3                     | macOS | 5.9     | 0.35    | 1.9    | 19.4        | 8.4               |
 | Ampere Altra (Neoverse N1)   | Linux | 395     | 0.75    | 3.8    | 30          | 10.8              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 379     | 0.67    | 3.1    | 24          | 8.7               |
 | Nvidia Grace (Neoverse V2)   | Linux | 89      | 0.42    | 2.0    | 16.7        |                   |
@@ -1293,6 +1358,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 24      | 0.11    | 0.68   | 4.1         | 1.3               |
 | Apple M1                     | macOS | 10.1    | 0.18    | 0.78   | 8.7         | 3.8               |
 | Apple M1                     | Linux | 16.1    | 0.11    | 0.47   | 4.7         | 2.5               |
+| Apple M3                     | macOS | 2.4     | 0.14    | 0.80   | 8.0         | 3.5               |
 | Ampere Altra (Neoverse N1)   | Linux | 38      | 0.073   | 0.37   | 3.0         | 1.1               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 45      | 0.080   | 0.37   | 2.9         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 13.0    | 0.061   | 0.28   | 2.4         |                   |
@@ -1307,6 +1373,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 1.7     | 4.4     | 5.7    | 4.5         | 4.0               |
 | Apple M1                     | macOS | 0.063   | 0.62    | 0.59   | 0.85        | 1.0               |
 | Apple M1                     | Linux | 0.18    | 0.74    | 0.66   | 0.85        | 1.2               |
+| Apple M3                     | macOS | 0.010   | 0.34    | 0.41   | 0.53        | 0.63              |
 | Ampere Altra (Neoverse N1)   | Linux | 0.90    | 0.97    | 1.1    | 1.1         | 1.1               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.19    | 0.49    | 0.50   | 0.55        |                   |
@@ -1326,6 +1393,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 451     | 265     | 164    | 191         | 18.0              |
 | Apple M1                     | macOS | 33      | 62      | 34     | 49          | 4.3               |
 | Apple M1                     | Linux | 89      | 71      | 35     | 43          | 4.7               |
+| Apple M3                     | macOS | 9.9     | 51      | 26     | 37          | 3.6               |
 | Ampere Altra (Neoverse N1)   | Linux | 406     | 100     | 67     | 75          | 7.2               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 384     | 71      | 40     | 59          | 5.3               |
 | Nvidia Grace (Neoverse V2)   | Linux | 91      | 53      | 30     | 40          |                   |
@@ -1346,6 +1414,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 25      | 14.8    | 9.2    | 10.7        | 1.0               |
 | Apple M1                     | macOS | 11.4    | 21      | 11.8   | 17.2        | 1.5               |
 | Apple M1                     | Linux | 16.8    | 13.5    | 6.8    | 8.3         | 0.89              |
+| Apple M3                     | macOS | 4.1     | 21      | 10.8   | 15.6        | 1.5               |
 | Ampere Altra (Neoverse N1)   | Linux | 39      | 9.8     | 6.6    | 7.4         | 0.70              |
 | AWS Graviton 3 (Neoverse V1) | Linux | 45      | 8.5     | 4.9    | 7.1         | 0.64              |
 | Nvidia Grace (Neoverse V2)   | Linux | 13.3    | 7.7     | 4.4    | 5.8         |                   |
@@ -1360,6 +1429,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 1.7     | 5.4     | 5.8    | 4.7         | 4.9               |
 | Apple M1                     | macOS | 0.070   | 0.71    | 0.68   | 0.68        | 0.65              |
 | Apple M1                     | Linux | 0.19    | 0.81    | 0.72   | 0.60        | 0.72              |
+| Apple M3                     | macOS | 0.017   | 0.47    | 0.42   | 0.42        | 0.44              |
 | Ampere Altra (Neoverse N1)   | Linux | 0.92    | 1.2     | 1.4    | 1.1         | 1.2               |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0         | 1.0               |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.19    | 0.58    | 0.59   | 0.53        |                   |
@@ -1381,6 +1451,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 19761   | 10909   | 12656  | 12638  | 12095       |             |
 | Apple M1                     | macOS | 636     | 1159    | 3254   | 3265   | 3430        | 975         |
 | Apple M1                     | Linux | 723     | 4849    | 720    | 1317   | 4179        | 1126        |
+| Apple M3                     | macOS | 422     | 729     | 2602   | 2573   | 2729        | 717         |
 | Ampere Altra (Neoverse N1)   | Linux | 424     | 4648    | 423    | 4976   | 4738        | 730         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 488     | 4266    | 492    | 4605   | 4273        | 850         |
 | Nvidia Grace (Neoverse V2)   | Linux | 382     | 3131    | 374    | 728    | 3220        | 602         |
@@ -1401,6 +1472,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 1102    | 608     | 705    | 704    | 674         |             |
 | Apple M1                     | macOS | 220     | 400     | 1125   | 1128   | 1186        | 337         |
 | Apple M1                     | Linux | 136     | 913     | 135    | 248    | 787         | 212         |
+| Apple M3                     | macOS | 173     | 300     | 1070   | 1058   | 1123        | 295         |
 | Ampere Altra (Neoverse N1)   | Linux | 41      | 453     | 41     | 485    | 462         | 71          |
 | AWS Graviton 3 (Neoverse V1) | Linux | 58      | 508     | 58     | 548    | 509         | 101         |
 | Nvidia Grace (Neoverse V2)   | Linux | 55      | 454     | 54     | 105    | 467         | 87          |
@@ -1415,6 +1487,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 58      | 3.7     | 37     | 4.0    | 4.1         |             |
 | Apple M1                     | macOS | 1.1     | 0.22    | 5.4    | 0.58   | 0.65        | 0.93        |
 | Apple M1                     | Linux | 1.2     | 0.92    | 1.2    | 0.23   | 0.79        | 1.1         |
+| Apple M3                     | macOS | 0.56    | 0.11    | 3.4    | 0.36   | 0.42        | 0.55        |
 | Ampere Altra (Neoverse N1)   | Linux | 0.75    | 0.94    | 0.75   | 0.94   | 0.96        | 0.74        |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0    | 1.0         | 1.0         |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.62    | 0.58    | 0.60   | 0.12   | 0.59        | 0.56        |
@@ -1434,6 +1507,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 14152   | 11032   | 11686  | 11682  | 12878       |             |
 | Apple M1                     | macOS | 77      | 478     | 2619   | 2624   | 3190        | 142         |
 | Apple M1                     | Linux | 97      | 4676    | 97     | 150    | 3643        | 190         |
+| Apple M3                     | macOS | 50      | 139     | 1869   | 1881   | 2346        | 107         |
 | Ampere Altra (Neoverse N1)   | Linux | 234     | 4495    | 259    | 4668   | 4900        | 390         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 114     | 4009    | 124    | 3993   | 4336        | 260         |
 | Nvidia Grace (Neoverse V2)   | Linux | 89      | 2917    | 95     | 105    | 3173        | 154         |
@@ -1454,6 +1528,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 789     | 615     | 651    | 651    | 718         |             |
 | Apple M1                     | macOS | 26      | 165     | 905    | 907    | 1102        | 49          |
 | Apple M1                     | Linux | 18.3    | 881     | 18.4   | 28     | 686         | 35          |
+| Apple M3                     | macOS | 20      | 57      | 769    | 774    | 965         | 44          |
 | Ampere Altra (Neoverse N1)   | Linux | 22      | 438     | 25     | 455    | 478         | 38          |
 | AWS Graviton 3 (Neoverse V1) | Linux | 13.7    | 477     | 14.9   | 475    | 516         | 31          |
 | Nvidia Grace (Neoverse V2)   | Linux | 13.0    | 423     | 13.9   | 15.3   | 460         | 22          |
@@ -1468,6 +1543,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 177     | 4.0     | 135    | 4.2    | 4.3         |             |
 | Apple M1                     | macOS | 0.55    | 0.097   | 17.0   | 0.53   | 0.60        | 0.45        |
 | Apple M1                     | Linux | 0.69    | 0.95    | 0.64   | 0.031  | 0.68        | 0.60        |
+| Apple M3                     | macOS | 0.29    | 0.023   | 9.7    | 0.31   | 0.35        | 0.27        |
 | Ampere Altra (Neoverse N1)   | Linux | 1.8     | 0.97    | 1.8    | 1.0    | 0.98        | 1.3         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0    | 1.0         | 1.0         |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.62    | 0.57    | 0.60   | 0.021  | 0.58        | 0.47        |
@@ -1485,6 +1561,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 1.4     | 0.99    | 1.1    | 1.1    | 0.94        |             |
 | Apple M1                     | macOS | 8.2     | 2.4     | 1.2    | 1.2    | 1.1         | 6.8         |
 | Apple M1                     | Linux | 7.4     | 1.0     | 7.4    | 8.7    | 1.1         | 5.9         |
+| Apple M3                     | macOS | 8.3     | 5.2     | 1.4    | 1.4    | 1.2         | 6.7         |
 | Ampere Altra (Neoverse N1)   | Linux | 1.8     | 1.0     | 1.6    | 1.1    | 0.97        | 1.9         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 4.2     | 1.1     | 3.9    | 1.2    | 0.99        | 3.3         |
 | Nvidia Grace (Neoverse V2)   | Linux | 4.3     | 1.1     | 3.9    | 6.9    | 1.0         | 3.9         |
@@ -1509,6 +1586,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 27705   | 13703   | 16892  | 16825  | 15757       |             |
 | Apple M1                     | macOS | 890     | 1411    | 4323   | 4319   | 4498        | 1276        |
 | Apple M1                     | Linux | 1020    | 5845    | 1026   | 1613   | 5373        | 1470        |
+| Apple M3                     | macOS | 574     | 920     | 3429   | 3449   | 3562        | 997         |
 | Ampere Altra (Neoverse N1)   | Linux | 593     | 5957    | 592    | 6641   | 6144        | 949         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 679     | 5567    | 682    | 6147   | 5580        | 1081        |
 | Nvidia Grace (Neoverse V2)   | Linux | 523     | 4081    | 523    | 875    | 4200        | 790         |
@@ -1529,6 +1607,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 1545    | 764     | 942    | 938    | 878         |             |
 | Apple M1                     | macOS | 307     | 487     | 1494   | 1493   | 1554        | 441         |
 | Apple M1                     | Linux | 192     | 1101    | 193    | 303    | 1012        | 277         |
+| Apple M3                     | macOS | 236     | 378     | 1411   | 1419   | 1465        | 410         |
 | Ampere Altra (Neoverse N1)   | Linux | 57      | 581     | 57     | 648    | 599         | 92          |
 | AWS Graviton 3 (Neoverse V1) | Linux | 80      | 663     | 81     | 732    | 665         | 128         |
 | Nvidia Grace (Neoverse V2)   | Linux | 75      | 592     | 75     | 127    | 609         | 114         |
@@ -1543,6 +1622,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 58      | 3.6     | 35     | 4.0    | 4.1         |             |
 | Apple M1                     | macOS | 1.1     | 0.21    | 5.1    | 0.57   | 0.65        | 0.96        |
 | Apple M1                     | Linux | 1.2     | 0.85    | 1.2    | 0.21   | 0.78        | 1.1         |
+| Apple M3                     | macOS | 0.55    | 0.11    | 3.3    | 0.36   | 0.41        | 0.60        |
 | Ampere Altra (Neoverse N1)   | Linux | 0.76    | 0.93    | 0.75   | 0.94   | 0.95        | 0.76        |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0    | 1.0         | 1.0         |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.61    | 0.58    | 0.60   | 0.11   | 0.59        | 0.58        |
@@ -1562,6 +1642,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 19975   | 13948   | 15877  | 15883  | 16647       |             |
 | Apple M1                     | macOS | 143     | 558     | 3680   | 3947   | 4254        | 189         |
 | Apple M1                     | Linux | 171     | 5860    | 153    | 174    | 5035        | 252         |
+| Apple M3                     | macOS | 116     | 176     | 2711   | 2968   | 3176        | 131         |
 | Ampere Altra (Neoverse N1)   | Linux | 317     | 5786    | 307    | 6313   | 6220        | 537         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 155     | 5283    | 175    | 5683   | 5621        | 347         |
 | Nvidia Grace (Neoverse V2)   | Linux | 121     | 3850    | 123    | 133    | 4141        | 202         |
@@ -1582,6 +1663,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 1114    | 778     | 885    | 885    | 928         |             |
 | Apple M1                     | macOS | 49      | 193     | 1272   | 1364   | 1470        | 65          |
 | Apple M1                     | Linux | 32      | 1104    | 28     | 32     | 948         | 47          |
+| Apple M3                     | macOS | 47      | 72      | 1115   | 1221   | 1306        | 53          |
 | Ampere Altra (Neoverse N1)   | Linux | 31      | 565     | 30     | 616    | 607         | 52          |
 | AWS Graviton 3 (Neoverse V1) | Linux | 18.6    | 629     | 20     | 677    | 669         | 41          |
 | Nvidia Grace (Neoverse V2)   | Linux | 17.6    | 558     | 18.0   | 19.4   | 600         | 29          |
@@ -1596,6 +1678,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 185     | 3.8     | 130    | 4.0    | 4.3         |             |
 | Apple M1                     | macOS | 0.75    | 0.086   | 17.0   | 0.56   | 0.62        | 0.44        |
 | Apple M1                     | Linux | 0.90    | 0.90    | 0.71   | 0.025  | 0.73        | 0.59        |
+| Apple M3                     | macOS | 0.48    | 0.022   | 10.0   | 0.34   | 0.37        | 0.25        |
 | Ampere Altra (Neoverse N1)   | Linux | 1.8     | 0.95    | 1.5    | 0.96   | 0.96        | 1.3         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0     | 1.0     | 1.0    | 1.0    | 1.0         | 1.0         |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.61    | 0.57    | 0.56   | 0.019  | 0.58        | 0.46        |
@@ -1613,6 +1696,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 1.4     | 0.98    | 1.1    | 1.1    | 0.95        |             |
 | Apple M1                     | macOS | 6.2     | 2.5     | 1.2    | 1.1    | 1.1         | 6.7         |
 | Apple M1                     | Linux | 5.9     | 1.0     | 6.7    | 9.3    | 1.1         | 5.8         |
+| Apple M3                     | macOS | 4.9     | 5.2     | 1.3    | 1.2    | 1.1         | 7.6         |
 | Ampere Altra (Neoverse N1)   | Linux | 1.9     | 1.0     | 1.9    | 1.1    | 0.99        | 1.8         |
 | AWS Graviton 3 (Neoverse V1) | Linux | 4.4     | 1.1     | 3.9    | 1.1    | 0.99        | 3.1         |
 | Nvidia Grace (Neoverse V2)   | Linux | 4.3     | 1.1     | 4.2    | 6.5    | 1.0         | 3.9         |
@@ -1637,6 +1721,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 0.84  | 16.3     | 8.1      | 14.6     | 15.0   | 0.10   | 679     | 15433  |
 | Apple M1                     | macOS | 0.22  | 4.8      | 0.88     | 3.2      | 4.8    | 0.000  | 228     | 2869   |
 | Apple M1                     | Linux | 0.24  | 5.3      | 1.1      | 3.7      | 5.2    | 0.022  | 252     | 1793   |
+| Apple M3                     | macOS | 0.17  | 3.7      | 0.59     | 2.3      | 3.6    | 0.000  | 172     | 1131   |
 | Ampere Altra (Neoverse N1)   | Linux | 0.38  | 8.3      | 4.9      | 7.5      | 7.6    | 0.034  | 302     | 9234   |
 | AWS Graviton 3 (Neoverse V1) | Linux | 0.30  | 5.9      | 1.5      | 4.3      | 5.8    | 0.025  | 273     | 2624   |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.19  | 3.6      | 1.1      | 2.9      | 3.6    | 0.018  | 173     | 3714   |
@@ -1657,6 +1742,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 0.047 | 0.91     | 0.45     | 0.82     | 0.84   | 0.006  | 37      | 860    |
 | Apple M1                     | macOS | 0.077 | 1.7      | 0.30     | 1.1      | 1.7    | 0.000  | 78      | 991    |
 | Apple M1                     | Linux | 0.045 | 1.0      | 0.20     | 0.70     | 0.98   | 0.004  | 47      | 337    |
+| Apple M3                     | macOS | 0.070 | 1.5      | 0.24     | 0.95     | 1.5    | 0.000  | 70      | 465    |
 | Ampere Altra (Neoverse N1)   | Linux | 0.037 | 0.81     | 0.48     | 0.73     | 0.74   | 0.003  | 29      | 901    |
 | AWS Graviton 3 (Neoverse V1) | Linux | 0.036 | 0.71     | 0.17     | 0.52     | 0.70   | 0.003  | 32      | 312    |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.028 | 0.53     | 0.16     | 0.41     | 0.52   | 0.003  | 25      | 538    |
@@ -1671,6 +1757,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 4.1  | 4.0      | 8.0      | 4.9      | 3.7    | 5.9    | 3.6     | 8.5    |
 | Apple M1                     | macOS | 0.60 | 0.66     | 0.49     | 0.61     | 0.67   | 0.000  | 0.68    | 0.89   |
 | Apple M1                     | Linux | 0.65 | 0.73     | 0.59     | 0.70     | 0.72   | 0.72   | 0.75    | 0.56   |
+| Apple M3                     | macOS | 0.37 | 0.40     | 0.26     | 0.35     | 0.41   | 0.000  | 0.41    | 0.28   |
 | Ampere Altra (Neoverse N1)   | Linux | 1.1  | 1.2      | 2.9      | 1.5      | 1.1    | 1.2    | 0.96    | 3.0    |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0  | 1.0      | 1.0      | 1.0      | 1.0    | 1.0    | 1.0     | 1.0    |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.51 | 0.48     | 0.59     | 0.52     | 0.48   | 0.58   | 0.50    | 1.1    |
@@ -1690,6 +1777,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 152      | 128      | 104      | 246      | 261      |
 | Apple M1                     | macOS | 19.2     | 12.8     | 10.9     | 60       | 83       |
 | Apple M1                     | Linux | 22       | 15.4     | 12.9     | 65       | 92       |
+| Apple M3                     | macOS | 15.2     | 9.8      | 8.6      | 44       | 63       |
 | Ampere Altra (Neoverse N1)   | Linux | 87       | 76       | 61       | 125      | 131      |
 | AWS Graviton 3 (Neoverse V1) | Linux | 30       | 22       | 19.0     | 78       | 101      |
 | Nvidia Grace (Neoverse V2)   | Linux | 21       | 16.7     | 14.0     | 51       | 63       |
@@ -1710,6 +1798,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 8.5      | 7.2      | 5.8      | 13.7     | 14.6     |
 | Apple M1                     | macOS | 6.6      | 4.4      | 3.8      | 21       | 28       |
 | Apple M1                     | Linux | 4.2      | 2.9      | 2.4      | 12.4     | 17.5     |
+| Apple M3                     | macOS | 6.2      | 4.0      | 3.5      | 18.4     | 26       |
 | Ampere Altra (Neoverse N1)   | Linux | 8.5      | 7.5      | 6.1      | 12.3     | 12.9     |
 | AWS Graviton 3 (Neoverse V1) | Linux | 3.6      | 2.7      | 2.3      | 9.4      | 12.1     |
 | Nvidia Grace (Neoverse V2)   | Linux | 3.1      | 2.4      | 2.0      | 7.4      | 9.1      |
@@ -1724,6 +1813,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 7.2      | 8.3      | 7.9      | 4.5      | 3.7      |
 | Apple M1                     | macOS | 0.51     | 0.46     | 0.47     | 0.63     | 0.67     |
 | Apple M1                     | Linux | 0.60     | 0.56     | 0.55     | 0.68     | 0.74     |
+| Apple M3                     | macOS | 0.32     | 0.28     | 0.29     | 0.37     | 0.41     |
 | Ampere Altra (Neoverse N1)   | Linux | 2.5      | 3.0      | 2.8      | 1.4      | 1.1      |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0      | 1.0      | 1.0      | 1.0      | 1.0      |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.56     | 0.58     | 0.58     | 0.51     | 0.49     |
@@ -1743,6 +1833,7 @@ Execution time in microseconds (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 15397    | 15371    | 13614    | 32410    | 36296    |
 | Apple M1                     | macOS | 1471     | 1464     | 1429     | 7894     | 11609    |
 | Apple M1                     | Linux | 1742     | 1737     | 1701     | 8719     | 13003    |
+| Apple M3                     | macOS | 1119     | 1113     | 1103     | 5735     | 8706     |
 | Ampere Altra (Neoverse N1)   | Linux | 9189     | 9180     | 8052     | 16628    | 18248    |
 | AWS Graviton 3 (Neoverse V1) | Linux | 2617     | 2609     | 2441     | 10329    | 14145    |
 | Nvidia Grace (Neoverse V2)   | Linux | 1951     | 1949     | 1808     | 6793     | 9234     |
@@ -1763,6 +1854,7 @@ Relative performance score (the lower, the better):
 | Cortex A72 (R.Pi4)           | Linux | 858      | 857      | 759      | 1807     | 2024     |
 | Apple M1                     | macOS | 508      | 506      | 494      | 2728     | 4013     |
 | Apple M1                     | Linux | 328      | 327      | 320      | 1642     | 2449     |
+| Apple M3                     | macOS | 460      | 458      | 454      | 2359     | 3582     |
 | Ampere Altra (Neoverse N1)   | Linux | 897      | 896      | 786      | 1623     | 1781     |
 | AWS Graviton 3 (Neoverse V1) | Linux | 311      | 310      | 290      | 1231     | 1685     |
 | Nvidia Grace (Neoverse V2)   | Linux | 283      | 282      | 262      | 985      | 1339     |
@@ -1777,6 +1869,7 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Cortex A72 (R.Pi4)           | Linux | 8.5      | 8.5      | 8.1      | 4.5      | 3.7      |
 | Apple M1                     | macOS | 0.46     | 0.46     | 0.48     | 0.62     | 0.67     |
 | Apple M1                     | Linux | 0.54     | 0.54     | 0.57     | 0.69     | 0.75     |
+| Apple M3                     | macOS | 0.28     | 0.28     | 0.29     | 0.36     | 0.40     |
 | Ampere Altra (Neoverse N1)   | Linux | 3.0      | 3.0      | 2.9      | 1.4      | 1.1      |
 | AWS Graviton 3 (Neoverse V1) | Linux | 1.0      | 1.0      | 1.0      | 1.0      | 1.0      |
 | Nvidia Grace (Neoverse V2)   | Linux | 0.59     | 0.59     | 0.58     | 0.52     | 0.51     |
