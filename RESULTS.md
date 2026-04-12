@@ -121,6 +121,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 5261           |
 | Cortex A53 (R.Pi3)           | Linux | 75122          |
 | Cortex A72 (R.Pi4)           | Linux | 17928          |
+| Cortex A520                  | Linux | 22930          |
+| Cortex A720                  | Linux | 6224           |
 | Apple M1                     | macOS | 2892           |
 | Apple M1                     | Linux | 5307           |
 | Apple M3                     | macOS | 2430           |
@@ -137,6 +139,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :------------: |
 | Xeon-9460                    | Linux | 0.47           |
 | Cortex A72 (R.Pi4)           | Linux | 3.1            |
+| Cortex A520                  | Linux | 3.9            |
+| Cortex A720                  | Linux | 0.74           |
 | Apple M1                     | macOS | 0.28           |
 | Apple M1                     | Linux | 0.51           |
 | Apple M3                     | macOS | 0.19           |
@@ -160,6 +164,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 18.6    | 39      | 22     | 54          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 775     | 1328    | 671    | 1927        | 698               |
 | Cortex A72 (R.Pi4)           | Linux | 154     | 205     | 127    | 295         | 138               |
+| Cortex A520                  | Linux | 179     | 623     | 175    | 489         | 194               |
+| Cortex A720                  | Linux | 32      | 106     | 34     | 74          | 39                |
 | Apple M1                     | macOS | 15.2    | 34      | 16.5   | 52          | 21                |
 | Apple M1                     | Linux | 16.7    | 38      | 20.0   | 54          | 24                |
 | Apple M3                     | macOS | 11.2    | 143     | 13.0   | 40          | 17.0              |
@@ -182,6 +188,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 3.5     | 7.5     | 4.3    | 10.4        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 10.3    | 17.7    | 8.9    | 25          | 9.3               |
 | Cortex A72 (R.Pi4)           | Linux | 8.6     | 11.5    | 7.1    | 16.5        | 7.7               |
+| Cortex A520                  | Linux | 7.8     | 27      | 7.6    | 21          | 8.5               |
+| Cortex A720                  | Linux | 5.2     | 17.1    | 5.6    | 12.0        | 6.3               |
 | Apple M1                     | macOS | 5.3     | 11.8    | 5.7    | 18.1        | 7.4               |
 | Apple M1                     | Linux | 3.1     | 7.3     | 3.8    | 10.2        | 4.6               |
 | Apple M3                     | macOS | 4.6     | 59      | 5.3    | 16.9        | 7.0               |
@@ -198,6 +206,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.51    | 0.47    | 0.58   | 0.55        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 8.3     | 4.8     | 6.4    | 5.7         | 6.1               |
+| Cortex A520                  | Linux | 9.6     | 14.5    | 8.7    | 9.5         | 8.6               |
+| Cortex A720                  | Linux | 1.2     | 1.7     | 1.2    | 1.00        | 1.2               |
 | Apple M1                     | macOS | 0.46    | 0.45    | 0.46   | 0.57        | 0.53              |
 | Apple M1                     | Linux | 0.50    | 0.51    | 0.56   | 0.59        | 0.61              |
 | Apple M3                     | macOS | 0.27    | 1.5     | 0.29   | 0.36        | 0.34              |
@@ -219,6 +229,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 1169    | 1771    | 1543   | 1435        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 26744   | 59438   | 35755  | 50136       | 23283             |
 | Cortex A72 (R.Pi4)           | Linux | 4997    | 16383   | 6631   | 7686        | 4347              |
+| Cortex A520                  | Linux | 5585    | 17175   | 8938   | 12809       | 6061              |
+| Cortex A720                  | Linux | 1139    | 3014    | 2017   | 2027        | 1150              |
 | Apple M1                     | macOS | 550     | 1409    | 1036   | 1407        | 593               |
 | Apple M1                     | Linux | 601     | 3781    | 1240   | 1481        | 733               |
 | Apple M3                     | macOS | 392     | 1108    | 773    | 1179        | 436               |
@@ -241,6 +253,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 222     | 336     | 293    | 272         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 356     | 791     | 475    | 667         | 309               |
 | Cortex A72 (R.Pi4)           | Linux | 278     | 913     | 369    | 428         | 242               |
+| Cortex A520                  | Linux | 243     | 749     | 389    | 558         | 264               |
+| Cortex A720                  | Linux | 183     | 484     | 324    | 325         | 184               |
 | Apple M1                     | macOS | 190     | 487     | 358    | 486         | 205               |
 | Apple M1                     | Linux | 113     | 712     | 233    | 279         | 138               |
 | Apple M3                     | macOS | 161     | 456     | 318    | 485         | 179               |
@@ -257,6 +271,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.90    | 0.52    | 0.68   | 0.52        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 7.5     | 9.3     | 5.7    | 5.4         | 6.6               |
+| Cortex A520                  | Linux | 8.4     | 9.8     | 7.7    | 9.0         | 9.2               |
+| Cortex A720                  | Linux | 1.2     | 1.2     | 1.2    | 0.99        | 1.2               |
 | Apple M1                     | macOS | 0.46    | 0.45    | 0.50   | 0.56        | 0.51              |
 | Apple M1                     | Linux | 0.51    | 1.2     | 0.60   | 0.59        | 0.63              |
 | Apple M3                     | macOS | 0.26    | 0.28    | 0.30   | 0.37        | 0.30              |
@@ -276,6 +292,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Xeon-9460                    | Linux | 62      | 44      | 67     | 26          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 34      | 44      | 53     | 26          | 33                |
 | Cortex A72 (R.Pi4)           | Linux | 32      | 79      | 51     | 25          | 31                |
+| Cortex A520                  | Linux | 31      | 27      | 50     | 26          | 31                |
+| Cortex A720                  | Linux | 35      | 28      | 58     | 27          | 29                |
 | Apple M1                     | macOS | 36      | 41      | 62     | 26          | 27                |
 | Apple M1                     | Linux | 36      | 97      | 62     | 27          | 29                |
 | Apple M3                     | macOS | 34      | 7.7     | 59     | 28          | 25                |
@@ -300,6 +318,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 20      | 39      | 22     | 54          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 826     | 1328    | 670    | 1927        | 698               |
 | Cortex A72 (R.Pi4)           | Linux | 170     | 205     | 127    | 295         | 138               |
+| Cortex A520                  | Linux | 196     | 623     | 176    | 487         | 196               |
+| Cortex A720                  | Linux | 33      | 106     | 34     | 74          | 39                |
 | Apple M1                     | macOS | 16.6    | 34      | 16.5   | 52          | 21                |
 | Apple M1                     | Linux | 18.4    | 38      | 19.8   | 52          | 24                |
 | Apple M3                     | macOS | 12.5    | 143     | 13.0   | 41          | 17.0              |
@@ -322,6 +342,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 4.0     | 7.5     | 4.3    | 10.4        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 11.0    | 17.7    | 8.9    | 25          | 9.3               |
 | Cortex A72 (R.Pi4)           | Linux | 9.5     | 11.5    | 7.1    | 16.5        | 7.7               |
+| Cortex A520                  | Linux | 8.6     | 27      | 7.7    | 21          | 8.6               |
+| Cortex A720                  | Linux | 5.4     | 17.1    | 5.6    | 12.0        | 6.3               |
 | Apple M1                     | macOS | 5.7     | 11.8    | 5.7    | 18.1        | 7.3               |
 | Apple M1                     | Linux | 3.5     | 7.3     | 3.7    | 9.9         | 4.6               |
 | Apple M3                     | macOS | 5.2     | 59      | 5.3    | 16.9        | 7.0               |
@@ -338,6 +360,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.52    | 0.47    | 0.58   | 0.55        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 8.2     | 4.8     | 6.4    | 5.7         | 6.1               |
+| Cortex A520                  | Linux | 9.5     | 14.5    | 8.8    | 9.5         | 8.7               |
+| Cortex A720                  | Linux | 1.1     | 1.7     | 1.2    | 1.00        | 1.2               |
 | Apple M1                     | macOS | 0.45    | 0.45    | 0.46   | 0.57        | 0.53              |
 | Apple M1                     | Linux | 0.50    | 0.51    | 0.55   | 0.57        | 0.60              |
 | Apple M3                     | macOS | 0.27    | 1.5     | 0.29   | 0.36        | 0.34              |
@@ -359,6 +383,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 1172    | 1771    | 1543   | 1433        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 26820   | 59495   | 35773  | 50100       | 23282             |
 | Cortex A72 (R.Pi4)           | Linux | 5017    | 16382   | 6632   | 7686        | 4348              |
+| Cortex A520                  | Linux | 5584    | 17195   | 9022   | 12792       | 6080              |
+| Cortex A720                  | Linux | 1141    | 3014    | 2017   | 2027        | 1150              |
 | Apple M1                     | macOS | 552     | 1427    | 1031   | 1406        | 592               |
 | Apple M1                     | Linux | 601     | 3741    | 1253   | 1500        | 729               |
 | Apple M3                     | macOS | 395     | 1109    | 776    | 1177        | 436               |
@@ -381,6 +407,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 222     | 336     | 293    | 272         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 357     | 791     | 476    | 666         | 309               |
 | Cortex A72 (R.Pi4)           | Linux | 279     | 913     | 369    | 428         | 242               |
+| Cortex A520                  | Linux | 243     | 749     | 393    | 557         | 265               |
+| Cortex A720                  | Linux | 183     | 484     | 324    | 325         | 184               |
 | Apple M1                     | macOS | 190     | 493     | 356    | 486         | 204               |
 | Apple M1                     | Linux | 113     | 704     | 236    | 282         | 137               |
 | Apple M3                     | macOS | 162     | 456     | 319    | 484         | 179               |
@@ -397,6 +425,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.90    | 0.52    | 0.68   | 0.52        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 7.5     | 9.3     | 5.7    | 5.4         | 6.6               |
+| Cortex A520                  | Linux | 8.3     | 9.8     | 7.8    | 9.0         | 9.2               |
+| Cortex A720                  | Linux | 1.2     | 1.2     | 1.2    | 0.99        | 1.2               |
 | Apple M1                     | macOS | 0.46    | 0.46    | 0.50   | 0.56        | 0.51              |
 | Apple M1                     | Linux | 0.50    | 1.2     | 0.61   | 0.60        | 0.62              |
 | Apple M3                     | macOS | 0.27    | 0.28    | 0.30   | 0.37        | 0.30              |
@@ -416,6 +446,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Xeon-9460                    | Linux | 56      | 44      | 67     | 26          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 32      | 44      | 53     | 25          | 33                |
 | Cortex A72 (R.Pi4)           | Linux | 29      | 79      | 51     | 26          | 31                |
+| Cortex A520                  | Linux | 28      | 27      | 51     | 26          | 30                |
+| Cortex A720                  | Linux | 33      | 28      | 58     | 27          | 29                |
 | Apple M1                     | macOS | 33      | 41      | 62     | 26          | 27                |
 | Apple M1                     | Linux | 32      | 97      | 63     | 28          | 30                |
 | Apple M3                     | macOS | 31      | 7.7     | 59     | 28          | 25                |
@@ -440,6 +472,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 297     | 1771    | 1539   | 1441        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 26762   | 59432   | 35750  | 50109       | 23280             |
 | Cortex A72 (R.Pi4)           | Linux | 5005    | 16439   | 6626   | 7728        | 4344              |
+| Cortex A520                  | Linux | 5567    | 17168   | 8976   | 12769       | 6035              |
+| Cortex A720                  | Linux | 1136    | 3014    | 2013   | 2026        | 1149              |
 | Apple M1                     | macOS | 549     | 1430    | 1036   | 1405        | 595               |
 | Apple M1                     | Linux | 598     | 3761    | 1226   | 1465        | 723               |
 | Apple M3                     | macOS | 390     | 1102    | 774    | 1177        | 435               |
@@ -462,6 +496,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 56      | 336     | 292    | 273         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 356     | 791     | 475    | 667         | 309               |
 | Cortex A72 (R.Pi4)           | Linux | 279     | 916     | 369    | 431         | 242               |
+| Cortex A520                  | Linux | 242     | 748     | 391    | 556         | 263               |
+| Cortex A720                  | Linux | 182     | 484     | 323    | 325         | 184               |
 | Apple M1                     | macOS | 189     | 494     | 358    | 485         | 205               |
 | Apple M1                     | Linux | 112     | 708     | 231    | 276         | 136               |
 | Apple M3                     | macOS | 160     | 453     | 318    | 484         | 179               |
@@ -478,6 +514,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.23    | 0.52    | 0.68   | 0.52        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 7.5     | 9.3     | 5.7    | 5.5         | 6.6               |
+| Cortex A520                  | Linux | 8.3     | 9.8     | 7.7    | 9.0         | 9.2               |
+| Cortex A720                  | Linux | 1.2     | 1.2     | 1.2    | 0.99        | 1.2               |
 | Apple M1                     | macOS | 0.46    | 0.46    | 0.50   | 0.56        | 0.51              |
 | Apple M1                     | Linux | 0.50    | 1.2     | 0.60   | 0.58        | 0.62              |
 | Apple M3                     | macOS | 0.26    | 0.28    | 0.30   | 0.37        | 0.30              |
@@ -499,6 +537,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 17.2    | 38      | 22     | 53          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 752     | 1316    | 685    | 1920        | 692               |
 | Cortex A72 (R.Pi4)           | Linux | 140     | 202     | 131    | 294         | 135               |
+| Cortex A520                  | Linux | 160     | 620     | 180    | 490         | 188               |
+| Cortex A720                  | Linux | 30      | 105     | 35     | 72          | 37                |
 | Apple M1                     | macOS | 14.4    | 33      | 17.9   | 50          | 20.0              |
 | Apple M1                     | Linux | 15.3    | 37      | 19.5   | 51          | 22                |
 | Apple M3                     | macOS | 10.7    | 144     | 16.1   | 39          | 17.9              |
@@ -521,6 +561,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 3.3     | 7.3     | 4.3    | 10.2        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 10.0    | 17.5    | 9.1    | 25          | 9.2               |
 | Cortex A72 (R.Pi4)           | Linux | 7.8     | 11.3    | 7.3    | 16.4        | 7.6               |
+| Cortex A520                  | Linux | 7.0     | 27      | 7.9    | 21          | 8.2               |
+| Cortex A720                  | Linux | 4.9     | 17.0    | 5.6    | 11.6        | 6.1               |
 | Apple M1                     | macOS | 5.0     | 11.6    | 6.2    | 17.5        | 6.9               |
 | Apple M1                     | Linux | 2.9     | 7.0     | 3.7    | 9.7         | 4.2               |
 | Apple M3                     | macOS | 4.4     | 59      | 6.6    | 16.4        | 7.3               |
@@ -537,6 +579,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.51    | 0.47    | 0.56   | 0.54        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 8.1     | 4.8     | 6.3    | 5.8         | 6.2               |
+| Cortex A520                  | Linux | 9.2     | 14.8    | 8.6    | 9.7         | 8.6               |
+| Cortex A720                  | Linux | 1.2     | 1.7     | 1.2    | 0.99        | 1.2               |
 | Apple M1                     | macOS | 0.46    | 0.45    | 0.48   | 0.56        | 0.51              |
 | Apple M1                     | Linux | 0.49    | 0.50    | 0.52   | 0.57        | 0.58              |
 | Apple M3                     | macOS | 0.28    | 1.5     | 0.34   | 0.35        | 0.37              |
@@ -556,6 +600,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Xeon-9460                    | Linux | 17.3    | 45      | 67     | 26          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 35      | 45      | 52     | 26          | 33                |
 | Cortex A72 (R.Pi4)           | Linux | 35      | 81      | 50     | 26          | 32                |
+| Cortex A520                  | Linux | 34      | 27      | 49     | 26          | 32                |
+| Cortex A720                  | Linux | 36      | 28      | 57     | 28          | 30                |
 | Apple M1                     | macOS | 38      | 42      | 57     | 27          | 29                |
 | Apple M1                     | Linux | 39      | 101     | 63     | 28          | 32                |
 | Apple M3                     | macOS | 36      | 7.6     | 48     | 29          | 24                |
@@ -580,6 +626,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 302     | 1771    | 1539   | 1441        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 26844   | 59451   | 35753  | 50104       | 23279             |
 | Cortex A72 (R.Pi4)           | Linux | 5034    | 16433   | 6626   | 7739        | 4344              |
+| Cortex A520                  | Linux | 5601    | 17239   | 8931   | 12808       | 6052              |
+| Cortex A720                  | Linux | 1139    | 3014    | 2013   | 2027        | 1149              |
 | Apple M1                     | macOS | 551     | 1432    | 1032   | 1404        | 594               |
 | Apple M1                     | Linux | 599     | 3785    | 1253   | 1501        | 742               |
 | Apple M3                     | macOS | 399     | 1102    | 774    | 1175        | 435               |
@@ -602,6 +650,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 57      | 336     | 292    | 273         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 357     | 791     | 475    | 666         | 309               |
 | Cortex A72 (R.Pi4)           | Linux | 280     | 916     | 369    | 431         | 242               |
+| Cortex A520                  | Linux | 244     | 751     | 389    | 558         | 263               |
+| Cortex A720                  | Linux | 183     | 484     | 323    | 325         | 184               |
 | Apple M1                     | macOS | 190     | 495     | 357    | 485         | 205               |
 | Apple M1                     | Linux | 112     | 713     | 236    | 282         | 139               |
 | Apple M3                     | macOS | 164     | 453     | 318    | 483         | 179               |
@@ -618,6 +668,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.23    | 0.52    | 0.68   | 0.52        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 7.5     | 9.3     | 5.7    | 5.5         | 6.6               |
+| Cortex A520                  | Linux | 8.3     | 9.8     | 7.7    | 9.1         | 9.2               |
+| Cortex A720                  | Linux | 1.2     | 1.2     | 1.2    | 0.99        | 1.2               |
 | Apple M1                     | macOS | 0.46    | 0.46    | 0.50   | 0.56        | 0.51              |
 | Apple M1                     | Linux | 0.50    | 1.2     | 0.61   | 0.60        | 0.63              |
 | Apple M3                     | macOS | 0.27    | 0.28    | 0.30   | 0.37        | 0.30              |
@@ -639,6 +691,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 21      | 38      | 22     | 53          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 814     | 1316    | 685    | 1919        | 693               |
 | Cortex A72 (R.Pi4)           | Linux | 159     | 203     | 131    | 294         | 135               |
+| Cortex A520                  | Linux | 185     | 621     | 178    | 484         | 187               |
+| Cortex A720                  | Linux | 32      | 105     | 35     | 72          | 37                |
 | Apple M1                     | macOS | 16.1    | 33      | 17.9   | 50          | 20.0              |
 | Apple M1                     | Linux | 17.7    | 37      | 19.5   | 51          | 22                |
 | Apple M3                     | macOS | 12.4    | 144     | 16.0   | 39          | 17.9              |
@@ -661,6 +715,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 4.0     | 7.3     | 4.3    | 10.2        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 10.8    | 17.5    | 9.1    | 25          | 9.2               |
 | Cortex A72 (R.Pi4)           | Linux | 8.9     | 11.3    | 7.3    | 16.4        | 7.6               |
+| Cortex A520                  | Linux | 8.1     | 27      | 7.8    | 21          | 8.2               |
+| Cortex A720                  | Linux | 5.3     | 17.0    | 5.6    | 11.6        | 6.1               |
 | Apple M1                     | macOS | 5.6     | 11.7    | 6.2    | 17.5        | 6.9               |
 | Apple M1                     | Linux | 3.3     | 7.0     | 3.7    | 9.7         | 4.3               |
 | Apple M3                     | macOS | 5.1     | 59      | 6.6    | 16.4        | 7.4               |
@@ -677,6 +733,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.54    | 0.47    | 0.56   | 0.54        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 7.9     | 4.8     | 6.3    | 5.8         | 6.2               |
+| Cortex A520                  | Linux | 9.1     | 14.8    | 8.5    | 9.6         | 8.6               |
+| Cortex A720                  | Linux | 1.1     | 1.7     | 1.2    | 0.99        | 1.2               |
 | Apple M1                     | macOS | 0.45    | 0.45    | 0.48   | 0.56        | 0.51              |
 | Apple M1                     | Linux | 0.49    | 0.50    | 0.52   | 0.57        | 0.58              |
 | Apple M3                     | macOS | 0.27    | 1.5     | 0.34   | 0.35        | 0.37              |
@@ -696,6 +754,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Xeon-9460                    | Linux | 14.3    | 45      | 67     | 26          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 32      | 45      | 52     | 26          | 33                |
 | Cortex A72 (R.Pi4)           | Linux | 31      | 80      | 50     | 26          | 32                |
+| Cortex A520                  | Linux | 30      | 27      | 49     | 26          | 32                |
+| Cortex A720                  | Linux | 34      | 28      | 57     | 28          | 30                |
 | Apple M1                     | macOS | 34      | 42      | 57     | 27          | 29                |
 | Apple M1                     | Linux | 33      | 101     | 64     | 29          | 32                |
 | Apple M3                     | macOS | 32      | 7.6     | 48     | 29          | 24                |
@@ -720,6 +780,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 87      | 0.56    | 1.8    | 8.6         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 1504    | 8.1     | 34     | 144         | 43                |
 | Cortex A72 (R.Pi4)           | Linux | 435     | 2.0     | 9.9    | 28          | 13.4              |
+| Cortex A520                  | Linux | 90      | 2.0     | 14.0   | 40          | 15.8              |
+| Cortex A720                  | Linux | 9.7     | 0.46    | 2.4    | 10.1        | 5.0               |
 | Apple M1                     | macOS | 28      | 0.47    | 1.9    | 9.6         | 6.0               |
 | Apple M1                     | Linux | 80      | 0.58    | 1.9    | 10.7        | 7.0               |
 | Apple M3                     | macOS | 5.6     | 0.33    | 1.6    | 7.4         | 4.6               |
@@ -742,6 +804,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 16.7    | 0.11    | 0.34   | 1.6         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 20      | 0.11    | 0.47   | 1.9         | 0.58              |
 | Cortex A72 (R.Pi4)           | Linux | 24      | 0.11    | 0.55   | 1.6         | 0.75              |
+| Cortex A520                  | Linux | 3.9     | 0.087   | 0.61   | 1.8         | 0.69              |
+| Cortex A720                  | Linux | 1.6     | 0.075   | 0.38   | 1.6         | 0.80              |
 | Apple M1                     | macOS | 10.0    | 0.16    | 0.67   | 3.3         | 2.1               |
 | Apple M1                     | Linux | 15.1    | 0.11    | 0.37   | 2.0         | 1.3               |
 | Apple M3                     | macOS | 2.3     | 0.14    | 0.68   | 3.0         | 1.9               |
@@ -758,6 +822,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.17    | 0.62    | 0.51   | 0.67        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 1.7     | 4.3     | 5.5    | 4.4         | 4.1               |
+| Cortex A520                  | Linux | 0.34    | 4.3     | 7.7    | 6.1         | 4.8               |
+| Cortex A720                  | Linux | 0.026   | 0.70    | 0.90   | 1.1         | 1.0               |
 | Apple M1                     | macOS | 0.062   | 0.58    | 0.60   | 0.81        | 1.0               |
 | Apple M1                     | Linux | 0.17    | 0.71    | 0.60   | 0.91        | 1.2               |
 | Apple M3                     | macOS | 0.010   | 0.33    | 0.41   | 0.50        | 0.63              |
@@ -779,6 +845,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 90      | 21      | 19.9   | 18.5        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 1562    | 662     | 317    | 381         | 39                |
 | Cortex A72 (R.Pi4)           | Linux | 445     | 97      | 87     | 67          | 11.3              |
+| Cortex A520                  | Linux | 131     | 132     | 115    | 94          | 15.4              |
+| Cortex A720                  | Linux | 15.5    | 33      | 21     | 22          | 3.6               |
 | Apple M1                     | macOS | 31      | 22      | 17.8   | 15.0        | 2.6               |
 | Apple M1                     | Linux | 83      | 21      | 20     | 16.9        | 3.0               |
 | Apple M3                     | macOS | 8.5     | 18.0    | 15.3   | 11.6        | 2.2               |
@@ -801,6 +869,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 17.2    | 4.0     | 3.8    | 3.5         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 20      | 8.8     | 4.2    | 5.1         | 0.53              |
 | Cortex A72 (R.Pi4)           | Linux | 24      | 5.5     | 4.9    | 3.7         | 0.63              |
+| Cortex A520                  | Linux | 5.7     | 5.8     | 5.0    | 4.1         | 0.67              |
+| Cortex A720                  | Linux | 2.5     | 5.3     | 3.4    | 3.6         | 0.58              |
 | Apple M1                     | macOS | 11.0    | 7.9     | 6.1    | 5.2         | 0.89              |
 | Apple M1                     | Linux | 15.8    | 4.0     | 3.8    | 3.2         | 0.56              |
 | Apple M3                     | macOS | 3.5     | 7.4     | 6.3    | 4.8         | 0.89              |
@@ -817,6 +887,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.18    | 0.63    | 0.63   | 0.67        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 1.7     | 5.7     | 5.4    | 4.7         | 4.8               |
+| Cortex A520                  | Linux | 0.49    | 7.7     | 7.1    | 6.7         | 6.5               |
+| Cortex A720                  | Linux | 0.040   | 1.3     | 0.90   | 1.1         | 1.1               |
 | Apple M1                     | macOS | 0.067   | 0.74    | 0.62   | 0.59        | 0.61              |
 | Apple M1                     | Linux | 0.18    | 0.69    | 0.71   | 0.67        | 0.72              |
 | Apple M3                     | macOS | 0.014   | 0.47    | 0.43   | 0.37        | 0.42              |
@@ -840,6 +912,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 64      | 159     | 80     | 174         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2856    | 4936    | 2245   | 6881        | 2296              |
 | Cortex A72 (R.Pi4)           | Linux | 480     | 738     | 393    | 1015        | 412               |
+| Cortex A520                  | Linux | 618     | 2295    | 573    | 1611        | 582               |
+| Cortex A720                  | Linux | 116     | 388     | 100    | 231         | 108               |
 | Apple M1                     | macOS | 53      | 126     | 60     | 179         | 69                |
 | Apple M1                     | Linux | 58      | 143     | 79     | 167         | 79                |
 | Apple M3                     | macOS | 40      | 583     | 45     | 134         | 52                |
@@ -862,6 +936,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 12.3    | 30      | 15.2   | 33          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 38      | 65      | 29     | 91          | 30                |
 | Cortex A72 (R.Pi4)           | Linux | 26      | 41      | 21     | 56          | 23                |
+| Cortex A520                  | Linux | 26      | 100     | 25     | 70          | 25                |
+| Cortex A720                  | Linux | 18.8    | 62      | 16.2   | 37          | 17.5              |
 | Apple M1                     | macOS | 18.5    | 43      | 20     | 62          | 23                |
 | Apple M1                     | Linux | 11.0    | 27      | 14.9   | 31          | 14.9              |
 | Apple M3                     | macOS | 16.6    | 239     | 18.7   | 55          | 21                |
@@ -878,6 +954,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.51    | 0.53    | 0.63   | 0.55        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 7.3     | 4.8     | 6.0    | 6.2         | 5.9               |
+| Cortex A520                  | Linux | 9.4     | 14.8    | 8.8    | 9.8         | 8.3               |
+| Cortex A720                  | Linux | 1.2     | 1.7     | 1.1    | 0.97        | 1.1               |
 | Apple M1                     | macOS | 0.46    | 0.46    | 0.52   | 0.61        | 0.56              |
 | Apple M1                     | Linux | 0.50    | 0.52    | 0.68   | 0.57        | 0.64              |
 | Apple M3                     | macOS | 0.28    | 1.7     | 0.31   | 0.37        | 0.34              |
@@ -899,6 +977,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 7407    | 11113   | 9232   | 7468        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 186535  | 378405  | 214376 | 312961      | 158954            |
 | Cortex A72 (R.Pi4)           | Linux | 34813   | 72849   | 49520  | 45186       | 29517             |
+| Cortex A520                  | Linux | 38588   | 105619  | 67969  | 74169       | 40647             |
+| Cortex A720                  | Linux | 7707    | 18100   | 14198  | 10560       | 7973              |
 | Apple M1                     | macOS | 3497    | 8798    | 6179   | 7253        | 3732              |
 | Apple M1                     | Linux | 3878    | 14981   | 7477   | 7644        | 4860              |
 | Apple M3                     | macOS | 2603    | 7021    | 5023   | 5638        | 2910              |
@@ -921,6 +1001,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 1408    | 2112    | 1754   | 1419        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2483    | 5037    | 2853   | 4166        | 2115              |
 | Cortex A72 (R.Pi4)           | Linux | 1941    | 4063    | 2762   | 2520        | 1646              |
+| Cortex A520                  | Linux | 1682    | 4606    | 2964   | 3234        | 1772              |
+| Cortex A720                  | Linux | 1238    | 2907    | 2281   | 1696        | 1280              |
 | Apple M1                     | macOS | 1209    | 3041    | 2136   | 2507        | 1290              |
 | Apple M1                     | Linux | 730     | 2822    | 1408   | 1440        | 915               |
 | Apple M3                     | macOS | 1071    | 2888    | 2066   | 2319        | 1197              |
@@ -937,6 +1019,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.87    | 0.55    | 0.59   | 0.51        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 8.0     | 7.0     | 6.2    | 6.0         | 6.5               |
+| Cortex A520                  | Linux | 8.9     | 10.1    | 8.5    | 9.9         | 8.9               |
+| Cortex A720                  | Linux | 1.2     | 1.2     | 1.2    | 0.97        | 1.2               |
 | Apple M1                     | macOS | 0.45    | 0.47    | 0.43   | 0.54        | 0.46              |
 | Apple M1                     | Linux | 0.50    | 0.81    | 0.52   | 0.57        | 0.60              |
 | Apple M3                     | macOS | 0.27    | 0.30    | 0.28   | 0.34        | 0.29              |
@@ -956,6 +1040,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Xeon-9460                    | Linux | 114     | 69      | 115    | 42          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 65      | 76      | 95     | 45          | 69                |
 | Cortex A72 (R.Pi4)           | Linux | 72      | 98      | 125    | 44          | 71                |
+| Cortex A520                  | Linux | 62      | 46      | 118    | 46          | 69                |
+| Cortex A720                  | Linux | 66      | 46      | 141    | 45          | 73                |
 | Apple M1                     | macOS | 65      | 69      | 102    | 40          | 53                |
 | Apple M1                     | Linux | 66      | 104     | 94     | 45          | 61                |
 | Apple M3                     | macOS | 64      | 12.0    | 110    | 41          | 55                |
@@ -980,6 +1066,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 67      | 159     | 79     | 174         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2908    | 4934    | 2245   | 6916        | 2296              |
 | Cortex A72 (R.Pi4)           | Linux | 497     | 738     | 392    | 1015        | 412               |
+| Cortex A520                  | Linux | 635     | 2282    | 568    | 1623        | 583               |
+| Cortex A720                  | Linux | 118     | 388     | 100    | 231         | 108               |
 | Apple M1                     | macOS | 54      | 126     | 60     | 179         | 69                |
 | Apple M1                     | Linux | 60      | 143     | 81     | 174         | 82                |
 | Apple M3                     | macOS | 41      | 546     | 45     | 134         | 52                |
@@ -1002,6 +1090,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 12.8    | 30      | 15.2   | 33          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 38      | 65      | 29     | 92          | 30                |
 | Cortex A72 (R.Pi4)           | Linux | 27      | 41      | 21     | 56          | 23                |
+| Cortex A520                  | Linux | 27      | 99      | 24     | 70          | 25                |
+| Cortex A720                  | Linux | 19.0    | 62      | 16.2   | 37          | 17.5              |
 | Apple M1                     | macOS | 18.9    | 43      | 20     | 61          | 23                |
 | Apple M1                     | Linux | 11.5    | 27      | 15.3   | 32          | 15.4              |
 | Apple M3                     | macOS | 17.2    | 224     | 18.6   | 55          | 21                |
@@ -1018,6 +1108,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.51    | 0.53    | 0.63   | 0.55        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 7.3     | 4.8     | 6.0    | 6.2         | 5.9               |
+| Cortex A520                  | Linux | 9.4     | 14.7    | 8.7    | 9.9         | 8.3               |
+| Cortex A720                  | Linux | 1.2     | 1.7     | 1.1    | 0.97        | 1.1               |
 | Apple M1                     | macOS | 0.45    | 0.46    | 0.52   | 0.61        | 0.56              |
 | Apple M1                     | Linux | 0.50    | 0.52    | 0.70   | 0.60        | 0.66              |
 | Apple M3                     | macOS | 0.28    | 1.6     | 0.31   | 0.37        | 0.34              |
@@ -1039,6 +1131,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 7410    | 11110   | 9241   | 7460        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 187251  | 379170  | 214359 | 311307      | 158941            |
 | Cortex A72 (R.Pi4)           | Linux | 34867   | 72833   | 49520  | 45177       | 29516             |
+| Cortex A520                  | Linux | 38776   | 105961  | 66982  | 74307       | 40641             |
+| Cortex A720                  | Linux | 7709    | 18099   | 14198  | 10558       | 7973              |
 | Apple M1                     | macOS | 3499    | 8798    | 6179   | 7253        | 3732              |
 | Apple M1                     | Linux | 3916    | 15090   | 7411   | 7499        | 4770              |
 | Apple M3                     | macOS | 2650    | 7045    | 5024   | 5609        | 2920              |
@@ -1061,6 +1155,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 1408    | 2111    | 1756   | 1417        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2492    | 5047    | 2853   | 4143        | 2115              |
 | Cortex A72 (R.Pi4)           | Linux | 1944    | 4062    | 2762   | 2519        | 1646              |
+| Cortex A520                  | Linux | 1691    | 4621    | 2921   | 3240        | 1772              |
+| Cortex A720                  | Linux | 1238    | 2907    | 2281   | 1696        | 1280              |
 | Apple M1                     | macOS | 1209    | 3041    | 2135   | 2507        | 1290              |
 | Apple M1                     | Linux | 737     | 2843    | 1396   | 1412        | 898               |
 | Apple M3                     | macOS | 1090    | 2898    | 2067   | 2307        | 1201              |
@@ -1077,6 +1173,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.87    | 0.55    | 0.59   | 0.51        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 8.0     | 7.0     | 6.2    | 6.0         | 6.5               |
+| Cortex A520                  | Linux | 8.9     | 10.2    | 8.3    | 9.9         | 8.9               |
+| Cortex A720                  | Linux | 1.2     | 1.2     | 1.2    | 0.97        | 1.2               |
 | Apple M1                     | macOS | 0.45    | 0.47    | 0.43   | 0.54        | 0.46              |
 | Apple M1                     | Linux | 0.51    | 0.81    | 0.52   | 0.56        | 0.59              |
 | Apple M3                     | macOS | 0.27    | 0.30    | 0.28   | 0.34        | 0.29              |
@@ -1096,6 +1194,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Xeon-9460                    | Linux | 110     | 69      | 115    | 42          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 64      | 76      | 95     | 45          | 69                |
 | Cortex A72 (R.Pi4)           | Linux | 70      | 98      | 126    | 44          | 71                |
+| Cortex A520                  | Linux | 61      | 46      | 117    | 45          | 69                |
+| Cortex A720                  | Linux | 65      | 46      | 141    | 45          | 73                |
 | Apple M1                     | macOS | 63      | 69      | 102    | 40          | 53                |
 | Apple M1                     | Linux | 64      | 105     | 91     | 42          | 58                |
 | Apple M3                     | macOS | 63      | 12.9    | 110    | 41          | 55                |
@@ -1120,6 +1220,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 3864    | 11145   | 9223   | 7471        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 187189  | 379076  | 214369 | 311659      | 158949            |
 | Cortex A72 (R.Pi4)           | Linux | 34822   | 72850   | 49495  | 45169       | 29500             |
+| Cortex A520                  | Linux | 38605   | 105976  | 66476  | 74130       | 40738             |
+| Cortex A720                  | Linux | 7703    | 18098   | 14199  | 10556       | 7971              |
 | Apple M1                     | macOS | 3495    | 8806    | 6183   | 7250        | 3741              |
 | Apple M1                     | Linux | 3929    | 15137   | 7496   | 7722        | 4709              |
 | Apple M3                     | macOS | 2618    | 7040    | 5022   | 5641        | 2924              |
@@ -1142,6 +1244,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 734     | 2118    | 1753   | 1420        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2491    | 5046    | 2853   | 4148        | 2115              |
 | Cortex A72 (R.Pi4)           | Linux | 1942    | 4063    | 2760   | 2519        | 1645              |
+| Cortex A520                  | Linux | 1683    | 4621    | 2899   | 3232        | 1776              |
+| Cortex A720                  | Linux | 1237    | 2907    | 2281   | 1696        | 1280              |
 | Apple M1                     | macOS | 1208    | 3044    | 2137   | 2506        | 1293              |
 | Apple M1                     | Linux | 740     | 2851    | 1412   | 1454        | 887               |
 | Apple M3                     | macOS | 1077    | 2896    | 2066   | 2320        | 1203              |
@@ -1158,6 +1262,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.46    | 0.55    | 0.59   | 0.51        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 8.0     | 7.0     | 6.2    | 6.0         | 6.5               |
+| Cortex A520                  | Linux | 8.9     | 10.2    | 8.3    | 9.9         | 9.0               |
+| Cortex A720                  | Linux | 1.2     | 1.2     | 1.2    | 0.97        | 1.2               |
 | Apple M1                     | macOS | 0.45    | 0.47    | 0.43   | 0.54        | 0.46              |
 | Apple M1                     | Linux | 0.51    | 0.82    | 0.53   | 0.58        | 0.58              |
 | Apple M3                     | macOS | 0.27    | 0.30    | 0.28   | 0.34        | 0.29              |
@@ -1179,6 +1285,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 62      | 157     | 79     | 171         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2827    | 4921    | 2277   | 6868        | 2284              |
 | Cortex A72 (R.Pi4)           | Linux | 464     | 733     | 399    | 1009        | 407               |
+| Cortex A520                  | Linux | 591     | 2282    | 575    | 1589        | 576               |
+| Cortex A720                  | Linux | 114     | 386     | 100    | 227         | 105               |
 | Apple M1                     | macOS | 51      | 124     | 64     | 177         | 68                |
 | Apple M1                     | Linux | 57      | 142     | 75     | 169         | 83                |
 | Apple M3                     | macOS | 39      | 544     | 45     | 130         | 49                |
@@ -1201,6 +1309,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 11.9    | 29      | 15.1   | 32          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 37      | 65      | 30     | 91          | 30                |
 | Cortex A72 (R.Pi4)           | Linux | 25      | 40      | 22     | 56          | 22                |
+| Cortex A520                  | Linux | 25      | 99      | 25     | 69          | 25                |
+| Cortex A720                  | Linux | 18.4    | 62      | 16.2   | 36          | 17.0              |
 | Apple M1                     | macOS | 18.0    | 43      | 22     | 61          | 23                |
 | Apple M1                     | Linux | 10.9    | 26      | 14.3   | 31          | 15.7              |
 | Apple M3                     | macOS | 16.4    | 224     | 18.9   | 53          | 20                |
@@ -1217,6 +1327,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.50    | 0.53    | 0.61   | 0.54        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 7.2     | 4.8     | 6.0    | 6.2         | 5.9               |
+| Cortex A520                  | Linux | 9.2     | 14.9    | 8.6    | 9.8         | 8.4               |
+| Cortex A720                  | Linux | 1.2     | 1.7     | 1.0    | 0.97        | 1.1               |
 | Apple M1                     | macOS | 0.46    | 0.46    | 0.54   | 0.61        | 0.56              |
 | Apple M1                     | Linux | 0.51    | 0.52    | 0.64   | 0.59        | 0.68              |
 | Apple M3                     | macOS | 0.28    | 1.6     | 0.31   | 0.36        | 0.32              |
@@ -1236,6 +1348,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Xeon-9460                    | Linux | 61      | 70      | 115    | 43          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 66      | 77      | 94     | 45          | 69                |
 | Cortex A72 (R.Pi4)           | Linux | 74      | 99      | 124    | 44          | 72                |
+| Cortex A520                  | Linux | 65      | 46      | 115    | 46          | 70                |
+| Cortex A720                  | Linux | 67      | 46      | 141    | 46          | 75                |
 | Apple M1                     | macOS | 67      | 70      | 95     | 40          | 54                |
 | Apple M1                     | Linux | 67      | 106     | 99     | 45          | 56                |
 | Apple M3                     | macOS | 65      | 12.9    | 109    | 43          | 59                |
@@ -1260,6 +1374,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 3868    | 11113   | 9224   | 7474        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 187283  | 378629  | 214372 | 311857      | 158939            |
 | Cortex A72 (R.Pi4)           | Linux | 34884   | 72824   | 49495  | 45175       | 29507             |
+| Cortex A520                  | Linux | 38275   | 106157  | 66391  | 74163       | 40683             |
+| Cortex A720                  | Linux | 7703    | 18099   | 14198  | 10555       | 7971              |
 | Apple M1                     | macOS | 3497    | 8802    | 6186   | 7271        | 3743              |
 | Apple M1                     | Linux | 3943    | 15398   | 7429   | 7523        | 4620              |
 | Apple M3                     | macOS | 2638    | 7045    | 5029   | 5632        | 2921              |
@@ -1282,6 +1398,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 735     | 2112    | 1753   | 1420        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2493    | 5040    | 2853   | 4151        | 2115              |
 | Cortex A72 (R.Pi4)           | Linux | 1945    | 4062    | 2760   | 2519        | 1645              |
+| Cortex A520                  | Linux | 1669    | 4629    | 2895   | 3234        | 1774              |
+| Cortex A720                  | Linux | 1237    | 2907    | 2281   | 1695        | 1280              |
 | Apple M1                     | macOS | 1209    | 3042    | 2138   | 2513        | 1293              |
 | Apple M1                     | Linux | 743     | 2901    | 1399   | 1417        | 870               |
 | Apple M3                     | macOS | 1085    | 2898    | 2069   | 2317        | 1202              |
@@ -1298,6 +1416,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.46    | 0.55    | 0.59   | 0.51        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 8.0     | 7.0     | 6.2    | 6.0         | 6.5               |
+| Cortex A520                  | Linux | 8.8     | 10.2    | 8.3    | 9.9         | 8.9               |
+| Cortex A720                  | Linux | 1.2     | 1.2     | 1.2    | 0.97        | 1.2               |
 | Apple M1                     | macOS | 0.45    | 0.47    | 0.43   | 0.54        | 0.46              |
 | Apple M1                     | Linux | 0.51    | 0.83    | 0.52   | 0.56        | 0.57              |
 | Apple M3                     | macOS | 0.27    | 0.30    | 0.28   | 0.34        | 0.29              |
@@ -1319,6 +1439,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 66      | 157     | 79     | 171         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 2888    | 4921    | 2277   | 6866        | 2285              |
 | Cortex A72 (R.Pi4)           | Linux | 484     | 733     | 399    | 1010        | 406               |
+| Cortex A520                  | Linux | 615     | 2315    | 577    | 1606        | 577               |
+| Cortex A720                  | Linux | 116     | 386     | 100    | 227         | 105               |
 | Apple M1                     | macOS | 53      | 124     | 64     | 177         | 68                |
 | Apple M1                     | Linux | 60      | 142     | 75     | 170         | 83                |
 | Apple M3                     | macOS | 41      | 544     | 45     | 130         | 49                |
@@ -1341,6 +1463,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 12.7    | 29      | 15.2   | 32          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 38      | 65      | 30     | 91          | 30                |
 | Cortex A72 (R.Pi4)           | Linux | 27      | 40      | 22     | 56          | 22                |
+| Cortex A520                  | Linux | 26      | 100     | 25     | 70          | 25                |
+| Cortex A720                  | Linux | 18.8    | 62      | 16.2   | 36          | 17.0              |
 | Apple M1                     | macOS | 18.6    | 43      | 22     | 61          | 23                |
 | Apple M1                     | Linux | 11.4    | 26      | 14.3   | 32          | 15.7              |
 | Apple M3                     | macOS | 17.2    | 224     | 18.9   | 53          | 20                |
@@ -1357,6 +1481,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.51    | 0.53    | 0.61   | 0.54        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 7.2     | 4.8     | 6.0    | 6.2         | 5.9               |
+| Cortex A520                  | Linux | 9.2     | 15.1    | 8.6    | 9.9         | 8.4               |
+| Cortex A720                  | Linux | 1.2     | 1.7     | 1.0    | 0.97        | 1.1               |
 | Apple M1                     | macOS | 0.45    | 0.46    | 0.54   | 0.61        | 0.56              |
 | Apple M1                     | Linux | 0.51    | 0.52    | 0.64   | 0.59        | 0.68              |
 | Apple M3                     | macOS | 0.28    | 1.6     | 0.31   | 0.36        | 0.32              |
@@ -1376,6 +1502,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Xeon-9460                    | Linux | 57      | 70      | 115    | 43          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 64      | 76      | 94     | 45          | 69                |
 | Cortex A72 (R.Pi4)           | Linux | 72      | 99      | 124    | 44          | 72                |
+| Cortex A520                  | Linux | 62      | 45      | 114    | 46          | 70                |
+| Cortex A720                  | Linux | 65      | 46      | 141    | 46          | 75                |
 | Apple M1                     | macOS | 64      | 70      | 95     | 41          | 54                |
 | Apple M1                     | Linux | 65      | 108     | 97     | 44          | 55                |
 | Apple M3                     | macOS | 63      | 12.9    | 109    | 43          | 59                |
@@ -1400,6 +1528,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 88      | 0.58    | 2.1    | 22          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 1515    | 8.4     | 40     | 407         | 75                |
 | Cortex A72 (R.Pi4)           | Linux | 434     | 2.0     | 12.2   | 74          | 24                |
+| Cortex A520                  | Linux | 92      | 2.1     | 16.5   | 106         | 27                |
+| Cortex A720                  | Linux | 10.2    | 0.49    | 2.9    | 25          | 9.2               |
 | Apple M1                     | macOS | 29      | 0.51    | 2.3    | 25          | 11.1              |
 | Apple M1                     | Linux | 85      | 0.61    | 2.5    | 24          | 13.3              |
 | Apple M3                     | macOS | 5.9     | 0.35    | 1.9    | 19.4        | 8.4               |
@@ -1422,6 +1552,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 16.7    | 0.11    | 0.41   | 4.2         |                   |
 | Cortex A53 (R.Pi3)           | Linux | 20      | 0.11    | 0.54   | 5.4         | 1.0               |
 | Cortex A72 (R.Pi4)           | Linux | 24      | 0.11    | 0.68   | 4.1         | 1.3               |
+| Cortex A520                  | Linux | 4.0     | 0.091   | 0.72   | 4.7         | 1.2               |
+| Cortex A720                  | Linux | 1.6     | 0.078   | 0.46   | 4.1         | 1.5               |
 | Apple M1                     | macOS | 10.1    | 0.18    | 0.78   | 8.7         | 3.8               |
 | Apple M1                     | Linux | 16.1    | 0.11    | 0.47   | 4.7         | 2.5               |
 | Apple M3                     | macOS | 2.4     | 0.14    | 0.80   | 8.0         | 3.5               |
@@ -1438,6 +1570,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.17    | 0.64    | 0.51   | 0.69        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 1.7     | 4.4     | 5.7    | 4.5         | 4.0               |
+| Cortex A520                  | Linux | 0.35    | 4.5     | 7.7    | 6.4         | 4.5               |
+| Cortex A720                  | Linux | 0.027   | 0.73    | 0.93   | 1.1         | 1.1               |
 | Apple M1                     | macOS | 0.063   | 0.62    | 0.59   | 0.85        | 1.0               |
 | Apple M1                     | Linux | 0.18    | 0.74    | 0.66   | 0.85        | 1.2               |
 | Apple M3                     | macOS | 0.010   | 0.34    | 0.41   | 0.53        | 0.63              |
@@ -1459,6 +1593,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 91      | 54      | 35     | 54          |                   |
 | Cortex A53 (R.Pi3)           | Linux | 1567    | 1824    | 622    | 1170        | 60                |
 | Cortex A72 (R.Pi4)           | Linux | 451     | 265     | 164    | 191         | 18.0              |
+| Cortex A520                  | Linux | 145     | 377     | 211    | 293         | 25                |
+| Cortex A720                  | Linux | 18.6    | 89      | 40     | 64          | 6.0               |
 | Apple M1                     | macOS | 33      | 62      | 34     | 49          | 4.3               |
 | Apple M1                     | Linux | 89      | 71      | 35     | 43          | 4.7               |
 | Apple M3                     | macOS | 9.9     | 51      | 26     | 37          | 3.6               |
@@ -1481,6 +1617,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 17.4    | 10.4    | 6.8    | 10.4        |                   |
 | Cortex A53 (R.Pi3)           | Linux | 20      | 24      | 8.3    | 15.6        | 0.81              |
 | Cortex A72 (R.Pi4)           | Linux | 25      | 14.8    | 9.2    | 10.7        | 1.0               |
+| Cortex A520                  | Linux | 6.4     | 16.5    | 9.2    | 12.8        | 1.1               |
+| Cortex A720                  | Linux | 3.0     | 14.4    | 6.6    | 10.4        | 0.97              |
 | Apple M1                     | macOS | 11.4    | 21      | 11.8   | 17.2        | 1.5               |
 | Apple M1                     | Linux | 16.8    | 13.5    | 6.8    | 8.3         | 0.89              |
 | Apple M3                     | macOS | 4.1     | 21      | 10.8   | 15.6        | 1.5               |
@@ -1497,6 +1635,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :---------: | :---------------: |
 | Xeon-9460                    | Linux | 0.18    | 0.57    | 0.66   | 0.69        |                   |
 | Cortex A72 (R.Pi4)           | Linux | 1.7     | 5.4     | 5.8    | 4.7         | 4.9               |
+| Cortex A520                  | Linux | 0.55    | 7.6     | 7.5    | 7.2         | 6.8               |
+| Cortex A720                  | Linux | 0.048   | 1.3     | 1.0    | 1.1         | 1.1               |
 | Apple M1                     | macOS | 0.070   | 0.71    | 0.68   | 0.68        | 0.65              |
 | Apple M1                     | Linux | 0.19    | 0.81    | 0.72   | 0.60        | 0.72              |
 | Apple M3                     | macOS | 0.017   | 0.47    | 0.42   | 0.42        | 0.44              |
@@ -1520,6 +1660,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 595     | 1289    | 592    | 879    | 3201        |             |
 | Cortex A53 (R.Pi3)           | Linux | 21010   | 50739   | 56339  | 54874  | 37195       |             |
 | Cortex A72 (R.Pi4)           | Linux | 19761   | 10909   | 12656  | 12638  | 12095       |             |
+| Cortex A520                  | Linux | 1229    | 2269    | 1214   | 3849   | 14900       | 1917        |
+| Cortex A720                  | Linux | 489     | 967     | 487    | 1110   | 4239        | 969         |
 | Apple M1                     | macOS | 636     | 1159    | 3254   | 3265   | 3430        | 975         |
 | Apple M1                     | Linux | 723     | 4849    | 720    | 1317   | 4179        | 1126        |
 | Apple M3                     | macOS | 422     | 729     | 2602   | 2573   | 2729        | 717         |
@@ -1542,6 +1684,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 113     | 245     | 112    | 167    | 608         |             |
 | Cortex A53 (R.Pi3)           | Linux | 279     | 675     | 749    | 730    | 495         |             |
 | Cortex A72 (R.Pi4)           | Linux | 1102    | 608     | 705    | 704    | 674         |             |
+| Cortex A520                  | Linux | 53      | 98      | 52     | 167    | 649         | 83          |
+| Cortex A720                  | Linux | 78      | 155     | 78     | 178    | 681         | 155         |
 | Apple M1                     | macOS | 220     | 400     | 1125   | 1128   | 1186        | 337         |
 | Apple M1                     | Linux | 136     | 913     | 135    | 248    | 787         | 212         |
 | Apple M3                     | macOS | 173     | 300     | 1070   | 1058   | 1123        | 295         |
@@ -1558,6 +1702,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :----: | :---------: | :---------: |
 | Xeon-9460                    | Linux | 0.91    | 0.22    | 0.89   | 0.14   | 0.56        |             |
 | Cortex A72 (R.Pi4)           | Linux | 58      | 3.7     | 37     | 4.0    | 4.1         |             |
+| Cortex A520                  | Linux | 3.6     | 0.77    | 3.6    | 1.2    | 5.0         | 3.3         |
+| Cortex A720                  | Linux | 1.0     | 0.23    | 0.99   | 0.24   | 0.99        | 1.1         |
 | Apple M1                     | macOS | 1.1     | 0.22    | 5.4    | 0.58   | 0.65        | 0.93        |
 | Apple M1                     | Linux | 1.2     | 0.92    | 1.2    | 0.23   | 0.79        | 1.1         |
 | Apple M3                     | macOS | 0.56    | 0.11    | 3.4    | 0.36   | 0.42        | 0.55        |
@@ -1579,6 +1725,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 92      | 851     | 90     | 116    | 2652        |             |
 | Cortex A53 (R.Pi3)           | Linux | 22138   | 45732   | 47236  | 47203  | 39899       |             |
 | Cortex A72 (R.Pi4)           | Linux | 14152   | 11032   | 11686  | 11682  | 12878       |             |
+| Cortex A520                  | Linux | 539     | 2348    | 536    | 803    | 15841       | 1994        |
+| Cortex A720                  | Linux | 161     | 389     | 160    | 198    | 4220        | 254         |
 | Apple M1                     | macOS | 77      | 478     | 2619   | 2624   | 3190        | 142         |
 | Apple M1                     | Linux | 97      | 4676    | 97     | 150    | 3643        | 190         |
 | Apple M3                     | macOS | 50      | 139     | 1869   | 1881   | 2346        | 107         |
@@ -1601,6 +1749,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 17.7    | 161     | 17.2   | 22     | 504         |             |
 | Cortex A53 (R.Pi3)           | Linux | 294     | 608     | 628    | 628    | 531         |             |
 | Cortex A72 (R.Pi4)           | Linux | 789     | 615     | 651    | 651    | 718         |             |
+| Cortex A520                  | Linux | 23      | 102     | 23     | 35     | 690         | 86          |
+| Cortex A720                  | Linux | 25      | 62      | 25     | 31     | 678         | 40          |
 | Apple M1                     | macOS | 26      | 165     | 905    | 907    | 1102        | 49          |
 | Apple M1                     | Linux | 18.3    | 881     | 18.4   | 28     | 686         | 35          |
 | Apple M3                     | macOS | 20      | 57      | 769    | 774    | 965         | 44          |
@@ -1617,6 +1767,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :----: | :---------: | :---------: |
 | Xeon-9460                    | Linux | 0.60    | 0.16    | 0.54   | 0.022  | 0.45        |             |
 | Cortex A72 (R.Pi4)           | Linux | 177     | 4.0     | 135    | 4.2    | 4.3         |             |
+| Cortex A520                  | Linux | 6.8     | 0.85    | 6.2    | 0.29   | 5.3         | 11.1        |
+| Cortex A720                  | Linux | 1.4     | 0.097   | 1.3    | 0.050  | 0.97        | 0.98        |
 | Apple M1                     | macOS | 0.55    | 0.097   | 17.0   | 0.53   | 0.60        | 0.45        |
 | Apple M1                     | Linux | 0.69    | 0.95    | 0.64   | 0.031  | 0.68        | 0.60        |
 | Apple M3                     | macOS | 0.29    | 0.023   | 9.7    | 0.31   | 0.35        | 0.27        |
@@ -1636,6 +1788,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Xeon-9460                    | Linux | 6.4     | 1.5     | 6.5    | 7.5    | 1.2         |             |
 | Cortex A53 (R.Pi3)           | Linux | 0.95    | 1.1     | 1.2    | 1.2    | 0.93        |             |
 | Cortex A72 (R.Pi4)           | Linux | 1.4     | 0.99    | 1.1    | 1.1    | 0.94        |             |
+| Cortex A520                  | Linux | 2.3     | 0.97    | 2.3    | 4.8    | 0.94        | 0.96        |
+| Cortex A720                  | Linux | 3.0     | 2.5     | 3.0    | 5.6    | 1.0         | 3.8         |
 | Apple M1                     | macOS | 8.2     | 2.4     | 1.2    | 1.2    | 1.1         | 6.8         |
 | Apple M1                     | Linux | 7.4     | 1.0     | 7.4    | 8.7    | 1.1         | 5.9         |
 | Apple M3                     | macOS | 8.3     | 5.2     | 1.4    | 1.4    | 1.2         | 6.7         |
@@ -1662,6 +1816,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 811     | 1504    | 808    | 1095   | 4202        |             |
 | Cortex A53 (R.Pi3)           | Linux | 27673   | 65286   | 72289  | 70831  | 47898       |             |
 | Cortex A72 (R.Pi4)           | Linux | 27705   | 13703   | 16892  | 16825  | 15757       |             |
+| Cortex A520                  | Linux | 1975    | 2646    | 1978   | 4491   | 19666       | 2561        |
+| Cortex A720                  | Linux | 692     | 1163    | 690    | 1302   | 5497        | 1263        |
 | Apple M1                     | macOS | 890     | 1411    | 4323   | 4319   | 4498        | 1276        |
 | Apple M1                     | Linux | 1020    | 5845    | 1026   | 1613   | 5373        | 1470        |
 | Apple M3                     | macOS | 574     | 920     | 3429   | 3449   | 3562        | 997         |
@@ -1684,6 +1840,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 154     | 285     | 153    | 208    | 798         |             |
 | Cortex A53 (R.Pi3)           | Linux | 368     | 869     | 962    | 942    | 637         |             |
 | Cortex A72 (R.Pi4)           | Linux | 1545    | 764     | 942    | 938    | 878         |             |
+| Cortex A520                  | Linux | 86      | 115     | 86     | 195    | 857         | 111         |
+| Cortex A720                  | Linux | 111     | 186     | 110    | 209    | 883         | 202         |
 | Apple M1                     | macOS | 307     | 487     | 1494   | 1493   | 1554        | 441         |
 | Apple M1                     | Linux | 192     | 1101    | 193    | 303    | 1012        | 277         |
 | Apple M3                     | macOS | 236     | 378     | 1411   | 1419   | 1465        | 410         |
@@ -1700,6 +1858,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :----: | :---------: | :---------: |
 | Xeon-9460                    | Linux | 0.89    | 0.20    | 0.88   | 0.13   | 0.56        |             |
 | Cortex A72 (R.Pi4)           | Linux | 58      | 3.6     | 35     | 4.0    | 4.1         |             |
+| Cortex A520                  | Linux | 4.2     | 0.69    | 4.2    | 1.1    | 5.1         | 3.4         |
+| Cortex A720                  | Linux | 1.0     | 0.21    | 1.0    | 0.21   | 0.99        | 1.2         |
 | Apple M1                     | macOS | 1.1     | 0.21    | 5.1    | 0.57   | 0.65        | 0.96        |
 | Apple M1                     | Linux | 1.2     | 0.85    | 1.2    | 0.21   | 0.78        | 1.1         |
 | Apple M3                     | macOS | 0.55    | 0.11    | 3.3    | 0.36   | 0.41        | 0.60        |
@@ -1721,6 +1881,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 129     | 1023    | 126    | 154    | 3616        |             |
 | Cortex A53 (R.Pi3)           | Linux | 28485   | 58836   | 63194  | 63130  | 51241       |             |
 | Cortex A72 (R.Pi4)           | Linux | 19975   | 13948   | 15877  | 15883  | 16647       |             |
+| Cortex A520                  | Linux | 717     | 2744    | 717    | 945    | 19299       | 2709        |
+| Cortex A720                  | Linux | 209     | 461     | 208    | 248    | 5487        | 420         |
 | Apple M1                     | macOS | 143     | 558     | 3680   | 3947   | 4254        | 189         |
 | Apple M1                     | Linux | 171     | 5860    | 153    | 174    | 5035        | 252         |
 | Apple M3                     | macOS | 116     | 176     | 2711   | 2968   | 3176        | 131         |
@@ -1743,6 +1905,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 24      | 194     | 24     | 29     | 687         |             |
 | Cortex A53 (R.Pi3)           | Linux | 379     | 783     | 841    | 840    | 682         |             |
 | Cortex A72 (R.Pi4)           | Linux | 1114    | 778     | 885    | 885    | 928         |             |
+| Cortex A520                  | Linux | 31      | 119     | 31     | 41     | 841         | 118         |
+| Cortex A720                  | Linux | 33      | 74      | 33     | 39     | 881         | 67          |
 | Apple M1                     | macOS | 49      | 193     | 1272   | 1364   | 1470        | 65          |
 | Apple M1                     | Linux | 32      | 1104    | 28     | 32     | 948         | 47          |
 | Apple M3                     | macOS | 47      | 72      | 1115   | 1221   | 1306        | 53          |
@@ -1759,6 +1923,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :-----: | :-----: | :----: | :----: | :---------: | :---------: |
 | Xeon-9460                    | Linux | 0.61    | 0.14    | 0.54   | 0.020  | 0.48        |             |
 | Cortex A72 (R.Pi4)           | Linux | 185     | 3.8     | 130    | 4.0    | 4.3         |             |
+| Cortex A520                  | Linux | 6.6     | 0.75    | 5.9    | 0.24   | 5.0         | 11.3        |
+| Cortex A720                  | Linux | 1.3     | 0.087   | 1.2    | 0.044  | 0.98        | 1.2         |
 | Apple M1                     | macOS | 0.75    | 0.086   | 17.0   | 0.56   | 0.62        | 0.44        |
 | Apple M1                     | Linux | 0.90    | 0.90    | 0.71   | 0.025  | 0.73        | 0.59        |
 | Apple M3                     | macOS | 0.48    | 0.022   | 10.0   | 0.34   | 0.37        | 0.25        |
@@ -1778,6 +1944,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | Xeon-9460                    | Linux | 6.3     | 1.5     | 6.4    | 7.1    | 1.2         |             |
 | Cortex A53 (R.Pi3)           | Linux | 0.97    | 1.1     | 1.1    | 1.1    | 0.93        |             |
 | Cortex A72 (R.Pi4)           | Linux | 1.4     | 0.98    | 1.1    | 1.1    | 0.95        |             |
+| Cortex A520                  | Linux | 2.8     | 0.96    | 2.8    | 4.7    | 1.0         | 0.95        |
+| Cortex A720                  | Linux | 3.3     | 2.5     | 3.3    | 5.2    | 1.0         | 3.0         |
 | Apple M1                     | macOS | 6.2     | 2.5     | 1.2    | 1.1    | 1.1         | 6.7         |
 | Apple M1                     | Linux | 5.9     | 1.0     | 6.7    | 9.3    | 1.1         | 5.8         |
 | Apple M3                     | macOS | 4.9     | 5.2     | 1.3    | 1.2    | 1.1         | 7.6         |
@@ -1804,6 +1972,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 0.18  | 2.6      | 0.99     | 2.0      | 2.4    | 0.021  | 194     | 3372   |
 | Cortex A53 (R.Pi3)           | Linux | 3.5   | 130      | 35       | 87       | 123    | 0.43   | 3180    | 160771 |
 | Cortex A72 (R.Pi4)           | Linux | 0.84  | 16.3     | 8.1      | 14.6     | 15.0   | 0.10   | 679     | 15433  |
+| Cortex A520                  | Linux | 1.4   | 25       | 9.4      | 22       | 24     | 0.17   | 1023    | 31925  |
+| Cortex A720                  | Linux | 0.34  | 6.6      | 1.7      | 4.8      | 6.5    | 0.035  | 311     | 3253   |
 | Apple M1                     | macOS | 0.22  | 4.8      | 0.88     | 3.2      | 4.8    | 0.000  | 228     | 2869   |
 | Apple M1                     | Linux | 0.24  | 5.3      | 1.1      | 3.7      | 5.2    | 0.022  | 252     | 1793   |
 | Apple M3                     | macOS | 0.17  | 3.7      | 0.59     | 2.3      | 3.6    | 0.000  | 172     | 1131   |
@@ -1826,6 +1996,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 0.035 | 0.49     | 0.19     | 0.37     | 0.46   | 0.004  | 36      | 640    |
 | Cortex A53 (R.Pi3)           | Linux | 0.046 | 1.7      | 0.48     | 1.2      | 1.6    | 0.006  | 42      | 2140   |
 | Cortex A72 (R.Pi4)           | Linux | 0.047 | 0.91     | 0.45     | 0.82     | 0.84   | 0.006  | 37      | 860    |
+| Cortex A520                  | Linux | 0.059 | 1.1      | 0.41     | 0.98     | 1.1    | 0.007  | 44      | 1392   |
+| Cortex A720                  | Linux | 0.055 | 1.1      | 0.28     | 0.77     | 1.0    | 0.006  | 50      | 522    |
 | Apple M1                     | macOS | 0.077 | 1.7      | 0.30     | 1.1      | 1.7    | 0.000  | 78      | 991    |
 | Apple M1                     | Linux | 0.045 | 1.0      | 0.20     | 0.70     | 0.98   | 0.004  | 47      | 337    |
 | Apple M3                     | macOS | 0.070 | 1.5      | 0.24     | 0.95     | 1.5    | 0.000  | 70      | 465    |
@@ -1842,6 +2014,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :--: | :------: | :------: | :------: | :----: | :----: | :-----: | :----: |
 | Xeon-9460                    | Linux | 0.45 | 0.32     | 0.50     | 0.34     | 0.31   | 0.64   | 0.53    | 0.95   |
 | Cortex A72 (R.Pi4)           | Linux | 4.1  | 4.0      | 8.0      | 4.9      | 3.7    | 5.9    | 3.6     | 8.5    |
+| Cortex A520                  | Linux | 6.6  | 6.3      | 9.4      | 7.5      | 6.0    | 9.7    | 5.4     | 17.6   |
+| Cortex A720                  | Linux | 1.1  | 1.1      | 1.2      | 1.1      | 1.1    | 1.4    | 1.1     | 1.2    |
 | Apple M1                     | macOS | 0.60 | 0.66     | 0.49     | 0.61     | 0.67   | 0.000  | 0.68    | 0.89   |
 | Apple M1                     | Linux | 0.65 | 0.73     | 0.59     | 0.70     | 0.72   | 0.72   | 0.75    | 0.56   |
 | Apple M3                     | macOS | 0.37 | 0.40     | 0.26     | 0.35     | 0.41   | 0.000  | 0.41    | 0.28   |
@@ -1863,6 +2037,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 19.5     | 15.2     | 12.6     | 38       | 44       |
 | Cortex A53 (R.Pi3)           | Linux | 857      | 708      | 636      | 1523     | 2117     |
 | Cortex A72 (R.Pi4)           | Linux | 152      | 128      | 104      | 246      | 261      |
+| Cortex A520                  | Linux | 184      | 144      | 122      | 389      | 424      |
+| Cortex A720                  | Linux | 38       | 27       | 23       | 86       | 113      |
 | Apple M1                     | macOS | 19.2     | 12.8     | 10.9     | 60       | 83       |
 | Apple M1                     | Linux | 22       | 15.4     | 12.9     | 65       | 92       |
 | Apple M3                     | macOS | 15.2     | 9.8      | 8.6      | 44       | 63       |
@@ -1885,6 +2061,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 3.7      | 2.9      | 2.4      | 7.2      | 8.4      |
 | Cortex A53 (R.Pi3)           | Linux | 11.4     | 9.4      | 8.5      | 20       | 28       |
 | Cortex A72 (R.Pi4)           | Linux | 8.5      | 7.2      | 5.8      | 13.7     | 14.6     |
+| Cortex A520                  | Linux | 8.0      | 6.3      | 5.3      | 17.0     | 18.5     |
+| Cortex A720                  | Linux | 6.1      | 4.5      | 3.8      | 14.0     | 18.2     |
 | Apple M1                     | macOS | 6.6      | 4.4      | 3.8      | 21       | 28       |
 | Apple M1                     | Linux | 4.2      | 2.9      | 2.4      | 12.4     | 17.5     |
 | Apple M3                     | macOS | 6.2      | 4.0      | 3.5      | 18.4     | 26       |
@@ -1901,6 +2079,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :------: | :------: | :------: | :------: | :------: |
 | Xeon-9460                    | Linux | 0.47     | 0.50     | 0.49     | 0.36     | 0.33     |
 | Cortex A72 (R.Pi4)           | Linux | 7.2      | 8.3      | 7.9      | 4.5      | 3.7      |
+| Cortex A520                  | Linux | 8.7      | 9.3      | 9.3      | 7.1      | 6.1      |
+| Cortex A720                  | Linux | 1.2      | 1.2      | 1.2      | 1.1      | 1.1      |
 | Apple M1                     | macOS | 0.51     | 0.46     | 0.47     | 0.63     | 0.67     |
 | Apple M1                     | Linux | 0.60     | 0.56     | 0.55     | 0.68     | 0.74     |
 | Apple M3                     | macOS | 0.32     | 0.28     | 0.29     | 0.37     | 0.41     |
@@ -1922,6 +2102,8 @@ Execution time in microseconds (the lower, the better):
 | Xeon-9460                    | Linux | 1783     | 1783     | 1627     | 5017     | 6030     |
 | Cortex A53 (R.Pi3)           | Linux | 84912    | 84760    | 78166    | 196706   | 295110   |
 | Cortex A72 (R.Pi4)           | Linux | 15397    | 15371    | 13614    | 32410    | 36296    |
+| Cortex A520                  | Linux | 16995    | 16915    | 15335    | 50897    | 59808    |
+| Cortex A720                  | Linux | 3245     | 3234     | 3032     | 11382    | 15700    |
 | Apple M1                     | macOS | 1471     | 1464     | 1429     | 7894     | 11609    |
 | Apple M1                     | Linux | 1742     | 1737     | 1701     | 8719     | 13003    |
 | Apple M3                     | macOS | 1119     | 1113     | 1103     | 5735     | 8706     |
@@ -1944,6 +2126,8 @@ Relative performance score (the lower, the better):
 | Xeon-9460                    | Linux | 339      | 339      | 309      | 953      | 1146     |
 | Cortex A53 (R.Pi3)           | Linux | 1130     | 1128     | 1040     | 2618     | 3928     |
 | Cortex A72 (R.Pi4)           | Linux | 858      | 857      | 759      | 1807     | 2024     |
+| Cortex A520                  | Linux | 741      | 737      | 668      | 2219     | 2608     |
+| Cortex A720                  | Linux | 521      | 519      | 487      | 1828     | 2522     |
 | Apple M1                     | macOS | 508      | 506      | 494      | 2728     | 4013     |
 | Apple M1                     | Linux | 328      | 327      | 320      | 1642     | 2449     |
 | Apple M3                     | macOS | 460      | 458      | 454      | 2359     | 3582     |
@@ -1960,6 +2144,8 @@ Execution time ratio, compared to reference system, frequencies included (the lo
 | ---------------------------- | ----- | :------: | :------: | :------: | :------: | :------: |
 | Xeon-9460                    | Linux | 0.51     | 0.51     | 0.50     | 0.36     | 0.32     |
 | Cortex A72 (R.Pi4)           | Linux | 8.5      | 8.5      | 8.1      | 4.5      | 3.7      |
+| Cortex A520                  | Linux | 9.4      | 9.4      | 9.1      | 7.1      | 6.1      |
+| Cortex A720                  | Linux | 1.2      | 1.2      | 1.2      | 1.1      | 1.1      |
 | Apple M1                     | macOS | 0.46     | 0.46     | 0.48     | 0.62     | 0.67     |
 | Apple M1                     | Linux | 0.54     | 0.54     | 0.57     | 0.69     | 0.75     |
 | Apple M3                     | macOS | 0.28     | 0.28     | 0.29     | 0.36     | 0.40     |
